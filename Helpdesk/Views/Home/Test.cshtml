@@ -1,0 +1,4 @@
+﻿@inject IStorageManager StorageManager;
+
+@StorageManager.GetSessioned(out NavigationTree navTree)
+@await Html.PartialAsync("~/Views/Components/MainNavigationPartial.cshtml", navTree);

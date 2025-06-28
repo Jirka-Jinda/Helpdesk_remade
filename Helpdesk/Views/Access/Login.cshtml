@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityUser
+
+@{
+    ViewData["Title"] = "Přihlášení";
+}
+
+<div class="d-flex flex-row">
+    @await Html.PartialAsync("~/Views/Access/Components/LoginPartial.cshtml", Model)
+</div>

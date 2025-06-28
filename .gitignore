@@ -1,0 +1,12 @@
+.vs
+.obj
+/Database/bin
+/Database/obj
+/Helpdesk/bin
+/Helpdesk/obj
+/Models/bin
+/Models/obj
+/Services/bin
+/Services/obj
+/Tests/bin
+/Tests/obj

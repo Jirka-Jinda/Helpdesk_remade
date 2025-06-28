@@ -1,0 +1,6 @@
+﻿@using Domain.User
+@using Helpdesk.Models.Cookies
+
+@model (User, IUserSettings)
+
+@await Html.PartialAsync("~/Views/Layout/Components/UsersPartial.cshtml", Model);

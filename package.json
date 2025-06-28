@@ -1,0 +1,12 @@
+{
+  "name": "helpdesk-razorpages-sass",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:sass": "sass --no-source-map Helpdesk/wwwroot/lib/custom_bootstrap/custom.scss Helpdesk/wwwroot/css/site.css --style=compressed",
+    "watch:sass": "sass --watch Helpdesk/wwwroot/lib/custom_bootstrap/custom.scss:Helpdesk/wwwroot/css/site.css --style=compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.71.0"
+  }
+}
