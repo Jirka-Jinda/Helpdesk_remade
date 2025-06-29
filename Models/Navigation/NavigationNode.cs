@@ -1,26 +1,16 @@
-﻿namespace Models.Navigation;
+﻿using Models.User;
+
+namespace Models.Navigation;
 
 public class NavigationNode
 {
+    public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; }
-    public NavigationRoute Route { get; set; }
+    public UserType? AuthorizedUserType { get; set; } = null;
+    public uint Level { get; set; } = 0;
+    public string Icon { get; set; } = string.Empty;
+    public NavigationRoute? Route { get; set; }
     public NavigationNode? Parent { get; set; }
     public List<NavigationNode> Children { get; set; } = new List<NavigationNode>();
-
-    public NavigationNode()
-    {
-        
-    }
-
-    public NavigationNode(string name, NavigationRoute route)
-    {
-        Name = name;
-        Route = route;
-    }
-
-    public void AddChild(NavigationNode child)
-    {
-        child.Parent = this;
-        Children.Add(child);
-    }
+    public bool HasChildren => Children.Count > 0;
 }

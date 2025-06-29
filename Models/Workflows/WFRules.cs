@@ -51,8 +51,8 @@ public static class WFRules
             case WFState.Vrácený:
                 if (action == WFAction.Vrácení) return WFState.V_řešení;
                 break;
-        }
-        ;
+        };
+        
         return WFState.Neplatný;
     }
 }

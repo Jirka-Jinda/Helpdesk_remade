@@ -2,7 +2,7 @@
 
 public enum UserType
 {
-    Zadavatel,
-    Řešitel,
-    Auditor
+    Zadavatel = 0,
+    Řešitel = 1,
+    Auditor = 2
 }

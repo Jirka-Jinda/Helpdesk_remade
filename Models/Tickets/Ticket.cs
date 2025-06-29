@@ -1,4 +1,5 @@
-﻿using Models.Messages;
+﻿using Microsoft.AspNetCore.Identity;
+using Models.Messages;
 using Models.Workflows;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,8 +9,9 @@ namespace Models.Tickets;
 public class Ticket : AuditableObject
 {
     public Ticket? Hierarchy { get; set; } = null;
-    public ICollection<WorkflowHistory> TicketHistory { get; set; } = [];
-    public ICollection<SolverHistory> SolverHistory { get; set; } = [];
+    public List<WorkflowHistory> TicketHistory { get; set; } = [];
+    public List<SolverHistory> SolverHistory { get; set; } = [];
+    public IdentityUser? Solver => SolverHistory.LastOrDefault()?.Solver;
     public MessageThread MessageThread { get; set; } = new();
     public WFState State { get; set; } = WFState.Žádný;
     public Priority Priority { get; set; } = Priority.Střední;

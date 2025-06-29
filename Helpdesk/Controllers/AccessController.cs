@@ -61,6 +61,4 @@ public class AccessController : Controller
         }
         return View();
     }
-
-    // Placeholder for other user operations
 }
