@@ -2,6 +2,6 @@
 
 namespace Database.Repositories.Abstractions;
 
-public interface INavigationRepository : IRepository<SerializedNavigation>
+public interface INavigationRepository : IRepository<Navigation>
 {
 }

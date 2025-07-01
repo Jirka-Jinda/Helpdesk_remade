@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.User;
-public class UserSettings : AuditableObject
+
+public class ApplicationUser : IdentityUser<Guid>
 {
-    [Required]
-    public IdentityUser? User { get; set; }
     public Theme Theme { get; private set; } = Theme.Light;
     public bool NotificationsEnabled { get; set; } = false;
 

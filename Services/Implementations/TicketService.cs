@@ -1,99 +1,44 @@
 ﻿using Database.Repositories.Abstractions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Models;
 using Models.Messages;
 using Models.Tickets;
+using Models.User;
 using Models.Workflows;
 using Services.Abstractions;
 
 namespace Services.Implementations;
 
-public class TicketService : ITicketService
+public class TicketService : BaseService, ITicketService
 {
     private readonly ITicketRepository _ticketRepository;
     private readonly IUserRepository _userRepository;
 
-    public TicketService(ITicketRepository ticketRepository, IUserRepository userRepository)
+    public TicketService(
+        ITicketRepository ticketRepository,
+        IUserRepository userRepository,
+        UserManager<ApplicationUser> userManager,
+        IHttpContextAccessor httpContextAccessor)
+        : base(userManager, httpContextAccessor)
     {
         _ticketRepository = ticketRepository;
         _userRepository = userRepository;
     }
 
-    public async Task<Ticket> AddAsync(Ticket entity)
-    {
-        return await _ticketRepository.AddAsync(entity);
-    }
-
-    public async Task<Ticket> AddMessageAsync(Ticket ticket, string content)
-    {
-        ticket.AddMessage(content);
-        return await _ticketRepository.UpdateAsync(ticket);
-    }
-
-    public async Task<Ticket> AddParentTicketAsync(Ticket ticket)
-    {
-        ticket.AddParentTicket(ticket);
-        return await _ticketRepository.UpdateAsync(ticket);
-    }
-
-    public Task<Ticket> ChangePriorityAsync(Ticket ticket, Priority priority)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Ticket> ChangeSolverAsync(Ticket ticket, IdentityUser newSolver, string coment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Ticket> ChangeWFAsync(Ticket ticket, WFAction action, string comment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<IEnumerable<Ticket>> GetAllAsync()
-    {
-        return await _ticketRepository.GetAllAsync();
-    }
-
-    public async Task<IEnumerable<Ticket>> GetByCreaterAsync(Guid creatorId)
-    {
-        return await _ticketRepository.GetByCreaterAsync(creatorId);
-    }
-
-    public async Task<Ticket> GetByIdAsync(Guid id)
-    {
-        return await _ticketRepository.GetByIdAsync(id);
-    }
-
-    public async Task<IEnumerable<Ticket>> GetBySolverAsync(Guid solverId)
-    {
-        return await _ticketRepository.GetBySolverAsync(solverId);
-    }
-
-    public Task<Ticket> RemoveMessageAsync(Ticket ticket, Message message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Ticket> RemoveParentTicketAsync(Ticket ticket)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Ticket> UpdateAsync(Ticket entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public AuditableObject UpdateAuditableData(AuditableObject auditableObject)
-    {
-        //get the current user and update the auditable object
-        return auditableObject;
-    }
+    public async Task<IEnumerable<Ticket>> GetBySolverAsync(Guid solverId) => await _ticketRepository.GetBySolverAsync(solverId);
+    public async Task<IEnumerable<Ticket>> GetByCreaterAsync(Guid creatorId) => await _ticketRepository.GetByCreaterAsync(creatorId);
+    public Task<Ticket> AddParentTicketAsync(Ticket ticket) => throw new NotImplementedException();
+    public Task<Ticket> RemoveParentTicketAsync(Ticket ticket) => throw new NotImplementedException();
+    public Task<Ticket> AddMessageAsync(Ticket ticket, string content) => throw new NotImplementedException();
+    public Task<Ticket> RemoveMessageAsync(Ticket ticket, Message message) => throw new NotImplementedException();
+    public Task<Ticket> ChangeWFAsync(Ticket ticket, WFAction action, string comment) => throw new NotImplementedException();
+    public Task<Ticket> ChangeSolverAsync(Ticket ticket, IdentityUser newSolver, string comment) => throw new NotImplementedException();
+    public Task<Ticket> ChangePriorityAsync(Ticket ticket, Priority priority) => throw new NotImplementedException();
+    public async Task<IEnumerable<Ticket>> GetAllAsync() => await _ticketRepository.GetAllAsync();
+    public async Task<Ticket?> GetAsync(Guid id) => await _ticketRepository.GetAsync(id);
+    public async Task<Ticket> AddAsync(Ticket entity) => await _ticketRepository.AddAsync(entity);
+    public async Task<Ticket> UpdateAsync(Ticket entity) => await _ticketRepository.UpdateAsync(entity);
+    public async Task DeleteAsync(Guid id) => await _ticketRepository.DeleteAsync(id);
+    public AuditableObject UpdateAuditableData(AuditableObject auditableObject) => base.UpdateAuditableData(auditableObject, isUpdate: true);
 }

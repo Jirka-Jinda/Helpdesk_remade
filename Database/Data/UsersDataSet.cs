@@ -19,22 +19,26 @@ internal class UsersDataSet : IDataSet
         var random = new Random();
         var themes = Enum.GetValues(typeof(Theme)).Cast<Theme>().ToList();
 
-        foreach (var user in users)
-        {
-            // Only add if not already present
-            if (!context.UserSettings.Any(us => us.User != null && us.User.Id == user.Id))
-            {
-                var userSettings = new UserSettings
-                {
-                    User = user,
-                    Theme = themes[random.Next(themes.Count)],
-                    NotificationsEnabled = random.Next(2) == 0,
-                    TimeCreated = DateTime.UtcNow,
-                    UserCreated = user
-                };
-                context.UserSettings.Add(userSettings);
-            }
-        }
+        //foreach (var user in users)
+        //{
+        //    // Only add if not already present
+        //    if (!context.UserSettings.Any(us => us.User != null && us.User.Id == user.Id))
+        //    {
+        //        var userSettings = new UserSettings
+        //        {
+        //            User = user,
+        //            NotificationsEnabled = random.Next(2) == 0,
+        //            TimeCreated = DateTime.UtcNow,
+        //            UserCreated = user
+        //        };
+        //        userSettings.SwitchTheme(); // Set a random theme
+        //        if (themes[random.Next(themes.Count)] == Theme.Dark)
+        //        {
+        //            userSettings.SwitchTheme();
+        //        }
+        //        context.UserSettings.Add(userSettings);
+        //    }
+        //}
 
         await context.SaveChangesAsync();
     }

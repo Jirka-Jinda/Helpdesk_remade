@@ -3,6 +3,7 @@ using Database.Context;
 using Helpdesk.Filters;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Models.User;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>()
+builder.Services.AddDefaultIdentity<ApplicationUser>()
+    .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews(options =>

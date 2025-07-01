@@ -2,10 +2,7 @@
 
 namespace Services.Abstractions;
 
-public interface INavigationService
+public interface INavigationService : IService<Navigation>
 {
-    public Task<Navigation> GetNavigationAsync(Guid id);
-    public Task<Navigation> GetNavigationAsync(string name);
-    public Task AddNavigationAsync(Navigation navigation);
-    public Task DeleteNavigationAsync(Guid id);
+    public Task<Navigation?> GetByNameAsync(string name);
 }

@@ -1,5 +1,4 @@
-﻿using Database.Context;
-using Database.Repositories.Abstractions;
+﻿using Database.Repositories.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Models.User;
@@ -8,76 +7,66 @@ namespace Database.Repositories.Implementations;
 
 public class UserRepository : IUserRepository
 {
-    private readonly ApplicationDbContext _context;
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly ILogger<UserRepository> _logger;
 
-    public UserRepository(ApplicationDbContext context, UserManager<IdentityUser> userManager, ILogger<UserRepository> logger)
+    public UserRepository(UserManager<ApplicationUser> userManager, ILogger<UserRepository> logger)
     {
-        _context = context;
         _userManager = userManager;
         _logger = logger;
     }
 
-    public async Task<IdentityUser> AddAsync(IdentityUser entity)
+    public async Task<ApplicationUser> AddAsync(ApplicationUser entity)
     {
         var res = await _userManager.CreateAsync(entity);
         if (!res.Succeeded)
-            _logger.LogError("Failed to add user: {Errors}", string.Join(", ", res.Errors.Select(e => e.Description)));
+            _logger.LogError($"Failed to add user: {string.Join(", ", res.Errors.Select(e => e.Description))}" );
 
         return entity;
-    }
-
-    public async Task<UserSettings> AddUserSettings(UserSettings userSettings)
-    {
-        var res = await _context.UserSettings.AddAsync(userSettings);
-        return res.Entity;
     }
 
     public async Task DeleteAsync(Guid id)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
-
-        await _userManager.DeleteAsync();
+        if (user == null)
+        {
+            _logger.LogWarning($"User with id {id} not found for deletion.");
+            return;
+        }
+        var result = await _userManager.DeleteAsync(user);
+        if (!result.Succeeded)
+        {
+            _logger.LogError($"Failed to delete user: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+        }
     }
 
-    public Task DeleteUserSettings(Guid userId)
+    public async Task<ICollection<ApplicationUser>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await Task.FromResult(_userManager.Users.ToList());
     }
 
-    public Task<ICollection<IdentityUser>> GetAllAsync()
+    public async Task<ApplicationUser?> GetAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _userManager.FindByIdAsync(id.ToString());
     }
 
-    public Task<IdentityUser> GetAsync(Guid id)
+    public async Task<ApplicationUser?> GetByEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        return await _userManager.FindByEmailAsync(email);
     }
 
-    public Task<IdentityUser> GetByEmailAsync(string email)
+    public async Task<ICollection<ApplicationUser>> GetByRoleAsync(UserType type)
     {
-        throw new NotImplementedException();
+        var roleName = type.ToString();
+        return await _userManager.GetUsersInRoleAsync(roleName);
     }
 
-    public Task<ICollection<IdentityUser>> GetByRoleAsync(UserType type)
+    public async Task<ApplicationUser> UpdateAsync(ApplicationUser entity)
     {
-        throw new NotImplementedException();
-    }
+        var result = await _userManager.UpdateAsync(entity);
+        if (!result.Succeeded)
+            _logger.LogError($"Failed to update user: {string.Join(", ", result.Errors.Select(e => e.Description))}");
 
-    public Task<UserSettings> GetUserSettings(Guid userId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<IdentityUser> UpdateAsync(IdentityUser entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<UserSettings> UpdateUserSettings(Guid userId, UserSettings userSettings)
-    {
-        throw new NotImplementedException();
+        return entity;
     }
 }

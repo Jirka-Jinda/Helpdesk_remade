@@ -5,7 +5,7 @@ namespace Models.Navigation;
 
 public class SerializedNavigation : AuditableObject
 {
-    public string Name { get; set; } = string.Empty;
+    public string? Name { get; set; }
     public string SerializedData { get; set; } = string.Empty;
 
     [NotMapped]

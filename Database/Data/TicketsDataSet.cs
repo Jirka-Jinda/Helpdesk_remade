@@ -23,38 +23,38 @@ internal class TicketsDataSet : IDataSet
         int ticketCount = Math.Min(10, users.Count * 2);
         var random = new Random();
 
-        for (int i = 0; i < ticketCount; i++)
-        {
-            var user = users[random.Next(users.Count)];
-            var thread = new MessageThread
-            {
-                Name = $"Thread for Ticket {i + 1}",
-                Messages =
-                [
-                    new Message
-                    {
-                        Content = $"Initial message for ticket {i + 1}",
-                        TimeCreated = DateTime.UtcNow,
-                        UserCreated = user
-                    }
-                ],
-                TimeCreated = DateTime.UtcNow,
-                UserCreated = user
-            };
+        //for (int i = 0; i < ticketCount; i++)
+        //{
+        //    var user = users[random.Next(users.Count)];
+        //    var thread = new MessageThread
+        //    {
+        //        Name = $"Thread for Ticket {i + 1}",
+        //        Messages =
+        //        [
+        //            new Message
+        //            {
+        //                Content = $"Initial message for ticket {i + 1}",
+        //                TimeCreated = DateTime.UtcNow,
+        //                UserCreated = user
+        //            }
+        //        ],
+        //        TimeCreated = DateTime.UtcNow,
+        //        UserCreated = user
+        //    };
 
-            var ticket = new Ticket
-            {
-                Header = $"Example Ticket {i + 1}",
-                Content = $"This is the content for example ticket {i + 1}.",
-                Priority = (Priority)random.Next(1, 6), // Use enum values 1-5
-                State = (WFState)random.Next(1, 6), // Use enum values 1-5
-                MessageThread = thread,
-                TimeCreated = DateTime.UtcNow,
-                UserCreated = user
-            };
+        //    var ticket = new Ticket
+        //    {
+        //        Header = $"Example Ticket {i + 1}",
+        //        Content = $"This is the content for example ticket {i + 1}.",
+        //        Priority = (Priority)random.Next(1, 6), // Use enum values 1-5
+        //        State = (WFState)random.Next(1, 6), // Use enum values 1-5
+        //        MessageThread = thread,
+        //        TimeCreated = DateTime.UtcNow,
+        //        UserCreated = user
+        //    };
 
-            context.Tickets.Add(ticket);
-        }
+        //    context.Tickets.Add(ticket);
+        //}
 
         await context.SaveChangesAsync();
     }
