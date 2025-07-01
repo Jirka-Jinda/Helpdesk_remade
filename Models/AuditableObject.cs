@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Models;
+
 public abstract class AuditableObject
 {
     [Key]

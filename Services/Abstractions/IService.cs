@@ -1,0 +1,13 @@
+﻿using Models;
+
+namespace Services.Abstractions;
+
+public interface IService<T> where T : AuditableObject
+{
+    public Task<IEnumerable<T>> GetAllAsync();
+    public Task<T> GetByIdAsync(Guid id);
+    public Task<T> AddAsync(T entity);
+    public Task<T> UpdateAsync(T entity);
+    public Task DeleteAsync(Guid id);
+    public AuditableObject UpdateAuditableData(AuditableObject auditableObject);
+}

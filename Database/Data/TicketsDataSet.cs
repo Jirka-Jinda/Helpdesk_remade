@@ -20,7 +20,7 @@ internal class TicketsDataSet : IDataSet
         if (users.Count == 0) return;
 
         // Number of example tickets to create
-        int ticketCount = Math.Min(10, users.Count * 2); // Example: 2 tickets per user, up to 10
+        int ticketCount = Math.Min(10, users.Count * 2);
         var random = new Random();
 
         for (int i = 0; i < ticketCount; i++)

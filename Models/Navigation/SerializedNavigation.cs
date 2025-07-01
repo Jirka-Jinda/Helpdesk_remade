@@ -3,9 +3,8 @@ using System.Text.Json;
 
 namespace Models.Navigation;
 
-public class SerializedNavigation
+public class SerializedNavigation : AuditableObject
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; } = string.Empty;
     public string SerializedData { get; set; } = string.Empty;
 

@@ -1,5 +1,7 @@
-﻿namespace Database.Repositories.Abstractions;
+﻿using Models.Navigation;
 
-public interface INavigationRepository
+namespace Database.Repositories.Abstractions;
+
+public interface INavigationRepository : IRepository<SerializedNavigation>
 {
 }
