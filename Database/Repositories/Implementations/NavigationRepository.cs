@@ -32,7 +32,7 @@ public class NavigationRepository : INavigationRepository
     public async Task<ICollection<Navigation>> GetAllAsync()
     {
         return await _context.Navigations
-            .Select(nav => DeserializeNavigation(nav))
+            .Select(nav => NavigationRepository.DeserializeNavigation(nav))
             .ToListAsync();
     }
 
@@ -40,7 +40,7 @@ public class NavigationRepository : INavigationRepository
     {
         return await _context.Navigations
             .Where(nav => nav.Id == id)
-            .Select(nav => DeserializeNavigation(nav))
+            .Select(nav => NavigationRepository.DeserializeNavigation(nav))
             .FirstOrDefaultAsync();
     }
 
@@ -49,6 +49,7 @@ public class NavigationRepository : INavigationRepository
         var nav = _context.Navigations
             .First(n => n.Id == entity.Id);
         nav.Navigation = entity;
+        nav.Name = entity.Name;
 
         var res = _context.Navigations.Update(nav);
         await _context.SaveChangesAsync();
@@ -56,7 +57,7 @@ public class NavigationRepository : INavigationRepository
         return entity;
     }
 
-    private Navigation DeserializeNavigation(SerializedNavigation serializedNavigation)
+    public static Navigation DeserializeNavigation(SerializedNavigation serializedNavigation)
     {
         var navigation = serializedNavigation.Navigation;
         navigation.Id = serializedNavigation.Id;

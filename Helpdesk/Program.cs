@@ -1,10 +1,10 @@
 using Database;
 using Database.Context;
 using Helpdesk.Filters;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.User;
 using Serilog;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +25,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddRepositories();
+
+builder.Services.AddServices();
 
 builder.Services.AddControllersWithViews(options =>
 {
@@ -72,3 +76,5 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+public partial class Program;
