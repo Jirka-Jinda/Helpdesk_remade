@@ -1,4 +1,5 @@
-﻿using Database.Repositories.Abstractions;
+﻿using Database.Context;
+using Database.Repositories.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Models.User;
@@ -10,7 +11,7 @@ public class UserRepository : IUserRepository
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ILogger<UserRepository> _logger;
 
-    public UserRepository(UserManager<ApplicationUser> userManager, ILogger<UserRepository> logger)
+    public UserRepository(ApplicationDbContext context, UserManager<ApplicationUser> userManager, ILogger<UserRepository> logger)
     {
         _userManager = userManager;
         _logger = logger;
@@ -25,19 +26,21 @@ public class UserRepository : IUserRepository
         return entity;
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task<ApplicationUser?> DeleteAsync(Guid id)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
         if (user == null)
         {
             _logger.LogWarning($"User with id {id} not found for deletion.");
-            return;
+            return null;
         }
         var result = await _userManager.DeleteAsync(user);
         if (!result.Succeeded)
         {
             _logger.LogError($"Failed to delete user: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+            return null;
         }
+        return user;
     }
 
     public async Task<ICollection<ApplicationUser>> GetAllAsync()
@@ -68,5 +71,9 @@ public class UserRepository : IUserRepository
             _logger.LogError($"Failed to update user: {string.Join(", ", result.Errors.Select(e => e.Description))}");
 
         return entity;
+    }
+
+    public async Task SaveChangesAsync()
+    {
     }
 }

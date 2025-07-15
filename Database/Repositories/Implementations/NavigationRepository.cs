@@ -5,16 +5,13 @@ using Models.Navigation;
 
 namespace Database.Repositories.Implementations;
 
-public class NavigationRepository : INavigationRepository
+public class NavigationRepository : BaseRepository<Navigation>, INavigationRepository
 {
-    private readonly ApplicationDbContext _context;
-
-    public NavigationRepository(ApplicationDbContext context)
+    public NavigationRepository(ApplicationDbContext context) : base(context)
     {
-        _context = context;
     }
 
-    public async Task<Navigation> AddAsync(Navigation entity)
+    public override async Task<Navigation> AddAsync(Navigation entity)
     {
         var res = _context.Navigations.Add(SerializedNavigation(entity));
         await _context.SaveChangesAsync();
@@ -22,21 +19,14 @@ public class NavigationRepository : INavigationRepository
         return entity;
     }
 
-    public async Task DeleteAsync(Guid id)
-    {
-        await _context.Navigations
-            .Where(n => n.Id == id)
-            .ExecuteDeleteAsync();
-    }
-
-    public async Task<ICollection<Navigation>> GetAllAsync()
+    public override async Task<ICollection<Navigation>> GetAllAsync()
     {
         return await _context.Navigations
             .Select(nav => NavigationRepository.DeserializeNavigation(nav))
             .ToListAsync();
     }
 
-    public async Task<Navigation?> GetAsync(Guid id)
+    public override async Task<Navigation?> GetAsync(Guid id)
     {
         return await _context.Navigations
             .Where(nav => nav.Id == id)
@@ -44,7 +34,7 @@ public class NavigationRepository : INavigationRepository
             .FirstOrDefaultAsync();
     }
 
-    public async Task<Navigation> UpdateAsync(Navigation entity)
+    public override async Task<Navigation> UpdateAsync(Navigation entity)
     {
         var nav = _context.Navigations
             .First(n => n.Id == entity.Id);

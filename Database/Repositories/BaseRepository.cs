@@ -13,7 +13,7 @@ public class BaseRepository<T> : IRepository<T> where T : AuditableObject
         _context = context;
     }
 
-    public async Task<T> AddAsync(T entity)
+    public virtual async Task<T> AddAsync(T entity)
     {
         var result = _context.Add(entity);
         await _context.SaveChangesAsync();
@@ -21,7 +21,7 @@ public class BaseRepository<T> : IRepository<T> where T : AuditableObject
         return result.Entity;
     }
 
-    public async Task<T> DeleteAsync(Guid id)
+    public virtual async Task<T> DeleteAsync(Guid id)
     {
         var entity = await GetAsync(id);
         if (entity == null)
@@ -42,7 +42,7 @@ public class BaseRepository<T> : IRepository<T> where T : AuditableObject
         return await _context.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public async Task<T> UpdateAsync(T entity)
+    public virtual async Task<T> UpdateAsync(T entity)
     {
         var entityEntry = _context.Update(entity);
         await _context.SaveChangesAsync();

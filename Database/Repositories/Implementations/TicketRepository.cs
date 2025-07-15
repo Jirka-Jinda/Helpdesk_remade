@@ -39,7 +39,7 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
     {
         return await _context.Tickets
             .UseTicketIncludesSingle()
-            .Where(t => t.Solver?.Id == solverId))
+            .Where(t => t.Solver != null && t.Solver.Id == solverId)
             .ToListAsync();
     }
 }
