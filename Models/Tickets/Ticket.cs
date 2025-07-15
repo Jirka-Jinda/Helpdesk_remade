@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Models.Messages;
+using Models.User;
 using Models.Workflows;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,7 @@ public class Ticket : AuditableObject
     public List<WorkflowHistory> TicketHistory { get; private set; } = [];
     public WFState State => TicketHistory.LastOrDefault()?.State ?? WFState.Žádný;
     public List<SolverHistory> SolverHistory { get; private set; } = [];
-    public IdentityUser? Solver => SolverHistory.LastOrDefault()?.Solver;
+    public ApplicationUser? Solver => SolverHistory.LastOrDefault()?.Solver;
     public MessageThread MessageThread { get; private set; } = new();
     public Priority Priority { get; private set; } = Priority.Střední;
     public string Header { get; set; } = string.Empty;
@@ -59,7 +60,7 @@ public class Ticket : AuditableObject
             return null;
     }
 
-    public SolverHistory? ChangeSolver(IdentityUser newSolver, string comment)
+    public SolverHistory? ChangeSolver(ApplicationUser newSolver, string comment)
     {
         var newChange = new SolverHistory()
         {

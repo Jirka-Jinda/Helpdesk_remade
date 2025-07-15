@@ -5,68 +5,42 @@ using Models.Tickets;
 
 namespace Database.Repositories.Implementations;
 
-public class TicketRepository : ITicketRepository
+public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
 {
-    private readonly ApplicationDbContext _context;
-
-    public TicketRepository(ApplicationDbContext context)
+    public TicketRepository(ApplicationDbContext context) : base(context)
     {
-        _context = context;
+        
     }
 
-    public async Task<Ticket> AddAsync(Ticket entity)
+    public override async Task<ICollection<Ticket>> GetAllAsync()
     {
-        var entry = await _context.Tickets.AddAsync(entity);
-        await _context.SaveChangesAsync();
-        return entry.Entity;
+        return await _context.Tickets
+            .UseTicketIncludesAll()
+            .ToListAsync();
     }
 
-    public async Task DeleteAsync(Guid id)
+    public override async Task<Ticket?> GetAsync(Guid id)
     {
-        var ticket = await _context.Tickets.FindAsync(id);
-        if (ticket != null)
-        {
-            _context.Tickets.Remove(ticket);
-            await _context.SaveChangesAsync();
-        }
-    }
-
-    public async Task<ICollection<Ticket>> GetAllAsync()
-    {
-        return await _context.Tickets.UseTicketIncludesAll().ToListAsync();
-    }
-
-    public async Task<Ticket?> GetAsync(Guid id)
-    {
-        return await _context.Tickets.Where(t => t.Id == id).UseTicketIncludesSingle().FirstOrDefaultAsync();
+        return await _context.Tickets
+            .UseTicketIncludesSingle()
+            .Where(t => t.Id == id)
+            .SingleOrDefaultAsync();
     }
 
     public async Task<ICollection<Ticket>> GetByCreaterAsync(Guid creatorId)
     {
         return await _context.Tickets
-            .Where(t => t.UserCreated != null && t.UserCreated.Id == creatorId)
             .UseTicketIncludesSingle()
+            .Where(t => t.UserCreated != null && t.UserCreated.Id == creatorId)
             .ToListAsync();
     }
 
     public async Task<ICollection<Ticket>> GetBySolverAsync(Guid solverId)
     {
         return await _context.Tickets
-            .Where(t => t.SolverHistory.Any(sh => sh.Solver != null && sh.Solver.Id == solverId.ToString()))
             .UseTicketIncludesSingle()
+            .Where(t => t.Solver?.Id == solverId))
             .ToListAsync();
-    }
-
-    public async Task<Ticket> UpdateAsync(Ticket entity)
-    {
-        _context.Tickets.Update(entity);
-        await _context.SaveChangesAsync();
-        return entity;
-    }
-
-    public async Task SaveChangesAsync()
-    {
-        await _context.SaveChangesAsync();
     }
 }
 

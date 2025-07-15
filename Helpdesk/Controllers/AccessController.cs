@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Models.User;
 
 namespace Helpdesk.Controllers;
 
 public class AccessController : Controller
 {
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public AccessController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+    public AccessController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
     {
         _signInManager = signInManager;
         _userManager = userManager;
@@ -48,7 +49,7 @@ public class AccessController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(string email, string password)
     {
-        var user = new IdentityUser { UserName = email, Email = email };
+        var user = new ApplicationUser { UserName = email, Email = email };
         var result = await _userManager.CreateAsync(user, password);
         if (result.Succeeded)
         {
