@@ -9,7 +9,6 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
 {
     public TicketRepository(ApplicationDbContext context) : base(context)
     {
-        
     }
 
     public override async Task<ICollection<Ticket>> GetAllAsync()

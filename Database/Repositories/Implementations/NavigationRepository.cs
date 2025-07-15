@@ -11,10 +11,12 @@ public class NavigationRepository : BaseRepository<Navigation>, INavigationRepos
     {
     }
 
-    public override async Task<Navigation> AddAsync(Navigation entity)
+    public override async Task<Navigation> AddAsync(Navigation entity, bool executeOperation = true)
     {
         var res = _context.Navigations.Add(SerializedNavigation(entity));
-        await _context.SaveChangesAsync();
+
+        if (executeOperation)
+            await _context.SaveChangesAsync();
 
         return entity;
     }
@@ -34,7 +36,7 @@ public class NavigationRepository : BaseRepository<Navigation>, INavigationRepos
             .FirstOrDefaultAsync();
     }
 
-    public override async Task<Navigation> UpdateAsync(Navigation entity)
+    public override async Task<Navigation> UpdateAsync(Navigation entity, bool executeOperation = true)
     {
         var nav = _context.Navigations
             .First(n => n.Id == entity.Id);
@@ -42,7 +44,9 @@ public class NavigationRepository : BaseRepository<Navigation>, INavigationRepos
         nav.Name = entity.Name;
 
         var res = _context.Navigations.Update(nav);
-        await _context.SaveChangesAsync();
+
+        if (executeOperation)
+            await _context.SaveChangesAsync();
 
         return entity;
     }

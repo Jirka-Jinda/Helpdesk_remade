@@ -72,8 +72,4 @@ public class UserRepository : IUserRepository
 
         return entity;
     }
-
-    public async Task SaveChangesAsync()
-    {
-    }
 }

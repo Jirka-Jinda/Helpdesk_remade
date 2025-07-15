@@ -45,4 +45,16 @@ public class TicketServiceTests
         Assert.NotNull(result);
         Assert.Single(result.MessageThread.Messages);
     }
+
+    [Fact]
+    public async Task Create_workflow()
+    {
+        // Arrange
+        var ticket = DataObjects.Ticket();
+        var ticketService = GetTicketService();
+        await ticketService.AddAsync(ticket);
+
+        // Act
+        await ticketService.ChangeWFAsync(ticket, Models.Workflows.WFAction.Založení, "Created");
+    }
 }

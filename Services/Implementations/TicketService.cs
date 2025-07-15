@@ -12,12 +12,14 @@ namespace Services.Implementations;
 public class TicketService : BaseService, ITicketService
 {
     private readonly ITicketRepository _ticketRepository;
+    private readonly IWorkflowRepository _workflowRepository;
 
     public TicketService(
-        ITicketRepository ticketRepository, IUserRepository userRepository,
+        ITicketRepository ticketRepository, IWorkflowRepository workflowRepository,
         UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
     {
         _ticketRepository = ticketRepository;
+        _workflowRepository = workflowRepository;
     }
 
     public async Task<Ticket> AddAsync(Ticket entity)
@@ -38,7 +40,7 @@ public class TicketService : BaseService, ITicketService
         return ticket;
     }
 
-    public async Task<Ticket> ChangeSolverAsync(Ticket ticket, IdentityUser newSolver, string coment)
+    public async Task<Ticket> ChangeSolverAsync(Ticket ticket, ApplicationUser newSolver, string coment)
     {
         var newEntity = ticket.ChangeSolver(newSolver, coment);
         if (newEntity != null)
@@ -50,12 +52,17 @@ public class TicketService : BaseService, ITicketService
     public async Task<Ticket> ChangeWFAsync(Ticket ticket, WFAction action, string comment)
     {
         var newEntity = ticket.ChangeWF(action, comment);
+        
         if (newEntity != null)
         {
             UpdateAuditableData(newEntity, false);
-            return await _ticketRepository.UpdateAsync(ticket);
+            await _workflowRepository.AddAsync(newEntity, false);
         }
         else throw new Exception($"Invalid state of ticket. Cannot change ticket: {ticket.Id} via acton: {action}.");
+
+        await _ticketRepository.SaveChangesAsync();
+
+        return ticket;
     }
 
     public async Task DeleteAsync(Guid id)

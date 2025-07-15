@@ -13,21 +13,25 @@ public class BaseRepository<T> : IRepository<T> where T : AuditableObject
         _context = context;
     }
 
-    public virtual async Task<T> AddAsync(T entity)
+    public virtual async Task<T> AddAsync(T entity, bool executeOperation = true)
     {
         var result = _context.Add(entity);
-        await _context.SaveChangesAsync();
+
+        if (executeOperation)
+            await _context.SaveChangesAsync();
 
         return result.Entity;
     }
 
-    public virtual async Task<T> DeleteAsync(Guid id)
+    public virtual async Task<T> DeleteAsync(Guid id, bool executeOperation = true)
     {
         var entity = await GetAsync(id);
         if (entity == null)
             throw new Exception($"Object {typeof(T)} to delete not found: {id}");
         var result = _context.Remove(entity);
-        await _context.SaveChangesAsync();
+
+        if (executeOperation)
+            await _context.SaveChangesAsync();
 
         return result.Entity;
     }
@@ -42,10 +46,12 @@ public class BaseRepository<T> : IRepository<T> where T : AuditableObject
         return await _context.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
     }
 
-    public virtual async Task<T> UpdateAsync(T entity)
+    public virtual async Task<T> UpdateAsync(T entity, bool executeOperation = true)
     {
         var entityEntry = _context.Update(entity);
-        await _context.SaveChangesAsync();
+
+        if (executeOperation)
+            await _context.SaveChangesAsync();
 
         return entityEntry.Entity;
     }

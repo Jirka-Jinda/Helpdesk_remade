@@ -11,6 +11,10 @@ public static class IServiceCollectionExtensions
         services.AddTransient<INavigationRepository, NavigationRepository>();
         services.AddTransient<ITicketRepository, TicketRepository>();
         services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IWorkflowRepository, WorkflowRepository>();
+        services.AddTransient<ISolverRepository, SolverRepository>();
+        services.AddTransient<IThreadRepository, ThreadRepository>();
+        services.AddTransient<IMessageRepository, MessageRepository>();
 
         return services;
     }
