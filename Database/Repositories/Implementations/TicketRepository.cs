@@ -33,19 +33,19 @@ public class TicketRepository : ITicketRepository
 
     public async Task<ICollection<Ticket>> GetAllAsync()
     {
-        return await _context.Tickets.IncludeAll().ToListAsync();
+        return await _context.Tickets.UseTicketIncludesAll().ToListAsync();
     }
 
     public async Task<Ticket?> GetAsync(Guid id)
     {
-        return await _context.Tickets.Where(t => t.Id == id).IncludeAllSingle().FirstOrDefaultAsync();
+        return await _context.Tickets.Where(t => t.Id == id).UseTicketIncludesSingle().FirstOrDefaultAsync();
     }
 
     public async Task<ICollection<Ticket>> GetByCreaterAsync(Guid creatorId)
     {
         return await _context.Tickets
             .Where(t => t.UserCreated != null && t.UserCreated.Id == creatorId)
-            .IncludeAll()
+            .UseTicketIncludesSingle()
             .ToListAsync();
     }
 
@@ -53,7 +53,7 @@ public class TicketRepository : ITicketRepository
     {
         return await _context.Tickets
             .Where(t => t.SolverHistory.Any(sh => sh.Solver != null && sh.Solver.Id == solverId.ToString()))
-            .IncludeAll()
+            .UseTicketIncludesSingle()
             .ToListAsync();
     }
 
@@ -63,27 +63,30 @@ public class TicketRepository : ITicketRepository
         await _context.SaveChangesAsync();
         return entity;
     }
+
+    public async Task SaveChangesAsync()
+    {
+        await _context.SaveChangesAsync();
+    }
 }
 
 public static class TicketIncludeExtensions
 {
-    public static IQueryable<Ticket> IncludeAll(this IQueryable<Ticket> query)
+    public static IQueryable<Ticket> UseTicketIncludesSingle(this IQueryable<Ticket> query)
     {
         return query
             .Include(t => t.Hierarchy)
             .Include(t => t.TicketHistory)
             .Include(t => t.SolverHistory)
+            .Include(t => t.MessageThread)
             .Include(t => t.MessageThread)
                 .ThenInclude(mt => mt.Messages);
     }
 
-    public static IQueryable<Ticket> IncludeAllSingle(this IQueryable<Ticket> query)
+    public static IQueryable<Ticket> UseTicketIncludesAll(this IQueryable<Ticket> query)
     {
         return query
-            .Include(t => t.Hierarchy)
             .Include(t => t.TicketHistory)
-            .Include(t => t.SolverHistory)
-            .Include(t => t.MessageThread)
-                .ThenInclude(mt => mt.Messages);
+            .Include(t => t.SolverHistory);
     }
 }

@@ -28,11 +28,14 @@ public class TicketService : BaseService, ITicketService
 
     public async Task<Ticket> AddMessageAsync(Ticket ticket, string content)
     {
-        var newEntity = ticket.AddMessage(content);
-        if (newEntity != null)
-            UpdateAuditableData(newEntity, false);
+        ticket = await _ticketRepository.GetAsync(ticket.Id) ?? throw new Exception($"Ticket with ID {ticket.Id} not found.");
 
-        return await _ticketRepository.UpdateAsync(ticket);
+        var newEntity = ticket.AddMessage(content);
+        //if (newEntity != null)
+        //    UpdateAuditableData(newEntity, false);
+
+        await _ticketRepository.SaveChangesAsync();
+        return ticket;
     }
 
     public async Task<Ticket> ChangeSolverAsync(Ticket ticket, IdentityUser newSolver, string coment)

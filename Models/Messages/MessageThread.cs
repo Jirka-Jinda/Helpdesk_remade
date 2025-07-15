@@ -6,7 +6,7 @@ namespace Models.Messages;
 public class MessageThread : AuditableObject
 {
     public string Name { get; set; } = string.Empty;
-    public List<Message> Messages { get; private set; } = [];
+    public List<Message> Messages { get; set; } = [];
 
     public Message? AddMessage(string content)
     {
