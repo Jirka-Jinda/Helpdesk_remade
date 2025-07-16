@@ -76,7 +76,7 @@ public class TicketServiceTests
         // Assert
         var result = await ticketService.GetAsync(ticket.Id);
         Assert.NotNull(result?.SolverHistory);
-        Assert.Equal(result.SolverHistory.First().Comment, comment);
+        Assert.Equal(result.TicketHistory.First().Comment, comment);
     }
 
     [Fact]
@@ -95,7 +95,7 @@ public class TicketServiceTests
         // Assert
         var result = await ticketService.GetAsync(ticket.Id);
         Assert.NotNull(result?.SolverHistory);
-        Assert.Equal(result.SolverHistory.First().UserCreated, user);
+        Assert.Equal(result.Solver, user);
     }
 
     [Fact]
@@ -145,8 +145,8 @@ public class TicketServiceTests
         // Assert
         var retrievedTicket = await ticketService.GetAsync(ticket.Id);
         if (addExisting)
-            Assert.Null(retrievedTicket?.Hierarchy);
-        else
             Assert.Equal(parentTicket?.Id, retrievedTicket?.Hierarchy?.Id);
+        else
+            Assert.Null(retrievedTicket?.Hierarchy);
     }
 }

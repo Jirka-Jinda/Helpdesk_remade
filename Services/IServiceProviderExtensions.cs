@@ -1,6 +1,4 @@
-﻿using Database.Repositories.Abstractions;
-using Database.Repositories.Implementations;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Services.Abstractions;
 using Services.Implementations;
 

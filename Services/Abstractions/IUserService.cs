@@ -1,6 +1,4 @@
-﻿using Database.Repositories;
-using Microsoft.AspNetCore.Identity;
-using Models.User;
+﻿using Models.User;
 
 namespace Services.Abstractions;
 

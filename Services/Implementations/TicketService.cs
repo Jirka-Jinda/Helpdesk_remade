@@ -6,7 +6,6 @@ using Models.Tickets;
 using Models.User;
 using Models.Workflows;
 using Services.Abstractions;
-using System.Net.Sockets;
 
 namespace Services.Implementations;
 
@@ -18,7 +17,7 @@ public class TicketService : BaseService, ITicketService
     private readonly IThreadRepository _threadRepository;
     private readonly IMessageRepository _messageRepository;
 
-    public TicketService(ITicketRepository ticketRepository, 
+    public TicketService(ITicketRepository ticketRepository,
         IWorkflowRepository workflowRepository,
         ISolverRepository solverRepository,
         IThreadRepository threadRepository,
@@ -60,6 +59,15 @@ public class TicketService : BaseService, ITicketService
             await _messageRepository.DeleteAsync(message.Id);
         }
         return ticket;
+    }
+
+    public async Task<Ticket?> ChangeHierarchyAsync(Ticket ticket, Ticket? parentTicket)
+    {
+        ticket.ChangeParentTicket(parentTicket);
+
+        await _ticketRepository.SaveChangesAsync();
+
+        return parentTicket;
     }
 
     public async Task<Ticket> ChangeSolverAsync(Ticket ticket, ApplicationUser newSolver, string coment)
@@ -123,14 +131,5 @@ public class TicketService : BaseService, ITicketService
     {
         UpdateAuditableData(entity, true);
         return await _ticketRepository.UpdateAsync(entity);
-    }
-
-    public async Task<Ticket?> ChangeHierarchyAsync(Ticket ticket, Ticket? parentTicket)
-    {
-        ticket.ChangeParentTicket(parentTicket);
-
-        await _ticketRepository.SaveChangesAsync();
-
-        return parentTicket;
     }
 }
