@@ -13,7 +13,7 @@ public class Navigation : AuditableObject
         ActiveNode = Root;
     }
 
-    public void AddNode(NavigationNode node, NavigationNode parent = null)
+    public void AddNode(NavigationNode node, NavigationNode? parent = null)
     {
         if (parent == null)
             parent = Root;

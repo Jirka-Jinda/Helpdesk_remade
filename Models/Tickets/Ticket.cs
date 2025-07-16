@@ -19,14 +19,10 @@ public class Ticket : AuditableObject
     public string Header { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
 
-    public void AddParentTicket(Ticket parentTicket)
+    public Ticket? ChangeParentTicket(Ticket? parentTicket)
     {
         Hierarchy = parentTicket;
-    }
-
-    public void RemoveParentTicket()
-    {
-        Hierarchy = null;
+        return parentTicket;
     }
 
     public Message? AddMessage(string content)

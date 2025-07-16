@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Models.Messages;
 using Models.Navigation;
 using Models.Tickets;
 using Models.User;
@@ -25,4 +23,9 @@ public static class DataObjects
 
     private static int _messageIdCounter = 0;
     public static string MessageContent() => $"Test message content {_messageIdCounter++}";
+
+    public static Navigation Navigation() => new()
+    {
+
+    };
 }

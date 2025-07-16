@@ -54,6 +54,8 @@ public class NavigationRepository : BaseRepository<Navigation>, INavigationRepos
     public static Navigation DeserializeNavigation(SerializedNavigation serializedNavigation)
     {
         var navigation = serializedNavigation.Navigation;
+        if (navigation == null)
+            throw new InvalidOperationException($"Failed to deserialize navigation property. Corrupted navigation {serializedNavigation.Name}");
         navigation.Id = serializedNavigation.Id;
         navigation.Name = serializedNavigation.Name;
         navigation.TimeCreated = serializedNavigation.TimeCreated;
