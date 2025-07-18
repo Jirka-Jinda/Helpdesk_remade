@@ -14,13 +14,11 @@ public class TicketService : BaseService, ITicketService
     private readonly ITicketRepository _ticketRepository;
     private readonly IWorkflowRepository _workflowRepository;
     private readonly ISolverRepository _solverRepository;
-    private readonly IThreadRepository _threadRepository;
     private readonly IMessageRepository _messageRepository;
 
     public TicketService(ITicketRepository ticketRepository,
         IWorkflowRepository workflowRepository,
         ISolverRepository solverRepository,
-        IThreadRepository threadRepository,
         IMessageRepository messageRepository,
         IHttpContextAccessor httpContextAccessor,
         UserManager<ApplicationUser> userManager) : base(userManager, httpContextAccessor)
@@ -28,7 +26,6 @@ public class TicketService : BaseService, ITicketService
         _ticketRepository = ticketRepository;
         _workflowRepository = workflowRepository;
         _solverRepository = solverRepository;
-        _threadRepository = threadRepository;
         _messageRepository = messageRepository;
     }
 

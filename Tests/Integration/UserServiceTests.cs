@@ -1,10 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
+using Services.Abstractions;
 
 namespace Tests.Integration;
-internal class UserServiceTests
+
+public class UserServiceTests
 {
+    private readonly WebApplicationFactory<Program> _factory;
+
+    public UserServiceTests()
+    {
+        _factory = new WebApplicationFactory<Program>();
+    }
+
+    private IUserService GetUserService()
+    {
+        var scope = _factory.Services.CreateScope();
+        return scope.ServiceProvider.GetRequiredService<IUserService>();
+    }
+
+
 }

@@ -51,6 +51,19 @@ public class NavigationRepository : BaseRepository<Navigation>, INavigationRepos
         return entity;
     }
 
+    public async override Task<Navigation> DeleteAsync(Guid id, bool executeOperation = true)
+    {
+        var entity = _context.Navigations.SingleOrDefault(n => n.Id == id);
+        if (entity == null)
+            throw new Exception($"Object {typeof(SerializedNavigation)} to delete not found: {id}");
+        var result = _context.Remove(entity);
+
+        if (executeOperation)
+            await _context.SaveChangesAsync();
+
+        return DeserializeNavigation(result.Entity);
+    }
+
     public static Navigation DeserializeNavigation(SerializedNavigation serializedNavigation)
     {
         var navigation = serializedNavigation.Navigation;
