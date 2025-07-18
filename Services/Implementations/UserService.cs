@@ -1,5 +1,4 @@
-﻿using Database.Repositories.Abstractions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Models.User;
 using Services.Abstractions;
@@ -8,46 +7,82 @@ namespace Services.Implementations;
 
 public class UserService : BaseService, IUserService
 {
-    private readonly IUserRepository _userRepository;
+    private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public UserService(UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, IUserRepository userRepository)
-        : base(userManager, httpContextAccessor)
+    public UserService(UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> singInManager,
+        IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
     {
-        _userRepository = userRepository;
+        _signInManager = singInManager;
     }
 
-    public Task<ApplicationUser> AddAsync(ApplicationUser entity)
+    public Task AddToRoleAsync(ApplicationUser user, ApplicationRole role)
     {
-        return _userRepository.AddAsync(entity);
+        throw new NotImplementedException();
     }
 
-    public Task DeleteAsync(Guid id)
+    public async Task<IdentityResult> CreateAsync(ApplicationUser user, string password)
     {
-        return _userRepository.DeleteAsync(id);
+        var res = await _userManager.CreateAsync(user);
+        if (res.Succeeded && !string.IsNullOrEmpty(password))
+        {
+            res = await _userManager.AddPasswordAsync(user, password);
+        }
+        return res;
     }
 
-    public Task<ICollection<ApplicationUser>> GetAllAsync()
+    public async Task<ApplicationUser?> GetAsync(Guid id)
     {
-        return _userRepository.GetAllAsync();
+        return await _userManager.FindByIdAsync(id.ToString());
     }
 
-    public Task<ApplicationUser?> GetAsync(Guid id)
+    public async Task<IdentityResult> DeleteAsync(Guid id)
     {
-        return _userRepository.GetAsync(id);
+        var user = await GetAsync(id);
+
+        if (user == null)
+            return IdentityResult.Failed(new IdentityError { Description = "User not found." });
+
+        return await _userManager.DeleteAsync(user);
     }
 
-    public Task<ApplicationUser?> GetUserByEmailAsync(string email)
+    public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
     {
-        return _userRepository.GetByEmailAsync(email);
+        return await _userManager.FindByEmailAsync(email);
     }
 
-    public Task<ICollection<ApplicationUser>> GetUsersByRoleAsync(UserType type)
+    public async Task<ICollection<ApplicationUser>> GetUsersByRoleAsync(UserType type)
     {
-        return _userRepository.GetByRoleAsync(type);
+        return await _userManager.GetUsersInRoleAsync(type.ToString());
     }
 
-    public Task<ApplicationUser> UpdateAsync(ApplicationUser entity)
+    public async Task<bool> IsInRoleAsync(ApplicationUser user, UserType role)
     {
-        return _userRepository.UpdateAsync(entity);
+        return await _userManager.IsInRoleAsync(user, role.ToString());
+    }
+
+    public async Task<SignInResult> SignInAsync(string userName, string password, bool isPersistent)
+    {
+        var user = await _userManager.FindByNameAsync(userName);
+
+        if (user == null)
+            return SignInResult.Failed;
+
+        return await _signInManager.PasswordSignInAsync(user, password, isPersistent, lockoutOnFailure: false);
+    }
+
+    public async Task SignOutAsync()
+    {
+        await _signInManager.SignOutAsync();
+    }
+
+    public async Task<IdentityResult> RemoveFromRoleAsync(ApplicationUser user, UserType role)
+    {
+        return await _userManager.RemoveFromRoleAsync(user, role.ToString());
+    }
+
+    public async Task<IdentityResult> AddToRoleAsync(ApplicationUser user, UserType role)
+    {
+        return await _userManager.AddToRoleAsync(user, role.ToString());
     }
 }

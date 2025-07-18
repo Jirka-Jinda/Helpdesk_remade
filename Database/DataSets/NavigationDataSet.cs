@@ -1,39 +1,39 @@
-﻿using Database.Context;
+﻿using Database.Repositories.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Models.Navigation;
 
 namespace Database.Data;
 
+/// <summary>
+/// Seeds the database with example navigation for basic user.
+/// </summary>
 internal class NavigationDataSet : IDataSet
 {
     public async Task Populate(IServiceProvider serviceProvider)
     {
-        ApplicationDbContext context = serviceProvider.GetRequiredService<ApplicationDbContext>();
+        var navigtaionRepository = serviceProvider.GetRequiredService<INavigationRepository>();
 
         var nav = new Navigation();
 
-        nav.AddNode(new NavigationNode()
+        nav.Root.AddChild(new NavigationNode()
         {
             Name = "Založit nový",
             Icon = "plus-square",
             Route = new NavigationRoute("", "TicketManagement", "Create"),
         });
-        nav.AddNode(new NavigationNode()
+        nav.Root.AddChild(new NavigationNode()
         {
             Name = "Požadavky",
             Icon = "card-list",
             Route = new NavigationRoute("", "TicketManagement", "Overview"),
         });
-        nav.AddNode(new NavigationNode()
+        nav.Root.AddChild(new NavigationNode()
         {
             Name = "Archiv",
             Icon = "list-check",
             Route = new NavigationRoute("", "TicketManagement", "Archive"),
         });
 
-        // Store as serialized
-        context.Add(new SerializedNavigation { Navigation = nav });
-
-        await context.SaveChangesAsync();
+        await navigtaionRepository.AddAsync(nav);
     }
 }

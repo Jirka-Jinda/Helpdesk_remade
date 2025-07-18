@@ -89,7 +89,7 @@ public class TicketServiceTests
 
         // Act
         var comment = "Assigned to user";
-        var user = DataObjects.ApplicationUser();
+        var user = DataObjects.ApplicationUser(Guid.NewGuid());
         await ticketService.ChangeSolverAsync(ticket, user, comment);
 
         // Assert

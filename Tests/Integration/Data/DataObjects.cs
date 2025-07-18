@@ -6,22 +6,31 @@ namespace Tests.Integration.Data;
 
 public static class DataObjects
 {
-    public static ApplicationUser ApplicationUser() => new()
+    public static ApplicationUser ApplicationUser(Guid id) => new()
     {
-        Id = Guid.NewGuid(),
-        Email = $"testuser@example.com",
-        PasswordHash = "TestPasswordHash",
+        Id = id,
+        Email = $"user_{id.ToString()}@example.com",
+        PasswordHash = Password(),
         UserName = "testuser"
     };
 
+    public static ApplicationUser ApplicationUserWithoutPassword(Guid id) => new()
+    {
+        Id = id,
+        Email = $"user_{id.ToString()}@example.com",
+        UserName = $"user_{id.ToString()}"
+    };
+
+    public static string Password() => "TestPassword123!";
+
     public static Ticket Ticket() => new()
     {
-        UserCreated = ApplicationUser(),
+        UserCreated = ApplicationUser(Guid.NewGuid()),
         Header = "Test ticket header",
         Content = "Test ticket content"
     };
 
-    private static int _messageIdCounter = 0;
+    private static uint _messageIdCounter = 0;
     public static string MessageContent() => $"Test message content {_messageIdCounter++}";
 
     public static Navigation Navigation()
@@ -68,6 +77,4 @@ public static class DataObjects
 
         return nav;
     }
-
-
 }

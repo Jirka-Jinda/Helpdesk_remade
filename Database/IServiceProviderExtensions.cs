@@ -29,7 +29,8 @@ public static class IServiceProviderExtensions
 
     private static async Task<IServiceProvider> PopulateDatabase(this IServiceProvider serviceProvider)
     {
-        List<IDataSet> datasets = [ new NavigationDataSet(), new TicketsDataSet(), new UsersDataSet() ];
+        Console.WriteLine("Populating database with example data...");
+        List<IDataSet> datasets = [ new NavigationDataSet(), new UsersDataSet(), new TicketsDataSet(), ];
 
         using (var scope = serviceProvider.CreateScope())
         {
