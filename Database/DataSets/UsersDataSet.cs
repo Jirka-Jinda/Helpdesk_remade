@@ -24,10 +24,11 @@ internal class UsersDataSet : IDataSet
         {
             roles.AddRange(
             [
-                new ApplicationRole { Name = UserType.Zadavatel.ToString() },
-                new ApplicationRole { Name = UserType.Řešitel.ToString() },
-                new ApplicationRole { Name = UserType.Auditor.ToString() }
+                new ApplicationRole { Name = UserType.Zadavatel.ToString(), NormalizedName = UserType.Zadavatel.ToString().Normalize().ToUpper() },
+                new ApplicationRole { Name = UserType.Řešitel.ToString(), NormalizedName = UserType.Řešitel.ToString().Normalize().ToUpper() },
+                new ApplicationRole { Name = UserType.Auditor.ToString(), NormalizedName = UserType.Auditor.ToString().Normalize().ToUpper() }
             ]);
+            
             await context.Roles.AddRangeAsync(roles);
             await context.SaveChangesAsync();
         }

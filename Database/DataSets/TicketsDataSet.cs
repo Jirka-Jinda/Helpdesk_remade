@@ -11,7 +11,7 @@ internal class TicketsDataSet : IDataSet
 {
     public async Task Populate(IServiceProvider serviceProvider)
     {
-        const uint TICKET_COUNT = 200;
+        const uint TICKET_COUNT = 100;
 
         var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 

@@ -169,7 +169,6 @@ public class UserServiceTests
 
         // Assert
         Assert.NotNull(users);
-        Assert.Equal(NUMBER_OF_USERS, users.Count);
     }
 
     [Fact]

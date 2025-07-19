@@ -30,7 +30,7 @@ public static class IServiceProviderExtensions
     private static async Task<IServiceProvider> PopulateDatabase(this IServiceProvider serviceProvider)
     {
         Console.WriteLine("Populating database with example data...");
-        List<IDataSet> datasets = [ new NavigationDataSet(), new UsersDataSet(), new TicketsDataSet(), ];
+        List<IDataSet> datasets = [ new UsersDataSet(), new NavigationDataSet(),  new TicketsDataSet(), ];
 
         using (var scope = serviceProvider.CreateScope())
         {

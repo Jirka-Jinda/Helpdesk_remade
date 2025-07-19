@@ -16,11 +16,6 @@ public class UserService : BaseService, IUserService
         _signInManager = singInManager;
     }
 
-    public Task AddToRoleAsync(ApplicationUser user, ApplicationRole role)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<IdentityResult> CreateAsync(ApplicationUser user, string password)
     {
         var res = await _userManager.CreateAsync(user);
