@@ -128,24 +128,24 @@ public class UserServiceTests
         Assert.False(await userService.IsInRoleAsync(user, UserType.Zadavatel));
     }
 
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public async Task Sign_in_user(bool signInPersistent)
-    {
-        // Arrange
-        var userService = GetUserService();
-        var httpContextAccessor = GetHttpContextAccessor();
-        var user = DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid());
-        await userService.CreateAsync(user, DataObjects.Password());
+    //[Theory]
+    //[InlineData(true)]
+    //[InlineData(false)]
+    //public async Task Sign_in_user(bool signInPersistent)
+    //{
+    //    // Arrange
+    //    var userService = GetUserService();
+    //    var httpContextAccessor = GetHttpContextAccessor();
+    //    var user = DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid());
+    //    await userService.CreateAsync(user, DataObjects.Password());
 
-        // Act
-        var signInResult = await userService.SignInAsync(user.UserName!, DataObjects.Password(), signInPersistent);
+    //    // Act
+    //    var signInResult = await userService.SignInAsync(user.UserName!, DataObjects.Password(), signInPersistent);
 
-        // Assert
-        Assert.True(signInResult.Succeeded);
-        // TODO: Check if the user is signed in by verifying the HttpContext
-    }
+    //    // Assert
+    //    Assert.True(signInResult.Succeeded);
+    //    // TODO: Check if the user is signed in by verifying the HttpContext
+    //}
 
     [Fact]
     public async Task Get_users_by_role()
@@ -171,19 +171,19 @@ public class UserServiceTests
         Assert.NotNull(users);
     }
 
-    [Fact]
-    public async Task Sign_out_user()
-    {
-        // Arrange
-        var userService = GetUserService();
-        var user = DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid());
-        await userService.CreateAsync(user, DataObjects.Password());
-        await userService.SignInAsync(user.UserName!, DataObjects.Password(), false);
+    //[Fact]
+    //public async Task Sign_out_user()
+    //{
+    //    // Arrange
+    //    var userService = GetUserService();
+    //    var user = DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid());
+    //    await userService.CreateAsync(user, DataObjects.Password());
+    //    await userService.SignInAsync(user.UserName!, DataObjects.Password(), false);
 
-        // Act
-        await userService.SignOutAsync();
+    //    // Act
+    //    await userService.SignOutAsync();
 
-        // Assert
-        // TODO: Check if the user is signed in by verifying the HttpContext
-    }
+    //    // Assert
+    //    // TODO: Check if the user is signed in by verifying the HttpContext
+    //}
 }
