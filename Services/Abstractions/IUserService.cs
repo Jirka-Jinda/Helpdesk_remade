@@ -10,6 +10,7 @@ public interface IUserService
     public Task<ApplicationUser?> GetUserByEmailAsync(string email);
     public Task<ICollection<ApplicationUser>> GetUsersByRoleAsync(UserType type);
     public Task<ApplicationUser?> GetAsync(Guid id);
+    public ApplicationUser? GetSignedInUser();
     public Task<SignInResult> SignInAsync(string userName, string password, bool isPersistent);
     public Task SignOutAsync();
     public Task<bool> IsInRoleAsync(ApplicationUser user, UserType role);

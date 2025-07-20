@@ -1,14 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
+using Services.Abstractions;
 
 namespace Helpdesk.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITicketService _ticketService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ITicketService ticketService)
         {
             _logger = logger;
+            _ticketService = ticketService;
         }
 
         public IActionResult Index()
@@ -16,9 +19,11 @@ namespace Helpdesk.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Search(string search)
         {
-            return View();
+            var results = await _ticketService.GetByHeaderAsync(search);
+
+            throw new NotImplementedException("Search functionality is not implemented yet.");
         }
     }
 }

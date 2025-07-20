@@ -29,8 +29,16 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
     public async Task<ICollection<Ticket>> GetByCreaterAsync(Guid creatorId)
     {
         return await _context.Tickets
-            .UseTicketIncludesSingle()
+            .UseTicketIncludesAll()
             .Where(t => t.UserCreated != null && t.UserCreated.Id == creatorId)
+            .ToListAsync();
+    }
+
+    public async Task<ICollection<Ticket>> GetByHeaderAsync(string header)
+    {
+        return await _context.Tickets
+            .UseTicketIncludesAll()
+            .Where(t => t.Header != null && t.Header.Contains(header, StringComparison.OrdinalIgnoreCase))
             .ToListAsync();
     }
 

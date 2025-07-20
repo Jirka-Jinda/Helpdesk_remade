@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Access\" />
+    <Folder Include="Views\Access\" />
   </ItemGroup>
 
 </Project>

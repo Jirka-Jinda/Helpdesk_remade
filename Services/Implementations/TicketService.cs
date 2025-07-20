@@ -129,4 +129,9 @@ public class TicketService : BaseService, ITicketService
         UpdateAuditableData(entity, true);
         return await _ticketRepository.UpdateAsync(entity);
     }
+
+    public async Task<IEnumerable<Ticket>> GetByHeaderAsync(string header)
+    {
+        return await _ticketRepository.GetByHeaderAsync(header);
+    }
 }

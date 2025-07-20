@@ -80,4 +80,9 @@ public class UserService : BaseService, IUserService
     {
         return await _userManager.AddToRoleAsync(user, role.ToString());
     }
+
+    public new ApplicationUser? GetSignedInUser()
+    {
+        return base.GetSignedInUser();
+    }
 }

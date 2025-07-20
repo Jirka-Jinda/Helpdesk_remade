@@ -15,6 +15,8 @@ internal class NavigationDataSet : IDataSet
 
         var nav = new Navigation();
 
+        nav.Name = "Main";
+
         nav.Root.AddChild(new NavigationNode()
         {
             Name = "Založit nový",
