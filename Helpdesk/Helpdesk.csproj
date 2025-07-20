@@ -32,11 +32,7 @@
     <ProjectReference Include="..\Database\Database.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Access\" />
-    <Folder Include="Views\Access\" />
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

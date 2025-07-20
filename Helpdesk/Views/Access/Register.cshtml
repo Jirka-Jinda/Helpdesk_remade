@@ -1,0 +1,45 @@
+﻿@using Models.User
+@using ViewModels.User
+@model ApplicationUserViewModel
+@{
+    ViewData["Title"] = "Registrace";
+}
+
+<div class="d-flex flex-row">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="card p-4 shadow-sm" style="width: 400px;">
+            <div class="text-center mb-3">
+                <h5 class="mt-2">Vytvořte nový účet</h5>
+            </div>
+            <form method="post" asp-action="Register">
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label fw-bold"></label>
+                    <input asp-for="UserName" class="form-control" placeholder="Zadejte jméno (volitelné)">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-bold"></label>
+                    <input asp-for="Email" class="form-control" required placeholder="Zadejte email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label fw-bold"></label>
+                    <input asp-for="Password" type="password" class="form-control" required placeholder="Zadejte heslo">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="UserType" class="form-label fw-bold"></label>
+                    <select name="role" class="form-select" required>
+                        <option value="">Vyberte roli</option>
+                        @foreach (var role in Enum.GetValues(typeof(UserType)))
+                        {
+                            <option value="@role">@role.ToString()</option>
+                        }
+                    </select>
+                    <span asp-validation-for="UserType" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Registrovat</button>
+            </form>
+        </div>
+    </div>
+</div>

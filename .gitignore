@@ -10,3 +10,6 @@
 /Services/obj
 /Tests/bin
 /Tests/obj
+/ViewModels/bin/Debug/net8.0
+/ViewModels/obj/Debug/net8.0
+/ViewModels/obj

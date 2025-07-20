@@ -7,6 +7,12 @@ public class ApplicationUser : IdentityUser<Guid>
     public Theme Theme { get; private set; } = Theme.Light;
     public bool NotificationsEnabled { get; set; } = false;
 
+    public void SetNameFromEmail()
+    {
+        if (!string.IsNullOrEmpty(Email))
+            UserName = Email.Split('@')[0];
+    }
+
     public void SwitchTheme()
     {
         Theme = Theme switch

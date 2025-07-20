@@ -128,25 +128,6 @@ public class UserServiceTests
         Assert.False(await userService.IsInRoleAsync(user, UserType.Zadavatel));
     }
 
-    //[Theory]
-    //[InlineData(true)]
-    //[InlineData(false)]
-    //public async Task Sign_in_user(bool signInPersistent)
-    //{
-    //    // Arrange
-    //    var userService = GetUserService();
-    //    var httpContextAccessor = GetHttpContextAccessor();
-    //    var user = DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid());
-    //    await userService.CreateAsync(user, DataObjects.Password());
-
-    //    // Act
-    //    var signInResult = await userService.SignInAsync(user.UserName!, DataObjects.Password(), signInPersistent);
-
-    //    // Assert
-    //    Assert.True(signInResult.Succeeded);
-    //    // TODO: Check if the user is signed in by verifying the HttpContext
-    //}
-
     [Fact]
     public async Task Get_users_by_role()
     {
@@ -170,6 +151,45 @@ public class UserServiceTests
         // Assert
         Assert.NotNull(users);
     }
+
+    //[Theory]
+    //[InlineData(true)]
+    //[InlineData(false)]
+    //public async Task Sign_in_user(bool signInPersistent)
+    //{
+    //    // Arrange
+    //    var userService = GetUserService();
+    //    var httpContextAccessor = GetHttpContextAccessor();
+    //    var user = DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid());
+    //    await userService.CreateAsync(user, DataObjects.Password());
+
+    //    // Act
+    //    var signInResult = await userService.SignInAsync(user.UserName!, DataObjects.Password(), signInPersistent);
+
+    //    // Assert
+    //    Assert.True(signInResult.Succeeded);
+    //    // TODO: Check if the user is signed in by verifying the HttpContext
+    //}
+
+    //[Fact]
+    //public async Task Change_user_settings()
+    //{
+    //    // Arrange
+    //    var userService = GetUserService();
+    //    var user = DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid());
+    //    var theme = user.Theme;
+    //    var notifications = user.NotificationsEnabled;
+
+    //    await userService.CreateAsync(user, DataObjects.Password());
+
+    //    // Act
+    //    var result = await userService.ChangeUserSettingsAsync(switchTheme: true, switchNotificationsEnabled: true);
+
+    //    // Assert
+    //    Assert.Same(IdentityResult.Success, result);
+    //    Assert.NotEqual(theme, user.Theme);
+    //    Assert.NotEqual(notifications, user.NotificationsEnabled);
+    //}
 
     //[Fact]
     //public async Task Sign_out_user()

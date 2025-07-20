@@ -56,9 +56,9 @@ public class UserService : BaseService, IUserService
         return await _userManager.IsInRoleAsync(user, role.ToString());
     }
 
-    public async Task<SignInResult> SignInAsync(string userName, string password, bool isPersistent)
+    public async Task<SignInResult> SignInAsync(string email, string password, bool isPersistent)
     {
-        var user = await _userManager.FindByNameAsync(userName);
+        var user = await _userManager.FindByEmailAsync(email);
 
         if (user == null)
             return SignInResult.Failed;
@@ -84,5 +84,23 @@ public class UserService : BaseService, IUserService
     public new ApplicationUser? GetSignedInUser()
     {
         return base.GetSignedInUser();
+    }
+
+    public async Task<IdentityResult> ChangeUserSettingsAsync(bool switchTheme = false, bool switchNotificationsEnabled = false)
+    {
+        var user = GetSignedInUser();
+        if (user is null)
+            throw new InvalidOperationException("No user is signed in.");
+
+        if (switchTheme)
+        {
+            user.SwitchTheme();
+        }
+        if (switchNotificationsEnabled)
+        {
+            user.ToggleNotifications();
+        }
+
+        return await _userManager.UpdateAsync(user);
     }
 }

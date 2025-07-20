@@ -19,9 +19,6 @@
         showNavigation = false;
         showUserPanel = false;
     }
-
-    showNavigation = true;
-    showUserPanel = true;
 }
 
 <!DOCTYPE html>
@@ -57,14 +54,14 @@
                         <li class="border-top mx-3 my-2"></li>
                         <li class="nav-item ms-2">
                             <a class="nav-link text-light" asp-area="" asp-controller="Layout" asp-action="Settings">
-                                <img class="d-inline-block invert-color" src="@Url.Content(iconPath + "gear" + iconFormat)" alt="Users" width="25" height="25" />
+                                <img class="d-inline-block @(currentUser?.Theme == Theme.Dark ? "invert-color" : "")" src="@Url.Content(iconPath + "gear" + iconFormat)" alt="Users" width="25" height="25" />
                                 <span class="mx-3">Nastavení</span>
                             </a>
                         </li>
                         <li class="border-top mx-3 my-2"></li>
                         <li class="nav-item ms-2">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Users">
-                                <img class="d-inline-block invert-color" src="@Url.Content(iconPath + "people" + iconFormat)" alt="Users" width="25" height="25" />
+                                <img class="d-inline-block @(currentUser?.Theme == Theme.Dark ? "" : "invert-color")" src="@Url.Content(iconPath + "people" + iconFormat)" alt="Users" width="25" height="25" />
                                 <span class="mx-3">Uživatelé</span>
                             </a>
                         </li>

@@ -41,7 +41,8 @@ internal class UsersDataSet : IDataSet
         var random = new Random();
         var userTypes = Enum.GetValues(typeof(UserType)).Cast<UserType>().ToList();
         var password = "TestPassword123!";
- 
+
+        // Create users with random roles
         for (int counter = 0; counter < USER_COUNT; counter++)
         {
             var id = Guid.NewGuid();
@@ -58,6 +59,18 @@ internal class UsersDataSet : IDataSet
 
             await userManager.AddToRoleAsync(newUser, userTypes[random.Next(userTypes.Count)].ToString());
         }
+
+        // Add a specific user for testing purposes
+        var testId = Guid.NewGuid();
+        var testUser = new ApplicationUser()
+        {
+            Id = testId,
+            Email = $"test_user@test.com",
+            UserName = $"test_user",
+        };
+        var testUserResult = await userManager.CreateAsync(testUser);
+        await userManager.AddPasswordAsync(testUser, password);
+        await userManager.AddToRoleAsync(testUser, UserType.Auditor.ToString());
 
         await context.SaveChangesAsync();
     }

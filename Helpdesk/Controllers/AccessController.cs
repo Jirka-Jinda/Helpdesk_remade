@@ -1,18 +1,19 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models.User;
+using Services.Abstractions;
+using ViewModels.User;
 
 namespace Helpdesk.Controllers;
 
 public class AccessController : Controller
 {
-    private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly ILogger<AccessController> _logger;
+    private readonly IUserService _userService;
 
-    public AccessController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+    public AccessController(ILogger<AccessController> logger, IUserService userService)
     {
-        _signInManager = signInManager;
-        _userManager = userManager;
+        _logger = logger;
+        _userService = userService;
     }
 
     [HttpGet]
@@ -22,44 +23,58 @@ public class AccessController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(string email, string password, bool rememberMe)
+    public async Task<IActionResult> Login(ApplicationUserViewModel userModel)
     {
-        var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: false);
+        if (!ModelState.IsValid)
+            return PartialView();
+
+        var result = await _userService.SignInAsync(userModel.Email, userModel.Password, userModel.RememberMe);
         if (result.Succeeded)
         {
+            _logger.LogInformation("User logged in successfully: {Email}", userModel.Email);
             return RedirectToAction("Index", "Home");
         }
-        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-        return View();
-    }
 
-    [HttpPost]
-    public async Task<IActionResult> Logout()
-    {
-        await _signInManager.SignOutAsync();
-        return RedirectToAction("Index", "Home");
+        ViewBag.LoginFailed = true;
+        return PartialView();
     }
 
     [HttpGet]
     public IActionResult Register()
     {
-        return View();
+        return PartialView();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Register(string email, string password)
+    public async Task<IActionResult> Register(ApplicationUserViewModel userModel)
     {
-        var user = new ApplicationUser { UserName = email, Email = email };
-        var result = await _userManager.CreateAsync(user, password);
+        if (!ModelState.IsValid)
+            return PartialView();
+
+        var user = new ApplicationUser { Email = userModel.Email };
+
+        if (userModel.UserName is null)
+            user.SetNameFromEmail();
+
+        var result = await _userService.CreateAsync(user, userModel.Password);
+
         if (result.Succeeded)
         {
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("Index", "Home");
+            result = await _userService.AddToRoleAsync(user, userModel.UserType);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User registered successfully: {Email}", userModel.Email);
+                return View("RegisterConfirmation");
+            }
         }
-        foreach (var error in result.Errors)
-        {
-            ModelState.AddModelError(string.Empty, error.Description);
-        }
-        return View();
+        
+        return PartialView();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        await _userService.SignOutAsync();
+        return RedirectToAction("Index", "Home");
     }
 }
