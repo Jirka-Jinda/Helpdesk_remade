@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Models.User;
+using Models.Users;
 
-namespace Database.Data;
+namespace Database.DataSets;
 
 /// <summary>
 /// Seeds the database with example users and roles.

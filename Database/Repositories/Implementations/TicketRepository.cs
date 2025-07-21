@@ -2,6 +2,7 @@
 using Database.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Models.Tickets;
+using Models.Workflows;
 
 namespace Database.Repositories.Implementations;
 
@@ -26,19 +27,21 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
             .SingleOrDefaultAsync();
     }
 
-    public async Task<ICollection<Ticket>> GetByCreaterAsync(Guid creatorId)
+    public async Task<ICollection<Ticket>> GetByParamsAsync(
+        Guid? creatorId = null, 
+        Guid? solverId = null, 
+        WFState? wfState = null, 
+        TicketCategory? ticketCategory = null, 
+        string? header = null)
     {
         return await _context.Tickets
             .UseTicketIncludesAll()
-            .Where(t => t.UserCreated != null && t.UserCreated.Id == creatorId)
-            .ToListAsync();
-    }
-
-    public async Task<ICollection<Ticket>> GetByHeaderAsync(string header)
-    {
-        return await _context.Tickets
-            .UseTicketIncludesAll()
-            .Where(t => t.Header != null && t.Header.Contains(header, StringComparison.OrdinalIgnoreCase))
+            .Where(t =>
+                (creatorId == null || (t.UserCreated != null && t.UserCreated.Id == creatorId)) ||
+                (solverId == null || (t.Solver != null && t.Solver.Id == solverId)) ||
+                (wfState == null || t.State == wfState) ||
+                (ticketCategory == null || t.Category == ticketCategory) ||
+                (header == null || t.Header == header))
             .ToListAsync();
     }
 

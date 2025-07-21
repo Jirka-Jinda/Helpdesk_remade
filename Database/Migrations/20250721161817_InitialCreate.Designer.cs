@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250721062049_InitialCreate")]
+    [Migration("20250721161817_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -285,6 +285,9 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
@@ -301,6 +304,10 @@ namespace Database.Migrations
 
                     b.Property<int>("Priority")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("TimeCreated")
                         .HasColumnType("timestamp with time zone");
@@ -371,7 +378,7 @@ namespace Database.Migrations
                     b.ToTable("WorkflowHistory");
                 });
 
-            modelBuilder.Entity("Models.User.ApplicationRole", b =>
+            modelBuilder.Entity("Models.Users.ApplicationRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -398,7 +405,7 @@ namespace Database.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Models.User.ApplicationUser", b =>
+            modelBuilder.Entity("Models.Users.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -471,7 +478,7 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
-                    b.HasOne("Models.User.ApplicationRole", null)
+                    b.HasOne("Models.Users.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -480,7 +487,7 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("Models.User.ApplicationUser", null)
+                    b.HasOne("Models.Users.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -489,7 +496,7 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("Models.User.ApplicationUser", null)
+                    b.HasOne("Models.Users.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -498,13 +505,13 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.HasOne("Models.User.ApplicationRole", null)
+                    b.HasOne("Models.Users.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.User.ApplicationUser", null)
+                    b.HasOne("Models.Users.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -513,7 +520,7 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("Models.User.ApplicationUser", null)
+                    b.HasOne("Models.Users.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -528,11 +535,11 @@ namespace Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.User.ApplicationUser", "UserCreated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
                         .WithMany()
                         .HasForeignKey("UserCreatedId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserUpdated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
                         .WithMany()
                         .HasForeignKey("UserUpdatedId");
 
@@ -545,11 +552,11 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Models.Messages.MessageThread", b =>
                 {
-                    b.HasOne("Models.User.ApplicationUser", "UserCreated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
                         .WithMany()
                         .HasForeignKey("UserCreatedId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserUpdated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
                         .WithMany()
                         .HasForeignKey("UserUpdatedId");
 
@@ -560,11 +567,11 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Models.Navigation.SerializedNavigation", b =>
                 {
-                    b.HasOne("Models.User.ApplicationUser", "UserCreated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
                         .WithMany()
                         .HasForeignKey("UserCreatedId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserUpdated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
                         .WithMany()
                         .HasForeignKey("UserUpdatedId");
 
@@ -575,7 +582,7 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Models.Tickets.SolverHistory", b =>
                 {
-                    b.HasOne("Models.User.ApplicationUser", "Solver")
+                    b.HasOne("Models.Users.ApplicationUser", "Solver")
                         .WithMany()
                         .HasForeignKey("SolverId");
 
@@ -583,11 +590,11 @@ namespace Database.Migrations
                         .WithMany("SolverHistory")
                         .HasForeignKey("TicketId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserCreated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
                         .WithMany()
                         .HasForeignKey("UserCreatedId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserUpdated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
                         .WithMany()
                         .HasForeignKey("UserUpdatedId");
 
@@ -610,11 +617,11 @@ namespace Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.User.ApplicationUser", "UserCreated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
                         .WithMany()
                         .HasForeignKey("UserCreatedId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserUpdated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
                         .WithMany()
                         .HasForeignKey("UserUpdatedId");
 
@@ -633,11 +640,11 @@ namespace Database.Migrations
                         .WithMany("TicketHistory")
                         .HasForeignKey("TicketId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserCreated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
                         .WithMany()
                         .HasForeignKey("UserCreatedId");
 
-                    b.HasOne("Models.User.ApplicationUser", "UserUpdated")
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
                         .WithMany()
                         .HasForeignKey("UserUpdatedId");
 

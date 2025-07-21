@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Models.Tickets;
 
-namespace Database.Data;
+namespace Database.DataSets;
 
 /// <summary>
 /// Seeds the database with example tickets. Requires seeding of users first.
@@ -33,6 +33,7 @@ internal class TicketsDataSet : IDataSet
                 UserCreated = users[random.Next(users.Count)],
             };
             ticket.ChangePriority((Priority)random.Next(1, 6));
+            ticket.Category = (TicketCategory)random.Next(1, 9);
 
             context.Tickets.Add(ticket);
         }

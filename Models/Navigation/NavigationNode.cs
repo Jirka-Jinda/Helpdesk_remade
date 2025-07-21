@@ -1,6 +1,4 @@
-﻿using Models.User;
-
-namespace Models.Navigation;
+﻿namespace Models.Navigation;
 
 public class NavigationNode
 {

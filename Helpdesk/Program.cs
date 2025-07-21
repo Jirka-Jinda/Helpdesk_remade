@@ -2,7 +2,7 @@ using Database;
 using Database.Context;
 using Helpdesk.Filters;
 using Microsoft.EntityFrameworkCore;
-using Models.User;
+using Models.Users;
 using Serilog;
 using Services;
 

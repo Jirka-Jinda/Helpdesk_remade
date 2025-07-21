@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Models.User;
+using Models.Users;
 using Services.Abstractions;
 using ViewModels.User;
 

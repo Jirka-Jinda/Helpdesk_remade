@@ -1,4 +1,4 @@
-﻿namespace Database.Data;
+﻿namespace Database.DataSets;
 
 internal interface IDataSet
 {

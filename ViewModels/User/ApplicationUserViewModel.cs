@@ -1,4 +1,4 @@
-﻿using Models.User;
+﻿using Models.Users;
 using System.ComponentModel.DataAnnotations;
 
 namespace ViewModels.User;

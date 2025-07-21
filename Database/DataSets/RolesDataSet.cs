@@ -1,8 +1,7 @@
 ﻿using Database.Context;
-using Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Models.User;
+using Models.Users;
 
 namespace Database.DataSets;
 

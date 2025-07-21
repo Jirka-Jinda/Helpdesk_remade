@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Models.User;
+using Models.Users;
 
 namespace Services.Abstractions;
 

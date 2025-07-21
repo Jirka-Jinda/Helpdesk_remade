@@ -53,4 +53,25 @@ public static class IServiceCollectionExtensions
 
         return services;
     }
+
+    public static IServiceCollection AddAutomaticAssignmentService(this IServiceCollection services)
+    {
+        var logRetentionSettings = new TicketAssignmentOptions();
+
+        services.AddSingleton(logRetentionSettings);
+        services.AddHostedService<TicketAssignmentBackgroundService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddAutomaticAssignmentService(this IServiceCollection services, Action<TicketAssignmentOptions> options)
+    {
+        var logRetentionSettings = new TicketAssignmentOptions();
+        options(logRetentionSettings);
+
+        services.AddSingleton(logRetentionSettings);
+        services.AddHostedService<TicketAssignmentBackgroundService>();
+
+        return services;
+    }
 }

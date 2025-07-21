@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Models.Messages;
-using Models.User;
+﻿using Models.Messages;
+using Models.Users;
 using Models.Workflows;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,6 +17,8 @@ public class Ticket : AuditableObject
     public Priority Priority { get; private set; } = Priority.Střední;
     public string Header { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
+    public TicketCategory Category { get; set; }
+    public string Result { get; set; } = string.Empty;
 
     public Ticket? ChangeParentTicket(Ticket? parentTicket)
     {

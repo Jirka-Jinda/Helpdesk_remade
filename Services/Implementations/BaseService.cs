@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Models;
-using Models.User;
+using Models.Users;
 using System.Security.Claims;
 
 namespace Services.Implementations;

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Models.Messages;
 using Models.Tickets;
-using Models.User;
+using Models.Users;
 using Models.Workflows;
 using Services.Abstractions;
 
@@ -116,12 +116,27 @@ public class TicketService : BaseService, ITicketService
 
     public async Task<IEnumerable<Ticket>> GetByCreatorAsync(Guid creatorId)
     {
-        return await _ticketRepository.GetByCreaterAsync(creatorId);
+        return await _ticketRepository.GetByParamsAsync(creatorId: creatorId);
     }
 
     public async Task<IEnumerable<Ticket>> GetBySolverAsync(Guid solverId)
     {
-        return await _ticketRepository.GetBySolverAsync(solverId);
+        return await _ticketRepository.GetByParamsAsync(solverId: solverId);
+    }
+
+    public async Task<IEnumerable<Ticket>> GetByHeaderAsync(string header)
+    {
+        return await _ticketRepository.GetByParamsAsync(header: header);
+    }
+
+    public async Task<IEnumerable<Ticket>> GetByStateAsync(WFState state)
+    {
+        return await _ticketRepository.GetByParamsAsync(wfState: state);
+    }
+
+    public async Task<IEnumerable<Ticket>> GetByCategoryAsync(TicketCategory category)
+    {
+        return await _ticketRepository.GetByParamsAsync(ticketCategory: category);
     }
 
     public async Task<Ticket> UpdateAsync(Ticket entity)
@@ -130,8 +145,4 @@ public class TicketService : BaseService, ITicketService
         return await _ticketRepository.UpdateAsync(entity);
     }
 
-    public async Task<IEnumerable<Ticket>> GetByHeaderAsync(string header)
-    {
-        return await _ticketRepository.GetByHeaderAsync(header);
-    }
 }

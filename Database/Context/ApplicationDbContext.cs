@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Models.Messages;
 using Models.Navigation;
 using Models.Tickets;
-using Models.User;
+using Models.Users;
 
 namespace Database.Context;
 

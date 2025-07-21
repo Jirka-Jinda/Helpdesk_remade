@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Models.Navigation;
-using Models.User;
+using Models.Users;
 using Services.Abstractions;
 
 namespace Services.Implementations;

@@ -1,8 +1,9 @@
 ﻿using Database.Repositories.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Models.Navigation;
+using Models.Users;
 
-namespace Database.Data;
+namespace Database.DataSets;
 
 /// <summary>
 /// Seeds the database with example navigation for basic user.
@@ -16,7 +17,7 @@ internal class NavigationDataSet : IDataSet
         var nav = new Navigation();
 
         nav.Name = "Main";
-        nav.AuthorizedUserType = Models.User.UserType.Zadavatel;
+        nav.AuthorizedUserType = UserType.Zadavatel;
 
         nav.Root.AddChild(new NavigationNode()
         {

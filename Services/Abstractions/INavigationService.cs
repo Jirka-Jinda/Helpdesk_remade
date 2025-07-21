@@ -1,5 +1,5 @@
 ﻿using Models.Navigation;
-using Models.User;
+using Models.Users;
 
 namespace Services.Abstractions;
 

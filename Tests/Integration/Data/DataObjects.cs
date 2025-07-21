@@ -1,6 +1,6 @@
 using Models.Navigation;
 using Models.Tickets;
-using Models.User;
+using Models.Users;
 
 namespace Tests.Integration.Data;
 

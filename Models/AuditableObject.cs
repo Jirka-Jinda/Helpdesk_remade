@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models;
 
-using Models.User;
+using Models.Users;
 
 public abstract class AuditableObject
 {

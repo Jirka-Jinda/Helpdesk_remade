@@ -256,6 +256,8 @@ namespace Database.Migrations
                     Priority = table.Column<int>(type: "integer", nullable: false),
                     Header = table.Column<string>(type: "text", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
+                    Category = table.Column<int>(type: "integer", nullable: false),
+                    Result = table.Column<string>(type: "text", nullable: false),
                     TimeCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     TimeUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     UserCreatedId = table.Column<Guid>(type: "uuid", nullable: true),
