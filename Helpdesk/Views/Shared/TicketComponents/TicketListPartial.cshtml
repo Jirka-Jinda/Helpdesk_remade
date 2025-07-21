@@ -1,0 +1,58 @@
+﻿@using Models.Tickets
+@using Models.User
+@using Models.Workflows
+@model IReadOnlyCollection<Ticket>
+@{
+    string filter = ViewBag.Filter as string ?? "";
+    Theme theme = ViewBag.Theme ?? Theme.Light;
+}
+
+<div class="container mt-2">
+    <form method="get" class="mb-3">
+        <div class="input-group">
+            <button type="submit" class="input-group-text bg-primary">
+                <i class="bi bi-search @(theme == Theme.Dark ? "text-dark" : "text-white")" style="font-size: 18px"></i>
+            </button>
+            <input type="text" name="filter" value="@filter" class="form-control" placeholder="Filtrovat podle názvu nebo řešitele..." />            
+        </div>
+    </form>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4>Požadavky</h4>
+        </div>
+        <div class="card-body p-0 bg-primary">
+            <table class="table table-hover table-primary">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Název</th>
+                        <th>Řešitel</th>
+                        <th>Vytvořeno</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ticket in Model)
+                    {
+                        <tr onclick="location.href = '@Url.Action("Detail", "UserTicket", new { ticketId = ticket.Id })'"
+                            style="cursor: pointer;">
+                            <td class="text-decoration-none fw-bold">@ticket.Header</td>
+                            <td>@ticket.Solver?.UserName</td>
+                            <td>@ticket.TimeCreated.ToShortDateString()</td>
+                            <td>
+                                <span class="badge px-1 @(ticket.State switch
+                                {
+                                    WFState.Žádný => "bg-info",
+                                    WFState.Uzavřený => "bg-success",
+                                    WFState.Vrácený => "bg-danger",
+                                    _ => "bg-warning"
+                                })">@ticket.State</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

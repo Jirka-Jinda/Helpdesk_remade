@@ -16,6 +16,8 @@
         showNavigation = false;
         showUserPanel = false;
     }
+
+    bool displaySearch = ViewBag.DisplaySearch ?? true;
 }
 
 <!DOCTYPE html>
@@ -36,13 +38,13 @@
                 <div> @* User *@
                     @if (showUserPanel)
                     {
-                        @await Html.PartialAsync("~/Views/Shared/Components/UserPanelPartial.cshtml", currentUser)
+                        @await Html.PartialAsync("~/Views/Shared/LayoutComponents/UserPanelPartial.cshtml", currentUser)
                     }
                 </div>
                 <div> @* Navigation *@
                     @if (showNavigation)
                     {
-                        @await Html.PartialAsync("~/Views/Shared/Components/MainNavigationPartial.cshtml", (navigation, currentUser))
+                        @await Html.PartialAsync("~/Views/Shared/LayoutComponents/MainNavigationPartial.cshtml", (navigation, currentUser))
                     }
                 </div>
             </div>
@@ -70,13 +72,15 @@
         <div class="flex-grow-1 d-flex flex-column">
             <div id="navigation-upperbar" class="bg-primary d-flex align-items-center justify-content-between" style="min-height:3rem">
                 <div class="ms-3"> @* Search bar *@
-                    <form id="searchForm" class="input-group" role="search" asp-area="" asp-controller="Bla" asp-action="Search">
-                        <button class="input-group-text bg-primary">
-                            <i class="bi bi-search @(currentUser?.Theme == Theme.Dark ? "text-dark" : "text-white")" style="font-size: 18px"></i>
-
-                        </button>
-                        <input id="searchInput" name="search" role="search" class="form-control search rounded-end" placeholder="Hledání...">
-                    </form>
+                    @if (displaySearch)
+                    {
+                        <form id="searchForm" class="input-group" role="search" asp-area="" asp-controller="Home" asp-action="Search">
+                            <button type="submit" class="input-group-text bg-primary">
+                                <i class="bi bi-search @(currentUser?.Theme == Theme.Dark ? "text-dark" : "text-white")" style="font-size: 18px"></i>
+                            </button>
+                            <input id="searchInput" name="search" role="search" class="form-control search rounded-end" placeholder="Hledání...">
+                        </form>
+                    }
                 </div>
                 <div class="mx-5"> @* Theme switch *@
                     <a class="" asp-area="" asp-controller="Home" asp-action="SwitchTheme">

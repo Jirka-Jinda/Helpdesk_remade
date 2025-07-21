@@ -114,7 +114,7 @@ public class TicketService : BaseService, ITicketService
         return await _ticketRepository.GetAsync(id);
     }
 
-    public async Task<IEnumerable<Ticket>> GetByCreaterAsync(Guid creatorId)
+    public async Task<IEnumerable<Ticket>> GetByCreatorAsync(Guid creatorId)
     {
         return await _ticketRepository.GetByCreaterAsync(creatorId);
     }

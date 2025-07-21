@@ -7,12 +7,10 @@ namespace Helpdesk.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserService _userService;
-        private readonly ITicketService _ticketService;
 
-        public HomeController(ILogger<HomeController> logger, ITicketService ticketService, IUserService userService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService)
         {
             _logger = logger;
-            _ticketService = ticketService;
             _userService = userService;
         }
 
@@ -32,8 +30,19 @@ namespace Helpdesk.Controllers
             return Redirect(Request.Headers["Referer"].ToString());
         }
 
-        //public async Task<IActionResult> Search(string search)
-        //{
-        //}
+        public IActionResult Search(string search)
+        {
+            return RedirectToAction("Overview", "UserTicket", new { filter = search, displayDetailIfSingle = true });
+        }
+
+        public IActionResult Settings()
+        {
+            return View();
+        }
+
+        public IActionResult Users()
+        {
+            return View();
+        }
     }
 }

@@ -56,6 +56,8 @@ public static class TicketIncludeExtensions
     public static IQueryable<Ticket> UseTicketIncludesSingle(this IQueryable<Ticket> query)
     {
         return query
+            .Include(t => t.UserCreated)
+            .Include(t => t.UserUpdated)
             .Include(t => t.Hierarchy)
             .Include(t => t.TicketHistory)
             .Include(t => t.SolverHistory)
@@ -67,6 +69,7 @@ public static class TicketIncludeExtensions
     public static IQueryable<Ticket> UseTicketIncludesAll(this IQueryable<Ticket> query)
     {
         return query
+            .Include(t => t.UserCreated)
             .Include(t => t.TicketHistory)
             .Include(t => t.SolverHistory);
     }

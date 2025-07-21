@@ -22,19 +22,19 @@ internal class NavigationDataSet : IDataSet
         {
             Name = "Založit nový",
             Icon = "plus-square",
-            Route = new NavigationRoute("", "TicketManagement", "Create"),
+            Route = new NavigationRoute("", "UserTicket", "Create"),
         });
         nav.Root.AddChild(new NavigationNode()
         {
             Name = "Požadavky",
             Icon = "card-list",
-            Route = new NavigationRoute("", "TicketManagement", "Overview"),
+            Route = new NavigationRoute("", "UserTicket", "Overview"),
         });
         nav.Root.AddChild(new NavigationNode()
         {
             Name = "Archiv",
             Icon = "list-check",
-            Route = new NavigationRoute("", "TicketManagement", "Archive"),
+            Route = new NavigationRoute("", "UserTicket", "Archive"),
         });
 
         await navigtaionRepository.AddAsync(nav);

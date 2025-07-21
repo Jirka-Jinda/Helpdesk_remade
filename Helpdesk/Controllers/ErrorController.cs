@@ -11,6 +11,12 @@ public class ErrorController : Controller
         _logger = logger;
     }
 
+    public IActionResult Code403(string? details = null)
+    {
+        _logger.LogWarning("User unauthorized." + details);
+        return View();
+    }
+
     public IActionResult Code404(string? details = null)
     {
         _logger.LogError("Page not found. " + details);
