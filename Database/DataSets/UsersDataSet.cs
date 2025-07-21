@@ -18,21 +18,6 @@ internal class UsersDataSet : IDataSet
         var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
         var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-        // Create Roles
-        var roles = await context.Roles.ToListAsync();
-        if (roles.Count == 0)
-        {
-            roles.AddRange(
-            [
-                new ApplicationRole { Name = UserType.Zadavatel.ToString(), NormalizedName = UserType.Zadavatel.ToString().Normalize().ToUpper() },
-                new ApplicationRole { Name = UserType.Řešitel.ToString(), NormalizedName = UserType.Řešitel.ToString().Normalize().ToUpper() },
-                new ApplicationRole { Name = UserType.Auditor.ToString(), NormalizedName = UserType.Auditor.ToString().Normalize().ToUpper() }
-            ]);
-            
-            await context.Roles.AddRangeAsync(roles);
-            await context.SaveChangesAsync();
-        }
-
         // Get all users
         var users = await context.Users.ToListAsync();
         if (users.Count != 0) 

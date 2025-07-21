@@ -33,9 +33,9 @@ internal class LogRetentionBackgroundService : BackgroundService
             }
 
             var files = Directory.GetFiles(logDirectory, "log-*")
-            .Select(f => new FileInfo(f))
-            .Where(f => f.LastWriteTime < DateTime.Now.AddDays(_deleteFilesOlderThan.Days))
-            .ToList();
+                .Select(f => new FileInfo(f))
+                .Where(f => f.LastWriteTime < DateTime.Now.AddDays(_deleteFilesOlderThan.Days))
+                .ToList();
 
             var deletedFiles = new List<string>();
 

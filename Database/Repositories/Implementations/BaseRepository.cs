@@ -1,8 +1,9 @@
 ﻿using Database.Context;
+using Database.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
-namespace Database.Repositories;
+namespace Database.Repositories.Implementations;
 
 public class BaseRepository<T> : IRepository<T> where T : AuditableObject
 {

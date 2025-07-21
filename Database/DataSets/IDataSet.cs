@@ -1,6 +1,6 @@
 ﻿namespace Database.Data;
 
-public interface IDataSet
+internal interface IDataSet
 {
     public Task Populate(IServiceProvider serviceProvider);
 }

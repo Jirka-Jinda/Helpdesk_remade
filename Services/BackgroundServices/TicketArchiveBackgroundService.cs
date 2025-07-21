@@ -27,6 +27,8 @@ internal class TicketArchiveBackgroundService : BackgroundService
             {
                 // TODO move tickets from ticket to archive
             }
+
+            _logger.LogInformation("Tickets archived.");
         } 
         while (await _timer.WaitForNextTickAsync());
     }

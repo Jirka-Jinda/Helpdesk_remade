@@ -1,8 +1,10 @@
 ﻿using Database.Context;
 using Database.Data;
+using Database.DataSets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Database;
 
@@ -12,31 +14,38 @@ public static class IServiceProviderExtensions
     {
         using var scope = serviceProvider.CreateScope();
         var dbContext = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        var logger = scope.ServiceProvider.GetService<ILogger<ApplicationDbContext>>();
+
         if (dbContext != null)
         {
             if (dbContext.Database.GetPendingMigrations().Any())
             {
-                Console.WriteLine("Applying Migrations...");
+                logger?.LogInformation("Applying Migrations...");
                 await dbContext.Database.MigrateAsync();
 
                 if (populateDatabase)
-                    await PopulateDatabase(serviceProvider);
+                    await PopulateDatabaseAsync(serviceProvider);
             }
         }
 
         return serviceProvider;
     }
 
-    private static async Task<IServiceProvider> PopulateDatabase(this IServiceProvider serviceProvider)
+    private static async Task<IServiceProvider> PopulateDatabaseAsync(this IServiceProvider serviceProvider)
     {
-        Console.WriteLine("Populating database with example data...");
-        List<IDataSet> datasets = [ new UsersDataSet(), new NavigationDataSet(),  new TicketsDataSet(), ];
+        using var scope = serviceProvider.CreateScope();
+        var logger = scope.ServiceProvider.GetService<ILogger<ApplicationDbContext>>();
 
-        using (var scope = serviceProvider.CreateScope())
-        {
-            foreach (var dataset in datasets)
-                await dataset.Populate(scope.ServiceProvider);
-        }
+        #if DEBUG
+            logger?.LogInformation("Populating database with example data...");
+            List<IDataSet> datasets = [ new RolesDataSet(), new UsersDataSet(), new NavigationDataSet(),  new TicketsDataSet() ];
+        #else
+            logger?.LogInformation("Populating database with roles and navigations.");
+            List<IDataSet> datasets = [ new RolesDataSet(), new NavigationDataSet() ];
+        #endif
+
+        foreach (var dataset in datasets)
+            await dataset.Populate(scope.ServiceProvider);
 
         return serviceProvider;
     }
