@@ -1,6 +1,8 @@
 ﻿@* @model Models.Navigation.Navigation
 @{
-    
+                <div class="mx-5 flex-grow-1 d-flex align-items-center"> @* Breadcrumb navigation
+                    @await Html.PartialAsync("~/Views/Shared/Components/CrumbNavigationPartial.cshtml", navigation)
+                </div>
 }
 
 @for (int k = 0; k < Model.Count; k++)

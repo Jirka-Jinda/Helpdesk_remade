@@ -45,6 +45,7 @@ builder.Services.AddTicketArchiveService(options =>
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add<TransactionFilter>();
+    options.Filters.Add<ExceptionFilter>();
 });
 
 builder.Services.AddMemoryCache(options => 
@@ -81,6 +82,8 @@ app.UseRouting();
 app.UseSession();
 
 app.UseAuthorization();
+
+app.UseStatusCodePagesWithRedirects("/Error/Code{0}");
 
 app.MapControllerRoute(
     name: "default",

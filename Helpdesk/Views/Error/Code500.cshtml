@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Chyba serveru";
+}
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <i class="bi bi-bug text-danger" style="font-size: 50px;"></i>
+        <h2 class="mt-4">Interní chyba serveru</h2>
+        <p class="lead text-muted">Došlo k neočekávané chybě na serveru.</p>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg mt-4">
+            Zpět na hlavní stránku
+        </a>
+    </div>
+</div>

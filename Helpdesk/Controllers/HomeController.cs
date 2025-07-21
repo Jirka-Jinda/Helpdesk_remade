@@ -29,7 +29,7 @@ namespace Helpdesk.Controllers
         public async Task<IActionResult> SwitchTheme()
         {
             await _userService.ChangeUserSettingsAsync(switchTheme: true);
-            return Redirect(Request.Headers["Referer"].ToString()); // Maybe refactor to better refresh
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         //public async Task<IActionResult> Search(string search)
