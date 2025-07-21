@@ -30,6 +30,18 @@ builder.Services.AddRepositories();
 
 builder.Services.AddServices();
 
+builder.Services.AddLogRetentionService(options =>
+{
+    options.LogDeletionInterval = TimeSpan.FromHours(24);
+    options.LogDeleteFilesOdlerThan = TimeSpan.FromDays(7);
+});
+
+builder.Services.AddTicketArchiveService(options =>
+{
+    options.ArchiveTicketsInterval = TimeSpan.FromHours(1);
+    options.ArchiveResolvedTicketsAfter = TimeSpan.FromDays(3);
+});
+
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add<TransactionFilter>();

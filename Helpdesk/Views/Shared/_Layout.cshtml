@@ -10,7 +10,7 @@
     bool showNavigation = true;
     bool showUserPanel = true;
 
-    var navigation = await NavigationService.GetByNameAsync("Main");
+    var navigation = await NavigationService.GetByParamsAsync("Main", UserType.Zadavatel);
     if (navigation is null) showNavigation = false;
 
     var currentUser = UserService.GetSignedInUser();

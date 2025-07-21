@@ -16,6 +16,7 @@ internal class NavigationDataSet : IDataSet
         var nav = new Navigation();
 
         nav.Name = "Main";
+        nav.AuthorizedUserType = Models.User.UserType.Zadavatel;
 
         nav.Root.AddChild(new NavigationNode()
         {

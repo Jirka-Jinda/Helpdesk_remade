@@ -38,10 +38,13 @@ public class NavigationService : BaseService, INavigationService
         return await _navigationRepository.GetAsync(id);
     }
 
-    public async Task<Navigation?> GetByNameAsync(string name)
+    public async Task<Navigation?> GetByParamsAsync(string? name = null, UserType? authorizedUserType = null)
     {
         var all = await _navigationRepository.GetAllAsync();
-        return all.FirstOrDefault(n => n.Name == name);
+
+        return all.SingleOrDefault(n =>
+            (n.Name == null || n.Name == name) &&
+            (n.AuthorizedUserType == null || n.AuthorizedUserType == n.AuthorizedUserType));
     }
 
     public async Task<Navigation> UpdateAsync(Navigation entity)

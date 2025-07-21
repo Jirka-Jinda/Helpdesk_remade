@@ -36,12 +36,15 @@ public static class DataObjects
     public static Navigation Navigation()
     {
         var nav = new Navigation();
+        nav.AuthorizedUserType = UserType.Zadavatel;
+        nav.Name = "Main";
+
         nav.Root.AddChild(new()
         {
             Id = Guid.NewGuid(),
             Name = "Parent Node 1",
             Level = 0,
-            AuthorizedUserType = null,
+            
             Route = new NavigationRoute
             {
                 Controller = "Home",
@@ -53,7 +56,6 @@ public static class DataObjects
             Id = Guid.NewGuid(),
             Name = "Parent Node 1",
             Level = 0,
-            AuthorizedUserType = null,
             Route = new NavigationRoute
             {
                 Controller = "Access",
@@ -65,14 +67,12 @@ public static class DataObjects
             Id = Guid.NewGuid(),
             Name = "Child Node 1",
             Level = 1,
-            AuthorizedUserType = null,
         });
         nav.Root.Children[1].AddChild(new NavigationNode
         {
             Id = Guid.NewGuid(),
             Name = "Child Node 2",
             Level = 1,
-            AuthorizedUserType = null,
         });
 
         return nav;

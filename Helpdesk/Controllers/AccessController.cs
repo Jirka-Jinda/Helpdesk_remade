@@ -42,7 +42,7 @@ public class AccessController : Controller
     [HttpGet]
     public IActionResult Register()
     {
-        return PartialView();
+        return View();
     }
 
     [HttpPost]

@@ -1,8 +1,11 @@
-﻿namespace Models.Navigation;
+﻿using Models.User;
+
+namespace Models.Navigation;
 
 public class Navigation : AuditableObject
 {
     public string? Name { get; set; }
+    public UserType? AuthorizedUserType { get; set; } = null;
     public NavigationNode Root { get; set; }
     public NavigationNode ActiveNode { get; set; }
 
@@ -11,18 +14,5 @@ public class Navigation : AuditableObject
         Root = new();
         Root.Level = 0;
         ActiveNode = Root;
-    }
-
-    public void AddChild(NavigationNode node, NavigationNode parent)
-    {
-        if (parent == null)
-            parent = Root;
-        
-        node.Level = parent.Level + 1;
-
-        if (node.AuthorizedUserType == null || node.AuthorizedUserType > parent.AuthorizedUserType)
-            parent.AuthorizedUserType = node.AuthorizedUserType;
-
-        parent.Children.Add(node);
     }
 }

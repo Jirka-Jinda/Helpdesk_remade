@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Services.Abstractions;
+using Services.BackgroundServices;
 using Services.Implementations;
 
 namespace Services;
@@ -11,6 +12,44 @@ public static class IServiceCollectionExtensions
         services.AddTransient<INavigationService, NavigationService>();
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<ITicketService, TicketService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddTicketArchiveService(this IServiceCollection services)
+    {
+        services.AddSingleton(new TicketArchiveOptions());
+        services.AddHostedService<TicketArchiveBackgroundService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddTicketArchiveService(this IServiceCollection services, Action<TicketArchiveOptions> options)
+    {
+        var ticketArchiveSettings = new TicketArchiveOptions();
+        options(ticketArchiveSettings);
+
+        services.AddSingleton(ticketArchiveSettings);
+        services.AddHostedService<TicketArchiveBackgroundService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddLogRetentionService(this IServiceCollection services)
+    {
+        services.AddSingleton(new LogRetentionOptions());
+        services.AddHostedService<LogRetentionBackgroundService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddLogRetentionService(this IServiceCollection services, Action<LogRetentionOptions> options)
+    {
+        var logRetentionSettings = new LogRetentionOptions();
+        options(logRetentionSettings);
+
+        services.AddSingleton(logRetentionSettings);
+        services.AddHostedService<LogRetentionBackgroundService>();
 
         return services;
     }
