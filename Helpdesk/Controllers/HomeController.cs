@@ -30,6 +30,12 @@ namespace Helpdesk.Controllers
             return Redirect(Request.Headers["Referer"].ToString());
         }
 
+        public async Task<IActionResult> SwitchNotifications()
+        {
+            await _userService.ChangeUserSettingsAsync(switchNotificationsEnabled: true);
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
         public IActionResult Search(string search)
         {
             return RedirectToAction("Overview", "UserTicket", new { filter = search, displayDetailIfSingle = true });
@@ -37,12 +43,16 @@ namespace Helpdesk.Controllers
 
         public IActionResult Settings()
         {
-            return View();
+            var user = _userService.GetSignedInUser();
+
+            return View(user);
         }
 
         public IActionResult Users()
         {
-            return View();
+            var user = _userService.GetSignedInUser();
+
+            return View(user);
         }
     }
 }

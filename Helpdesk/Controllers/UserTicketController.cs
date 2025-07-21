@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
+using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;
 
@@ -12,6 +13,28 @@ public class UserTicketController : Controller
     {
         _ticketService = ticketService;
         _userService = userService;
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(TicketViewModel ticket)
+    {
+        var newTicket = new Models.Tickets.Ticket()
+        {
+            Header = ticket.Header,
+            Content = ticket.Content,
+            Category = ticket.Category,
+        };
+        newTicket.ChangePriority(ticket.Priority);
+
+        var result = await _ticketService.AddAsync(newTicket);
+
+        return RedirectToAction("Detail", new { ticketId = newTicket.Id });
     }
 
     [HttpGet]

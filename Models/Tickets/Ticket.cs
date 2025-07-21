@@ -18,7 +18,7 @@ public class Ticket : AuditableObject
     public string Header { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
     public TicketCategory Category { get; set; }
-    public string Result { get; set; } = string.Empty;
+    public string Result { get; private set; } = string.Empty;
 
     public Ticket? ChangeParentTicket(Ticket? parentTicket)
     {
@@ -73,5 +73,10 @@ public class Ticket : AuditableObject
     public void ChangePriority(Priority newPriority)
     {
         Priority = newPriority;
+    }
+
+    public void ChangeResult(string result)
+    {
+        // TODO
     }
 }

@@ -21,7 +21,7 @@ internal class NavigationDataSet : IDataSet
 
         nav.Root.AddChild(new NavigationNode()
         {
-            Name = "Založit nový",
+            Name = "Vytvořit nový",
             Icon = "plus-square",
             Route = new NavigationRoute("", "UserTicket", "Create"),
         });
