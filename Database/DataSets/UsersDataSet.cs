@@ -35,7 +35,7 @@ internal class UsersDataSet : IDataSet
             {
                 Id = id,
                 Email = $"user_{id.ToString()}@example.com",
-                UserName = $"user_{id.ToString()}",
+                UserName = $"user_{id.ToString().Take(12)}",
             };
             var res = await userManager.CreateAsync(newUser);
             if (!res.Succeeded)
@@ -55,7 +55,7 @@ internal class UsersDataSet : IDataSet
         };
         var testUserResult = await userManager.CreateAsync(testUser);
         await userManager.AddPasswordAsync(testUser, password);
-        await userManager.AddToRoleAsync(testUser, UserType.Auditor.ToString());
+        await userManager.AddToRoleAsync(testUser, UserType.Řešitel.ToString());
 
         await context.SaveChangesAsync();
     }

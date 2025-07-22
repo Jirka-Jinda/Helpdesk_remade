@@ -39,7 +39,14 @@
                         {
                             @foreach (var ticket in Model)
                             {
-                                <tr onclick="location.href='@Url.Action("Detail", "UserTicket", new { ticketId = ticket.Id })'" style="cursor: pointer;">
+                                string linkRoute = "";
+                                if (User.IsInRole(UserType.Zadavatel.ToString()))
+                                    linkRoute += @Url.Action("Detail", "UserTicket", new { ticketId = ticket.Id });
+                                if (User.IsInRole(UserType.Řešitel.ToString()))
+                                    linkRoute += @Url.Action("Detail", "SolverTicket", new { ticketId = ticket.Id });
+                                string route = $"location.href='{linkRoute}'";
+
+                                <tr onclick="@route" style="cursor: pointer;">
                                     <td>@ticket.Header</td>
                                     <td>@ticket.Solver?.UserName</td>
                                     <td>@ticket.TimeCreated.ToShortDateString()</td>
@@ -52,10 +59,10 @@
                                                   _ => "bg-warning"
                                               })">
                                     @ticket.State
-                                </span>
-                            </td>
-                        </tr>
-                                                }
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
                         }
                         else
                         {

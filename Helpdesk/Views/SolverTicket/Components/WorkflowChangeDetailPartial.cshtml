@@ -1,0 +1,74 @@
+﻿@* @using Models.Tickets
+@model (Guid, WorkflowHistory)
+@{
+    var change = Model.Item2; 
+}
+
+<div class="d-flex flex-row justify-content-center mt-4">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 700px;">
+        <div class="text-center mb-4">
+            <h4>Detail změny workflow</h4>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Stav po změně</label>
+            <div class="p-3 border rounded bg-light">
+                <span class="badge px-3 py-2 fw-semibold @(Model.State == WFState.Žádný ? "bg-info" : "bg-warning")">
+                    @Model.State.ToString().Replace('_', ' ')
+                </span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Akce</label>
+            <div class="p-3 border rounded bg-light">
+                @Model.Action.ToString().Replace('_', ' ')
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Komentář</label>
+            <div class="p-3 border rounded bg-light">
+                @if (!string.IsNullOrWhiteSpace(Model.Comment))
+                {
+                    @Model.Comment
+                }
+                else
+                {
+                    <span class="text-muted">Žádný komentář.</span>
+                }
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Datum akce</label>
+            <div class="p-3 border rounded bg-light">
+                @Model.ActionDate.ToString("dd.MM.yyyy HH:mm")
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="mb-2">
+            <label class="form-label fw-bold">Vytvořil</label>
+            <div class="p-3 border rounded bg-light">
+                @(Model.UserCreated?.UserName ?? Model.UserCreated?.Email ?? "Neznámý uživatel")
+                <br />
+                <small class="text-muted">@Model.TimeCreated.ToString("dd.MM.yyyy HH:mm")</small>
+            </div>
+        </div>
+
+        @if (Model.TimeUpdated != null || Model.UserUpdated != null)
+        {
+            <div class="mb-2">
+                <label class="form-label fw-bold">Upravil</label>
+                <div class="p-3 border rounded bg-light">
+                    @(Model.UserUpdated?.UserName ?? Model.UserUpdated?.Email ?? "Neznámý uživatel")
+                    <br />
+                    <small class="text-muted">@Model.TimeUpdated?.ToString("dd.MM.yyyy HH:mm")</small>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+ *@

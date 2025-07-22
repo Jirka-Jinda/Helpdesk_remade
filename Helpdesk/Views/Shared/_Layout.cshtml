@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Models.Navigation
 @using Models.Users
 @using Services.Abstractions
 @inject INavigationService NavigationService
@@ -6,16 +7,21 @@
 @{
     bool showNavigation = true;
     bool showUserPanel = true;
-
-    var navigation = await NavigationService.GetByParamsAsync("Main", UserType.Zadavatel);
-    if (navigation is null) showNavigation = false;
-
+    Navigation? navigation = null;
     var currentUser = UserService.GetSignedInUser();
+
     if (currentUser is null)
-    {
-        showNavigation = false;
         showUserPanel = false;
+    else
+    {
+        if (User.IsInRole(UserType.Zadavatel.ToString()))
+            navigation = await NavigationService.GetByRoleAsync(UserType.Zadavatel);
+        else if (User.IsInRole(UserType.Řešitel.ToString()))
+            navigation = await NavigationService.GetByRoleAsync(UserType.Řešitel);
+        else if (User.IsInRole(UserType.Auditor.ToString()))
+            navigation = await NavigationService.GetByRoleAsync(UserType.Auditor);
     }
+    if (navigation is null) showNavigation = false;
 
     bool displaySearch = ViewBag.DisplaySearch ?? true;
 }

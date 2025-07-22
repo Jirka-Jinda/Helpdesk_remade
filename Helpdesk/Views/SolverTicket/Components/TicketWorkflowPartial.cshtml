@@ -1,0 +1,83 @@
+﻿@using Models.Tickets
+@using Models.Workflows
+@model Ticket
+
+@{
+    var ticket = Model;
+    var changes = ticket.TicketHistory.OrderByDescending(c => c.TimeCreated).ToList();
+}
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 300px;">
+        <div class="text-center mb-4">
+            <h4>Workflow</h4>
+        </div>
+
+        <!-- Current Status -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Aktuální stav</label>
+            <div class="p-3 border rounded bg-light">
+                <span class="badge mx-1 px-2 @(Model.State switch {
+                    WFState.Žádný => "bg-info",
+                    WFState.Uzavřený => "bg-success",
+                    WFState.Vrácený => "bg-danger",
+                    _ => "bg-warning"
+                })">
+                    @Model.State.ToString().Replace('_', ' ')
+                </span>
+            </div>
+        </div>
+
+        <!-- Workflow History -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Historie změn stavu</label>
+            <div class="p-3 border rounded bg-light">
+                @if (changes.Count > 0)
+                {
+                    <ul class="list-group list-group-flush">
+                        @for (int i = 0; i < changes.Count; i++)
+                        {
+                            var change = changes[i];
+                            <li class="list-group-item bg-light border-0 px-0" onclick="location.href='@Url.Action("WorkflowDetail", "SolverTicket", new { ticketId = Model.Id, changeId = change.Id })'">
+                                <div class="fw-semibold">
+                                    @if (i + 1 < changes.Count)
+                                    {
+                                        @changes[i + 1].State.ToString().Replace('_', ' ')
+                                        <span class="mx-1">→</span>
+                                    }
+                                    @change.State.ToString().Replace('_', ' ')
+                                </div>
+                                <small class="text-muted">
+                                    @change.UserCreated — @change.TimeCreated.ToShortDateString()
+                                </small>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="text-muted mb-0">Žádné změny.</p>
+                }
+            </div>
+        </div>
+
+        <!-- Change Workflow -->
+        <form asp-action="ChangeWorkflow" method="post">
+            <input type="hidden" name="ticketId" value="@ticket.Id" />
+            <div class="mb-3">
+                <label for="action" class="form-label fw-bold">Změnit stav</label>
+                <select class="form-select" id="action" name="action" required>
+                    @foreach (var status in WFRules.StateActions(ticket.State))
+                    {
+                        <option value="@status">@status.ToString().Replace('_', ' ')</option>
+                    }
+                </select>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-arrow-repeat me-1"></i>Změnit stav
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

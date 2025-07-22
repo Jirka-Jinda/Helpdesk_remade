@@ -44,7 +44,7 @@ public class Ticket : AuditableObject
 
             var newChange = new WorkflowHistory()
             {
-                State = this.State,
+                State = newState,
                 Action = action,
                 Comment = comment,
             };

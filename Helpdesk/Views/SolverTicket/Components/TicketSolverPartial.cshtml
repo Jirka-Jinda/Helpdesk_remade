@@ -1,0 +1,76 @@
+﻿@using Models.Tickets
+@using Services.Abstractions
+@inject IUserService userService
+@model Ticket
+@{
+    var changes = Model.SolverHistory;
+    var solvers = await userService.GetUsersByRoleAsync(Models.Users.UserType.Řešitel);
+}
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 300px;">
+        <div class="text-center mb-4">
+            <h4>Řešitelé</h4>
+        </div>
+
+        <!-- Current Solver Info -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Aktuální řešitel</label>
+            @if (Model.Solver != null)
+            {
+                <div class="p-3 border rounded bg-light overflow-hidden">
+                    <p class="mb-1 fw-bold">@Model.Solver.UserName</p>
+                </div>
+            }
+            else
+            {
+                <div class="p-3 border rounded bg-light text-muted text-center">Žádný přiřazený řešitel</div>
+            }
+        </div>
+
+        <!-- Solver History -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Historie řešitelů</label>
+            @if (changes.Any())
+            {
+                @foreach (var change in changes.OrderByDescending(x => x.TimeCreated))
+                {
+                    <div onclick="location.href='@Url.Action("SolverDetail", "SolverTicket", new { ticketId = Model.Id, changeId = change.Id })'" class="p-2 mb-2 border rounded bg-light overflow-hidden icon-link-hover" style="cursor: pointer;">
+                        <p class="mb-1"><strong>@change.Solver?.UserName</strong> - @change.Comment</p>
+                        <small class="text-muted">@change.TimeCreated.ToShortDateString() - @change.TimeCreated.ToString("HH:mm")</small>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="p-2 border rounded bg-light text-muted text-center">Žádná změna řešitele</div>
+            }
+        </div>
+
+        <!-- Change Solver Form -->
+        <form asp-action="ChangeSolver" method="post">
+            <input type="hidden" name="ticketId" value="@Model.Id" />
+
+            <div class="mb-3">
+                <label for="newSolver" class="form-label fw-bold">Změnit řešitele</label>
+                <select class="form-select" id="newSolver" name="newSolver" required>
+                    @foreach (var solver in solvers)
+                    {
+                        <option value="@solver.Id">@solver</option>
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="comment" class="form-label fw-bold">Komentář ke změně</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Doplňující komentář"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-person-plus me-1"></i>Přiřadit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

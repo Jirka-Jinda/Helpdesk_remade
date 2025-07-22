@@ -36,7 +36,7 @@ public class AccessController : Controller
         }
 
         ViewBag.LoginFailed = true;
-        return PartialView();
+        return View();
     }
 
     [HttpGet]

@@ -5,7 +5,7 @@ namespace Models.Navigation;
 public class Navigation : AuditableObject
 {
     public string? Name { get; set; }
-    public UserType? AuthorizedUserType { get; set; } = null;
+    public UserType AuthorizedUserType { get; set; }
     public NavigationNode Root { get; set; }
     public NavigationNode ActiveNode { get; set; }
 

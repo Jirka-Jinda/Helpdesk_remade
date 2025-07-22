@@ -1,0 +1,17 @@
+﻿@using Models.Tickets
+@model Ticket
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="d-flex flex-row justify-content-center">
+    <div class="mx-2">
+        @await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketDetailPartial.cshtml", Model)
+    </div>
+    <div class="mx-2">
+        @await Html.PartialAsync("~/Views/SolverTicket/Components/TicketSolverPartial.cshtml", Model)
+    </div>
+    <div class="mx-2">
+        @await Html.PartialAsync("~/Views/SolverTicket/Components/TicketWorkflowPartial.cshtml", Model)
+    </div>
+</div>

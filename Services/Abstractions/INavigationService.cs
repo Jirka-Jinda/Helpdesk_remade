@@ -6,4 +6,6 @@ namespace Services.Abstractions;
 public interface INavigationService : IService<Navigation>
 {
     public Task<Navigation?> GetByParamsAsync(string? name = null, UserType? authorizedUserType = null);
+
+    public Task<Navigation?> GetByRoleAsync(UserType role);
 }

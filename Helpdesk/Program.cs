@@ -57,7 +57,7 @@ builder.Services.AddControllersWithViews(options =>
 
 builder.Services.AddMemoryCache(options => 
 {
-    options.ExpirationScanFrequency = TimeSpan.FromMinutes(5);
+    options.ExpirationScanFrequency = TimeSpan.FromMinutes(15);
 });
 
 builder.Services.AddSession(options =>
@@ -96,6 +96,14 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+var supportedCultures = new[] { "cs-CZ" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("cs-CZ")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 app.Run();
 
