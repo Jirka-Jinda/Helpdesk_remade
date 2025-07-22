@@ -2,16 +2,16 @@
 @using ViewModels.User
 @model UserSettingsViewModel
 @{
-    ViewData["Title"] = "Uživatelský profil";
+    ViewData["Title"] = "Nastavení";
 }
 
 <div class="d-flex flex-row justify-content-center mt-5">
     <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 700px;">
         <div class="text-center mb-4">
-            <h4>Uživatelský profil - @Model.UserName</h4>
+            <h4>Uživatelské nastavení - @Model.UserName</h4>
         </div>
 
-        <form asp-action="UpdateUser" method="post">
+        <form asp-action="UserSettings" method="post">
             <input type="hidden" asp-for="Id" />
 
             <!-- Username -->

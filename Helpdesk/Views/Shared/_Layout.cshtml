@@ -48,21 +48,14 @@
                     }
                 </div>
             </div>
-            <div> @* Navigation - General, Settings *@
+            <div> @* Navigation - Settings *@
                 <nav class="navbar d-block mb-1">
                     <ul class="nav nav-pills btn-toggle-nav d-flex flex-column mb-auto">
                         <li class="border-top mx-3 my-1"></li>
                         <li class="nav-item ms-2">
-                            <a class="nav-link text-light d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Settings">
-                                <i class="bi bi-gear @(currentUser?.Theme == Theme.Dark ? "text-dark" : "text-white" )" style="font-size: 25px"></i>
+                            <a class="nav-link text-light d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="UserSettings">
+                                <i class="bi bi-person-gear text-white" style="font-size: 25px"></i>
                                 <span class="mx-3">Nastavení</span>
-                            </a>
-                        </li>
-                        <li class="border-top mx-3 my-1"></li>
-                        <li class="nav-item ms-2">
-                            <a class="nav-link text-light d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Users">
-                                 <i class="bi bi-people @(currentUser?.Theme == Theme.Dark ? "text-dark" : "text-white" )" style="font-size: 25px"></i>
-                                <span class="mx-3">Uživatelé</span>
                             </a>
                         </li>
                     </ul>
@@ -76,7 +69,7 @@
                     {
                         <form id="searchForm" class="input-group" role="search" asp-area="" asp-controller="Home" asp-action="Search">
                             <button type="submit" class="input-group-text bg-primary">
-                                <i class="bi bi-search @(currentUser?.Theme == Theme.Dark ? "text-dark" : "text-white")" style="font-size: 18px"></i>
+                                <i class="bi bi-search text-white" style="font-size: 18px"></i>
                             </button>
                             <input id="searchInput" name="search" role="search" class="form-control search rounded-end" placeholder="Hledání...">
                         </form>

@@ -52,7 +52,7 @@ namespace Helpdesk.Controllers
         }
 
         [HttpGet]
-        public IActionResult Users()
+        public IActionResult UserSettings()
         {
             var user = _userService.GetSignedInUser();
 
@@ -62,7 +62,7 @@ namespace Helpdesk.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(UserSettingsViewModel updatedUser)
+        public async Task<IActionResult> UserSettings(UserSettingsViewModel updatedUser)
         {
             var results = new List<IdentityResult>();
             var refreshUser = await _userService.GetAsync(updatedUser.Id);

@@ -27,7 +27,7 @@
                                     string subicon = iconPath + subNode.Icon + iconFormat;
                                     <li class="nav-item ms-2">
                                         <a class="nav-link text-light d-flex align-items-center" asp-area=@subNode.Route?.Area asp-controller=@subNode.Route?.Controller asp-action=@subNode.Route?.Action>
-                                            <i class="bi @("bi-" + subNode.Icon); @(Model.Item2?.Theme == Theme.Dark ? "text-dark" : "text-white")" style="font-size: 25px"></i>
+                                            <i class="bi @("bi-" + subNode.Icon); text-white" style="font-size: 25px"></i>
                                             <span class="mx-3">@subNode.Name</span>
                                         </a>
                                     </li>
@@ -42,7 +42,7 @@
             {
                 <li class="nav-item ms-2 my-1">
                     <a class="nav-link text-light d-flex align-items-center" asp-area=@node.Route?.Area asp-controller=@node.Route?.Controller asp-action=@node.Route?.Action>
-                        <i class="bi @("bi-" + node.Icon) @(Model.Item2?.Theme == Theme.Dark ? "text-dark" : "text-white")" style="font-size: 25px"></i>
+                        <i class="bi @("bi-" + node.Icon) text-white" style="font-size: 25px"></i>
                         <span class="mx-3">@node.Name</span>
                     </a>
                 </li>
