@@ -31,6 +31,24 @@ public class UserService : BaseService, IUserService
         return await _userManager.FindByIdAsync(id.ToString());
     }
 
+    public async Task<IdentityResult> UpdateAsync(ApplicationUser user)
+    {
+        var refresh = await _userManager.UpdateSecurityStampAsync(user);
+        var res = await _userManager.UpdateAsync(user);
+
+        var fetchedUser = await _userManager.FindByIdAsync(user.Id.ToString());
+
+        if (res.Succeeded && fetchedUser != null)
+            await _signInManager.SignInAsync(fetchedUser, true);
+
+        return res;
+    }
+
+    public async Task<IdentityResult> UpdatePasswordAsync(ApplicationUser user, string oldPassword, string newPassword)
+    {
+        return await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+    }
+
     public async Task<IdentityResult> DeleteAsync(Guid id)
     {
         var user = await GetAsync(id);

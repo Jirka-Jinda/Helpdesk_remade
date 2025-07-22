@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250721161817_InitialCreate")]
+    [Migration("20250722131002_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -451,6 +451,13 @@ namespace Database.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("ProxyEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ProxyUser")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -458,6 +465,9 @@ namespace Database.Migrations
                         .HasColumnType("integer");
 
                     b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("UseProxy")
                         .HasColumnType("boolean");
 
                     b.Property<string>("UserName")

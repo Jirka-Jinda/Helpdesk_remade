@@ -448,6 +448,13 @@ namespace Database.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("ProxyEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ProxyUser")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -455,6 +462,9 @@ namespace Database.Migrations
                         .HasColumnType("integer");
 
                     b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("UseProxy")
                         .HasColumnType("boolean");
 
                     b.Property<string>("UserName")

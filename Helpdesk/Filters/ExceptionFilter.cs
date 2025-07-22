@@ -13,7 +13,7 @@ public class ExceptionFilter : IExceptionFilter
         {
             default:
                 context.ExceptionHandled = true;
-                result = new("Error", "Code500", new { details = context.Exception.Message });
+                result = new("Code500", "Error", new { details = context.Exception.Message });
                 break;
         }
 

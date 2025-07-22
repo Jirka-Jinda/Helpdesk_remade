@@ -1,19 +1,22 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
+using ViewModels.User;
 
 namespace Helpdesk.Controllers
 {
+    [Authorize(Roles = "Auditor, Řešitel, Zadavatel")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService)
+        public HomeController(IUserService userService)
         {
-            _logger = logger;
             _userService = userService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var user = _userService.GetSignedInUser();
@@ -48,11 +51,35 @@ namespace Helpdesk.Controllers
             return View(user);
         }
 
+        [HttpGet]
         public IActionResult Users()
         {
             var user = _userService.GetSignedInUser();
 
-            return View(user);
+            var model = new UserSettingsViewModel(user);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateUser(UserSettingsViewModel updatedUser)
+        {
+            var results = new List<IdentityResult>();
+            var refreshUser = await _userService.GetAsync(updatedUser.Id);
+
+            if (refreshUser != null) 
+            {
+                refreshUser.UserName = updatedUser.UserName;
+
+                results.Add(await _userService.UpdateAsync(refreshUser));
+
+                if (updatedUser.NewPassword != null)
+                    results.Add(await _userService.UpdatePasswordAsync(refreshUser, updatedUser.Password, updatedUser.NewPassword));
+
+                if (results.All(res => res.Succeeded == true))
+                    return View("UpdateConfirmation");
+            }
+            return RedirectToAction("Code500", "Error");
         }
     }
 }

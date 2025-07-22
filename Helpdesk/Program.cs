@@ -26,6 +26,13 @@ builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Access/Login";
+    options.LogoutPath = "/Access/Logout";
+    options.AccessDeniedPath = "/Error/Code403";
+});
+
 builder.Services.AddRepositories();
 
 builder.Services.AddServices();

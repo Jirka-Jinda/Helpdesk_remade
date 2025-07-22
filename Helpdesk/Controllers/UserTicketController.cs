@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;
 
+[Authorize(Roles = "Auditor, Řešitel, Zadavatel")]
 public class UserTicketController : Controller
 {
     private readonly ITicketService _ticketService;

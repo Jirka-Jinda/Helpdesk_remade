@@ -1,43 +1,85 @@
 ﻿@using Models.Tickets
+@using Models.Workflows
 @model Ticket
 
-<div class="container mt-2">
-    <!-- Ticket Header and Description -->
-    <div class="card mb-3 shadow-sm" style="max-height: 500px;">
-        <div class="card-header bg-primary text-white">
+@{
+    ViewData["Title"] = "Detail požadavku";
+}
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 700px;">
+        <div class="text-center mb-4">
             <h4>@Model.Header</h4>
         </div>
-        <div class="card-body">
-            <p><strong>Zadavatel:</strong> @(Model.UserCreated?.UserName ?? Model.UserCreated?.Email)</p>
-            <p><strong>Vytvořeno:</strong> @Model.TimeCreated.ToShortDateString()</p>
-            <hr>
+
+        <!-- Ticket Info -->
+        <div class="mb-3 p-3 border rounded bg-light">
+            <p class="mb-1"><strong>Zadavatel:</strong> @(Model.UserCreated?.UserName ?? Model.UserCreated?.Email)</p>
+
+            @if (Model.Solver != null)
+            {
+                <p class="mb-1"><strong>Řešitel:</strong> @Model.Solver.UserName</p>
+            }
+
+            <p class="mb-1"><strong>Vytvořeno:</strong> @Model.TimeCreated.ToShortDateString()</p>
+
+            <p class="mb-1">
+                <strong>Stav:</strong>
+                <span class="badge mx-1 px-2 @(Model.State switch {
+                    WFState.Žádný => "bg-info",
+                    WFState.Uzavřený => "bg-success",
+                    WFState.Vrácený => "bg-danger",
+                    _ => "bg-warning"
+                })">
+                    @Model.State
+                </span>
+            </p>
+
+            <hr />
             <p>@Model.Content</p>
         </div>
-    </div>
 
-    <!-- Messages Section -->
-    <div class="card shadow-sm">
-        <div class="card-header bg-light">
-            <h5>Komentáře</h5>
+        <!-- Messages Section -->
+        <div class="text-center mt-4">
+            <h5>Diskuze</h5>
         </div>
-        <div class="card-body">
+
+        @if (Model.MessageThread.Messages.Any())
+        {
             @foreach (var message in Model.MessageThread.Messages)
             {
-                <div class="mb-3 p-3 border rounded bg-light">
-                    <p class="mb-1"><strong>@message.UserCreated</strong> <span class="text-muted">(@message.TimeCreated.ToShortDateString())</span></p>
-                    <p>@message.Content</p>
+                <div class="mb-2 p-3 border rounded bg-light">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="fw-bold">@message.UserCreated</span>
+                        <small class="text-muted">@message.TimeCreated.ToShortDateString()</small>
+                    </div>
+                    <p class="mb-0">@message.Content</p>
                 </div>
             }
-        </div>
-        <div class="card-footer">
-            <form asp-controller="UserTicket" asp-action="PostMessage" method="post">
-                <input type="hidden" name="ticketId" value="@Model.Id" />
-                <div class="form-group">
-                    <label for="newMessage">Komentář</label>
-                    <textarea class="form-control" id="newMessage" name="message" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary mt-2">Send</button>
-            </form>
-        </div>
+        }
+        else
+        {
+            <div class="mb-3 p-3 border rounded bg-light text-center text-muted">
+                Žádné komentáře zatím nebyly přidány.
+            </div>
+        }
+
+        <!-- Comment Form -->
+        <form asp-controller="UserTicket" asp-action="PostMessage" method="post" class="mt-4">
+            <input type="hidden" name="ticketId" value="@Model.Id" />
+            <div class="mb-3">
+                <label for="newMessage" class="form-label fw-bold">Přidat komentář</label>
+                <textarea class="form-control" id="newMessage" name="message" rows="3" placeholder="Napište komentář..." required></textarea>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a asp-controller="UserTicket" asp-action="Overview" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left-circle me-1"></i>Zpět na seznam
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-send me-1"></i>Odeslat
+                </button>
+
+            </div>
+        </form>
     </div>
 </div>
