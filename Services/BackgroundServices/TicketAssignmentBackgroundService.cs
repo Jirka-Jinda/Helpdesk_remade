@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Services.Options;
 
 namespace Services.BackgroundServices;
 
@@ -10,11 +12,11 @@ internal class TicketAssignmentBackgroundService : BackgroundService
     private readonly IServiceProvider _serviceProvider;
     private readonly PeriodicTimer _timer;
 
-    public TicketAssignmentBackgroundService(ILogger<TicketAssignmentBackgroundService> logger, IServiceProvider serviceProvider, TicketAssignmentOptions options)
+    public TicketAssignmentBackgroundService(ILogger<TicketAssignmentBackgroundService> logger, IServiceProvider serviceProvider, IOptions<TicketAssignmentOptions> options)
     {
         _logger = logger;
         _serviceProvider = serviceProvider;
-        _timer = new(options.AutomaticAssignInterval);
+        _timer = new(options.Value.AutomaticAssignInterval);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)

@@ -1,4 +1,4 @@
-﻿namespace Models.Emails;
+﻿namespace Services.Options;
 
 public class EmailSettings
 {

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Services.Options;
 
 namespace Services.BackgroundServices;
 
@@ -9,11 +11,11 @@ internal class LogRetentionBackgroundService : BackgroundService
     private readonly PeriodicTimer _timer;
     private readonly TimeSpan _deleteFilesOlderThan;
 
-    public LogRetentionBackgroundService(ILogger<LogRetentionBackgroundService> logger, LogRetentionOptions options)
+    public LogRetentionBackgroundService(ILogger<LogRetentionBackgroundService> logger, IOptions<LogRetentionOptions> options)
     {
         _logger = logger;
-        _timer = new(options.LogDeletionInterval);
-        _deleteFilesOlderThan = options.LogDeleteFilesOdlerThan;
+        _timer = new(options.Value.LogDeletionInterval);
+        _deleteFilesOlderThan = options.Value.LogDeleteFilesOdlerThan;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)

@@ -1,4 +1,4 @@
-﻿namespace Services.BackgroundServices;
+﻿namespace Services.Options;
 
 public class LogRetentionOptions
 {

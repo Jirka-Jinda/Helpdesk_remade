@@ -2,10 +2,10 @@ using Database;
 using Database.Context;
 using Helpdesk.Filters;
 using Microsoft.EntityFrameworkCore;
-using Models.Emails;
 using Models.Users;
 using Serilog;
 using Services;
+using Services.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,20 +38,17 @@ builder.Services.AddRepositories();
 
 builder.Services.AddServices();
 
-builder.Services.AddLogRetentionService(options =>
-{
-    options.LogDeletionInterval = TimeSpan.FromHours(24);
-    options.LogDeleteFilesOdlerThan = TimeSpan.FromDays(7);
-});
-
-builder.Services.AddTicketArchiveService(options =>
-{
-    options.ArchiveTicketsInterval = TimeSpan.FromHours(1);
-    options.ArchiveResolvedTicketsAfter = TimeSpan.FromDays(3);
-});
-
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-builder.Services.AddEmailNotificationService();
+builder.Services.AddEmailNotificationService(builder.Configuration);
+
+builder.Services.Configure<LogRetentionOptions>(builder.Configuration.GetSection("LogRetentionOptions"));
+builder.Services.AddLogRetentionService(builder.Configuration);
+
+builder.Services.Configure<TicketArchiveOptions>(builder.Configuration.GetSection("TicketArchiveOptions"));
+builder.Services.AddTicketArchiveService(builder.Configuration);
+
+builder.Services.Configure<TicketAssignmentOptions>(builder.Configuration.GetSection("TicketAssignmentOptions"));
+builder.Services.AddAutomaticAssignmentService(builder.Configuration);
 
 builder.Services.AddControllersWithViews(options =>
 {

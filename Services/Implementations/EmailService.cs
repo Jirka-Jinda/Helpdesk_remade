@@ -1,8 +1,8 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Models.Emails;
 using Services.Abstractions.Services;
+using Services.Options;
 
 namespace Services.Implementations;
 

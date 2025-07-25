@@ -1,7 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Services.Abstractions.Services;
 using Services.BackgroundServices;
 using Services.Implementations;
+using Services.Options;
 
 namespace Services;
 
@@ -16,69 +19,43 @@ public static class IServiceCollectionExtensions
 
         return services;
     }
-
-    public static IServiceCollection AddTicketArchiveService(this IServiceCollection services)
+    
+    public static IServiceCollection AddLogRetentionService(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(new TicketArchiveOptions());
-        services.AddHostedService<TicketArchiveBackgroundService>();
+        var parsed = bool.TryParse(configuration.GetSection("EnableLogRetention").Value, out var serviceEnabled);
+
+        if (parsed && serviceEnabled && configuration.GetSection("LogRetentionOptions").Exists())
+            services.AddHostedService<LogRetentionBackgroundService>();
 
         return services;
     }
 
-    public static IServiceCollection AddTicketArchiveService(this IServiceCollection services, Action<TicketArchiveOptions> options)
+    public static IServiceCollection AddTicketArchiveService(this IServiceCollection services, IConfiguration configuration)
     {
-        var ticketArchiveSettings = new TicketArchiveOptions();
-        options(ticketArchiveSettings);
+        var parsed = bool.TryParse(configuration.GetSection("EnableTicketArchive").Value, out var serviceEnabled);
 
-        services.AddSingleton(ticketArchiveSettings);
-        services.AddHostedService<TicketArchiveBackgroundService>();
+        if (parsed && serviceEnabled && configuration.GetSection("TicketArchiveOptions").Exists())
+            services.AddHostedService<TicketArchiveBackgroundService>();
 
         return services;
     }
 
-    public static IServiceCollection AddLogRetentionService(this IServiceCollection services)
+    public static IServiceCollection AddAutomaticAssignmentService(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(new LogRetentionOptions());
-        services.AddHostedService<LogRetentionBackgroundService>();
+        var parsed = bool.TryParse(configuration.GetSection("EnableTicketAssignment").Value, out var serviceEnabled);
+
+        if (parsed && serviceEnabled && configuration.GetSection("TicketAssignmentOptions").Exists())
+            services.AddHostedService<TicketAssignmentBackgroundService>();
 
         return services;
     }
 
-    public static IServiceCollection AddLogRetentionService(this IServiceCollection services, Action<LogRetentionOptions> options)
+    public static IServiceCollection AddEmailNotificationService(this IServiceCollection services, IConfiguration configuration)
     {
-        var logRetentionSettings = new LogRetentionOptions();
-        options(logRetentionSettings);
+        var parsed = bool.TryParse(configuration.GetSection("EnableEmailNotifications").Value, out var serviceEnabled);
 
-        services.AddSingleton(logRetentionSettings);
-        services.AddHostedService<LogRetentionBackgroundService>();
-
-        return services;
-    }
-
-    public static IServiceCollection AddAutomaticAssignmentService(this IServiceCollection services)
-    {
-        var logRetentionSettings = new TicketAssignmentOptions();
-
-        services.AddSingleton(logRetentionSettings);
-        services.AddHostedService<TicketAssignmentBackgroundService>();
-
-        return services;
-    }
-
-    public static IServiceCollection AddAutomaticAssignmentService(this IServiceCollection services, Action<TicketAssignmentOptions> options)
-    {
-        var logRetentionSettings = new TicketAssignmentOptions();
-        options(logRetentionSettings);
-
-        services.AddSingleton(logRetentionSettings);
-        services.AddHostedService<TicketAssignmentBackgroundService>();
-
-        return services;
-    }
-
-    public static IServiceCollection AddEmailNotificationService(this IServiceCollection services)
-    {
-        services.AddTransient<IEmailService, EmailService>();
+        if (parsed && serviceEnabled && configuration.GetSection("EmailSettings").Exists())
+            services.AddTransient<IEmailService, EmailService>();
 
         return services;
     }

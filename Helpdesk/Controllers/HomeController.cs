@@ -19,15 +19,15 @@ namespace Helpdesk.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var user = _userService.GetSignedInUser();
 
-            await _emailService.SendEmailAsync(
-                "jiri.jinda10@gmail.com",
-                "Test Email",
-                "<h1>Hello from ASP.NET Core 8!</h1>"
-                );
+            //await _emailService.SendEmailAsync(
+            //    "jiri.jinda10@gmail.com",
+            //    "Test Email",
+            //    "<h1>Hello from ASP.NET Core 8!</h1>"
+            //    );
 
             if (user is null)
                 return RedirectToAction("Login", "Access");
