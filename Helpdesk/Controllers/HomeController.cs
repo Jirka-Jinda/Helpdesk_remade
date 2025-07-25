@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Models.Users;
 using Services.Abstractions.Services;
 using ViewModels.User;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -44,7 +45,10 @@ namespace Helpdesk.Controllers
 
         public IActionResult Search(string search)
         {
-            return RedirectToAction("Overview", "UserTicket", new { filter = search, displayDetailIfSingle = true });
+            if (User.IsInRole(UserType.Zadavatel.ToString()))
+                return RedirectToAction("Overview", "UserTicket", new { filter = search, displayDetailIfSingle = true });
+            else
+                return RedirectToAction("Overview", "SolverTicket", new { filter = search, displayDetailIfSingle = false });
         }
 
         public IActionResult Settings()

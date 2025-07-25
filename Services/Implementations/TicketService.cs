@@ -138,7 +138,8 @@ public class TicketService : BaseService, ITicketService
 
     public async Task<IEnumerable<Ticket>> GetBySolverAsync(Guid solverId)
     {
-        return await _ticketRepository.GetByParamsAsync(solverId: solverId);
+        var tickets = await _ticketRepository.GetAllAsync();
+        return tickets.Where(t => t.Solver != null && t.Solver.Id == solverId).ToList();
     }
 
     public async Task<IEnumerable<Ticket>> GetByHeaderAsync(string header)

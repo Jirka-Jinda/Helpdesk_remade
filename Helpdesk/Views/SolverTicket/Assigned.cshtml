@@ -19,7 +19,7 @@
                 <button type="submit" class="input-group-text bg-primary">
                     <i class="bi bi-search text-white" style="font-size: 18px"></i>
                 </button>
-                <input type="text" name="filter" value="@filter" class="form-control" placeholder="Filtrovat podle názvu nebo řešitele..." />
+                <input type="text" name="filter" value="@filter" class="form-control" placeholder="Filtrovat podle názvu, kategorie nebo stavu..." />
             </div>
         </form>
 
@@ -29,7 +29,8 @@
                     <thead>
                         <tr>
                             <th>Název</th>
-                            <th>Řešitel</th>
+                            <th>Priorita</th>
+                            <th>Kategorie</th>
                             <th>Vytvořeno</th>
                             <th>Stav</th>
                         </tr>
@@ -48,7 +49,8 @@
 
                                 <tr onclick="@route" style="cursor: pointer;">
                                     <td>@ticket.Header</td>
-                                    <td>@ticket.Solver?.UserName</td>
+                                    <td>@ticket.Priority</td>
+                                    <td>@ticket.Category.ToString().Replace('_', ' ')</td>
                                     <td>@ticket.TimeCreated.ToShortDateString()</td>
                                     <td>
                                         <span class="badge px-2 @(ticket.State switch
@@ -58,7 +60,7 @@
                                                   WFState.Vrácený => "bg-danger",
                                                   _ => "bg-warning"
                                               })">
-                                    @ticket.State
+                                            @ticket.State
                                         </span>
                                     </td>
                                 </tr>

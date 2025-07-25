@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models.Tickets;
-using Models.Users;
 using Models.Workflows;
 using Services.Abstractions.Services;
 using ViewModels.Ticket;
@@ -70,6 +68,31 @@ public class SolverTicketController : Controller
     }
 
     [HttpGet]
+    public async Task<IActionResult> Assigned(string? filter = null)
+    {
+        var currentUser = _userService.GetSignedInUser();
+
+        if (currentUser is null)
+            return BadRequest();
+
+        var tickets = await _ticketService.GetBySolverAsync(currentUser.Id);
+
+        if (filter != null && !string.IsNullOrWhiteSpace(filter))
+        {
+            tickets = tickets
+                .Where(t => t.Header.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                        t.State.ToString().Contains(filter, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            ViewBag.Filter = filter;
+        }
+
+        ViewBag.DisplaySearch = false;
+        tickets = tickets.OrderByDescending(t => (int)t.Priority).ToList();
+        return View(tickets);
+    }
+
+    [HttpGet]
     public async Task<IActionResult> Detail(Guid ticketId)
     {
         var ticket = await _ticketService.GetAsync(ticketId);
@@ -78,6 +101,17 @@ public class SolverTicketController : Controller
             return BadRequest();
 
         return View(ticket);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> PostMessage(Guid ticketId, string message)
+    {
+        var ticket = await _ticketService.GetAsync(ticketId);
+
+        if (ticket is not null)
+            await _ticketService.AddMessageAsync(ticket, message);
+
+        return View("Detail", ticket);
     }
 
     [HttpPost]

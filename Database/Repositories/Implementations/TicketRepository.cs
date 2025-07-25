@@ -29,7 +29,6 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
 
     public async Task<ICollection<Ticket>> GetByParamsAsync(
         Guid? creatorId = null, 
-        Guid? solverId = null, 
         WFState? wfState = null, 
         TicketCategory? ticketCategory = null, 
         string? header = null)
@@ -38,7 +37,6 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
             .UseTicketIncludesAll()
             .Where(t =>
                 (creatorId == null || (t.UserCreated != null && t.UserCreated.Id == creatorId)) &&
-                (solverId == null || (t.Solver != null && t.Solver.Id == solverId)) &&
                 (wfState == null || t.State == wfState) &&
                 (ticketCategory == null || t.Category == ticketCategory) &&
                 (header == null || t.Header == header))
@@ -58,7 +56,10 @@ public static class TicketIncludeExtensions
             .Include(t => t.SolverHistory)
             .Include(t => t.MessageThread)
             .Include(t => t.MessageThread)
-                .ThenInclude(mt => mt.Messages);
+                .ThenInclude(mt => mt.Messages)
+            .Include(t => t.MessageThread)
+                .ThenInclude(mt => mt.Messages)
+                    .ThenInclude(m => m.UserCreated);
     }
 
     public static IQueryable<Ticket> UseTicketIncludesAll(this IQueryable<Ticket> query)

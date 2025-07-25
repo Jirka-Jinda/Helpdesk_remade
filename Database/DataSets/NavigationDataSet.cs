@@ -27,7 +27,7 @@ internal class NavigationDataSet : IDataSet
         userNav.Root.AddChild(new NavigationNode()
         {
             Name = "Požadavky",
-            Icon = "card-list",
+            Icon = "list-ul",
             Route = new NavigationRoute("", "UserTicket", "Overview"),
         });
         userNav.Root.AddChild(new NavigationNode()
@@ -47,12 +47,26 @@ internal class NavigationDataSet : IDataSet
             Icon = "plus-square",
             Route = new NavigationRoute("", "SolverTicket", "Create"),
         });
-        solverNav.Root.AddChild(new NavigationNode()
+        var tickets = new NavigationNode()
         {
             Name = "Požadavky",
-            Icon = "card-list",
+            Icon = "chevron-down",
+        };
+        solverNav.Root.AddChild(tickets);
+
+        tickets.AddChild(new NavigationNode()
+        {
+            Name = "Všechny",
+            Icon = "list-ul",
             Route = new NavigationRoute("", "SolverTicket", "Overview"),
         });
+        tickets.AddChild(new NavigationNode()
+        {
+            Name = "Přiřazené",
+            Icon = "person-lines-fill",
+            Route = new NavigationRoute("", "SolverTicket", "Assigned"),
+        });
+
         solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Archiv",

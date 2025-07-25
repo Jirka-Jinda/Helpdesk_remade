@@ -1,7 +1,7 @@
 ﻿@using Models.Tickets
+@using Models.Users
 @using Models.Workflows
 @model Ticket
-
 @{
     ViewData["Title"] = "Detail požadavku";
 }
@@ -51,9 +51,9 @@
                 <div class="mb-2 p-3 border rounded bg-light">
                     <div class="d-flex justify-content-between mb-2">
                         <span class="fw-bold">@message.UserCreated</span>
-                        <small class="text-muted">@message.TimeCreated.ToShortDateString()</small>
+                        <small class="text-muted">@message.TimeCreated.ToShortDateString() - @message.TimeCreated.ToString("HH:mm")</small>
                     </div>
-                    <p class="mb-0">@message.Content</p>
+                    <p class="mb-0 text-wrap">@message.Content</p>
                 </div>
             }
         }
@@ -65,14 +65,14 @@
         }
 
         <!-- Comment Form -->
-        <form asp-controller="UserTicket" asp-action="PostMessage" method="post" class="mt-4">
+        <form asp-action="PostMessage" method="post" class="mt-4">
             <input type="hidden" name="ticketId" value="@Model.Id" />
             <div class="mb-3">
                 <label for="newMessage" class="form-label fw-bold">Přidat komentář</label>
                 <textarea class="form-control" id="newMessage" name="message" rows="3" placeholder="Napište komentář..." required></textarea>
             </div>
             <div class="d-flex justify-content-between">
-                <a asp-controller="UserTicket" asp-action="Overview" class="btn btn-outline-secondary">
+                <a asp-action="Overview" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left-circle me-1"></i>Zpět na seznam
                 </a>
                 <button type="submit" class="btn btn-primary">
