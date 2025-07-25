@@ -3,5 +3,5 @@
 
 <div class="d-flex flex-column align-items-center justify-content-center pt-3 border-bottom">
     <i class="bi bi-person-circle mb-1 text-white" style="font-size: 25px;"></i>
-    <p class="fw-semibold text-white">@Model.Email</p>
+    <p class="fw-semibold text-white">@(Model.UserName ?? Model.Email)</p>
 </div>

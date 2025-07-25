@@ -1,4 +1,4 @@
-using Database;
+﻿using Database;
 using Database.Context;
 using Helpdesk.Filters;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +21,12 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Database")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>()
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+    {
+        options.User.AllowedUserNameCharacters =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ěščřžýáíéúůňďťĚŠČŘŽÝÁÍÉÚŮŇĎŤ ";
+        options.User.RequireUniqueEmail = true;
+    })
     .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 

@@ -11,14 +11,12 @@ public class AccessController : Controller
 {
     private readonly ILogger<AccessController> _logger;
     private readonly IUserService _userService;
-    private readonly IEmailService _emailService;
     private readonly PasswordGeneratorService _passwordGeneratorService;
 
-    public AccessController(ILogger<AccessController> logger, IUserService userService, IEmailService emailService, PasswordGeneratorService passwordGeneratorService)
+    public AccessController(ILogger<AccessController> logger, IUserService userService, PasswordGeneratorService passwordGeneratorService)
     {
         _logger = logger;
         _userService = userService;
-        _emailService = emailService;
         _passwordGeneratorService = passwordGeneratorService;
     }
 
@@ -79,7 +77,7 @@ public class AccessController : Controller
         return PartialView();
     }
 
-    [HttpPost]
+    [HttpGet]
     public async Task<IActionResult> Logout()
     {
         await _userService.SignOutAsync();
@@ -108,11 +106,6 @@ public class AccessController : Controller
             if (result.Succeeded)
             {
                 _logger.LogInformation("Password reset successfully for user: {Email}", model.Email);
-                await _emailService.SendEmailAsync(
-                    model.Email,
-                    "Resetování hesla",
-                    $"<h1>Vaše heslo bylo resetováno: {newPassword}</h1>");
-
                 return PartialView("ResetConfirmation");
             }
         }

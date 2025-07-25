@@ -11,6 +11,13 @@
             <h4>Vytvořte nový účet</h4>
         </div>
 
+        @if (ViewBag.RegisterFailed != null && (bool)ViewBag.RegisterFailed)
+        {
+            <div class="alert alert-danger text-center text-wrap">
+                Neplatné údaje. Zkuste to prosím znovu.
+            </div>
+        }
+
         <form method="post" asp-action="Register">
             <div class="mb-3">
                 <label asp-for="UserName" class="form-label fw-bold"></label>

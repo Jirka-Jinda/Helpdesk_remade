@@ -11,6 +11,13 @@
             <h4>Uživatelské nastavení - @Model.UserName</h4>
         </div>
 
+        @if (ViewBag.UpdateFailed != null && (bool)ViewBag.RegisterFailed)
+        {
+            <div class="alert alert-danger text-center text-wrap">
+                Neplatné údaje. Zkuste to prosím znovu.
+            </div>
+        }
+
         <form asp-action="UserSettings" method="post">
             <input type="hidden" asp-for="Id" />
 

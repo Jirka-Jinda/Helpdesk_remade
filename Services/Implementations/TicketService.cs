@@ -15,6 +15,7 @@ public class TicketService : BaseService, ITicketService
     private readonly IWorkflowRepository _workflowRepository;
     private readonly ISolverRepository _solverRepository;
     private readonly IMessageRepository _messageRepository;
+    private readonly IEmailService? _emailService = null;
 
     public TicketService(ITicketRepository ticketRepository,
         IWorkflowRepository workflowRepository,
@@ -28,6 +29,22 @@ public class TicketService : BaseService, ITicketService
         _solverRepository = solverRepository;
         _messageRepository = messageRepository;
     }
+
+    public TicketService(ITicketRepository ticketRepository,
+        IWorkflowRepository workflowRepository,
+        ISolverRepository solverRepository,
+        IMessageRepository messageRepository,
+        IHttpContextAccessor httpContextAccessor,
+        IEmailService emailService,
+    UserManager<ApplicationUser> userManager) : base(userManager, httpContextAccessor)
+    {
+        _ticketRepository = ticketRepository;
+        _workflowRepository = workflowRepository;
+        _solverRepository = solverRepository;
+        _messageRepository = messageRepository;
+        _emailService = emailService;
+    }
+
 
     public async Task<Ticket> AddAsync(Ticket entity)
     {

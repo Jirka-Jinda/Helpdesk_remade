@@ -8,12 +8,22 @@ namespace Services.Implementations;
 public class UserService : BaseService, IUserService
 {
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly IEmailService? _emailService = null;
 
     public UserService(UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> singInManager,
         IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
     {
         _signInManager = singInManager;
+    }
+
+    public UserService(UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> singInManager,
+        IEmailService emailService,
+        IHttpContextAccessor httpContextAccessor) : base(userManager, httpContextAccessor)
+    {
+        _signInManager = singInManager;
+        _emailService = emailService;
     }
 
     public async Task<IdentityResult> CreateAsync(ApplicationUser user, string password)
@@ -47,7 +57,17 @@ public class UserService : BaseService, IUserService
     public async Task<IdentityResult> ResetPasswordAsync(ApplicationUser user, string newPassword)
     {
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-        return await _userManager.ResetPasswordAsync(user, token, newPassword);
+        var result = await _userManager.ResetPasswordAsync(user, token, newPassword);
+
+        if (result.Succeeded && _emailService != null && user.Email != null)
+        {
+            await _emailService.SendEmailAsync(
+                user.Email,
+                "Resetování hesla",
+                $"<h1>Vaše heslo bylo resetováno: {newPassword}</h1>");
+        }
+
+        return result;
     }
 
     public async Task<IdentityResult> UpdatePasswordAsync(ApplicationUser user, string oldPassword, string newPassword)

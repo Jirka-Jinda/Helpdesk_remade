@@ -20,4 +20,9 @@ public class UserSettingsViewModel
             UserName = user.UserName;
         }
     }
+
+    public UserSettingsViewModel()
+    {
+        
+    }
 }

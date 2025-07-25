@@ -10,9 +10,9 @@
             <h4>Přihlaste se ke svému účtu</h4>
         </div>
 
-        @if (ViewBag.FailedLogin != null && (bool)ViewBag.LoginFailed)
+        @if (ViewBag.LoginFailed != null && (bool)ViewBag.LoginFailed)
         {
-            <div class="alert alert-danger text-center">
+            <div class="alert alert-danger text-center text-wrap">
                 Neplatné přihlašovací údaje. Zkuste to prosím znovu.
             </div>
         }

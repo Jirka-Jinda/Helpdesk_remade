@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions.Services;
 using ViewModels.User;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Helpdesk.Controllers
 {
@@ -81,7 +82,9 @@ namespace Helpdesk.Controllers
                 if (results.All(res => res.Succeeded == true))
                     return View("UpdateConfirmation");
             }
-            return RedirectToAction("Code500", "Error");
+
+            ViewBag.UpdateFailed = true;
+            return View();
         }
     }
 }

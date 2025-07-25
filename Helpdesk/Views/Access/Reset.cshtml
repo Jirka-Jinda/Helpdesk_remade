@@ -10,6 +10,13 @@
             <h4>Zapomenuté heslo</h4>
         </div>
 
+        @if (ViewBag.ResetFailed != null && (bool)ViewBag.ResetFailed)
+        {
+            <div class="alert alert-danger text-center text-wrap">
+                Neplatné údaje. Zkuste to prosím znovu.
+            </div>
+        }
+
         <p class="text-center text-wrap">
 			Na váš email bude odesláno nové heslo, které si potom můžete změnit v nastavení účtu.
 		</p>

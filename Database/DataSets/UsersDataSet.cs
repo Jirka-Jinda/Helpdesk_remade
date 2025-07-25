@@ -35,7 +35,7 @@ internal class UsersDataSet : IDataSet
             {
                 Id = id,
                 Email = $"user_{id.ToString()}@example.com",
-                UserName = $"user_{id.ToString().Take(12)}",
+                UserName = $"user_{id.ToString()}".Substring(0, 12),
             };
             var res = await userManager.CreateAsync(newUser);
             if (!res.Succeeded)
@@ -50,8 +50,8 @@ internal class UsersDataSet : IDataSet
         var testUser = new ApplicationUser()
         {
             Id = testId,
-            Email = $"test_user@test.com",
-            UserName = $"test_user",
+            Email = "jiri.jinda10@gmail.com",
+            UserName = "Jiří Jinda",
         };
         var testUserResult = await userManager.CreateAsync(testUser);
         await userManager.AddPasswordAsync(testUser, password);

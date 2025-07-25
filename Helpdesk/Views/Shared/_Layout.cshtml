@@ -8,11 +8,21 @@
 @{
     bool showNavigation = true;
     bool showUserPanel = true;
+	bool showSettings = true;
+	bool showSearch = true;
+	bool showThemeSwitch = true;
     Navigation? navigation = null;
     var currentUser = UserService.GetSignedInUser();
 
+    showSearch = ViewBag.DisplaySearch ?? true;
+
     if (currentUser is null)
+    {
         showUserPanel = false;
+		showSettings = false;
+		showSearch = false;
+		showThemeSwitch = false;
+    }
     else
     {
         if (User.IsInRole(UserType.Zadavatel.ToString()))
@@ -23,8 +33,6 @@
             navigation = await NavigationService.GetByRoleAsync(UserType.Auditor);
     }
     if (navigation is null) showNavigation = false;
-
-    bool displaySearch = ViewBag.DisplaySearch ?? true;
 }
 
 <!DOCTYPE html>
@@ -55,24 +63,34 @@
                     }
                 </div>
             </div>
-            <div> @* Navigation - Settings *@
+            <div> @* Navigation - Settings, Logout *@
+            @if (showSettings)
+            {
                 <nav class="navbar d-block mb-1">
                     <ul class="nav nav-pills btn-toggle-nav d-flex flex-column mb-auto">
                         <li class="border-top mx-3 my-1"></li>
                         <li class="nav-item ms-2">
-                            <a class="nav-link text-light d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="UserSettings">
+                            <a class="nav-link text-light d-flex align-items-center" asp-controller="Home" asp-action="UserSettings">
                                 <i class="bi bi-person-gear text-white" style="font-size: 25px"></i>
                                 <span class="mx-3">Nastavení</span>
                             </a>
                         </li>
+                        <li class="border-top mx-3 my-1"></li>
+                        <li class="nav-item ms-2">
+                            <a class="nav-link text-light d-flex align-items-center" asp-controller="Access" asp-action="Logout">
+                                <i class="bi bi-box-arrow-left text-white" style="font-size: 25px"></i>
+                                <span class="mx-3">Odhlásit se</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
+            }
             </div>
         </div>
         <div class="flex-grow-1 d-flex flex-column">
             <div id="navigation-upperbar" class="bg-primary d-flex align-items-center justify-content-between" style="min-height:3rem">
                 <div class="ms-3"> @* Search bar *@
-                    @if (displaySearch)
+                    @if (showSearch)
                     {
                         <form id="searchForm" class="input-group" role="search" asp-area="" asp-controller="Home" asp-action="Search">
                             <button type="submit" class="input-group-text bg-primary">
@@ -83,16 +101,19 @@
                     }
                 </div>
                 <div class="mx-5"> @* Theme switch *@
-                    <a class="" asp-area="" asp-controller="Home" asp-action="SwitchTheme">
-                        @if (currentUser?.Theme == Theme.Dark)
-                        {
-                             <i class="bi bi-sun text-dark" style="font-size: 25px"></i>
-                        }                        
-                        else
-                        {
-                             <i class="bi bi-moon-stars text-white" style="font-size: 25px"></i>
-                        }
-                    </a>
+					@if (showThemeSwitch)
+                    {
+                        <a class="" asp-area="" asp-controller="Home" asp-action="SwitchTheme">
+                            @if (currentUser?.Theme == Theme.Dark)
+                            {
+                                <i class="bi bi-sun text-dark" style="font-size: 25px"></i>
+                            }
+                            else
+                            {
+                                <i class="bi bi-moon-stars text-white" style="font-size: 25px"></i>
+                            }
+                        </a>
+                    }
                 </div>
             </div>
             <div class="h-100 overflow-auto @(currentUser?.Theme == Theme.Dark ? "bg-dark text-light" : "bg-light text-dark")" style="white-space: nowrap;">
