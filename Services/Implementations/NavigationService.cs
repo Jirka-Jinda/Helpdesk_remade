@@ -1,10 +1,10 @@
-﻿using Database.Repositories.Abstractions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Memory;
 using Models.Navigation;
 using Models.Users;
-using Services.Abstractions;
+using Services.Abstractions.Repositories;
+using Services.Abstractions.Services;
 using System.Data;
 
 namespace Services.Implementations;

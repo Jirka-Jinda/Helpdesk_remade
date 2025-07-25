@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Services.Abstractions;
+using Services.Abstractions.Services;
 using ViewModels.User;
 
 namespace Helpdesk.Controllers

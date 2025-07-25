@@ -1,5 +1,5 @@
 ﻿using Database.Context;
-using Database.Repositories.Abstractions;
+using Services.Abstractions.Repositories;
 using Models.Messages;
 
 namespace Database.Repositories.Implementations;

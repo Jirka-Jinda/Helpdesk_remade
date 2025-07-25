@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Users;
-using Services.Abstractions;
+using Services.Abstractions.Services;
 using ViewModels.User;
 
 namespace Helpdesk.Controllers;
@@ -23,6 +24,7 @@ public class AccessController : Controller
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Login(ApplicationUserViewModel userModel)
     {
         if (!ModelState.IsValid)

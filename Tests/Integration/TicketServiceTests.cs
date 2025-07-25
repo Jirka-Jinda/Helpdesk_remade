@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Models.Tickets;
-using Services.Abstractions;
+using Services.Abstractions.Services;
 using Tests.Integration.Data;
 
 namespace Tests.Integration;

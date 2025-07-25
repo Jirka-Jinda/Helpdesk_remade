@@ -1,6 +1,6 @@
 ﻿using Database.Context;
-using Database.Repositories.Abstractions;
 using Models.Messages;
+using Services.Abstractions.Repositories;
 
 namespace Database.Repositories.Implementations;
 

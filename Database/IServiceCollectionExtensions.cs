@@ -1,6 +1,6 @@
-﻿using Database.Repositories.Abstractions;
-using Database.Repositories.Implementations;
+﻿using Database.Repositories.Implementations;
 using Microsoft.Extensions.DependencyInjection;
+using Services.Abstractions.Repositories;
 
 namespace Database;
 

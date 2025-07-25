@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Tickets;
 using Models.Users;
 using Models.Workflows;
-using Services.Abstractions;
+using Services.Abstractions.Services;
 using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;

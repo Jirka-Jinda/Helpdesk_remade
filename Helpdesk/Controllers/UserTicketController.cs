@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Services.Abstractions;
+using Services.Abstractions.Services;
 using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;

@@ -1,11 +1,11 @@
-﻿using Database.Repositories.Abstractions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Models.Messages;
 using Models.Tickets;
 using Models.Users;
 using Models.Workflows;
-using Services.Abstractions;
+using Services.Abstractions.Repositories;
+using Services.Abstractions.Services;
 
 namespace Services.Implementations;
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Services.Abstractions;
+using Services.Abstractions.Services;
 using Services.BackgroundServices;
 using Services.Implementations;
 

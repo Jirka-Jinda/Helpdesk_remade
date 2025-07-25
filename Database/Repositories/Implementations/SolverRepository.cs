@@ -1,7 +1,7 @@
 ﻿using Database.Context;
-using Database.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Models.Tickets;
+using Services.Abstractions.Repositories;
 
 namespace Database.Repositories.Implementations;
 

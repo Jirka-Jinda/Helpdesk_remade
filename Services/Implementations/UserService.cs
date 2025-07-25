@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Models.Users;
-using Services.Abstractions;
+using Services.Abstractions.Services;
 
 namespace Services.Implementations;
 

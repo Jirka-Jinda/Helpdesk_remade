@@ -76,7 +76,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error/Handler");
     app.UseHsts();
 }
 
@@ -92,9 +92,11 @@ app.UseAuthorization();
 
 app.UseStatusCodePagesWithRedirects("/Error/Code{0}");
 
+app.UseDeveloperExceptionPage();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}");
 app.MapRazorPages();
 
 var supportedCultures = new[] { "cs-CZ" };
