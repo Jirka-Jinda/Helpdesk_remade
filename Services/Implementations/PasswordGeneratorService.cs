@@ -6,9 +6,11 @@ namespace Services.Implementations;
 
 public class PasswordGeneratorService
 {
-    public static string GeneratePassword(PasswordOptions? opts = null)
+    private readonly PasswordOptions _options;
+
+    public PasswordGeneratorService()
     {
-        if (opts is null) opts = new PasswordOptions
+        _options = new PasswordOptions
         {
             RequiredLength = 12,
             RequireDigit = true,
@@ -16,7 +18,15 @@ public class PasswordGeneratorService
             RequireUppercase = true,
             RequireNonAlphanumeric = true
         };
+    }
 
+    public PasswordGeneratorService(PasswordOptions options)
+    {
+        _options = options;   
+    }
+
+    public string GeneratePassword()
+    {
         const string lowercase = "abcdefghijklmnopqrstuvwxyz";
         const string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const string digits = "0123456789";
@@ -27,30 +37,30 @@ public class PasswordGeneratorService
         var chars = new List<char>();
 
         // Ensure all required types are included
-        if (opts.RequireLowercase)
+        if (_options.RequireLowercase)
             chars.Add(GetRandomChar(lowercase, rand));
-        if (opts.RequireUppercase)
+        if (_options.RequireUppercase)
             chars.Add(GetRandomChar(uppercase, rand));
-        if (opts.RequireDigit)
+        if (_options.RequireDigit)
             chars.Add(GetRandomChar(digits, rand));
-        if (opts.RequireNonAlphanumeric)
+        if (_options.RequireNonAlphanumeric)
             chars.Add(GetRandomChar(nonAlphanumeric, rand));
 
         // Fill the rest with random mix
         string allChars = "";
-        if (opts.RequireLowercase) allChars += lowercase;
-        if (opts.RequireUppercase) allChars += uppercase;
-        if (opts.RequireDigit) allChars += digits;
-        if (opts.RequireNonAlphanumeric) allChars += nonAlphanumeric;
+        if (_options.RequireLowercase) allChars += lowercase;
+        if (_options.RequireUppercase) allChars += uppercase;
+        if (_options.RequireDigit) allChars += digits;
+        if (_options.RequireNonAlphanumeric) allChars += nonAlphanumeric;
 
-        while (chars.Count < opts.RequiredLength)
+        while (chars.Count < _options.RequiredLength)
             chars.Add(GetRandomChar(allChars, rand));
 
         // Shuffle for randomness
         return new string(chars.OrderBy(x => RandomNumber(rand)).ToArray());
     }
 
-    private static char GetRandomChar(string charset, RandomNumberGenerator rng)
+    private char GetRandomChar(string charset, RandomNumberGenerator rng)
     {
         byte[] data = new byte[4];
         rng.GetBytes(data);
@@ -58,7 +68,7 @@ public class PasswordGeneratorService
         return charset[Math.Abs(idx)];
     }
 
-    private static int RandomNumber(RandomNumberGenerator rng)
+    private int RandomNumber(RandomNumberGenerator rng)
     {
         byte[] data = new byte[4];
         rng.GetBytes(data);

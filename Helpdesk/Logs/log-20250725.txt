@@ -172,3 +172,766 @@ ORDER BY "MigrationId";
 2025-07-25 11:19:55.585 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
 2025-07-25 11:19:55.589 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.8108ms
 2025-07-25 11:19:55.630 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.1293ms
+2025-07-25 12:03:28.456 +02:00 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 12:03:28.531 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 12:03:28.674 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 12:03:38.950 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 12:03:38.955 +02:00 [INF] Tickets archived.
+2025-07-25 12:03:39.103 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 12:03:39.105 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 12:03:39.286 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 12:03:39.288 +02:00 [INF] Hosting environment: Development
+2025-07-25 12:03:39.289 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 12:03:39.463 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 12:03:39.633 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 12:03:39.663 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 12:03:41.215 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 12:03:41.220 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 1549.9327ms
+2025-07-25 12:03:41.222 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 12:03:41.230 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 1778.1702ms
+2025-07-25 12:03:41.234 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 12:03:41.243 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 12:03:41.246 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 12:03:41.293 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 12:03:41.608 +02:00 [INF] Executed ViewResult - view Login executed in 319.0058ms.
+2025-07-25 12:03:41.614 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 366.0367ms
+2025-07-25 12:03:41.615 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 12:03:41.620 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 385.7384ms
+2025-07-25 12:03:41.643 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 12:03:41.652 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.1744ms
+2025-07-25 12:03:41.654 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 12:03:41.696 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 42.2278ms
+2025-07-25 12:40:17.314 +02:00 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 12:40:17.396 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 12:40:17.538 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:29:58.311 +02:00 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:29:58.390 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:29:58.528 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:29:58.754 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:29:58.760 +02:00 [INF] Tickets archived.
+2025-07-25 13:29:58.762 +02:00 [INF] Tickets assigned.
+2025-07-25 13:29:58.918 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:29:58.919 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:29:58.959 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:29:58.962 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:29:58.964 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:29:59.293 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:29:59.449 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:29:59.468 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:29:59.534 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:29:59.541 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 66.1186ms
+2025-07-25 13:29:59.544 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:29:59.552 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 268.5434ms
+2025-07-25 13:29:59.557 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:29:59.565 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:29:59.568 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:29:59.624 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:30:00.024 +02:00 [INF] Executed ViewResult - view Login executed in 406.1601ms.
+2025-07-25 13:30:00.031 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 460.6101ms
+2025-07-25 13:30:00.034 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:30:00.039 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 482.8801ms
+2025-07-25 13:30:00.053 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:30:00.053 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:30:00.053 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:30:00.077 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 23.7831ms
+2025-07-25 13:30:00.085 +02:00 [INF] Sending file. Request path: '/Helpdesk.styles.css'. Physical path: 'C:\Code\Private\Remastered\Helpdesk\Helpdesk\obj\Debug\net8.0\scopedcss\bundle\Helpdesk.styles.css'
+2025-07-25 13:30:00.087 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 200 327 text/css 34.2279ms
+2025-07-25 13:30:00.099 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 46.3733ms
+2025-07-25 13:37:44.523 +02:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:37:44.603 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:37:44.716 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:37:44.939 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:37:44.944 +02:00 [INF] Tickets archived.
+2025-07-25 13:37:44.946 +02:00 [INF] Tickets assigned.
+2025-07-25 13:37:45.102 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:37:45.103 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:37:45.142 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:37:45.144 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:37:45.145 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:37:45.500 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:37:45.647 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:37:45.666 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:37:45.729 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:37:45.734 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 62.8649ms
+2025-07-25 13:37:45.738 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:37:45.747 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 255.4485ms
+2025-07-25 13:37:45.752 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:37:45.763 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:37:45.767 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:37:45.819 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:37:46.213 +02:00 [INF] Executed ViewResult - view Login executed in 398.1269ms.
+2025-07-25 13:37:46.218 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 449.6156ms
+2025-07-25 13:37:46.221 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:37:46.226 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 474.0319ms
+2025-07-25 13:37:46.234 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:37:46.234 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:37:46.234 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:37:46.244 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.2236ms
+2025-07-25 13:37:46.248 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 13:37:46.253 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 19.5549ms
+2025-07-25 13:37:46.275 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 41.1142ms
+2025-07-25 13:44:41.087 +02:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:44:41.134 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:44:41.223 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:44:41.354 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:44:41.359 +02:00 [INF] Tickets archived.
+2025-07-25 13:44:41.361 +02:00 [INF] Tickets assigned.
+2025-07-25 13:44:41.491 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:44:41.492 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:44:41.533 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:44:41.535 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:44:41.536 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:44:42.234 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:44:42.375 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:44:42.398 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:44:42.459 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:44:42.465 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 61.9895ms
+2025-07-25 13:44:42.466 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:44:42.479 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 251.1146ms
+2025-07-25 13:44:42.481 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:44:42.495 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:44:42.499 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:44:42.550 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:44:42.859 +02:00 [INF] Executed ViewResult - view Login executed in 313.2139ms.
+2025-07-25 13:44:42.862 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 361.3987ms
+2025-07-25 13:44:42.863 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:44:42.866 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 384.6304ms
+2025-07-25 13:44:42.881 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:44:42.881 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:44:42.881 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:44:42.890 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.0549ms
+2025-07-25 13:44:42.903 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 13:44:42.905 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 24.0747ms
+2025-07-25 13:44:42.924 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 42.9353ms
+2025-07-25 13:45:52.371 +02:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:45:52.421 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:45:52.508 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:45:52.635 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:45:52.641 +02:00 [INF] Tickets archived.
+2025-07-25 13:45:52.643 +02:00 [INF] Tickets assigned.
+2025-07-25 13:45:52.771 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:45:52.772 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:45:52.813 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:45:52.814 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:45:52.816 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:45:53.308 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:45:53.480 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:45:53.506 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:45:53.584 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:45:53.591 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 79.4305ms
+2025-07-25 13:45:53.593 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:45:53.603 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 306.7469ms
+2025-07-25 13:45:53.606 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:45:53.614 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:45:53.621 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:45:53.675 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:45:53.963 +02:00 [INF] Executed ViewResult - view Login executed in 291.6585ms.
+2025-07-25 13:45:53.969 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 345.246ms
+2025-07-25 13:45:53.971 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:45:53.975 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 368.7192ms
+2025-07-25 13:45:53.981 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:45:53.983 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:45:53.990 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.6638ms
+2025-07-25 13:45:54.019 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.9444ms
+2025-07-25 13:46:32.125 +02:00 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:46:32.177 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:46:32.280 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:46:32.408 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:46:32.412 +02:00 [INF] Tickets archived.
+2025-07-25 13:46:32.414 +02:00 [INF] Tickets assigned.
+2025-07-25 13:46:32.540 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:46:32.541 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:46:32.656 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:46:32.658 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:46:32.660 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:46:32.802 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:46:32.981 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:46:33.015 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:46:33.082 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:46:33.090 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 66.0651ms
+2025-07-25 13:46:33.092 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:46:33.102 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 314.1504ms
+2025-07-25 13:46:33.106 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:46:33.116 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:46:33.120 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:46:33.173 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:46:33.510 +02:00 [INF] Executed ViewResult - view Login executed in 343.8933ms.
+2025-07-25 13:46:33.515 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 391.9458ms
+2025-07-25 13:46:33.516 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:46:33.519 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 413.377ms
+2025-07-25 13:46:33.537 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:46:33.538 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:46:33.542 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:46:33.550 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 13.2669ms
+2025-07-25 13:46:33.555 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 13:46:33.560 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 22.8887ms
+2025-07-25 13:46:33.582 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.9024ms
+2025-07-25 13:46:47.467 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Home/UserSettings - null null
+2025-07-25 13:46:47.498 +02:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Auditor|Řešitel|Zadavatel)
+2025-07-25 13:46:47.510 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-07-25 13:46:47.514 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Home/UserSettings - 302 0 null 47.5183ms
+2025-07-25 13:46:47.529 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FUserSettings - null null
+2025-07-25 13:46:47.553 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:46:47.559 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:46:47.606 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:46:47.634 +02:00 [INF] Executed ViewResult - view Login executed in 29.511ms.
+2025-07-25 13:46:47.640 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 73.4479ms
+2025-07-25 13:46:47.646 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:46:47.652 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FUserSettings - 200 null text/html; charset=utf-8 124.3322ms
+2025-07-25 13:46:47.686 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:46:47.686 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:46:47.697 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.4442ms
+2025-07-25 13:46:47.717 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.0058ms
+2025-07-25 13:46:52.347 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Home/UserSettings - null null
+2025-07-25 13:46:52.356 +02:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Auditor|Řešitel|Zadavatel)
+2025-07-25 13:46:52.358 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-07-25 13:46:52.360 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Home/UserSettings - 302 0 null 13.5133ms
+2025-07-25 13:46:52.363 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FUserSettings - null null
+2025-07-25 13:46:52.370 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:46:52.373 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:46:52.378 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:46:52.384 +02:00 [INF] Executed ViewResult - view Login executed in 5.3957ms.
+2025-07-25 13:46:52.386 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 9.8205ms
+2025-07-25 13:46:52.388 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:46:52.389 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FUserSettings - 200 null text/html; charset=utf-8 26.5807ms
+2025-07-25 13:46:52.401 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:46:52.401 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:46:52.407 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.8499ms
+2025-07-25 13:46:52.424 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.5548ms
+2025-07-25 13:47:13.762 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7003/Home/Search - application/x-www-form-urlencoded 194
+2025-07-25 13:47:13.772 +02:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Auditor|Řešitel|Zadavatel)
+2025-07-25 13:47:13.773 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-07-25 13:47:13.775 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7003/Home/Search - 302 0 null 12.7303ms
+2025-07-25 13:47:13.778 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FSearch - null null
+2025-07-25 13:47:13.782 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:47:13.783 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:47:13.787 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:47:13.792 +02:00 [INF] Executed ViewResult - view Login executed in 5.5694ms.
+2025-07-25 13:47:13.798 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 12.8519ms
+2025-07-25 13:47:13.799 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:47:13.800 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FSearch - 200 null text/html; charset=utf-8 22.5671ms
+2025-07-25 13:47:13.816 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:47:13.816 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:47:13.823 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.4554ms
+2025-07-25 13:47:13.835 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.7557ms
+2025-07-25 13:47:17.514 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Home/SwitchTheme - null null
+2025-07-25 13:47:17.520 +02:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Auditor|Řešitel|Zadavatel)
+2025-07-25 13:47:17.522 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-07-25 13:47:17.523 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Home/SwitchTheme - 302 0 null 9.4802ms
+2025-07-25 13:47:17.529 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FSwitchTheme - null null
+2025-07-25 13:47:17.535 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:47:17.537 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:47:17.541 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:47:17.546 +02:00 [INF] Executed ViewResult - view Login executed in 4.5053ms.
+2025-07-25 13:47:17.548 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 7.95ms
+2025-07-25 13:47:17.549 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:47:17.550 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FSwitchTheme - 200 null text/html; charset=utf-8 22.1919ms
+2025-07-25 13:47:17.577 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:47:17.577 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:47:17.582 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.7193ms
+2025-07-25 13:47:17.592 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.0285ms
+2025-07-25 13:47:45.371 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FSwitchTheme - null null
+2025-07-25 13:47:45.383 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:47:45.387 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:47:45.393 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:47:45.481 +02:00 [INF] Executed ViewResult - view Login executed in 90.3147ms.
+2025-07-25 13:47:45.488 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 98.8373ms
+2025-07-25 13:47:45.490 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:47:45.491 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login?ReturnUrl=%2FHome%2FSwitchTheme - 200 null text/html; charset=utf-8 119.9785ms
+2025-07-25 13:47:45.504 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:47:45.504 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:47:45.508 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.9567ms
+2025-07-25 13:47:45.523 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.9693ms
+2025-07-25 13:48:30.816 +02:00 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:48:30.871 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:48:30.997 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:48:31.199 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:48:31.206 +02:00 [INF] Tickets archived.
+2025-07-25 13:48:31.209 +02:00 [INF] Tickets assigned.
+2025-07-25 13:48:31.381 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:48:31.384 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:48:31.445 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:48:31.446 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:48:31.448 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:48:32.130 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:48:32.300 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:48:32.323 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:48:32.380 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:48:32.386 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 55.3564ms
+2025-07-25 13:48:32.390 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:48:32.400 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 289.1388ms
+2025-07-25 13:48:32.403 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:48:32.416 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:48:32.423 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:48:32.483 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:48:32.754 +02:00 [INF] Executed ViewResult - view Login executed in 275.0201ms.
+2025-07-25 13:48:32.759 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 331.9027ms
+2025-07-25 13:48:32.761 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:48:32.765 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 362.3568ms
+2025-07-25 13:48:32.777 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:48:32.778 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:48:32.778 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:48:32.786 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 8.3112ms
+2025-07-25 13:48:32.798 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 13:48:32.800 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 21.8185ms
+2025-07-25 13:48:32.822 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 44.7105ms
+2025-07-25 13:49:38.107 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:49:38.114 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:49:38.118 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:49:38.141 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:49:38.238 +02:00 [INF] Executed ViewResult - view Login executed in 100.3174ms.
+2025-07-25 13:49:38.246 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 125.2756ms
+2025-07-25 13:49:38.248 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:49:38.249 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 142.6514ms
+2025-07-25 13:49:38.261 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:49:38.261 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:49:38.269 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 8.2447ms
+2025-07-25 13:49:38.284 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.5782ms
+2025-07-25 13:50:00.399 +02:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:50:00.443 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:50:00.528 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:50:00.656 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:50:00.660 +02:00 [INF] Tickets archived.
+2025-07-25 13:50:00.662 +02:00 [INF] Tickets assigned.
+2025-07-25 13:50:00.785 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:50:00.787 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:50:00.827 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:50:00.830 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:50:00.831 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:50:01.428 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:50:01.587 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:50:01.608 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:50:01.675 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:50:01.680 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 66.9863ms
+2025-07-25 13:50:01.682 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:50:01.691 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 276.03ms
+2025-07-25 13:50:01.694 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:50:01.705 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:50:01.708 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:50:01.758 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:50:02.030 +02:00 [INF] Executed ViewResult - view Login executed in 277.2304ms.
+2025-07-25 13:50:02.035 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 325.7817ms
+2025-07-25 13:50:02.037 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:50:02.041 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 347.0413ms
+2025-07-25 13:50:02.055 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:50:02.058 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:50:02.063 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.4748ms
+2025-07-25 13:50:02.090 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.2497ms
+2025-07-25 13:50:31.057 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:50:31.065 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:50:31.067 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:50:31.084 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:50:31.164 +02:00 [INF] Executed ViewResult - view Login executed in 82.5601ms.
+2025-07-25 13:50:31.167 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 97.9657ms
+2025-07-25 13:50:31.169 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:50:31.171 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 114.3015ms
+2025-07-25 13:50:31.180 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:50:31.180 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:50:31.185 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.081ms
+2025-07-25 13:50:31.180 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:50:31.194 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 13:50:31.198 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 18.2819ms
+2025-07-25 13:50:31.213 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.2594ms
+2025-07-25 13:51:47.294 +02:00 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:51:47.368 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:51:47.477 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:51:47.716 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:51:47.722 +02:00 [INF] Tickets archived.
+2025-07-25 13:51:47.725 +02:00 [INF] Tickets assigned.
+2025-07-25 13:51:47.913 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:51:47.914 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:51:47.954 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:51:47.956 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:51:47.957 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:51:48.428 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:51:48.579 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:51:48.609 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:51:48.669 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:51:48.675 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 60.0906ms
+2025-07-25 13:51:48.677 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:51:48.688 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 270.2663ms
+2025-07-25 13:51:48.691 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:51:48.700 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:51:48.703 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:51:48.751 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:51:49.159 +02:00 [INF] Executed ViewResult - view Login executed in 413.2181ms.
+2025-07-25 13:51:49.165 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 459.2956ms
+2025-07-25 13:51:49.169 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:51:49.173 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 482.6105ms
+2025-07-25 13:51:49.182 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:51:49.183 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:51:49.189 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.3201ms
+2025-07-25 13:51:49.222 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 39.1529ms
+2025-07-25 13:51:59.159 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:51:59.168 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:51:59.170 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:51:59.189 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:51:59.261 +02:00 [INF] Executed ViewResult - view Login executed in 75.1129ms.
+2025-07-25 13:51:59.264 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 91.4308ms
+2025-07-25 13:51:59.266 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:51:59.267 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 108.4205ms
+2025-07-25 13:51:59.283 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:51:59.283 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:51:59.287 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 3.9605ms
+2025-07-25 13:51:59.307 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.6347ms
+2025-07-25 13:52:58.245 +02:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:52:58.290 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:52:58.365 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:52:58.484 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:52:58.489 +02:00 [INF] Tickets archived.
+2025-07-25 13:52:58.490 +02:00 [INF] Tickets assigned.
+2025-07-25 13:52:58.625 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:52:58.627 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:52:58.669 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:52:58.670 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:52:58.672 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:52:59.064 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:52:59.267 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:52:59.301 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:52:59.367 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:52:59.374 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 64.9508ms
+2025-07-25 13:52:59.376 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:52:59.389 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 335.636ms
+2025-07-25 13:52:59.395 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:52:59.411 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:52:59.416 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:52:59.481 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:52:59.786 +02:00 [INF] Executed ViewResult - view Login executed in 309.5256ms.
+2025-07-25 13:52:59.789 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 370.3697ms
+2025-07-25 13:52:59.791 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:52:59.794 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 399.9012ms
+2025-07-25 13:52:59.807 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:52:59.807 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:52:59.813 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:52:59.816 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 13:52:59.817 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.1356ms
+2025-07-25 13:52:59.819 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 12.0597ms
+2025-07-25 13:52:59.845 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.0215ms
+2025-07-25 13:53:02.330 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Register - null null
+2025-07-25 13:53:02.337 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 13:53:02.340 +02:00 [INF] Route matched with {action = "Register", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:53:02.358 +02:00 [INF] Executing ViewResult, running view Register.
+2025-07-25 13:53:02.381 +02:00 [INF] Executed ViewResult - view Register executed in 24.2843ms.
+2025-07-25 13:53:02.385 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Register (Helpdesk) in 42.5992ms
+2025-07-25 13:53:02.387 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 13:53:02.391 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Register - 200 null text/html; charset=utf-8 61.8688ms
+2025-07-25 13:53:02.402 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:53:02.403 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:53:02.412 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.3825ms
+2025-07-25 13:53:02.425 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.297ms
+2025-07-25 13:53:07.162 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:53:07.169 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:53:07.170 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:53:07.174 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:53:07.180 +02:00 [INF] Executed ViewResult - view Login executed in 5.5118ms.
+2025-07-25 13:53:07.183 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 10.103ms
+2025-07-25 13:53:07.185 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:53:07.187 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 25.7ms
+2025-07-25 13:53:07.198 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:53:07.204 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.9091ms
+2025-07-25 13:53:09.034 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Reset - null null
+2025-07-25 13:53:09.041 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Reset - 404 0 null 7.7166ms
+2025-07-25 13:53:09.045 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7003/Access/Reset, Response status code: 404
+2025-07-25 13:53:10.887 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:53:10.893 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:53:10.895 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:53:10.899 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:53:10.906 +02:00 [INF] Executed ViewResult - view Login executed in 7.0888ms.
+2025-07-25 13:53:10.909 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 11.6072ms
+2025-07-25 13:53:10.911 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:53:10.912 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 26.2803ms
+2025-07-25 13:53:10.937 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:53:10.942 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.1898ms
+2025-07-25 13:54:01.315 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:54:01.323 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:54:01.326 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:54:01.332 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:54:01.343 +02:00 [INF] Executed ViewResult - view Login executed in 12.8628ms.
+2025-07-25 13:54:01.352 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 23.7615ms
+2025-07-25 13:54:01.353 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:54:01.355 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 40.5832ms
+2025-07-25 13:54:01.370 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:54:01.370 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:54:01.375 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.6058ms
+2025-07-25 13:54:01.391 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.0525ms
+2025-07-25 13:58:47.786 +02:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 13:58:47.830 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 13:58:47.967 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 13:58:48.161 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 13:58:48.165 +02:00 [INF] Tickets archived.
+2025-07-25 13:58:48.167 +02:00 [INF] Tickets assigned.
+2025-07-25 13:58:48.297 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 13:58:48.298 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 13:58:48.340 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 13:58:48.341 +02:00 [INF] Hosting environment: Development
+2025-07-25 13:58:48.343 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 13:58:49.451 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 13:58:49.612 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:58:49.632 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 13:58:49.687 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 13:58:49.693 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 54.7858ms
+2025-07-25 13:58:49.695 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 13:58:49.703 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 257.8395ms
+2025-07-25 13:58:49.709 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 13:58:49.717 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:58:49.721 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:58:49.773 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 13:58:50.050 +02:00 [INF] Executed ViewResult - view Login executed in 283.7389ms.
+2025-07-25 13:58:50.057 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 332.7365ms
+2025-07-25 13:58:50.059 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 13:58:50.062 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 353.623ms
+2025-07-25 13:58:50.067 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:58:50.067 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 13:58:50.069 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:58:50.080 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 13.3066ms
+2025-07-25 13:58:50.082 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 13:58:50.089 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 21.9408ms
+2025-07-25 13:58:50.108 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.875ms
+2025-07-25 13:58:51.951 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Register - null null
+2025-07-25 13:58:51.958 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 13:58:51.961 +02:00 [INF] Route matched with {action = "Register", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 13:58:51.976 +02:00 [INF] Executing ViewResult, running view Register.
+2025-07-25 13:58:51.998 +02:00 [INF] Executed ViewResult - view Register executed in 22.101ms.
+2025-07-25 13:58:52.001 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Register (Helpdesk) in 38.251ms
+2025-07-25 13:58:52.003 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 13:58:52.005 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Register - 200 null text/html; charset=utf-8 55.0228ms
+2025-07-25 13:58:52.020 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 13:58:52.020 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 13:58:52.024 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.9316ms
+2025-07-25 13:58:52.042 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.596ms
+2025-07-25 14:19:55.214 +02:00 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-25 14:19:55.287 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-25 14:19:55.429 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-25 14:19:55.671 +02:00 [INF] Log files deleted: 0. 
+2025-07-25 14:19:55.675 +02:00 [INF] Tickets archived.
+2025-07-25 14:19:55.677 +02:00 [INF] Tickets assigned.
+2025-07-25 14:19:55.865 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-25 14:19:55.866 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-25 14:19:56.021 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-25 14:19:56.023 +02:00 [INF] Hosting environment: Development
+2025-07-25 14:19:56.025 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-25 14:19:56.344 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-25 14:19:56.495 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 14:19:56.517 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-25 14:19:56.578 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-25 14:19:56.582 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 58.5216ms
+2025-07-25 14:19:56.585 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-25 14:19:56.595 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 261.0727ms
+2025-07-25 14:19:56.599 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 14:19:56.611 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:19:56.614 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:19:56.665 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 14:19:57.076 +02:00 [INF] Executed ViewResult - view Login executed in 414.7309ms.
+2025-07-25 14:19:57.080 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 463.4478ms
+2025-07-25 14:19:57.081 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:19:57.083 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 484.645ms
+2025-07-25 14:19:57.098 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:19:57.098 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-25 14:19:57.098 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 14:19:57.107 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.5162ms
+2025-07-25 14:19:57.112 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-25 14:19:57.116 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 18.1658ms
+2025-07-25 14:19:57.142 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 44.126ms
+2025-07-25 14:20:00.398 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Reset - null null
+2025-07-25 14:20:00.407 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Reset (Helpdesk)'
+2025-07-25 14:20:00.411 +02:00 [INF] Route matched with {action = "Reset", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Reset() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:20:00.431 +02:00 [INF] Executing ViewResult, running view Reset.
+2025-07-25 14:20:00.450 +02:00 [INF] Executed ViewResult - view Reset executed in 19.296ms.
+2025-07-25 14:20:00.461 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Reset (Helpdesk) in 47.0093ms
+2025-07-25 14:20:00.465 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Reset (Helpdesk)'
+2025-07-25 14:20:00.469 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Reset - 200 null text/html; charset=utf-8 71.9682ms
+2025-07-25 14:20:00.494 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 14:20:00.494 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:20:00.512 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 18.6493ms
+2025-07-25 14:20:00.535 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.9107ms
+2025-07-25 14:20:12.754 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 14:20:12.760 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:20:12.762 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:20:12.765 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 14:20:12.771 +02:00 [INF] Executed ViewResult - view Login executed in 5.9282ms.
+2025-07-25 14:20:12.774 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 10.1373ms
+2025-07-25 14:20:12.775 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:20:12.776 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 22.2022ms
+2025-07-25 14:20:12.796 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:20:12.796 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 14:20:12.799 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 3.7352ms
+2025-07-25 14:20:12.815 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.1101ms
+2025-07-25 14:20:14.657 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Register - null null
+2025-07-25 14:20:14.662 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 14:20:14.664 +02:00 [INF] Route matched with {action = "Register", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:20:14.668 +02:00 [INF] Executing ViewResult, running view Register.
+2025-07-25 14:20:14.685 +02:00 [INF] Executed ViewResult - view Register executed in 17.8558ms.
+2025-07-25 14:20:14.688 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Register (Helpdesk) in 22.3188ms
+2025-07-25 14:20:14.690 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 14:20:14.692 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Register - 200 null text/html; charset=utf-8 35.2172ms
+2025-07-25 14:20:14.714 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 14:20:14.714 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:20:14.727 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 12.8508ms
+2025-07-25 14:20:14.732 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.2025ms
+2025-07-25 14:20:20.337 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 14:20:20.342 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:20:20.344 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:20:20.347 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 14:20:20.350 +02:00 [INF] Executed ViewResult - view Login executed in 3.5352ms.
+2025-07-25 14:20:20.353 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 7.4369ms
+2025-07-25 14:20:20.354 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:20:20.356 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 19.7824ms
+2025-07-25 14:20:20.376 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:20:20.379 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 3.6733ms
+2025-07-25 14:20:23.933 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Reset - null null
+2025-07-25 14:20:23.940 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Reset (Helpdesk)'
+2025-07-25 14:20:23.942 +02:00 [INF] Route matched with {action = "Reset", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Reset() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:20:23.945 +02:00 [INF] Executing ViewResult, running view Reset.
+2025-07-25 14:20:23.948 +02:00 [INF] Executed ViewResult - view Reset executed in 3.0292ms.
+2025-07-25 14:20:23.949 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Reset (Helpdesk) in 6.1311ms
+2025-07-25 14:20:23.950 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Reset (Helpdesk)'
+2025-07-25 14:20:23.952 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Reset - 200 null text/html; charset=utf-8 18.6394ms
+2025-07-25 14:20:23.968 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 14:20:23.968 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:20:23.979 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 12.3997ms
+2025-07-25 14:20:23.988 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.483ms
+2025-07-25 14:20:25.084 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-25 14:20:25.089 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:20:25.091 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:20:25.095 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-25 14:20:25.098 +02:00 [INF] Executed ViewResult - view Login executed in 3.6106ms.
+2025-07-25 14:20:25.100 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 6.7655ms
+2025-07-25 14:20:25.101 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-25 14:20:25.103 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 19.007ms
+2025-07-25 14:20:25.115 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:20:25.115 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 14:20:25.119 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.2629ms
+2025-07-25 14:20:25.132 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.1286ms
+2025-07-25 14:20:27.276 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Register - null null
+2025-07-25 14:20:27.281 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 14:20:27.283 +02:00 [INF] Route matched with {action = "Register", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-25 14:20:27.286 +02:00 [INF] Executing ViewResult, running view Register.
+2025-07-25 14:20:27.290 +02:00 [INF] Executed ViewResult - view Register executed in 3.337ms.
+2025-07-25 14:20:27.292 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Register (Helpdesk) in 7.485ms
+2025-07-25 14:20:27.293 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Register (Helpdesk)'
+2025-07-25 14:20:27.294 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Register - 200 null text/html; charset=utf-8 17.6067ms
+2025-07-25 14:20:27.312 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-25 14:20:27.312 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-25 14:20:27.323 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.3504ms
+2025-07-25 14:20:27.326 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.8304ms

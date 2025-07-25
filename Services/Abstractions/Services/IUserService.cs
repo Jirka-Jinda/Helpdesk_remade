@@ -19,4 +19,5 @@ public interface IUserService
     public Task<bool> IsInRoleAsync(ApplicationUser user, UserType role);
     public Task<IdentityResult> AddToRoleAsync(ApplicationUser user, UserType role);
     public Task<IdentityResult> RemoveFromRoleAsync(ApplicationUser user, UserType role);
+    Task<IdentityResult> ResetPasswordAsync(ApplicationUser user, string newPassword);
 }

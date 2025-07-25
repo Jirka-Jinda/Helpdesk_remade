@@ -1,0 +1,30 @@
+﻿@using ViewModels.User
+@model ApplicationUserViewModel
+@{
+    ViewData["Title"] = "Přihlášení";
+}
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 400px;">
+        <div class="text-center mb-4">
+            <h4>Zapomenuté heslo</h4>
+        </div>
+
+        <p class="text-center text-wrap">
+			Na váš email bude odesláno nové heslo, které si potom můžete změnit v nastavení účtu.
+		</p>
+
+        <form method="post" asp-action="Reset">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-bold"></label>
+                <input asp-for="Email" class="form-control" required placeholder="Zadejte email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex flex-column gap-2 mt-3">
+                <button type="submit" class="btn btn-primary w-100">Resetovat</button>
+                <a asp-controller="Access" asp-action="Login" class="btn btn-secondary w-100">Přihlášení</a>
+            </div>
+        </form>
+    </div>
+</div>

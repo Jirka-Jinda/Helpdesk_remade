@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Users;
 using Services.Abstractions.Services;
+using Services.Implementations;
 using ViewModels.User;
 
 namespace Helpdesk.Controllers;
@@ -10,11 +11,15 @@ public class AccessController : Controller
 {
     private readonly ILogger<AccessController> _logger;
     private readonly IUserService _userService;
+    private readonly IEmailService _emailService;
+    private readonly PasswordGeneratorService _passwordGeneratorService;
 
-    public AccessController(ILogger<AccessController> logger, IUserService userService)
+    public AccessController(ILogger<AccessController> logger, IUserService userService, IEmailService emailService, PasswordGeneratorService passwordGeneratorService)
     {
         _logger = logger;
         _userService = userService;
+        _emailService = emailService;
+        _passwordGeneratorService = passwordGeneratorService;
     }
 
     [HttpGet]
@@ -51,7 +56,7 @@ public class AccessController : Controller
     public async Task<IActionResult> Register(ApplicationUserViewModel userModel)
     {
         if (!ModelState.IsValid)
-            return PartialView();
+            return PartialView("Register");
 
         var user = new ApplicationUser { Email = userModel.Email };
 
@@ -69,7 +74,8 @@ public class AccessController : Controller
                 return View("RegisterConfirmation");
             }
         }
-        
+
+        ViewBag.RegisterFailed = true;
         return PartialView();
     }
 
@@ -78,5 +84,40 @@ public class AccessController : Controller
     {
         await _userService.SignOutAsync();
         return RedirectToAction("Index", "Home");
+    }
+
+    [HttpGet]
+    public IActionResult Reset()
+    {
+        return View();
+    }
+
+    public async Task<IActionResult> Reset(ApplicationUserViewModel model)
+    {
+        if (!ModelState.IsValid)
+            return PartialView("Reset");
+
+        var user = await _userService.GetUserByEmailAsync(model.Email);
+
+        if (user is not null)
+        {
+            var newPassword = _passwordGeneratorService.GeneratePassword();
+
+            var result = await _userService.ResetPasswordAsync(user, newPassword);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("Password reset successfully for user: {Email}", model.Email);
+                await _emailService.SendEmailAsync(
+                    model.Email,
+                    "Resetování hesla",
+                    $"<h1>Vaše heslo bylo resetováno: {newPassword}</h1>");
+
+                return PartialView("ResetConfirmation");
+            }
+        }
+
+        ViewBag.ResetFailed = true;
+        return PartialView();
     }
 }

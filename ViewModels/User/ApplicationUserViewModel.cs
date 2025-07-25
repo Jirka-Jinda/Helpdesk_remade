@@ -12,7 +12,7 @@ public class ApplicationUserViewModel
     public required string Email { get; set; }
 
     [Required]
-    public required string Password { get; set; }
+    public required string Password { get; set; } = string.Empty;
 
     public bool RememberMe { get; set; }
 

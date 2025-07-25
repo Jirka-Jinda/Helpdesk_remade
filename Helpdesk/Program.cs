@@ -21,8 +21,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Database")));
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -55,6 +53,7 @@ builder.Services.AddControllersWithViews(options =>
     options.Filters.Add<TransactionFilter>();
     options.Filters.Add<ExceptionFilter>();
 });
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddMemoryCache(options => 
 {
@@ -70,15 +69,15 @@ var app = builder.Build();
 
 await app.Services.ApplyMigrationsAsync(builder.Configuration);
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 else
 {
-    app.UseExceptionHandler("/Error/Handler");
     app.UseHsts();
+    app.UseStatusCodePagesWithRedirects("/Error/Code{0}");
 }
 
 app.UseHttpsRedirection();
@@ -90,10 +89,6 @@ app.UseRouting();
 app.UseSession();
 
 app.UseAuthorization();
-
-app.UseStatusCodePagesWithRedirects("/Error/Code{0}");
-
-app.UseDeveloperExceptionPage();
 
 app.MapControllerRoute(
     name: "default",

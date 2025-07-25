@@ -44,6 +44,12 @@ public class UserService : BaseService, IUserService
         return res;
     }
 
+    public async Task<IdentityResult> ResetPasswordAsync(ApplicationUser user, string newPassword)
+    {
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        return await _userManager.ResetPasswordAsync(user, token, newPassword);
+    }
+
     public async Task<IdentityResult> UpdatePasswordAsync(ApplicationUser user, string oldPassword, string newPassword)
     {
         return await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
