@@ -31,43 +31,29 @@
         <!-- Workflow History -->
         <div class="mb-3">
             <label class="form-label fw-bold">Historie změn stavu</label>
-            <div class="p-3 border rounded bg-light">
-                @if (changes.Count > 0)
+            @if (changes.Any())
+            {
+                @foreach (var change in changes.OrderByDescending(x => x.TimeCreated))
                 {
-                    <ul class="list-group list-group-flush">
-                        @for (int i = 0; i < changes.Count; i++)
-                        {
-                            var change = changes[i];
-                            <li class="list-group-item bg-light border-0 px-0" onclick="location.href='@Url.Action("WorkflowDetail", "SolverTicket", new { ticketId = Model.Id, changeId = change.Id })'">
-                                <div class="fw-semibold">
-                                    @if (i + 1 < changes.Count)
-                                    {
-                                        @changes[i + 1].State.ToString().Replace('_', ' ')
-                                        <span class="mx-1">→</span>
-                                    }
-                                    @change.State.ToString().Replace('_', ' ')
-                                </div>
-                                <small class="text-muted">
-                                    @change.UserCreated — @change.TimeCreated.ToShortDateString()
-                                </small>
-                            </li>
-                        }
-                    </ul>
+                    <div onclick="location.href='@Url.Action("WorkflowDetail", "SolverTicket", new { ticketId = Model.Id, changeId = change.Id })'" class="p-2 mb-2 border rounded bg-light overflow-hidden icon-link-hover" style="cursor: pointer;">
+                        <p class="mb-1"><strong>@change.State.ToString().Replace('_', ' ')</strong> - @change.UserCreated?.UserName</p>
+                        <small class="text-muted">@change.TimeCreated.ToShortDateString() - @change.TimeCreated.ToString("HH:mm")</small>
+                    </div>
                 }
-                else
-                {
-                    <p class="text-muted mb-0">Žádné změny.</p>
-                }
-            </div>
+            }
+            else
+            {
+                <div class="p-2 border rounded bg-light text-muted text-center">Žádná změny workflow.</div>
+            }
         </div>
 
         <!-- Change Workflow -->
         <form asp-action="ChangeWorkflow" method="post">
             <input type="hidden" name="ticketId" value="@ticket.Id" />
             <div class="mb-3">
-                <label for="action" class="form-label fw-bold">Změnit stav</label>
-                <select class="form-select" id="action" name="action" required>
-                    @foreach (var status in WFRules.StateActions(ticket.State))
+                <label for="state" class="form-label fw-bold">Změnit stav</label>
+                <select class="form-select" id="state" name="state" required>
+                    @foreach (var status in WFRules.GetPossibleManualResolutions(ticket.State))
                     {
                         <option value="@status">@status.ToString().Replace('_', ' ')</option>
                     }

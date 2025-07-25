@@ -37,7 +37,7 @@
                 @foreach (var change in changes.OrderByDescending(x => x.TimeCreated))
                 {
                     <div onclick="location.href='@Url.Action("SolverDetail", "SolverTicket", new { ticketId = Model.Id, changeId = change.Id })'" class="p-2 mb-2 border rounded bg-light overflow-hidden icon-link-hover" style="cursor: pointer;">
-                        <p class="mb-1"><strong>@change.Solver?.UserName</strong> - @change.Comment</p>
+                        <p class="mb-1"><strong>@change.Solver?.UserName</strong>@(change.Comment == "" ? "" : " - " + change.Comment)</p>
                         <small class="text-muted">@change.TimeCreated.ToShortDateString() - @change.TimeCreated.ToString("HH:mm")</small>
                     </div>
                 }

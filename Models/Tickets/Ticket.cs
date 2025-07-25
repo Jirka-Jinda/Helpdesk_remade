@@ -10,7 +10,7 @@ public class Ticket : AuditableObject
 {
     public Ticket? Hierarchy { get; private set; } = null;
     public List<WorkflowHistory> TicketHistory { get; private set; } = [];
-    public WFState State => TicketHistory.LastOrDefault()?.State ?? WFState.Žádný;
+    public WFState State => TicketHistory.LastOrDefault()?.State ?? WFState.Založený;
     public List<SolverHistory> SolverHistory { get; private set; } = [];
     public ApplicationUser? Solver => SolverHistory.LastOrDefault()?.Solver;
     public MessageThread MessageThread { get; private set; } = new();

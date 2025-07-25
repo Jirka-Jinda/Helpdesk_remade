@@ -26,12 +26,12 @@
             <p class="mb-1">
                 <strong>Stav:</strong>
                 <span class="badge mx-1 px-2 @(Model.State switch {
-                    WFState.Žádný => "bg-info",
+                    WFState.Založený => "bg-info",
                     WFState.Uzavřený => "bg-success",
                     WFState.Vrácený => "bg-danger",
                     _ => "bg-warning"
                 })">
-                    @Model.State
+                    @Model.State.ToString().Replace('_', ' ')
                 </span>
             </p>
 

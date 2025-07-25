@@ -16,4 +16,5 @@ public enum WFAction
     Reaktivace_automatická,
     Reaktivace_ruční,
     Vrácení,
+    Neplatná
 }
