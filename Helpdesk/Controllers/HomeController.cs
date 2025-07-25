@@ -10,16 +10,24 @@ namespace Helpdesk.Controllers
     public class HomeController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserService userService, IEmailService emailService)
         {
             _userService = userService;
+            _emailService = emailService;
         }
 
         [AllowAnonymous]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var user = _userService.GetSignedInUser();
+
+            await _emailService.SendEmailAsync(
+                "jiri.jinda10@gmail.com",
+                "Test Email",
+                "<h1>Hello from ASP.NET Core 8!</h1>"
+                );
 
             if (user is null)
                 return RedirectToAction("Login", "Access");

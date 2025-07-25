@@ -2,6 +2,7 @@ using Database;
 using Database.Context;
 using Helpdesk.Filters;
 using Microsoft.EntityFrameworkCore;
+using Models.Emails;
 using Models.Users;
 using Serilog;
 using Services;
@@ -48,6 +49,9 @@ builder.Services.AddTicketArchiveService(options =>
     options.ArchiveTicketsInterval = TimeSpan.FromHours(1);
     options.ArchiveResolvedTicketsAfter = TimeSpan.FromDays(3);
 });
+
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddEmailNotificationService();
 
 builder.Services.AddControllersWithViews(options =>
 {

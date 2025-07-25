@@ -12,6 +12,7 @@ public static class IServiceCollectionExtensions
         services.AddTransient<INavigationService, NavigationService>();
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<ITicketService, TicketService>();
+        services.AddSingleton<PasswordGeneratorService>();
 
         return services;
     }
@@ -71,6 +72,13 @@ public static class IServiceCollectionExtensions
 
         services.AddSingleton(logRetentionSettings);
         services.AddHostedService<TicketAssignmentBackgroundService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddEmailNotificationService(this IServiceCollection services)
+    {
+        services.AddTransient<IEmailService, EmailService>();
 
         return services;
     }
