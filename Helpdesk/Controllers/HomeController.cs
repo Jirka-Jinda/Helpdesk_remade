@@ -48,7 +48,7 @@ namespace Helpdesk.Controllers
             if (User.IsInRole(UserType.Zadavatel.ToString()))
                 return RedirectToAction("Overview", "UserTicket", new { filter = search, displayDetailIfSingle = true });
             else
-                return RedirectToAction("Overview", "SolverTicket", new { filter = search, displayDetailIfSingle = false });
+                return RedirectToAction("Overview", "SolverTicket", new { filter = search, displayDetailIfSingle = true });
         }
 
         public IActionResult Settings()

@@ -17,16 +17,24 @@ public static class IServiceProviderExtensions
 
         if (dbContext != null)
         {
-            if (dbContext.Database.GetPendingMigrations().Any())
+            try
             {
-                logger?.LogInformation("Applying Migrations...");
-                await dbContext.Database.MigrateAsync();
+                if (dbContext.Database.GetPendingMigrations().Any())
+                {
+                    logger?.LogInformation("Applying Migrations...");
+                    await dbContext.Database.MigrateAsync();
 
-                if (populateDatabase)
-                    await PopulateDatabaseAsync(serviceProvider);
+                    if (populateDatabase)
+                        await PopulateDatabaseAsync(serviceProvider);
+                }
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error while applying migrations: {ex.Message}";
+                logger?.LogError(errorMessage);
+                Environment.Exit(1);
             }
         }
-
         return serviceProvider;
     }
 

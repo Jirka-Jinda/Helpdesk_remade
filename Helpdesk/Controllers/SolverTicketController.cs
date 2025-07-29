@@ -93,6 +93,32 @@ public class SolverTicketController : Controller
     }
 
     [HttpGet]
+    public async Task<IActionResult> Unassigned(string? filter = null)
+    {
+        var currentUser = _userService.GetSignedInUser();
+
+        if (currentUser is null)
+            return BadRequest();
+
+        var tickets = await _ticketService.GetAllAsync();
+        tickets = tickets.Where(t => t.Solver == null);
+
+        if (filter != null && !string.IsNullOrWhiteSpace(filter))
+        {
+            tickets = tickets
+                .Where(t => t.Header.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                        t.State.ToString().Contains(filter, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            ViewBag.Filter = filter;
+        }
+
+        ViewBag.DisplaySearch = false;
+        tickets = tickets.OrderBy(t => t.Category).OrderByDescending(t => (int)t.Priority).ToList();
+        return View(tickets);
+    }
+
+    [HttpGet]
     public async Task<IActionResult> Detail(Guid ticketId)
     {
         var ticket = await _ticketService.GetAsync(ticketId);

@@ -8,9 +8,9 @@ namespace Services.Implementations;
 
 public class EmailService : IEmailService
 {
-    private readonly EmailSettings _settings;
+    private readonly EmailNotificationsOptions _settings;
 
-    public EmailService(IOptions<EmailSettings> settings)
+    public EmailService(IOptions<EmailNotificationsOptions> settings)
     {
         _settings = settings.Value;
     }

@@ -1,7 +1,17 @@
 ﻿@using Models.Users
 @model Models.Users.ApplicationUser
+@{
+    string role = "";
+    if (User.IsInRole(UserType.Zadavatel.ToString()))
+        role = UserType.Zadavatel.ToString();
+    if (User.IsInRole(UserType.Řešitel.ToString()))
+        role = UserType.Řešitel.ToString();
+	if (User.IsInRole(UserType.Auditor.ToString()))
+        role = UserType.Auditor.ToString();
+}
 
 <div class="d-flex flex-column align-items-center justify-content-center pt-3 border-bottom">
     <i class="bi bi-person-circle mb-1 text-white" style="font-size: 25px;"></i>
     <p class="fw-semibold text-white">@(Model.UserName ?? Model.Email)</p>
+    <p class="fw-semibold text-white">@role</p>
 </div>

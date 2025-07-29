@@ -25,7 +25,6 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     {
         options.User.AllowedUserNameCharacters =
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ěščřžýáíéúůňďťĚŠČŘŽÝÁÍÉÚŮŇĎŤ ";
-        options.User.RequireUniqueEmail = true;
     })
     .AddRoles<ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -41,7 +40,7 @@ builder.Services.AddRepositories();
 
 builder.Services.AddServices();
 
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.Configure<EmailNotificationsOptions>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddEmailNotificationService(builder.Configuration);
 
 builder.Services.Configure<LogRetentionOptions>(builder.Configuration.GetSection("LogRetentionOptions"));
@@ -67,7 +66,7 @@ builder.Services.AddMemoryCache(options =>
 
 builder.Services.AddSession(options =>
 { 
-    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    options.IdleTimeout = TimeSpan.FromMinutes(15);
 });
 
 var app = builder.Build();

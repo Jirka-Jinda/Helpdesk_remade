@@ -57,8 +57,14 @@ internal class NavigationDataSet : IDataSet
         tickets.AddChild(new NavigationNode()
         {
             Name = "Všechny",
-            Icon = "list-ul",
+            Icon = "list",
             Route = new NavigationRoute("", "SolverTicket", "Overview"),
+        });
+        tickets.AddChild(new NavigationNode()
+        {
+            Name = "Nepřiřazené",
+            Icon = "list-nested",
+            Route = new NavigationRoute("", "SolverTicket", "Unassigned"),
         });
         tickets.AddChild(new NavigationNode()
         {

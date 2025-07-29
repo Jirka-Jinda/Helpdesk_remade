@@ -6,9 +6,9 @@
 
 <div class="d-flex flex-row justify-content-center">
     <div class="mx-2">
-        @await Html.PartialAsync("~/Views/SolverTicket/Components/SolverChangeDetailPartial.cshtml", (Model.Item1.Id, Model.Item2))
+        @await Html.PartialAsync("~/Views/SolverTicket/Components/WorkflowChangeDetailPartial.cshtml", (Model.Item1.Id, Model.Item2))
     </div>
     <div class="mx-2">
-        @await Html.PartialAsync("~/Views/SolverTicket/Components/TicketSolverPartial.cshtml", Model.Item1)
+        @await Html.PartialAsync("~/Views/SolverTicket/Components/TicketWorkflowPartial.cshtml", Model.Item1)
     </div>
 </div>

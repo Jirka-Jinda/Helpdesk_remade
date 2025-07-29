@@ -2,5 +2,6 @@
 
 public class TicketAssignmentOptions
 {
-    public TimeSpan AutomaticAssignInterval { get; set; }
+    public TimeSpan AutomaticAssignAfter { get; set; }
+    public TimeSpan AutomaticAssingInterval { get; set; }
 }

@@ -90,11 +90,9 @@ public class AccessController : Controller
         return View();
     }
 
+    [HttpPost]
     public async Task<IActionResult> Reset(ApplicationUserViewModel model)
     {
-        if (!ModelState.IsValid)
-            return PartialView("Reset");
-
         var user = await _userService.GetUserByEmailAsync(model.Email);
 
         if (user is not null)
@@ -106,11 +104,11 @@ public class AccessController : Controller
             if (result.Succeeded)
             {
                 _logger.LogInformation("Password reset successfully for user: {Email}", model.Email);
-                return PartialView("ResetConfirmation");
+                return View("ResetConfirmation");
             }
         }
 
         ViewBag.ResetFailed = true;
-        return PartialView();
+        return View();
     }
 }

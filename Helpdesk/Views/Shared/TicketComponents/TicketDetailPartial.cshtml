@@ -1,4 +1,5 @@
-﻿@using Models.Tickets
+﻿@using Helpdesk.Views.Shared
+@using Models.Tickets
 @using Models.Users
 @using Models.Workflows
 @model Ticket
@@ -25,14 +26,7 @@
 
             <p class="mb-1">
                 <strong>Stav:</strong>
-                <span class="badge mx-1 px-2 @(Model.State switch {
-                    WFState.Založený => "bg-info",
-                    WFState.Uzavřený => "bg-success",
-                    WFState.Vrácený => "bg-danger",
-                    _ => "bg-warning"
-                })">
-                    @Model.State.ToString().Replace('_', ' ')
-                </span>
+				@ViewFunctions.CreateStateBadge(Model.State)
             </p>
 
             <hr />

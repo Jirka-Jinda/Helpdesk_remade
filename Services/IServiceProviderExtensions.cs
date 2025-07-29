@@ -1,10 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Services.Abstractions.Services;
 using Services.BackgroundServices;
 using Services.Implementations;
-using Services.Options;
 
 namespace Services;
 
@@ -54,7 +52,7 @@ public static class IServiceCollectionExtensions
     {
         var parsed = bool.TryParse(configuration.GetSection("EnableEmailNotifications").Value, out var serviceEnabled);
 
-        if (parsed && serviceEnabled && configuration.GetSection("EmailSettings").Exists())
+        if (parsed && serviceEnabled && configuration.GetSection("EmailNotificationsOptions").Exists())
             services.AddTransient<IEmailService, EmailService>();
 
         return services;

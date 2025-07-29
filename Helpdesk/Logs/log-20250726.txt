@@ -1,0 +1,1294 @@
+2025-07-26 09:43:16.793 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Overview - null null
+2025-07-26 09:43:16.891 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__get_Item_0
+LIMIT 1
+2025-07-26 09:43:16.921 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2025-07-26 09:43:16.940 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-07-26 09:43:16.956 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-07-26 09:43:16.970 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."ClaimType", a."ClaimValue"
+FROM "AspNetRoleClaims" AS a
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 09:43:16.983 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 09:43:16.986 +02:00 [INF] Route matched with {action = "Overview", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 09:43:16.995 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:17.003 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 09:43:17.013 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-07-26 09:43:17.020 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:17.038 +02:00 [INF] Executed ViewResult - view Overview executed in 26.1505ms.
+2025-07-26 09:43:17.041 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk) in 50.3038ms
+2025-07-26 09:43:17.042 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 09:43:17.045 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Overview - 200 null text/html; charset=utf-8 252.0415ms
+2025-07-26 09:43:17.057 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0 - null null
+2025-07-26 09:43:17.058 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-26 09:43:17.063 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/lib/jquery/dist/jquery.min.js - null null
+2025-07-26 09:43:17.057 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/img/bootstrap-icons-1.13.1/bootstrap-icons.min.css?v=pdY4ejLKO67E0CM2tbPtq1DJ3VGDVVdqAR6j3ZwdiE4 - null null
+2025-07-26 09:43:17.057 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/lib/bootstrap-5.3.3/dist/css/bootstrap.min.css?v=D5ORh-u7Wz0iyjQgZW8G88p4Ts4uWLfXlnV_PVA9TAY - null null
+2025-07-26 09:43:17.067 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 09:43:17.073 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/lib/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js - null null
+2025-07-26 09:43:17.096 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-26 09:43:17.097 +02:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2025-07-26 09:43:17.119 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 61.1292ms
+2025-07-26 09:43:17.121 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/lib/jquery/dist/jquery.min.js - 304 null text/javascript 56.7532ms
+2025-07-26 09:43:17.100 +02:00 [INF] The file /img/bootstrap-icons-1.13.1/bootstrap-icons.min.css was not modified
+2025-07-26 09:43:17.096 +02:00 [INF] The file /css/site.css was not modified
+2025-07-26 09:43:17.103 +02:00 [INF] The file /lib/bootstrap-5.3.3/dist/css/bootstrap.min.css was not modified
+2025-07-26 09:43:17.117 +02:00 [INF] The file /lib/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js was not modified
+2025-07-26 09:43:17.080 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo - null null
+2025-07-26 09:43:17.087 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 09:43:17.149 +02:00 [INF] The file /js/site.js was not modified
+2025-07-26 09:43:17.138 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/img/bootstrap-icons-1.13.1/bootstrap-icons.min.css?v=pdY4ejLKO67E0CM2tbPtq1DJ3VGDVVdqAR6j3ZwdiE4 - 304 null text/css 80.5979ms
+2025-07-26 09:43:17.139 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0 - 304 null text/css 82.2498ms
+2025-07-26 09:43:17.141 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/lib/bootstrap-5.3.3/dist/css/bootstrap.min.css?v=D5ORh-u7Wz0iyjQgZW8G88p4Ts4uWLfXlnV_PVA9TAY - 304 null text/css 83.6126ms
+2025-07-26 09:43:17.142 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/lib/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js - 304 null text/javascript 69.2065ms
+2025-07-26 09:43:17.152 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo - 304 null text/javascript 72.6079ms
+2025-07-26 09:43:17.108 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 41.7433ms
+2025-07-26 09:43:17.158 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/img/bootstrap-icons-1.13.1/fonts/bootstrap-icons.woff2?e34853135f9e39acf64315236852cd5a - null null
+2025-07-26 09:43:17.165 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 79.0551ms
+2025-07-26 09:43:17.190 +02:00 [INF] The file /img/bootstrap-icons-1.13.1/fonts/bootstrap-icons.woff2 was not modified
+2025-07-26 09:43:17.198 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/img/bootstrap-icons-1.13.1/fonts/bootstrap-icons.woff2?e34853135f9e39acf64315236852cd5a - 304 null font/woff2 39.7047ms
+2025-07-26 09:43:23.773 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Overview - null null
+2025-07-26 09:43:23.780 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 09:43:23.781 +02:00 [INF] Route matched with {action = "Overview", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 09:43:23.786 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:23.794 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 09:43:23.801 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-07-26 09:43:23.804 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:23.815 +02:00 [INF] Executed ViewResult - view Overview executed in 14.5429ms.
+2025-07-26 09:43:23.818 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk) in 34.3559ms
+2025-07-26 09:43:23.820 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 09:43:23.823 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Overview - 200 null text/html; charset=utf-8 50.1365ms
+2025-07-26 09:43:23.851 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 09:43:23.851 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 09:43:23.868 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 17.1363ms
+2025-07-26 09:43:23.878 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27ms
+2025-07-26 09:43:24.478 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Unassigned - null null
+2025-07-26 09:43:24.485 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Unassigned (Helpdesk)'
+2025-07-26 09:43:24.489 +02:00 [INF] Route matched with {action = "Unassigned", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Unassigned(System.String) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 09:43:24.496 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:24.504 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 09:43:24.514 +02:00 [INF] Executing ViewResult, running view Unassigned.
+2025-07-26 09:43:24.622 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:24.632 +02:00 [INF] Executed ViewResult - view Unassigned executed in 118.2109ms.
+2025-07-26 09:43:24.633 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Unassigned (Helpdesk) in 141.8066ms
+2025-07-26 09:43:24.635 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Unassigned (Helpdesk)'
+2025-07-26 09:43:24.637 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Unassigned - 200 null text/html; charset=utf-8 159.1524ms
+2025-07-26 09:43:24.662 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 09:43:24.662 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 09:43:24.675 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 12.9634ms
+2025-07-26 09:43:24.680 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.8612ms
+2025-07-26 09:43:25.575 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Assigned - null null
+2025-07-26 09:43:25.581 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Assigned (Helpdesk)'
+2025-07-26 09:43:25.586 +02:00 [INF] Route matched with {action = "Assigned", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Assigned(System.String) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 09:43:25.590 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:25.599 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 09:43:25.605 +02:00 [INF] Executing ViewResult, running view Assigned.
+2025-07-26 09:43:25.610 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 09:43:25.617 +02:00 [INF] Executed ViewResult - view Assigned executed in 11.617ms.
+2025-07-26 09:43:25.619 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Assigned (Helpdesk) in 31.1503ms
+2025-07-26 09:43:25.621 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Assigned (Helpdesk)'
+2025-07-26 09:43:25.622 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Assigned - 200 null text/html; charset=utf-8 47.7875ms
+2025-07-26 09:43:25.640 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 09:43:25.640 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 09:43:25.646 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.4788ms
+2025-07-26 09:43:25.659 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.1594ms
+2025-07-26 15:30:12.573 +02:00 [ERR] Error while applying migrations: Failed to connect to 127.0.0.1:32668
+2025-07-26 15:30:46.996 +02:00 [ERR] Error while applying migrations: Failed to connect to 127.0.0.1:32668
+2025-07-26 15:31:16.283 +02:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-26 15:31:16.327 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-26 15:31:16.451 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-26 15:31:16.620 +02:00 [INF] Log files deleted: 0. 
+2025-07-26 15:31:16.624 +02:00 [INF] Tickets archived.
+2025-07-26 15:31:16.625 +02:00 [INF] Tickets assigned.
+2025-07-26 15:31:16.761 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-26 15:31:16.762 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-26 15:31:16.805 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-26 15:31:16.807 +02:00 [INF] Hosting environment: Development
+2025-07-26 15:31:16.808 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-26 15:31:17.392 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-26 15:31:17.576 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 15:31:17.599 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-26 15:31:17.662 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-07-26 15:31:17.666 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 62.1224ms
+2025-07-26 15:31:17.668 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 15:31:17.675 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 288.9923ms
+2025-07-26 15:31:17.681 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-07-26 15:31:17.688 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-26 15:31:17.691 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-26 15:31:17.740 +02:00 [INF] Executing ViewResult, running view Login.
+2025-07-26 15:31:18.118 +02:00 [INF] Executed ViewResult - view Login executed in 381.6981ms.
+2025-07-26 15:31:18.122 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 428.3199ms
+2025-07-26 15:31:18.124 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-26 15:31:18.127 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 446.6849ms
+2025-07-26 15:31:18.142 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 15:31:18.142 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-07-26 15:31:18.150 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 8.1054ms
+2025-07-26 15:31:18.154 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-07-26 15:31:18.156 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 14.0729ms
+2025-07-26 15:31:18.158 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 15:31:18.216 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.5948ms
+2025-07-26 15:31:18.262 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/favicon.ico - null null
+2025-07-26 15:31:18.265 +02:00 [INF] The file /favicon.ico was not modified
+2025-07-26 15:31:18.266 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/favicon.ico - 304 null image/x-icon 4.6966ms
+2025-07-26 15:31:23.373 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7003/Access/Login - application/x-www-form-urlencoded 254
+2025-07-26 15:31:23.380 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-26 15:31:23.391 +02:00 [INF] Route matched with {action = "Login", controller = "Access", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ViewModels.User.ApplicationUserViewModel) on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-07-26 15:31:23.610 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-07-26 15:31:23.785 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2025-07-26 15:31:23.810 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-07-26 15:31:23.822 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-07-26 15:31:23.839 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."ClaimType", a."ClaimValue"
+FROM "AspNetRoleClaims" AS a
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 15:31:23.847 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-07-26 15:31:23.849 +02:00 [INF] User logged in successfully: jiri.jinda10@gmail.com
+2025-07-26 15:31:23.852 +02:00 [INF] Executing RedirectResult, redirecting to /.
+2025-07-26 15:31:23.854 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 460.0491ms
+2025-07-26 15:31:23.855 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-07-26 15:31:23.857 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7003/Access/Login - 302 0 null 483.4538ms
+2025-07-26 15:31:23.862 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-26 15:31:23.872 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 15:31:23.873 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-26 15:31:23.883 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 15:31:23.886 +02:00 [INF] Executing ViewResult, running view Index.
+2025-07-26 15:31:23.894 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 15:31:23.906 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-07-26 15:31:23.976 +02:00 [INF] Executed ViewResult - view Index executed in 90.261ms.
+2025-07-26 15:31:23.979 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 104.5582ms
+2025-07-26 15:31:23.980 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 15:31:23.981 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 119.723ms
+2025-07-26 15:31:24.005 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 15:31:24.005 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 15:31:24.015 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.7347ms
+2025-07-26 15:31:24.029 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.668ms
+2025-07-26 15:31:45.619 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Create - null null
+2025-07-26 15:31:45.636 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Create (Helpdesk)'
+2025-07-26 15:31:45.638 +02:00 [INF] Route matched with {action = "Create", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 15:31:45.644 +02:00 [INF] Executing ViewResult, running view Create.
+2025-07-26 15:31:45.681 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 15:31:45.690 +02:00 [INF] Executed ViewResult - view Create executed in 46.177ms.
+2025-07-26 15:31:45.700 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Create (Helpdesk) in 60.026ms
+2025-07-26 15:31:45.701 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Create (Helpdesk)'
+2025-07-26 15:31:45.702 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Create - 200 null text/html; charset=utf-8 84.4962ms
+2025-07-26 15:31:45.707 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 15:31:45.708 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 15:31:45.719 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.8531ms
+2025-07-26 15:31:45.726 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.2845ms
+2025-07-26 15:32:41.776 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7003/SolverTicket/Create - application/x-www-form-urlencoded 307
+2025-07-26 15:32:41.796 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Create (Helpdesk)'
+2025-07-26 15:32:41.800 +02:00 [INF] Route matched with {action = "Create", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ViewModels.Ticket.TicketViewModel) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 15:32:41.809 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 15:32:41.945 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?' (DbType = Guid), @p7='?' (DbType = Int32), @p8='?', @p9='?', @p10='?' (DbType = Guid), @p11='?' (DbType = Guid), @p12='?' (DbType = Int32), @p13='?', @p14='?' (DbType = DateTime), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Threads" ("Id", "Name", "TimeCreated", "TimeUpdated", "UserCreatedId", "UserUpdatedId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+INSERT INTO "Tickets" ("Id", "Category", "Content", "Header", "HierarchyId", "MessageThreadId", "Priority", "Result", "TimeCreated", "TimeUpdated", "UserCreatedId", "UserUpdatedId")
+VALUES (@p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);
+2025-07-26 15:32:41.963 +02:00 [INF] Executing RedirectResult, redirecting to /SolverTicket/Detail?ticketId=c7e312ff-ab0c-4847-86ef-0bb6ff92f7d5.
+2025-07-26 15:32:41.965 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Create (Helpdesk) in 162.5302ms
+2025-07-26 15:32:41.966 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Create (Helpdesk)'
+2025-07-26 15:32:41.967 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7003/SolverTicket/Create - 302 0 null 193.2258ms
+2025-07-26 15:32:41.970 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=c7e312ff-ab0c-4847-86ef-0bb6ff92f7d5 - null null
+2025-07-26 15:32:41.979 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 15:32:41.982 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 15:32:42.040 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-07-26 15:32:42.067 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 15:32:42.078 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 15:32:42.097 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 15:32:42.107 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 15:32:42.123 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 15:32:42.143 +02:00 [INF] Executed ViewResult - view Detail executed in 65.6254ms.
+2025-07-26 15:32:42.145 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 161.4839ms
+2025-07-26 15:32:42.147 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 15:32:42.148 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=c7e312ff-ab0c-4847-86ef-0bb6ff92f7d5 - 200 null text/html; charset=utf-8 178.2804ms
+2025-07-26 15:32:42.162 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 15:32:42.162 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 15:32:42.166 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.0021ms
+2025-07-26 15:32:42.184 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.6886ms
+2025-07-26 16:04:39.806 +02:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-26 16:04:39.889 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-26 16:04:40.013 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-26 16:04:40.223 +02:00 [INF] Log files deleted: 0. 
+2025-07-26 16:04:40.228 +02:00 [INF] Tickets archived.
+2025-07-26 16:04:40.229 +02:00 [INF] Tickets assigned.
+2025-07-26 16:04:40.369 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-26 16:04:40.371 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-26 16:04:40.408 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-26 16:04:40.410 +02:00 [INF] Hosting environment: Development
+2025-07-26 16:04:40.411 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-26 16:04:40.973 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-26 16:04:41.353 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__get_Item_0
+LIMIT 1
+2025-07-26 16:04:41.448 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2025-07-26 16:04:41.470 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-07-26 16:04:41.487 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-07-26 16:04:41.503 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."ClaimType", a."ClaimValue"
+FROM "AspNetRoleClaims" AS a
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 16:04:41.535 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:04:41.547 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-26 16:04:41.565 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:04:41.581 +02:00 [INF] Executing ViewResult, running view Index.
+2025-07-26 16:04:41.608 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:04:41.756 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-07-26 16:04:42.019 +02:00 [INF] Executed ViewResult - view Index executed in 439.833ms.
+2025-07-26 16:04:42.027 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 478.2753ms
+2025-07-26 16:04:42.030 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:04:42.043 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 1074.4274ms
+2025-07-26 16:04:42.056 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:04:42.056 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:04:42.081 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 25.3856ms
+2025-07-26 16:04:42.107 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 51.5722ms
+2025-07-26 16:04:44.264 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Overview - null null
+2025-07-26 16:04:44.279 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 16:04:44.289 +02:00 [INF] Route matched with {action = "Overview", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 16:04:44.343 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:04:44.388 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-07-26 16:04:44.407 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 16:04:44.521 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-07-26 16:04:44.614 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:04:44.633 +02:00 [INF] Executed ViewResult - view Overview executed in 113.2146ms.
+2025-07-26 16:04:44.636 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk) in 345.0295ms
+2025-07-26 16:04:44.637 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 16:04:44.638 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Overview - 200 null text/html; charset=utf-8 375.3977ms
+2025-07-26 16:04:44.640 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:04:44.640 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:04:44.652 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.5545ms
+2025-07-26 16:04:44.664 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.9042ms
+2025-07-26 16:05:26.247 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=05dd106c-b478-4362-b11a-b55ac882c91d - null null
+2025-07-26 16:05:26.279 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 16:05:26.283 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 16:05:26.330 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-07-26 16:05:26.351 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 16:05:26.369 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 16:05:26.388 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 16:05:26.400 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 16:05:26.419 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:05:26.433 +02:00 [INF] Executed ViewResult - view Detail executed in 63.9186ms.
+2025-07-26 16:05:26.435 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 150.1212ms
+2025-07-26 16:05:26.437 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 16:05:26.438 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=05dd106c-b478-4362-b11a-b55ac882c91d - 200 null text/html; charset=utf-8 191.6602ms
+2025-07-26 16:05:26.451 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:05:26.451 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:05:26.456 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.1429ms
+2025-07-26 16:05:26.476 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 25.0958ms
+2025-07-26 16:06:13.618 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Overview - null null
+2025-07-26 16:06:13.637 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 16:06:13.638 +02:00 [INF] Route matched with {action = "Overview", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 16:06:13.649 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:06:13.656 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 16:06:13.665 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-07-26 16:06:13.670 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:06:13.696 +02:00 [INF] Executed ViewResult - view Overview executed in 30.8406ms.
+2025-07-26 16:06:13.698 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk) in 56.5261ms
+2025-07-26 16:06:13.700 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 16:06:13.701 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Overview - 200 null text/html; charset=utf-8 83.6774ms
+2025-07-26 16:06:13.709 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:06:13.709 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:06:13.713 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.1912ms
+2025-07-26 16:06:13.728 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.6843ms
+2025-07-26 16:43:26.946 +02:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-26 16:43:27.028 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-26 16:43:27.154 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-26 16:43:27.381 +02:00 [INF] Log files deleted: 0. 
+2025-07-26 16:43:27.387 +02:00 [INF] Tickets archived.
+2025-07-26 16:43:27.389 +02:00 [INF] Tickets assigned.
+2025-07-26 16:43:27.556 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-26 16:43:27.557 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-26 16:43:27.597 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-26 16:43:27.599 +02:00 [INF] Hosting environment: Development
+2025-07-26 16:43:27.600 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-26 16:43:27.802 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-26 16:43:28.202 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__get_Item_0
+LIMIT 1
+2025-07-26 16:43:28.299 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2025-07-26 16:43:28.318 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-07-26 16:43:28.332 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-07-26 16:43:28.347 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."ClaimType", a."ClaimValue"
+FROM "AspNetRoleClaims" AS a
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 16:43:28.379 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:43:28.391 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-26 16:43:28.516 +02:00 [INF] Executing RedirectResult, redirecting to /Error/Code500?details=Unable%20to%20resolve%20service%20for%20type%20%27Services.Abstractions.Services.IEmailService%27%20while%20attempting%20to%20activate%20%27Helpdesk.Controllers.HomeController%27..
+2025-07-26 16:43:28.520 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 123.4288ms
+2025-07-26 16:43:28.523 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:43:28.533 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 738.9581ms
+2025-07-26 16:43:28.536 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Error/Code500?details=Unable%20to%20resolve%20service%20for%20type%20%27Services.Abstractions.Services.IEmailService%27%20while%20attempting%20to%20activate%20%27Helpdesk.Controllers.HomeController%27. - null null
+2025-07-26 16:43:28.551 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.ErrorController.Code500 (Helpdesk)'
+2025-07-26 16:43:28.560 +02:00 [INF] Route matched with {action = "Code500", controller = "Error", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Code500(System.String) on controller Helpdesk.Controllers.ErrorController (Helpdesk).
+2025-07-26 16:43:28.609 +02:00 [ERR] Internal server error. Unable to resolve service for type 'Services.Abstractions.Services.IEmailService' while attempting to activate 'Helpdesk.Controllers.HomeController'.
+2025-07-26 16:43:28.620 +02:00 [INF] Executing ViewResult, running view Code500.
+2025-07-26 16:43:28.659 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:43:28.771 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-07-26 16:43:28.995 +02:00 [INF] Executed ViewResult - view Code500 executed in 378.2306ms.
+2025-07-26 16:43:28.998 +02:00 [INF] Executed action Helpdesk.Controllers.ErrorController.Code500 (Helpdesk) in 436.5703ms
+2025-07-26 16:43:29.000 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.ErrorController.Code500 (Helpdesk)'
+2025-07-26 16:43:29.002 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Error/Code500?details=Unable%20to%20resolve%20service%20for%20type%20%27Services.Abstractions.Services.IEmailService%27%20while%20attempting%20to%20activate%20%27Helpdesk.Controllers.HomeController%27. - 200 null text/html; charset=utf-8 466.0728ms
+2025-07-26 16:43:29.020 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:43:29.021 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:43:29.027 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.4183ms
+2025-07-26 16:43:29.059 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.8855ms
+2025-07-26 16:43:50.007 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Error/Code500?details=Unable%20to%20resolve%20service%20for%20type%20%27Services.Abstractions.Services.IEmailService%27%20while%20attempting%20to%20activate%20%27Helpdesk.Controllers.HomeController%27. - null null
+2025-07-26 16:43:50.023 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.ErrorController.Code500 (Helpdesk)'
+2025-07-26 16:43:50.027 +02:00 [INF] Route matched with {action = "Code500", controller = "Error", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Code500(System.String) on controller Helpdesk.Controllers.ErrorController (Helpdesk).
+2025-07-26 16:43:50.031 +02:00 [ERR] Internal server error. Unable to resolve service for type 'Services.Abstractions.Services.IEmailService' while attempting to activate 'Helpdesk.Controllers.HomeController'.
+2025-07-26 16:43:50.034 +02:00 [INF] Executing ViewResult, running view Code500.
+2025-07-26 16:43:50.042 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:43:50.050 +02:00 [INF] Executed ViewResult - view Code500 executed in 17.145ms.
+2025-07-26 16:43:50.057 +02:00 [INF] Executed action Helpdesk.Controllers.ErrorController.Code500 (Helpdesk) in 28.013ms
+2025-07-26 16:43:50.059 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.ErrorController.Code500 (Helpdesk)'
+2025-07-26 16:43:50.060 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Error/Code500?details=Unable%20to%20resolve%20service%20for%20type%20%27Services.Abstractions.Services.IEmailService%27%20while%20attempting%20to%20activate%20%27Helpdesk.Controllers.HomeController%27. - 200 null text/html; charset=utf-8 53.0789ms
+2025-07-26 16:43:50.073 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:43:50.073 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:43:50.077 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.4449ms
+2025-07-26 16:43:50.098 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 25.9163ms
+2025-07-26 16:44:13.470 +02:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-26 16:44:13.521 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-26 16:44:13.591 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-26 16:44:13.701 +02:00 [INF] Log files deleted: 0. 
+2025-07-26 16:44:13.705 +02:00 [INF] Tickets archived.
+2025-07-26 16:44:13.707 +02:00 [INF] Tickets assigned.
+2025-07-26 16:44:13.823 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-26 16:44:13.825 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-26 16:44:13.871 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-26 16:44:13.873 +02:00 [INF] Hosting environment: Development
+2025-07-26 16:44:13.875 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-26 16:44:14.360 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-26 16:44:14.489 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:44:14.502 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-26 16:44:14.715 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:44:14.801 +02:00 [INF] Executing ViewResult, running view Index.
+2025-07-26 16:44:14.829 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:44:14.970 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-07-26 16:44:15.100 +02:00 [INF] Executed ViewResult - view Index executed in 300.7562ms.
+2025-07-26 16:44:15.104 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 595.3913ms
+2025-07-26 16:44:15.107 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:44:15.118 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 763.4531ms
+2025-07-26 16:44:15.125 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:44:15.125 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:44:15.132 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.7023ms
+2025-07-26 16:44:15.161 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.5543ms
+2025-07-26 16:46:29.387 +02:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-26 16:46:29.432 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-26 16:46:29.505 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-26 16:46:29.613 +02:00 [INF] Log files deleted: 0. 
+2025-07-26 16:46:29.618 +02:00 [INF] Tickets archived.
+2025-07-26 16:46:29.620 +02:00 [INF] Tickets assigned.
+2025-07-26 16:46:29.735 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-26 16:46:29.736 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-26 16:46:29.774 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-26 16:46:29.776 +02:00 [INF] Hosting environment: Development
+2025-07-26 16:46:29.778 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-26 16:46:30.104 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-26 16:46:30.263 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:46:30.281 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-26 16:46:30.477 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:46:30.555 +02:00 [INF] Executing ViewResult, running view Index.
+2025-07-26 16:46:30.582 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:46:30.715 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-07-26 16:46:30.845 +02:00 [INF] Executed ViewResult - view Index executed in 290.8155ms.
+2025-07-26 16:46:30.851 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 567.0954ms
+2025-07-26 16:46:30.852 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 16:46:30.863 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 765.142ms
+2025-07-26 16:46:30.867 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:46:30.867 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:46:30.874 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.461ms
+2025-07-26 16:46:30.902 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.4265ms
+2025-07-26 16:49:59.725 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Overview - null null
+2025-07-26 16:49:59.752 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 16:49:59.762 +02:00 [INF] Route matched with {action = "Overview", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 16:49:59.813 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:49:59.889 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-07-26 16:49:59.903 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 16:50:00.044 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-07-26 16:50:00.141 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:50:00.154 +02:00 [INF] Executed ViewResult - view Overview executed in 111.2724ms.
+2025-07-26 16:50:00.157 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk) in 391.9716ms
+2025-07-26 16:50:00.158 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Overview (Helpdesk)'
+2025-07-26 16:50:00.160 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Overview - 200 null text/html; charset=utf-8 436.4022ms
+2025-07-26 16:50:00.184 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:50:00.184 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:50:00.189 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.957ms
+2025-07-26 16:50:00.213 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 28.5922ms
+2025-07-26 16:50:24.518 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=0893ee71-cb9d-4a8d-be2f-89a92303f835 - null null
+2025-07-26 16:50:24.541 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 16:50:24.549 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 16:50:24.607 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-07-26 16:50:24.632 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 16:50:24.652 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 16:50:24.679 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 16:50:24.703 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 16:50:24.726 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 16:50:24.735 +02:00 [INF] Executed ViewResult - view Detail executed in 82.9961ms.
+2025-07-26 16:50:24.736 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 183.5662ms
+2025-07-26 16:50:24.738 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 16:50:24.740 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=0893ee71-cb9d-4a8d-be2f-89a92303f835 - 200 null text/html; charset=utf-8 221.5952ms
+2025-07-26 16:50:24.753 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 16:50:24.753 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 16:50:24.763 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.7452ms
+2025-07-26 16:50:24.769 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.8254ms
+2025-07-26 17:10:06.032 +02:00 [INF] Executed DbCommand (61ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-07-26 17:10:06.119 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-07-26 17:10:06.328 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-26 17:10:06.682 +02:00 [INF] Log files deleted: 0. 
+2025-07-26 17:10:06.690 +02:00 [INF] Tickets archived.
+2025-07-26 17:10:06.693 +02:00 [INF] Tickets assigned.
+2025-07-26 17:10:06.926 +02:00 [INF] Now listening on: https://localhost:7003
+2025-07-26 17:10:06.929 +02:00 [INF] Now listening on: http://localhost:5184
+2025-07-26 17:10:06.993 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-26 17:10:07.004 +02:00 [INF] Hosting environment: Development
+2025-07-26 17:10:07.006 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-07-26 17:10:07.366 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-07-26 17:10:07.630 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 17:10:07.665 +02:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-07-26 17:10:08.153 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:08.284 +02:00 [INF] Executing ViewResult, running view Index.
+2025-07-26 17:10:08.325 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:08.622 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-07-26 17:10:09.017 +02:00 [INF] Executed ViewResult - view Index executed in 735.1445ms.
+2025-07-26 17:10:09.024 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 1354.7005ms
+2025-07-26 17:10:09.028 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-07-26 17:10:09.045 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:10:09.045 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:10:09.045 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 1689.2217ms
+2025-07-26 17:10:09.057 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.9855ms
+2025-07-26 17:10:09.097 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 52.4418ms
+2025-07-26 17:10:13.688 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Assigned - null null
+2025-07-26 17:10:13.717 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Assigned (Helpdesk)'
+2025-07-26 17:10:13.736 +02:00 [INF] Route matched with {action = "Assigned", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Assigned(System.String) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:10:13.830 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:13.961 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-07-26 17:10:13.980 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 17:10:14.249 +02:00 [INF] Executing ViewResult, running view Assigned.
+2025-07-26 17:10:14.416 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:14.427 +02:00 [INF] Executed ViewResult - view Assigned executed in 178.8696ms.
+2025-07-26 17:10:14.431 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Assigned (Helpdesk) in 690.638ms
+2025-07-26 17:10:14.433 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Assigned (Helpdesk)'
+2025-07-26 17:10:14.435 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Assigned - 200 null text/html; charset=utf-8 748.7075ms
+2025-07-26 17:10:14.452 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:10:14.452 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:10:14.461 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 8.3547ms
+2025-07-26 17:10:14.496 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 44.1759ms
+2025-07-26 17:10:15.455 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - null null
+2025-07-26 17:10:15.483 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:10:15.491 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:10:15.594 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-07-26 17:10:15.641 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:10:15.677 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 17:10:15.733 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 17:10:15.782 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 17:10:15.824 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:15.843 +02:00 [INF] Executed ViewResult - view Detail executed in 167.3082ms.
+2025-07-26 17:10:15.846 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 352.1079ms
+2025-07-26 17:10:15.848 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:10:15.850 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - 200 null text/html; charset=utf-8 395.8307ms
+2025-07-26 17:10:15.865 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:10:15.865 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:10:15.877 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 12.2413ms
+2025-07-26 17:10:15.889 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.1125ms
+2025-07-26 17:10:17.249 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/WorkflowDetail?ticketId=113bcfed-9881-4a96-8d28-365a32892857&changeId=84b6df58-1258-4e5a-8e31-a121f0350995 - null null
+2025-07-26 17:10:17.260 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.WorkflowDetail (Helpdesk)'
+2025-07-26 17:10:17.266 +02:00 [INF] Route matched with {action = "WorkflowDetail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WorkflowDetail(System.Guid, System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:10:17.278 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:10:17.291 +02:00 [INF] Executing ViewResult, running view WorkflowDetail.
+2025-07-26 17:10:18.614 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.WorkflowDetail (Helpdesk) in 1344.6276ms
+2025-07-26 17:10:18.749 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.WorkflowDetail (Helpdesk)'
+2025-07-26 17:10:19.116 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'System.ValueTuple`2[System.Guid,Models.Tickets.WorkflowHistory]', but this ViewDataDictionary instance requires a model item of type 'System.ValueTuple`2[System.Guid,Models.Tickets.SolverHistory]'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at lambda_method618(Closure, ViewDataDictionary)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at AspNetCoreGeneratedDocument.Views_SolverTicket_WorkflowDetail.ExecuteAsync() in C:\Code\Private\Remastered\Helpdesk\Helpdesk\Views\SolverTicket\WorkflowDetail.cshtml:line 4
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-07-26 17:10:19.432 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/WorkflowDetail?ticketId=113bcfed-9881-4a96-8d28-365a32892857&changeId=84b6df58-1258-4e5a-8e31-a121f0350995 - 500 null text/html; charset=utf-8 2183.5775ms
+2025-07-26 17:10:19.449 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:10:19.449 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:10:19.456 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.0039ms
+2025-07-26 17:10:19.476 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.2403ms
+2025-07-26 17:10:30.543 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - null null
+2025-07-26 17:10:30.555 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:10:30.558 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:10:30.568 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:10:30.577 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 17:10:30.583 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 17:10:30.598 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 17:10:30.608 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:30.618 +02:00 [INF] Executed ViewResult - view Detail executed in 41.2479ms.
+2025-07-26 17:10:30.621 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 60.5767ms
+2025-07-26 17:10:30.623 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:10:30.627 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - 200 null text/html; charset=utf-8 83.2779ms
+2025-07-26 17:10:30.638 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:10:30.643 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.1295ms
+2025-07-26 17:10:32.288 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/SolverDetail?ticketId=113bcfed-9881-4a96-8d28-365a32892857&changeId=96d52580-5905-4e88-89f5-9834742d5753 - null null
+2025-07-26 17:10:32.297 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.SolverDetail (Helpdesk)'
+2025-07-26 17:10:32.303 +02:00 [INF] Route matched with {action = "SolverDetail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SolverDetail(System.Guid, System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:10:32.325 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:10:32.335 +02:00 [INF] Executing ViewResult, running view SolverDetail.
+2025-07-26 17:10:32.351 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 17:10:32.362 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 17:10:32.369 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:32.379 +02:00 [INF] Executed ViewResult - view SolverDetail executed in 44.9729ms.
+2025-07-26 17:10:32.381 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.SolverDetail (Helpdesk) in 74.9568ms
+2025-07-26 17:10:32.383 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.SolverDetail (Helpdesk)'
+2025-07-26 17:10:32.385 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/SolverDetail?ticketId=113bcfed-9881-4a96-8d28-365a32892857&changeId=96d52580-5905-4e88-89f5-9834742d5753 - 200 null text/html; charset=utf-8 97.1615ms
+2025-07-26 17:10:32.412 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:10:32.412 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:10:32.418 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.4803ms
+2025-07-26 17:10:32.447 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 34.8623ms
+2025-07-26 17:10:54.830 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - null null
+2025-07-26 17:10:54.841 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:10:54.843 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:10:54.854 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:10:54.861 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 17:10:54.867 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 17:10:54.878 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 17:10:54.884 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:10:54.901 +02:00 [INF] Executed ViewResult - view Detail executed in 40.2329ms.
+2025-07-26 17:10:54.905 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 59.0598ms
+2025-07-26 17:10:54.907 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:10:54.910 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - 200 null text/html; charset=utf-8 80.6019ms
+2025-07-26 17:10:54.936 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:10:54.936 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:10:54.945 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.52ms
+2025-07-26 17:10:54.971 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.418ms
+2025-07-26 17:12:46.574 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - null null
+2025-07-26 17:12:46.584 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:12:46.588 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:12:46.600 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:12:46.607 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 17:12:46.613 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 17:12:46.617 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 17:12:46.625 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:12:46.631 +02:00 [INF] Executed ViewResult - view Detail executed in 26.1299ms.
+2025-07-26 17:12:46.632 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 42.3816ms
+2025-07-26 17:12:46.633 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:12:46.635 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - 200 null text/html; charset=utf-8 60.9019ms
+2025-07-26 17:12:46.653 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:12:46.653 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:12:46.662 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.4775ms
+2025-07-26 17:12:46.680 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.9543ms
+2025-07-26 17:12:48.359 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/WorkflowDetail?ticketId=113bcfed-9881-4a96-8d28-365a32892857&changeId=84b6df58-1258-4e5a-8e31-a121f0350995 - null null
+2025-07-26 17:12:48.367 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.WorkflowDetail (Helpdesk)'
+2025-07-26 17:12:48.372 +02:00 [INF] Route matched with {action = "WorkflowDetail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WorkflowDetail(System.Guid, System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:12:48.384 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:12:48.392 +02:00 [INF] Executing ViewResult, running view WorkflowDetail.
+2025-07-26 17:12:48.402 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:12:48.408 +02:00 [INF] Executed ViewResult - view WorkflowDetail executed in 17.2742ms.
+2025-07-26 17:12:48.411 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.WorkflowDetail (Helpdesk) in 35.4876ms
+2025-07-26 17:12:48.412 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.WorkflowDetail (Helpdesk)'
+2025-07-26 17:12:48.413 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/WorkflowDetail?ticketId=113bcfed-9881-4a96-8d28-365a32892857&changeId=84b6df58-1258-4e5a-8e31-a121f0350995 - 200 null text/html; charset=utf-8 54.7987ms
+2025-07-26 17:12:48.437 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:12:48.437 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:12:48.448 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.81ms
+2025-07-26 17:12:48.462 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 25.5771ms
+2025-07-26 17:13:11.128 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - null null
+2025-07-26 17:13:11.144 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:13:11.145 +02:00 [INF] Route matched with {action = "Detail", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:13:11.151 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t2."Id", t2."Category", t2."Content", t2."Header", t2."HierarchyId", t2."MessageThreadId", t2."Priority", t2."Result", t2."TimeCreated", t2."TimeUpdated", t2."UserCreatedId", t2."UserUpdatedId", t2."Id0", t2."AccessFailedCount", t2."ConcurrencyStamp", t2."Email", t2."EmailConfirmed", t2."LockoutEnabled", t2."LockoutEnd", t2."NormalizedEmail", t2."NormalizedUserName", t2."NotificationsEnabled", t2."PasswordHash", t2."PhoneNumber", t2."PhoneNumberConfirmed", t2."ProxyEnabled", t2."ProxyUser", t2."SecurityStamp", t2."Theme", t2."TwoFactorEnabled", t2."UseProxy", t2."UserName", t2."Id1", t2."AccessFailedCount0", t2."ConcurrencyStamp0", t2."Email0", t2."EmailConfirmed0", t2."LockoutEnabled0", t2."LockoutEnd0", t2."NormalizedEmail0", t2."NormalizedUserName0", t2."NotificationsEnabled0", t2."PasswordHash0", t2."PhoneNumber0", t2."PhoneNumberConfirmed0", t2."ProxyEnabled0", t2."ProxyUser0", t2."SecurityStamp0", t2."Theme0", t2."TwoFactorEnabled0", t2."UseProxy0", t2."UserName0", t2."Id2", t2."Category0", t2."Content0", t2."Header0", t2."HierarchyId0", t2."MessageThreadId0", t2."Priority0", t2."Result0", t2."TimeCreated0", t2."TimeUpdated0", t2."UserCreatedId0", t2."UserUpdatedId0", t2."Id3", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", t2."Name", t2."TimeCreated1", t2."TimeUpdated1", t2."UserCreatedId1", t2."UserUpdatedId1", t3."Id", t3."Content", t3."IsRead", t3."MessageThreadId", t3."TimeCreated", t3."TimeUpdated", t3."UserCreatedId", t3."UserUpdatedId", t3."Id0", t3."AccessFailedCount", t3."ConcurrencyStamp", t3."Email", t3."EmailConfirmed", t3."LockoutEnabled", t3."LockoutEnd", t3."NormalizedEmail", t3."NormalizedUserName", t3."NotificationsEnabled", t3."PasswordHash", t3."PhoneNumber", t3."PhoneNumberConfirmed", t3."ProxyEnabled", t3."ProxyUser", t3."SecurityStamp", t3."Theme", t3."TwoFactorEnabled", t3."UseProxy", t3."UserName"
+FROM (
+    SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id" AS "Id0", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", a0."Id" AS "Id1", a0."AccessFailedCount" AS "AccessFailedCount0", a0."ConcurrencyStamp" AS "ConcurrencyStamp0", a0."Email" AS "Email0", a0."EmailConfirmed" AS "EmailConfirmed0", a0."LockoutEnabled" AS "LockoutEnabled0", a0."LockoutEnd" AS "LockoutEnd0", a0."NormalizedEmail" AS "NormalizedEmail0", a0."NormalizedUserName" AS "NormalizedUserName0", a0."NotificationsEnabled" AS "NotificationsEnabled0", a0."PasswordHash" AS "PasswordHash0", a0."PhoneNumber" AS "PhoneNumber0", a0."PhoneNumberConfirmed" AS "PhoneNumberConfirmed0", a0."ProxyEnabled" AS "ProxyEnabled0", a0."ProxyUser" AS "ProxyUser0", a0."SecurityStamp" AS "SecurityStamp0", a0."Theme" AS "Theme0", a0."TwoFactorEnabled" AS "TwoFactorEnabled0", a0."UseProxy" AS "UseProxy0", a0."UserName" AS "UserName0", t0."Id" AS "Id2", t0."Category" AS "Category0", t0."Content" AS "Content0", t0."Header" AS "Header0", t0."HierarchyId" AS "HierarchyId0", t0."MessageThreadId" AS "MessageThreadId0", t0."Priority" AS "Priority0", t0."Result" AS "Result0", t0."TimeCreated" AS "TimeCreated0", t0."TimeUpdated" AS "TimeUpdated0", t0."UserCreatedId" AS "UserCreatedId0", t0."UserUpdatedId" AS "UserUpdatedId0", t1."Id" AS "Id3", t1."Name", t1."TimeCreated" AS "TimeCreated1", t1."TimeUpdated" AS "TimeUpdated1", t1."UserCreatedId" AS "UserCreatedId1", t1."UserUpdatedId" AS "UserUpdatedId1"
+    FROM "Tickets" AS t
+    LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+    LEFT JOIN "AspNetUsers" AS a0 ON t."UserUpdatedId" = a0."Id"
+    LEFT JOIN "Tickets" AS t0 ON t."HierarchyId" = t0."Id"
+    INNER JOIN "Threads" AS t1 ON t."MessageThreadId" = t1."Id"
+    WHERE t."Id" = @__id_0
+    LIMIT 2
+) AS t2
+LEFT JOIN "WorkflowHistory" AS w ON t2."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t2."Id" = s."TicketId"
+LEFT JOIN (
+    SELECT m."Id", m."Content", m."IsRead", m."MessageThreadId", m."TimeCreated", m."TimeUpdated", m."UserCreatedId", m."UserUpdatedId", a1."Id" AS "Id0", a1."AccessFailedCount", a1."ConcurrencyStamp", a1."Email", a1."EmailConfirmed", a1."LockoutEnabled", a1."LockoutEnd", a1."NormalizedEmail", a1."NormalizedUserName", a1."NotificationsEnabled", a1."PasswordHash", a1."PhoneNumber", a1."PhoneNumberConfirmed", a1."ProxyEnabled", a1."ProxyUser", a1."SecurityStamp", a1."Theme", a1."TwoFactorEnabled", a1."UseProxy", a1."UserName"
+    FROM "Messages" AS m
+    LEFT JOIN "AspNetUsers" AS a1 ON m."UserCreatedId" = a1."Id"
+) AS t3 ON t2."Id3" = t3."MessageThreadId"
+ORDER BY t2."Id", t2."Id0", t2."Id1", t2."Id2", t2."Id3", w."Id", s."Id", t3."Id"
+2025-07-26 17:13:11.157 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-07-26 17:13:11.160 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-07-26 17:13:11.164 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 17:13:11.167 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:13:11.173 +02:00 [INF] Executed ViewResult - view Detail executed in 15.8743ms.
+2025-07-26 17:13:11.174 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk) in 26.9128ms
+2025-07-26 17:13:11.175 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Detail (Helpdesk)'
+2025-07-26 17:13:11.176 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Detail?ticketId=113bcfed-9881-4a96-8d28-365a32892857 - 200 null text/html; charset=utf-8 49.9116ms
+2025-07-26 17:13:11.196 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:13:11.199 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 3.5955ms
+2025-07-26 17:24:56.046 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/SolverTicket/Unassigned - null null
+2025-07-26 17:24:56.108 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__get_Item_0
+LIMIT 1
+2025-07-26 17:24:56.125 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2025-07-26 17:24:56.141 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-07-26 17:24:56.148 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-07-26 17:24:56.159 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."ClaimType", a."ClaimValue"
+FROM "AspNetRoleClaims" AS a
+WHERE a."RoleId" = @__role_Id_0
+2025-07-26 17:24:56.165 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.SolverTicketController.Unassigned (Helpdesk)'
+2025-07-26 17:24:56.168 +02:00 [INF] Route matched with {action = "Unassigned", controller = "SolverTicket", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Unassigned(System.String) on controller Helpdesk.Controllers.SolverTicketController (Helpdesk).
+2025-07-26 17:24:56.175 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:24:56.180 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Header", t."HierarchyId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."Id" = w."TicketId"
+LEFT JOIN "SolverHistories" AS s ON t."Id" = s."TicketId"
+ORDER BY t."Id", a."Id", w."Id"
+2025-07-26 17:24:56.188 +02:00 [INF] Executing ViewResult, running view Unassigned.
+2025-07-26 17:24:56.194 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-07-26 17:24:56.206 +02:00 [INF] Executed ViewResult - view Unassigned executed in 18.7515ms.
+2025-07-26 17:24:56.208 +02:00 [INF] Executed action Helpdesk.Controllers.SolverTicketController.Unassigned (Helpdesk) in 37.8878ms
+2025-07-26 17:24:56.210 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.SolverTicketController.Unassigned (Helpdesk)'
+2025-07-26 17:24:56.212 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/SolverTicket/Unassigned - 200 null text/html; charset=utf-8 166.3203ms
+2025-07-26 17:24:56.259 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-26 17:24:56.259 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-07-26 17:24:56.264 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.0002ms
+2025-07-26 17:24:56.275 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.2365ms
+2025-07-26 18:10:06.515 +02:00 [INF] Tickets archived.
+2025-07-26 19:10:06.492 +02:00 [INF] Tickets archived.
+2025-07-26 20:10:06.495 +02:00 [INF] Tickets archived.

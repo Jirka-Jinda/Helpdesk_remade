@@ -1,0 +1,7 @@
+﻿@using Models.Tickets
+@model IReadOnlyCollection<Ticket>
+@{
+	ViewData["Title"] = "Nepřiřazené požadavky";
+}
+
+@await Html.PartialAsync("~/Views/SolverTicket/Components/TicketOverviewPartial.cshtml", Model)

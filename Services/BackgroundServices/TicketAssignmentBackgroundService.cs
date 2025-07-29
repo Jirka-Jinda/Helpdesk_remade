@@ -16,7 +16,7 @@ internal class TicketAssignmentBackgroundService : BackgroundService
     {
         _logger = logger;
         _serviceProvider = serviceProvider;
-        _timer = new(options.Value.AutomaticAssignInterval);
+        _timer = new(options.Value.AutomaticAssignAfter);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
