@@ -5,6 +5,7 @@
 @{
     var ticket = Model;
     var changes = ticket.TicketHistory.OrderByDescending(c => c.TimeCreated).ToList();
+    var triggerValue = WFState.Uzavřený.ToString();
 }
 
 <div class="d-flex flex-row justify-content-center mt-5">
@@ -17,14 +18,7 @@
         <div class="mb-3">
             <label class="form-label fw-bold">Aktuální stav</label>
             <div class="p-3 border rounded bg-light">
-                <span class="badge mx-1 px-2 @(Model.State switch {
-                    WFState.Žádný => "bg-info",
-                    WFState.Uzavřený => "bg-success",
-                    WFState.Vrácený => "bg-danger",
-                    _ => "bg-warning"
-                })">
-                    @Model.State.ToString().Replace('_', ' ')
-                </span>
+                <wf-badge State="@Model.State"></wf-badge>
             </div>
         </div>
 
@@ -33,7 +27,7 @@
             <label class="form-label fw-bold">Historie změn stavu</label>
             @if (changes.Any())
             {
-                @foreach (var change in changes.OrderByDescending(x => x.TimeCreated))
+                @foreach (var change in changes)
                 {
                     <div onclick="location.href='@Url.Action("WorkflowDetail", "SolverTicket", new { ticketId = Model.Id, changeId = change.Id })'" class="p-2 mb-2 border rounded bg-light overflow-hidden icon-link-hover" style="cursor: pointer;">
                         <p class="mb-1"><strong>@change.State.ToString().Replace('_', ' ')</strong> - @change.UserCreated?.UserName</p>
@@ -55,10 +49,18 @@
                 <select class="form-select" id="state" name="state" required>
                     @foreach (var status in WFRules.GetPossibleManualResolutions(ticket.State))
                     {
-                        <option value="@status">@status.ToString().Replace('_', ' ')</option>
+                        var stateStr = status.ToString(); // Plain enum name
+                        <option value="@stateStr">@stateStr.Replace('_', ' ')</option>
                     }
                 </select>
             </div>
+
+            <!-- Conditional comment box -->
+            <div class="mb-3 d-none" id="commentBox">
+                <label for="comment" class="form-label fw-bold">Výsledek (povinné)</label>
+                <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+            </div>
+
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-arrow-repeat me-1"></i>Změnit stav
@@ -67,3 +69,28 @@
         </form>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const stateSelect = document.getElementById('state');
+        const commentBox = document.getElementById('commentBox');
+        const triggerValue = @Html.Raw(Json.Serialize(triggerValue));
+
+        function toggleCommentBox() {
+            const selected = stateSelect.value;
+            if (selected === triggerValue) {
+                commentBox.classList.remove('d-none');
+            } else {
+                commentBox.classList.add('d-none');
+            }
+        }
+
+        // Initial check
+        toggleCommentBox();
+
+        // Bind change event
+        stateSelect.addEventListener('change', toggleCommentBox);
+    });
+</script>
+

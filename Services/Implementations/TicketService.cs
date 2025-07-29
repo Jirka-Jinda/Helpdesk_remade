@@ -108,10 +108,8 @@ public class TicketService : BaseService, ITicketService
             UpdateAuditableData(newEntity, false);
             UpdateAuditableData(ticket, true);
             await _workflowRepository.AddAsync(newEntity, false);
+            await _ticketRepository.SaveChangesAsync();
         }
-        else throw new Exception($"Invalid state of ticket. Cannot change ticket: {ticket.Id} via acton: {action}.");
-
-        await _ticketRepository.SaveChangesAsync();
 
         return ticket;
     }
@@ -149,7 +147,7 @@ public class TicketService : BaseService, ITicketService
 
     public async Task<IEnumerable<Ticket>> GetByStateAsync(WFState state)
     {
-        return await _ticketRepository.GetByParamsAsync(wfState: state);
+        return await _ticketRepository.GetByStateAsync(state);
     }
 
     public async Task<IEnumerable<Ticket>> GetByCategoryAsync(TicketCategory category)
@@ -157,10 +155,14 @@ public class TicketService : BaseService, ITicketService
         return await _ticketRepository.GetByParamsAsync(ticketCategory: category);
     }
 
+    public async Task<IEnumerable<Ticket>> GetByCreatedTime(DateTime startDate, DateTime endDate)
+    {
+        return await _ticketRepository.GetCreatedBetween(startDate, endDate);
+    }
+
     public async Task<Ticket> UpdateAsync(Ticket entity)
     {
         UpdateAuditableData(entity, true);
         return await _ticketRepository.UpdateAsync(entity);
     }
-
 }

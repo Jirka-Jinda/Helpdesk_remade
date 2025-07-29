@@ -51,15 +51,7 @@
                                     <td>@ticket.Solver?.UserName</td>
                                     <td>@ticket.TimeCreated.ToShortDateString()</td>
                                     <td>
-                                        <span class="badge px-2 @(ticket.State switch
-                                              {
-                                                  WFState.Založený => "bg-info",
-                                                  WFState.Uzavřený => "bg-success",
-                                                  WFState.Vrácený => "bg-danger",
-                                                  _ => "bg-warning"
-                                              })">
-                                    @ticket.State
-                                        </span>
+                                        <wf-badge State="@ticket.State"></wf-badge>
                                     </td>
                                 </tr>
                             }

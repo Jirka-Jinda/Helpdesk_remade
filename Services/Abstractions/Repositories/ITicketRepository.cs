@@ -7,7 +7,10 @@ public interface ITicketRepository : IRepository<Ticket>
 {
     public Task<ICollection<Ticket>> GetByParamsAsync(
         Guid? creatorId = null,
-        WFState? wfState = null,
         TicketCategory? ticketCategory = null,
         string? header = null);
+
+    public Task<ICollection<Ticket>> GetByStateAsync(WFState wfState);
+
+    public Task<ICollection<Ticket>> GetCreatedBetween(DateTime startTime, DateTime endTime);
 }

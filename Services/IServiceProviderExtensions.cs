@@ -13,6 +13,7 @@ public static class IServiceCollectionExtensions
         services.AddTransient<INavigationService, NavigationService>();
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<ITicketService, TicketService>();
+        services.AddTransient<IStatisticsService, StatisticsService>();
         services.AddSingleton<PasswordGeneratorService>();
 
         return services;

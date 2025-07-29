@@ -26,8 +26,14 @@
 
             <p class="mb-1">
                 <strong>Stav:</strong>
-				@ViewFunctions.CreateStateBadge(Model.State)
+				<wf-badge State="@Model.State"></wf-badge>
             </p>
+
+            @if (Model.Result != "")
+            {
+                <hr />
+                <p class="mb-1"><strong>Výsledek:</strong> @Model.Result</p>
+            }
 
             <hr />
             <p>@Model.Content</p>

@@ -6,6 +6,7 @@
 @{
     var changes = Model.SolverHistory;
     var solvers = await userService.GetUsersByRoleAsync(Models.Users.UserType.Řešitel);
+    var singedUser = userService.GetSignedInUser();
 }
 
 <div class="d-flex flex-row justify-content-center mt-5">
@@ -34,10 +35,10 @@
             <label class="form-label fw-bold">Historie řešitelů</label>
             @if (changes.Any())
             {
-                @foreach (var change in changes.OrderByDescending(x => x.TimeCreated))
+                @foreach (var change in changes)
                 {
                     <div onclick="location.href='@Url.Action("SolverDetail", "SolverTicket", new { ticketId = Model.Id, changeId = change.Id })'" class="p-2 mb-2 border rounded bg-light overflow-hidden icon-link-hover" style="cursor: pointer;">
-                        <p class="mb-1"><strong>@change.Solver?.UserName</strong>@(change.Comment == "" ? "" : " - " + change.Comment)</p>
+                        <p class="mb-1"><strong>@change.Solver?.UserName</strong></p>
                         <small class="text-muted">@change.TimeCreated.ToShortDateString() - @change.TimeCreated.ToString("HH:mm")</small>
                     </div>
                 }
@@ -49,29 +50,54 @@
         </div>
 
         <!-- Change Solver Form -->
-        <form asp-action="ChangeSolver" method="post">
-            <input type="hidden" name="ticketId" value="@Model.Id" />
+        @if (Model.State != Models.Workflows.WFState.Uzavřený)
+        {
+            <form asp-action="ChangeSolver" method="post">
+                <input type="hidden" name="ticketId" value="@Model.Id" />
 
-            <div class="mb-3">
-                <label for="newSolver" class="form-label fw-bold">Změnit řešitele</label>
-                <select class="form-select" id="newSolver" name="newSolver" required>
-                    @foreach (var solver in solvers)
+                <div class="mb-3">
+                    <label for="newSolver" class="form-label fw-bold">Změnit řešitele</label>
+                    <select class="form-select" id="newSolver" name="newSolver" required>
+                        @foreach (var solver in solvers)
+                        {
+                            if (solver != Model.Solver)
+                            {
+                                <option value="@solver.Id">@solver</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="comment" class="form-label fw-bold">Komentář ke změně</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Doplňující komentář"></textarea>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    @if (singedUser is not null)
                     {
-                        <option value="@solver.Id">@solver</option>
+                        <button type="submit" class="btn btn-primary" onclick="assignToMe('@singedUser.Id', '')">
+                            <i class="bi bi-person-check me-1"></i>Přiřadit mně
+                        </button>
                     }
-                </select>
-            </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-person-plus me-1"></i>Přiřadit
+                    </button>
+                </div>
+            </form>
 
-            <div class="mb-3">
-                <label for="comment" class="form-label fw-bold">Komentář ke změně</label>
-                <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Doplňující komentář"></textarea>
-            </div>
-
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-person-plus me-1"></i>Přiřadit
-                </button>
-            </div>
-        </form>
+        }
+        else
+        {
+            <div class="p-3 border rounded bg-light text-muted text-center">V tomto stavu nelze měnit</div>
+        }
     </div>
 </div>
+
+<script>
+    function assignToMe(userId, comment) {
+        document.getElementById('newSolver').value = userId;
+        document.getElementById('comment').value = comment;
+        document.querySelector('form').submit();
+    }
+</script>

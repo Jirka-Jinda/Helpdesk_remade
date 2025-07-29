@@ -107,6 +107,8 @@ var localizationOptions = new RequestLocalizationOptions()
 
 app.UseRequestLocalization(localizationOptions);
 
+Console.WriteLine(typeof(Program).Assembly.GetName().Name);
+
 app.Run();
 
 public partial class Program;

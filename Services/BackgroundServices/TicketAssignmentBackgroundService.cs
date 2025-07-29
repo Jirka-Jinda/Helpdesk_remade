@@ -2,6 +2,9 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Models.Tickets;
+using Models.Workflows;
+using Services.Abstractions.Services;
 using Services.Options;
 
 namespace Services.BackgroundServices;
@@ -11,12 +14,19 @@ internal class TicketAssignmentBackgroundService : BackgroundService
     private readonly ILogger<TicketAssignmentBackgroundService> _logger;
     private readonly IServiceProvider _serviceProvider;
     private readonly PeriodicTimer _timer;
+    private readonly TimeSpan _assignTicketOlderThan;
+    private readonly IReadOnlyCollection<WFState> _assignForStates =
+    [
+        WFState.Založený,
+        WFState.Nepřidělený
+    ];
 
     public TicketAssignmentBackgroundService(ILogger<TicketAssignmentBackgroundService> logger, IServiceProvider serviceProvider, IOptions<TicketAssignmentOptions> options)
     {
         _logger = logger;
         _serviceProvider = serviceProvider;
         _timer = new(options.Value.AutomaticAssignAfter);
+        _assignTicketOlderThan = options.Value.AutomaticAssignAfter;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -25,7 +35,40 @@ internal class TicketAssignmentBackgroundService : BackgroundService
         {
             using (var scope = _serviceProvider.CreateScope())
             {
-                // TODO assign tickets
+                var ticketService = scope.ServiceProvider.GetRequiredService<ITicketService>();
+                var statisticsService = scope.ServiceProvider.GetRequiredService<IStatisticsService>();                
+
+                List<Ticket> ticketsToAssign = new();
+                foreach (var state in _assignForStates)
+                {
+                    var ticketsWithState = await ticketService.GetByStateAsync(state);
+                    ticketsToAssign.AddRange(ticketsWithState.Where(ticket => ticket.TimeCreated < DateTime.UtcNow - _assignTicketOlderThan));
+                }
+
+                var solverStats = await statisticsService.GetAssignedTicketCountsBySolverAsync();
+
+                foreach (var ticket in ticketsToAssign)
+                {
+                    var leastAssignedSolver = solverStats
+                            .Where(solver => solver.Key.CategoryPreferences.Contains(ticket.Category))
+                            .OrderBy(assigned => assigned.Value)
+                            .FirstOrDefault().Key;
+
+                    if (leastAssignedSolver is null)
+                        leastAssignedSolver = solverStats
+                            .MinBy(solver => solver.Value).Key;
+
+                    if (leastAssignedSolver is not null)
+                    {
+                        await ticketService.ChangeSolverAsync(ticket, leastAssignedSolver, "Automaticky přiděleno.");
+                        solverStats[leastAssignedSolver] += 1;
+                        _logger.LogInformation($"Ticket {ticket.Id} automatically assigned to {leastAssignedSolver.UserName}.");
+                    }
+                    else
+                    {
+                        _logger.LogWarning("No available solver found for ticket {TicketId}.", ticket.Id);
+                    }
+                }
             }
 
             _logger.LogInformation("Tickets assigned.");

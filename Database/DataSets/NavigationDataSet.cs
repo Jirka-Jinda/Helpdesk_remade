@@ -47,32 +47,24 @@ internal class NavigationDataSet : IDataSet
             Icon = "plus-square",
             Route = new NavigationRoute("", "SolverTicket", "Create"),
         });
-        var tickets = new NavigationNode()
-        {
-            Name = "Požadavky",
-            Icon = "chevron-down",
-        };
-        solverNav.Root.AddChild(tickets);
-
-        tickets.AddChild(new NavigationNode()
+        solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Všechny",
             Icon = "list",
             Route = new NavigationRoute("", "SolverTicket", "Overview"),
         });
-        tickets.AddChild(new NavigationNode()
+        solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Nepřiřazené",
             Icon = "list-nested",
             Route = new NavigationRoute("", "SolverTicket", "Unassigned"),
         });
-        tickets.AddChild(new NavigationNode()
+        solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Přiřazené",
             Icon = "person-lines-fill",
             Route = new NavigationRoute("", "SolverTicket", "Assigned"),
         });
-
         solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Archiv",
@@ -80,7 +72,13 @@ internal class NavigationDataSet : IDataSet
             Route = new NavigationRoute("", "SolverTicket", "Archive"),
         });
 
-        await navigtaionRepository.AddAsync(userNav, false);
-        await navigtaionRepository.AddAsync(solverNav);
+        // Auditor navigation
+        var auditNav = new Navigation();
+        auditNav.Name = "Main";
+        auditNav.AuthorizedUserType = UserType.Auditor;
+
+        await navigtaionRepository.AddAsync(solverNav, false);
+        await navigtaionRepository.AddAsync(auditNav, false);
+        await navigtaionRepository.AddAsync(userNav);
     }
 }

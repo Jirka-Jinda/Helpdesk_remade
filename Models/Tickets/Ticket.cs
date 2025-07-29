@@ -10,9 +10,11 @@ public class Ticket : AuditableObject
 {
     public Ticket? Hierarchy { get; private set; } = null;
     public List<WorkflowHistory> TicketHistory { get; private set; } = [];
-    public WFState State => TicketHistory.LastOrDefault()?.State ?? WFState.Založený;
+    public WorkflowHistory? LastWorkflowHistory { get; set; } = null;
+    public WFState State => LastWorkflowHistory?.State ?? WFState.Založený;
     public List<SolverHistory> SolverHistory { get; private set; } = [];
-    public ApplicationUser? Solver => SolverHistory.LastOrDefault()?.Solver;
+    public SolverHistory? LastSolverHistory { get; set; } = null;
+    public ApplicationUser? Solver => LastSolverHistory?.Solver;
     public MessageThread MessageThread { get; private set; } = new();
     public Priority Priority { get; private set; } = Priority.Střední;
     public string Header { get; set; } = string.Empty;
@@ -42,14 +44,22 @@ public class Ticket : AuditableObject
         {
             var newState = WFRules.ActionResolutions(State, action);
 
-            var newChange = new WorkflowHistory()
-            {
-                State = newState,
-                Action = action,
-                Comment = comment,
-            };
+            if (newState == State)
+                return null;
+            else if (newState == WFState.Uzavřený)
+                Result = comment;
+            else if (State == WFState.Uzavřený && newState != WFState.Uzavřený)
+                Result = string.Empty;
+
+                var newChange = new WorkflowHistory()
+                {
+                    State = newState,
+                    Action = action,
+                    Comment = comment,
+                };
 
             TicketHistory.Add(newChange);
+            LastWorkflowHistory = newChange;
 
             return newChange;
         }
@@ -66,6 +76,7 @@ public class Ticket : AuditableObject
         };
 
         SolverHistory.Add(newChange);
+        LastSolverHistory = newChange;
 
         return newChange;
     }

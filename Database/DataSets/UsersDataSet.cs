@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Models.Tickets;
 using Models.Users;
 
 namespace Database.DataSets;
@@ -25,24 +26,35 @@ internal class UsersDataSet : IDataSet
 
         var random = new Random();
         var userTypes = Enum.GetValues(typeof(UserType)).Cast<UserType>().ToList();
+        var ticketCategories = Enum.GetValues(typeof(TicketCategory)).Cast<TicketCategory>().ToList();
         var password = "TestPassword123!";
 
         // Create users with random roles
         for (int counter = 0; counter < USER_COUNT; counter++)
         {
             var id = Guid.NewGuid();
+            var userType = userTypes[random.Next(userTypes.Count)];
             var newUser = new ApplicationUser() 
             {
                 Id = id,
                 Email = $"user_{id.ToString()}@example.com",
                 UserName = $"user_{id.ToString()}".Substring(0, 12),
             };
+            if (userType == UserType.Řešitel)
+            {
+                newUser.CategoryPreferences = new()
+                {
+                    ticketCategories[random.Next(ticketCategories.Count)],
+                    ticketCategories[random.Next(ticketCategories.Count)],
+                    ticketCategories[random.Next(ticketCategories.Count)]
+                };
+            }
             var res = await userManager.CreateAsync(newUser);
             if (!res.Succeeded)
                 throw new Exception($"Failed to create user {newUser.UserName}: {string.Join(", ", res.Errors.Select(e => e.Description))}");
             await userManager.AddPasswordAsync(newUser, password);
 
-            await userManager.AddToRoleAsync(newUser, userTypes[random.Next(userTypes.Count)].ToString());
+            await userManager.AddToRoleAsync(newUser, userType.ToString());
         }
 
         // Add a specific user for testing purposes

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250722131002_InitialCreate")]
+    [Migration("20250729150635_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -299,6 +299,12 @@ namespace Database.Migrations
                     b.Property<Guid?>("HierarchyId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("LastSolverHistoryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("LastWorkflowHistoryId")
+                        .HasColumnType("uuid");
+
                     b.Property<Guid>("MessageThreadId")
                         .HasColumnType("uuid");
 
@@ -324,6 +330,10 @@ namespace Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("HierarchyId");
+
+                    b.HasIndex("LastSolverHistoryId");
+
+                    b.HasIndex("LastWorkflowHistoryId");
 
                     b.HasIndex("MessageThreadId");
 
@@ -413,6 +423,10 @@ namespace Database.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
+
+                    b.Property<int[]>("CategoryPreferences")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -621,6 +635,14 @@ namespace Database.Migrations
                         .WithMany()
                         .HasForeignKey("HierarchyId");
 
+                    b.HasOne("Models.Tickets.SolverHistory", "LastSolverHistory")
+                        .WithMany()
+                        .HasForeignKey("LastSolverHistoryId");
+
+                    b.HasOne("Models.Tickets.WorkflowHistory", "LastWorkflowHistory")
+                        .WithMany()
+                        .HasForeignKey("LastWorkflowHistoryId");
+
                     b.HasOne("Models.Messages.MessageThread", "MessageThread")
                         .WithMany()
                         .HasForeignKey("MessageThreadId")
@@ -636,6 +658,10 @@ namespace Database.Migrations
                         .HasForeignKey("UserUpdatedId");
 
                     b.Navigation("Hierarchy");
+
+                    b.Navigation("LastSolverHistory");
+
+                    b.Navigation("LastWorkflowHistory");
 
                     b.Navigation("MessageThread");
 

@@ -6,7 +6,6 @@ public enum Priority
     Střední = 2,
     Vysoká = 3,
     Kritická = 4,
-    Extrémní = 5,
-    Neznámá = 6,
-    Žádná = 7,
+    Neznámá = 5,
+    Žádná = 6,
 }
