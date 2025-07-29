@@ -37,7 +37,20 @@
 
             <hr />
             <p>@Model.Content</p>
+
         </div>
+
+        @if (Model.State == WFState.Uzavřený && User.IsInRole(UserType.Zadavatel.ToString()))
+        {
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-controller="UserTicket" asp-action="ArchiveTicket" asp-route-ticketId=@Model class="btn btn-primary">
+                    <i class="bi bi-archive me-1"></i>Archivovat
+                </a>
+                <a asp-controller="UserTicket" asp-action="ReturnTicket" asp-route-ticketId=@Model class="btn btn-primary">
+                    <i class="bi bi-arrow-return-left me-1"></i>Vrátit k řešení
+                </a>
+            </div>
+        }
 
         <!-- Messages Section -->
         <div class="text-center mt-4">

@@ -38,7 +38,7 @@ public class Ticket : AuditableObject
         MessageThread.RemoveMessage(message);
     }
 
-    public WorkflowHistory? ChangeWF(WFAction action, string comment)
+    public WorkflowHistory? ChangeWF(WFAction action, string comment, DateTime? actionDate = null)
     {
         if (WFRules.StateActions(State).Contains(action))
         {
@@ -56,6 +56,7 @@ public class Ticket : AuditableObject
                     State = newState,
                     Action = action,
                     Comment = comment,
+                    ActionDate = actionDate
                 };
 
             TicketHistory.Add(newChange);

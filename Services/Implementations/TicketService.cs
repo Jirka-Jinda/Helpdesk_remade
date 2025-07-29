@@ -100,9 +100,18 @@ public class TicketService : BaseService, ITicketService
         return ticket;
     }
 
-    public async Task<Ticket> ChangeWFAsync(Ticket ticket, WFAction action, string comment)
+    public async Task<Ticket> ChangeWFAsync(Ticket ticket, WFAction action, string comment, DateTime? reactivate = null)
     {
-        var newEntity = ticket.ChangeWF(action, comment);
+        if (reactivate is not null)
+            reactivate = reactivate.Value.ToUniversalTime();
+
+        var newEntity = ticket.ChangeWF(action, comment, reactivate);
+
+        if (action == WFAction.Vrácení && _emailService is not null)
+        {
+            // send email
+        }
+
         if (newEntity != null)
         {
             UpdateAuditableData(newEntity, false);

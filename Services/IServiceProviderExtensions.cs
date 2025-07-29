@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Services.Abstractions.Services;
 using Services.BackgroundServices;
 using Services.Implementations;
+using Services.Options;
 
 namespace Services;
 
@@ -15,6 +17,14 @@ public static class IServiceCollectionExtensions
         services.AddTransient<ITicketService, TicketService>();
         services.AddTransient<IStatisticsService, StatisticsService>();
         services.AddSingleton<PasswordGeneratorService>();
+
+        var options = new TicketActivatorBackgroundOptions
+        {
+            ActivationInterval = TimeSpan.FromHours(6)
+        };
+        services.AddSingleton<IOptions<TicketActivatorBackgroundOptions>>(
+            new OptionsWrapper<TicketActivatorBackgroundOptions>(options));
+        services.AddHostedService<TicketActivatorBackgroundService>();
 
         return services;
     }

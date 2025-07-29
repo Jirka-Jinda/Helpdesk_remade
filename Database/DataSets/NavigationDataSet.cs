@@ -27,13 +27,13 @@ internal class NavigationDataSet : IDataSet
         userNav.Root.AddChild(new NavigationNode()
         {
             Name = "Požadavky",
-            Icon = "list-ul",
+            Icon = "person-lines-fill",
             Route = new NavigationRoute("", "UserTicket", "Overview"),
         });
         userNav.Root.AddChild(new NavigationNode()
         {
             Name = "Archiv",
-            Icon = "list-check",
+            Icon = "archive",
             Route = new NavigationRoute("", "UserTicket", "Archive"),
         });
 
@@ -56,7 +56,7 @@ internal class NavigationDataSet : IDataSet
         solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Nepřiřazené",
-            Icon = "list-nested",
+            Icon = "list-check",
             Route = new NavigationRoute("", "SolverTicket", "Unassigned"),
         });
         solverNav.Root.AddChild(new NavigationNode()
@@ -68,7 +68,7 @@ internal class NavigationDataSet : IDataSet
         solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Archiv",
-            Icon = "list-check",
+            Icon = "archive",
             Route = new NavigationRoute("", "SolverTicket", "Archive"),
         });
 

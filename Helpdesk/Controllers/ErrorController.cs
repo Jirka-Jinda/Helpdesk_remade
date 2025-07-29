@@ -11,21 +11,21 @@ public class ErrorController : Controller
         _logger = logger;
     }
 
-    public IActionResult Code403(string? details = null)
+    public IActionResult Code403()
     {
-        _logger.LogWarning("User unauthorized." + details);
+        _logger.LogWarning("User unauthorized.");
         return View();
     }
 
-    public IActionResult Code404(string? details = null)
+    public IActionResult Code404()
     {
-        _logger.LogError("Page not found. " + details);
+        _logger.LogError("Page not found.");
         return View();
     }
 
-    public IActionResult Code500(string? details = null)
+    public IActionResult Code500()
     {
-        _logger.LogError("Internal server error. " + details);
+        _logger.LogError("Internal server error.");
         return View();
     }
 }

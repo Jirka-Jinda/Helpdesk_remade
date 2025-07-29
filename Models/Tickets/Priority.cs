@@ -2,10 +2,10 @@
 
 public enum Priority
 {
-    Nízká = 1,
-    Střední = 2,
-    Vysoká = 3,
-    Kritická = 4,
-    Neznámá = 5,
-    Žádná = 6,
+    Žádná = 1,
+    Neznámá = 2,
+    Nízká = 3,
+    Střední = 4,
+    Vysoká = 5,
+    Kritická = 6,
 }

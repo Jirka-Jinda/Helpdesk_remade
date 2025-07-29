@@ -15,7 +15,7 @@ public interface ITicketService : IService<Ticket>
     public Task<IEnumerable<Ticket>> GetByCreatedTime(DateTime startDate, DateTime endDate);
     public Task<Ticket> AddMessageAsync(Ticket ticket, string content);
     public Task<Ticket> RemoveMessageAsync(Ticket ticket, Message message);
-    public Task<Ticket> ChangeWFAsync(Ticket ticket, WFAction action, string comment);
+    public Task<Ticket> ChangeWFAsync(Ticket ticket, WFAction action, string comment, DateTime? reactivate = null);
     public Task<Ticket> ChangeSolverAsync(Ticket ticket, ApplicationUser newSolver, string coment);
     public Task<Ticket?> ChangeHierarchyAsync(Ticket ticket, Ticket? parentTicket);
 }

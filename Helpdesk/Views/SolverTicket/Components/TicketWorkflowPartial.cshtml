@@ -5,7 +5,8 @@
 @{
     var ticket = Model;
     var changes = ticket.TicketHistory.OrderByDescending(c => c.TimeCreated).ToList();
-    var triggerValue = WFState.Uzavřený.ToString();
+    var triggerResultValue = WFState.Uzavřený.ToString();
+    var triggerReactivateValue = WFState.Neaktivní.ToString();
 }
 
 <div class="d-flex flex-row justify-content-center mt-5">
@@ -61,6 +62,13 @@
                 <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
             </div>
 
+            <!-- Conditional date box -->
+            <div class="mb-3 d-none" id="dateBox">
+                <label for="reactivate" class="form-label fw-bold">Reaktivace</label>
+                <input name="reactivate" id="reactivate" class="form-control" type="date"
+                       min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            </div>
+
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-arrow-repeat me-1"></i>Změnit stav
@@ -75,7 +83,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const stateSelect = document.getElementById('state');
         const commentBox = document.getElementById('commentBox');
-        const triggerValue = @Html.Raw(Json.Serialize(triggerValue));
+        const triggerValue = @Html.Raw(Json.Serialize(triggerResultValue));
 
         function toggleCommentBox() {
             const selected = stateSelect.value;
@@ -91,6 +99,27 @@
 
         // Bind change event
         stateSelect.addEventListener('change', toggleCommentBox);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const stateSelect = document.getElementById('state');
+        const dateBox = document.getElementById('dateBox');
+        const triggerValue = @Html.Raw(Json.Serialize(triggerReactivateValue));
+
+        function toggleDateBox() {
+            const selected = stateSelect.value;
+            if (selected === triggerValue) {
+                dateBox.classList.remove('d-none');
+            } else {
+                dateBox.classList.add('d-none');
+            }
+        }
+
+        // Initial check
+        toggleDateBox();
+
+        // Bind change event
+        stateSelect.addEventListener('change', toggleDateBox);
     });
 </script>
 

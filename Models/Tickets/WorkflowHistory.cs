@@ -9,6 +9,5 @@ public class WorkflowHistory : AuditableObject
     public WFState State { get; set; } = WFState.Žádný;
     public WFAction Action { get; set; } = WFAction.Založení;
     public string? Comment { get; set; } = null;
-    public DateTime ActionDate { get; set; } = DateTime.UtcNow;
-
+    public DateTime? ActionDate { get; set; } = null;
 }

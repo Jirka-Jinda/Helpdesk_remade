@@ -36,7 +36,8 @@ internal class TicketAssignmentBackgroundService : BackgroundService
             using (var scope = _serviceProvider.CreateScope())
             {
                 var ticketService = scope.ServiceProvider.GetRequiredService<ITicketService>();
-                var statisticsService = scope.ServiceProvider.GetRequiredService<IStatisticsService>();                
+                var statisticsService = scope.ServiceProvider.GetRequiredService<IStatisticsService>();
+                var emailService = scope.ServiceProvider.GetService<IEmailService>();
 
                 List<Ticket> ticketsToAssign = new();
                 foreach (var state in _assignForStates)
@@ -67,6 +68,21 @@ internal class TicketAssignmentBackgroundService : BackgroundService
                     else
                     {
                         _logger.LogWarning("No available solver found for ticket {TicketId}.", ticket.Id);
+                    }
+                }
+
+                if (emailService is not null)
+                {
+                    foreach (var notification in solverStats)
+                    {
+                        if (notification.Key.NotificationsEnabled && notification.Key.Email is not null)
+                        {
+                            var subject = "Přidělení požadavků";
+                            var body = $"Bylo vám přiděleno {notification.Value} nových požadavků.";
+
+                            await emailService.SendEmailAsync(notification.Key.Email, subject, body);
+                            _logger.LogInformation($"Notification sent to {notification.Key.UserName} for assigned tickets");
+                        }
                     }
                 }
             }

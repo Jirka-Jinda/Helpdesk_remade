@@ -150,7 +150,7 @@ public class SolverTicketController : Controller
             return BadRequest();
 
         var result = await _ticketService.ChangeSolverAsync(ticket, user, comment);
-        await _ticketService.ChangeWFAsync(ticket, WFAction.Přidělení_ručně, "");
+        await _ticketService.ChangeWFAsync(ticket, WFAction.Přidělení_ručně, "Přiřazen řešitel");
 
         return View("Detail", result);
     }
@@ -169,7 +169,7 @@ public class SolverTicketController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> ChangeWorkflow(Guid ticketId, string state, string comment)
+    public async Task<IActionResult> ChangeWorkflow(Guid ticketId, string state, string comment, DateTime? reactivate)
     {
         var ticket = await _ticketService.GetAsync(ticketId);
         var user = _userService.GetSignedInUser();
@@ -178,7 +178,7 @@ public class SolverTicketController : Controller
             return BadRequest();
 
         var action = WFRules.GetActionFromResolution(ticket.State, Enum.Parse<WFState>(state));
-        var result = await _ticketService.ChangeWFAsync(ticket, action, comment);
+        var result = await _ticketService.ChangeWFAsync(ticket, action, comment, reactivate);
 
         return View("Detail", result);
     }

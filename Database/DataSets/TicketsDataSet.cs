@@ -32,7 +32,7 @@ internal class TicketsDataSet : IDataSet
                 Content = $"This is the content for example ticket {counter + 1}.",
                 UserCreated = users[random.Next(users.Count)],
             };
-            ticket.ChangePriority((Priority)random.Next(1, 5));
+            ticket.ChangePriority((Priority)random.Next(3, 7));
             ticket.Category = (TicketCategory)random.Next(1, 9);
 
             context.Tickets.Add(ticket);

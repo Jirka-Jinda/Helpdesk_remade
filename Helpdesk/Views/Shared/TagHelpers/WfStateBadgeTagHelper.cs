@@ -12,15 +12,15 @@ public class WfStateBadgeTagHelper : TagHelper
     {
         var background = State switch
         {
-            WFState.Založený => "bg-info",
-            WFState.Uzavřený => "bg-success",
-            WFState.Vrácený => "bg-danger",
+            WFState.Založený => "bg-info text-dark",
+            WFState.Uzavřený => "bg-success text-dark",
+            WFState.Vrácený => "bg-danger text-dark",
             WFState.Neaktivní => "bg-dark",
-            _ => "bg-warning"
+            _ => "bg-warning text-dark"
         };
 
         output.TagName = "span";
-        output.Attributes.SetAttribute("class", $"badge text-dark mx-1 px-2 {background}");
+        output.Attributes.SetAttribute("class", $"badge mx-1 px-2 {background}");
         output.Content.SetHtmlContent(State.ToString().Replace('_', ' '));
 
         return Task.CompletedTask;

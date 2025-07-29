@@ -350,7 +350,7 @@ namespace Database.Migrations
                     b.Property<int>("Action")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("ActionDate")
+                    b.Property<DateTime?>("ActionDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Comment")

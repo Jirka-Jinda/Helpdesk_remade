@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Workflows;
 using Services.Abstractions.Services;
 using ViewModels.Ticket;
 
@@ -87,11 +88,28 @@ public class UserTicketController : Controller
 
         return View("Detail", ticket);
     }
-
-    [HttpGet]
     public IActionResult Archive()
     {
         return View();
     }
 
+    public async Task<IActionResult> ArchiveTicket(Guid ticketId)
+    {
+        var ticket = await _ticketService.GetAsync(ticketId);
+
+        return View("Detail");
+    }
+
+    public async Task<IActionResult> ReturnTicket(Guid ticketId)
+    {
+        var ticket = await _ticketService.GetAsync(ticketId);
+        var user = _userService.GetSignedInUser();
+
+        if (ticket is null || user is null || ticket.State != WFState.Uzavřený)
+            return BadRequest();
+
+        var result = await _ticketService.ChangeWFAsync(ticket, WFAction.Vrácení, "Vráceno uživatelem.");
+
+        return View("Detail", result);
+    }
 }

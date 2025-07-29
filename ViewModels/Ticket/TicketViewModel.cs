@@ -11,6 +11,8 @@ public class TicketViewModel
     [Required]
     public required string Content { get; set; }
 
+    public DateOnly Deadline { get; set; }
+
     [Required]
     public required TicketCategory Category { get; set; }
 
