@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Users;
 using Services.Abstractions.Services;
@@ -7,6 +7,7 @@ using ViewModels.User;
 
 namespace Helpdesk.Controllers;
 
+[AllowAnonymous]
 public class AccessController : Controller
 {
     private readonly ILogger<AccessController> _logger;
@@ -27,11 +28,10 @@ public class AccessController : Controller
     }
 
     [HttpPost]
-    [AllowAnonymous]
     public async Task<IActionResult> Login(ApplicationUserViewModel userModel)
     {
         if (!ModelState.IsValid)
-            return PartialView();
+            return View();
 
         var result = await _userService.SignInAsync(userModel.Email, userModel.Password, userModel.RememberMe);
         if (result.Succeeded)
@@ -54,9 +54,16 @@ public class AccessController : Controller
     public async Task<IActionResult> Register(ApplicationUserViewModel userModel)
     {
         if (!ModelState.IsValid)
-            return PartialView("Register");
+        {
+            ViewBag.RegisterFailed = true;
+            return View("Register");
+        }
 
-        var user = new ApplicationUser { Email = userModel.Email };
+        var user = new ApplicationUser { 
+            UserName = userModel.UserName,
+            Email = userModel.Email, 
+            NotificationsEnabled = userModel.EnableNotifications 
+        };
 
         if (userModel.UserName is null)
             user.SetNameFromEmail();
@@ -74,10 +81,11 @@ public class AccessController : Controller
         }
 
         ViewBag.RegisterFailed = true;
-        return PartialView();
+        return View();
     }
 
     [HttpGet]
+    [Authorize(Roles = "Zadavatel, Auditor, Řešitel")]
     public async Task<IActionResult> Logout()
     {
         await _userService.SignOutAsync();
@@ -85,12 +93,15 @@ public class AccessController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Zadavatel, Auditor, Řešitel")]
+
     public IActionResult Reset()
     {
         return View();
     }
 
     [HttpPost]
+    [Authorize(Roles = "Zadavatel, Auditor, Řešitel")]
     public async Task<IActionResult> Reset(ApplicationUserViewModel model)
     {
         var user = await _userService.GetUserByEmailAsync(model.Email);

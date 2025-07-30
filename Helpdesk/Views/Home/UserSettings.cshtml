@@ -11,7 +11,7 @@
             <h4>Uživatelské nastavení - @Model.UserName</h4>
         </div>
 
-        @if (ViewBag.UpdateFailed != null && (bool)ViewBag.RegisterFailed)
+        @if (ViewBag.UpdateFailed != null && (bool)ViewBag.UpdateFailed)
         {
             <div class="alert alert-danger text-center text-wrap">
                 Neplatné údaje. Zkuste to prosím znovu.
@@ -39,6 +39,10 @@
                     <input name="NewPassword" asp-for="NewPassword" type="password" class="form-control" placeholder="Zadejte nové heslo">
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="form-check mb-3">
+                <input name="enableNotifications" asp-for="EnableNotifications" class="form-check-input form-checked-content" type="checkbox" id="enableNotifications">
+                <label asp-for="EnableNotifications" class="form-check-label fw-bold">Povolit notifikace</label>
             </div>
 
 @*          <div class="text-center my-4">

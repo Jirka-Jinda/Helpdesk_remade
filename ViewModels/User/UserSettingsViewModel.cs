@@ -8,9 +8,11 @@ public class UserSettingsViewModel
 
     public string? UserName { get; set; } = null;
 
-    public string Password { get; set; } = string.Empty;
+    public string? Password { get; set; } = string.Empty;
 
     public string? NewPassword { get; set; } = null;
+
+    public bool EnableNotifications { get; set; }
 
     public UserSettingsViewModel(ApplicationUser? user)
     {
@@ -18,6 +20,7 @@ public class UserSettingsViewModel
         {
             Id = user.Id;
             UserName = user.UserName;
+            EnableNotifications = user.NotificationsEnabled;
         }
     }
 

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Users;
 using Services.Abstractions.Services;
 using ViewModels.User;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Helpdesk.Controllers
 {
@@ -77,10 +76,11 @@ namespace Helpdesk.Controllers
             if (refreshUser != null) 
             {
                 refreshUser.UserName = updatedUser.UserName;
+                refreshUser.NotificationsEnabled = updatedUser.EnableNotifications;
 
                 results.Add(await _userService.UpdateAsync(refreshUser));
 
-                if (updatedUser.NewPassword != null)
+                if (updatedUser.NewPassword != null && updatedUser.Password != null)
                     results.Add(await _userService.UpdatePasswordAsync(refreshUser, updatedUser.Password, updatedUser.NewPassword));
 
                 if (results.All(res => res.Succeeded == true))
@@ -88,7 +88,7 @@ namespace Helpdesk.Controllers
             }
 
             ViewBag.UpdateFailed = true;
-            return View();
+            return View(new UserSettingsViewModel(_userService.GetSignedInUser()));
         }
     }
 }

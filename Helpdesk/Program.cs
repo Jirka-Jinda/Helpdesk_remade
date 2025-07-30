@@ -1,6 +1,7 @@
 ﻿using Database;
 using Database.Context;
 using Helpdesk.Filters;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.Users;
 using Serilog;
@@ -21,16 +22,27 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Database")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+//    {
+//        options.User.AllowedUserNameCharacters =
+//        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ěščřžýáíéúůňďťĚŠČŘŽÝÁÍÉÚŮŇĎŤ ";
+//    })
+//    .AddRoles<ApplicationRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     {
         options.User.AllowedUserNameCharacters =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ěščřžýáíéúůňďťĚŠČŘŽÝÁÍÉÚŮŇĎŤ ";
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ěščřžýáíéúůňďťĚŠČŘŽÝÁÍÉÚŮŇĎŤ ";
     })
-    .AddRoles<ApplicationRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
+    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+    options.SlidingExpiration = true;
+
     options.LoginPath = "/Access/Login";
     options.LogoutPath = "/Access/Logout";
     options.AccessDeniedPath = "/Error/Code403";
@@ -40,7 +52,7 @@ builder.Services.AddRepositories();
 
 builder.Services.AddServices();
 
-builder.Services.Configure<EmailNotificationsOptions>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.Configure<EmailNotificationsOptions>(builder.Configuration.GetSection("EmailNotificationsOptions"));
 builder.Services.AddEmailNotificationService(builder.Configuration);
 
 builder.Services.Configure<LogRetentionOptions>(builder.Configuration.GetSection("LogRetentionOptions"));
@@ -69,6 +81,8 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(15);
 });
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 await app.Services.ApplyMigrationsAsync(builder.Configuration);
@@ -91,6 +105,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseSession();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

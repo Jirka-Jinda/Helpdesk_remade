@@ -52,7 +52,7 @@
         <div class="mb-2">
             <label class="form-label fw-bold">Vytvořil</label>
             <div class="p-3 border rounded bg-light">
-                @(Model.Item2.UserCreated?.UserName ?? Model.Item2.UserCreated?.Email ?? "Neznámý uživatel")
+                @(Model.Item2.UserCreated?.UserName ?? Model.Item2.UserCreated?.Email ?? "Helpdesk služba")
                 <br />
                 <small class="text-muted">@Model.Item2.TimeCreated.ToString("dd.MM.yyyy HH:mm")</small>
             </div>
@@ -63,7 +63,7 @@
             <div class="mb-2">
                 <label class="form-label fw-bold">Upravil</label>
                 <div class="p-3 border rounded bg-light">
-                    @(Model.Item2.UserUpdated?.UserName ?? Model.Item2.UserUpdated?.Email ?? "Neznámý uživatel")
+                    @(Model.Item2.UserUpdated?.UserName ?? Model.Item2.UserUpdated?.Email ?? "Helpdesk služba")
                     <br />
                     <small class="text-muted">@Model.Item2.TimeUpdated?.ToString("dd.MM.yyyy HH:mm")</small>
                 </div>

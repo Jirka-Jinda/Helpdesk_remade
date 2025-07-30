@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 using Models.Navigation;
 using Models.Users;
 using Services.Abstractions.Repositories;
+using System.Xml.Linq;
 
 namespace Database.DataSets;
 
@@ -56,7 +58,7 @@ internal class NavigationDataSet : IDataSet
         solverNav.Root.AddChild(new NavigationNode()
         {
             Name = "Nepřiřazené",
-            Icon = "list-check",
+            Icon = "list-ul",
             Route = new NavigationRoute("", "SolverTicket", "Unassigned"),
         });
         solverNav.Root.AddChild(new NavigationNode()
@@ -76,6 +78,48 @@ internal class NavigationDataSet : IDataSet
         var auditNav = new Navigation();
         auditNav.Name = "Main";
         auditNav.AuthorizedUserType = UserType.Auditor;
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Nový požadavek",
+            Icon = "plus-square",
+            Route = new NavigationRoute("", "AuditorTicket", "Create"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Požadavky",
+            Icon = "list",
+            Route = new NavigationRoute("", "AuditorTicket", "Overview"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Přiřazené",
+            Icon = "list-check",
+            Route = new NavigationRoute("", "AuditorTicket", "Assigned"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Uživatelé",
+            Icon = "person-lines-fill",
+            Route = new NavigationRoute("", "AuditorUser", "Overview"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Nový uživatel",
+            Icon = "person-plus-fill",
+            Route = new NavigationRoute("", "AuditorUser", "Create"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Statistiky",
+            Icon = "bar-chart-line-fill",
+            Route = new NavigationRoute("", "AuditorUser", "Statistics"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Archiv",
+            Icon = "archive",
+            Route = new NavigationRoute("", "SolverTicket", "Archive"),
+        });
 
         await navigtaionRepository.AddAsync(solverNav, false);
         await navigtaionRepository.AddAsync(auditNav, false);

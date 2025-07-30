@@ -28,49 +28,56 @@ public class TicketActivatorBackgroundService : BackgroundService
         {
             using (var scope = _serviceProvider.CreateScope())
             {
-                var ticketService = scope.ServiceProvider.GetRequiredService<ITicketService>();
-                var emailService = scope.ServiceProvider.GetService<IEmailService>();
-
-                Dictionary<ApplicationUser, List<string>> notifications = new();
-
-                var deactivatedTickets = await ticketService.GetByStateAsync(WFState.Neaktivní);
-
-                foreach (var ticket in deactivatedTickets)
+                try
                 {
-                    if (ticket.LastWorkflowHistory?.ActionDate < DateTime.UtcNow)
+                    var ticketService = scope.ServiceProvider.GetRequiredService<ITicketService>();
+                    var emailService = scope.ServiceProvider.GetService<IEmailService>();
+
+                    Dictionary<ApplicationUser, List<string>> notifications = new();
+
+                    var deactivatedTickets = await ticketService.GetByStateAsync(WFState.Neaktivní);
+
+                    foreach (var ticket in deactivatedTickets)
                     {
-                        await ticketService.ChangeWFAsync(ticket, WFAction.Reaktivace_automatická, "Požadavek automaticky obnoven");
-
-                        if (ticket.Solver is not null)
+                        if (ticket.LastWorkflowHistory?.ActionDate < DateTime.UtcNow)
                         {
-                            if (!notifications.ContainsKey(ticket.Solver))
-                                notifications[ticket.Solver] = new List<string>() { ticket.Header };
-                            notifications[ticket.Solver].Add(ticket.Header);
-                        }
+                            await ticketService.ChangeWFAsync(ticket, WFAction.Reaktivace_automatická, "Požadavek automaticky obnoven");
 
-                        if (ticket.UserCreated is not null)
-                        {
-                            if (!notifications.ContainsKey(ticket.UserCreated))
-                                notifications[ticket.UserCreated] = new List<string>() { ticket.Header };
-                            notifications[ticket.UserCreated].Add(ticket.Header);
+                            if (ticket.Solver is not null)
+                            {
+                                if (!notifications.ContainsKey(ticket.Solver))
+                                    notifications[ticket.Solver] = new List<string>();
+                                notifications[ticket.Solver].Add(ticket.Header);
+                            }
+
+                            if (ticket.UserCreated is not null)
+                            {
+                                if (!notifications.ContainsKey(ticket.UserCreated))
+                                    notifications[ticket.UserCreated] = new List<string>();
+                                notifications[ticket.UserCreated].Add(ticket.Header);
+                            }
+                            _logger.LogInformation($"Ticket {ticket.Id} reactivated automatically.");
                         }
-                        _logger.LogInformation($"Ticket {ticket.Id} reactivated automatically.");
+                    }
+
+                    if (emailService is not null)
+                    {
+                        foreach (var notification in notifications)
+                        {
+                            if (notification.Key.NotificationsEnabled && notification.Key.Email is not null)
+                            {
+                                var subject = "Požadavek obnoven";
+                                var body = $"Požadavek '{string.Join(", ", notification.Value)}' byl obnoven automaticky.";
+
+                                await emailService.SendEmailAsync(notification.Key.Email, subject, body);
+                                _logger.LogInformation($"Notification sent to {notification.Key.UserName} for reactivated tickets: {string.Join(", ", notification.Value)}.");
+                            }
+                        }
                     }
                 }
-
-                if (emailService is not null)
+                catch (Exception e)
                 {
-                    foreach (var notification in notifications)
-                    {
-                        if (notification.Key.NotificationsEnabled && notification.Key.Email is not null)
-                        {
-                            var subject = "Požadavek obnoven";
-                            var body = $"Požadavek '{string.Join(", ", notification.Value)}' byl obnoven automaticky.";
-
-                            await emailService.SendEmailAsync(notification.Key.Email, subject, body);
-                            _logger.LogInformation($"Notification sent to {notification.Key.UserName} for reactivated tickets: {string.Join(", ", notification.Value)}.");
-                        }
-                    }
+                    _logger.LogError("TicketActivatorBackgroundService threw an unhandled exception" + e.Message);
                 }
             }
 

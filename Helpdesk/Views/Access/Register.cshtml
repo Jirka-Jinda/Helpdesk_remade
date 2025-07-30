@@ -14,29 +14,29 @@
         @if (ViewBag.RegisterFailed != null && (bool)ViewBag.RegisterFailed)
         {
             <div class="alert alert-danger text-center text-wrap">
-                Neplatné údaje. Zkuste to prosím znovu.
+                Heslo musí obsahovat velké písmeno, malé pismeno, číslici a znak. Jméno pouze písmena a číslice.
             </div>
         }
 
         <form method="post" asp-action="Register">
             <div class="mb-3">
-                <label asp-for="UserName" class="form-label fw-bold"></label>
-                <input asp-for="UserName" class="form-control" placeholder="Zadejte jméno (volitelné)">
+                <label asp-for="UserName" class="form-label fw-bold">Uživatelské jméno</label>
+                <input asp-for="UserName" class="form-control" placeholder="Zadejte jméno">
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Email" class="form-label fw-bold"></label>
+                <label asp-for="Email" class="form-label fw-bold">Email (povinné)</label>
                 <input asp-for="Email" class="form-control" required placeholder="Zadejte email">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Password" class="form-label fw-bold"></label>
+                <label asp-for="Password" class="form-label fw-bold">Heslo (povinné)</label>
                 <input asp-for="Password" type="password" class="form-control" required placeholder="Zadejte heslo">
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="UserType" class="form-label fw-bold"></label>
-                <select name="role" class="form-select" required>
+                <label asp-for="UserType" class="form-label fw-bold">Uživatelská role (povinné)</label>
+                <select name="UserType" class="form-select" required>
                     <option value="">Vyberte roli</option>
                     @foreach (var role in Enum.GetValues(typeof(UserType)))
                     {
@@ -45,8 +45,12 @@
                 </select>
                 <span asp-validation-for="UserType" class="text-danger"></span>
             </div>
+            <div class="form-check mb-3">
+                <input name="enableNotifications" asp-for="EnableNotifications" class="form-check-input form-checked-content" type="checkbox" id="enableNotifications">
+                <label asp-for="EnableNotifications" class="form-check-label fw-bold">Povolit notifikace</label>
+            </div>
 
-            <div class="d-flex flex-column gap-2 mt-3">
+            <div class="d-flex flex-column gap-2 mt-5">
                 <button type="submit" class="btn btn-primary w-100">Registrovat</button>
                 <a asp-controller="Access" asp-action="Login" class="btn btn-secondary w-100">Přihlášení</a>
             </div>

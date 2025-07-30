@@ -35,55 +35,62 @@ internal class TicketAssignmentBackgroundService : BackgroundService
         {
             using (var scope = _serviceProvider.CreateScope())
             {
-                var ticketService = scope.ServiceProvider.GetRequiredService<ITicketService>();
-                var statisticsService = scope.ServiceProvider.GetRequiredService<IStatisticsService>();
-                var emailService = scope.ServiceProvider.GetService<IEmailService>();
-
-                List<Ticket> ticketsToAssign = new();
-                foreach (var state in _assignForStates)
+                try
                 {
-                    var ticketsWithState = await ticketService.GetByStateAsync(state);
-                    ticketsToAssign.AddRange(ticketsWithState.Where(ticket => ticket.TimeCreated < DateTime.UtcNow - _assignTicketOlderThan));
-                }
+                    var ticketService = scope.ServiceProvider.GetRequiredService<ITicketService>();
+                    var statisticsService = scope.ServiceProvider.GetRequiredService<IStatisticsService>();
+                    var emailService = scope.ServiceProvider.GetService<IEmailService>();
 
-                var solverStats = await statisticsService.GetAssignedTicketCountsBySolverAsync();
-
-                foreach (var ticket in ticketsToAssign)
-                {
-                    var leastAssignedSolver = solverStats
-                            .Where(solver => solver.Key.CategoryPreferences.Contains(ticket.Category))
-                            .OrderBy(assigned => assigned.Value)
-                            .FirstOrDefault().Key;
-
-                    if (leastAssignedSolver is null)
-                        leastAssignedSolver = solverStats
-                            .MinBy(solver => solver.Value).Key;
-
-                    if (leastAssignedSolver is not null)
+                    List<Ticket> ticketsToAssign = new();
+                    foreach (var state in _assignForStates)
                     {
-                        await ticketService.ChangeSolverAsync(ticket, leastAssignedSolver, "Automaticky přiděleno.");
-                        solverStats[leastAssignedSolver] += 1;
-                        _logger.LogInformation($"Ticket {ticket.Id} automatically assigned to {leastAssignedSolver.UserName}.");
+                        var ticketsWithState = await ticketService.GetByStateAsync(state);
+                        ticketsToAssign.AddRange(ticketsWithState.Where(ticket => ticket.TimeCreated < DateTime.UtcNow - _assignTicketOlderThan));
                     }
-                    else
-                    {
-                        _logger.LogWarning("No available solver found for ticket {TicketId}.", ticket.Id);
-                    }
-                }
 
-                if (emailService is not null)
-                {
-                    foreach (var notification in solverStats)
+                    var solverStats = await statisticsService.GetAssignedTicketCountsBySolverAsync();
+
+                    foreach (var ticket in ticketsToAssign)
                     {
-                        if (notification.Key.NotificationsEnabled && notification.Key.Email is not null)
+                        var leastAssignedSolver = solverStats
+                                .Where(solver => solver.Key.CategoryPreferences.Contains(ticket.Category))
+                                .OrderBy(assigned => assigned.Value)
+                                .FirstOrDefault().Key;
+
+                        if (leastAssignedSolver is null)
+                            leastAssignedSolver = solverStats
+                                .MinBy(solver => solver.Value).Key;
+
+                        if (leastAssignedSolver is not null)
                         {
-                            var subject = "Přidělení požadavků";
-                            var body = $"Bylo vám přiděleno {notification.Value} nových požadavků.";
-
-                            await emailService.SendEmailAsync(notification.Key.Email, subject, body);
-                            _logger.LogInformation($"Notification sent to {notification.Key.UserName} for assigned tickets");
+                            await ticketService.ChangeSolverAsync(ticket, leastAssignedSolver, "Automaticky přiděleno.");
+                            solverStats[leastAssignedSolver] += 1;
+                            _logger.LogInformation($"Ticket {ticket.Id} automatically assigned to {leastAssignedSolver.UserName}.");
+                        }
+                        else
+                        {
+                            _logger.LogWarning("No available solver found for ticket {TicketId}.", ticket.Id);
                         }
                     }
+
+                    if (emailService is not null)
+                    {
+                        foreach (var notification in solverStats.Where(kvp => kvp.Value > 0))
+                        {
+                            if (notification.Key.NotificationsEnabled && notification.Key.Email is not null)
+                            {
+                                var subject = "Přidělení požadavků";
+                                var body = $"Bylo vám přiděleno {notification.Value} nových požadavků.";
+
+                                await emailService.SendEmailAsync(notification.Key.Email, subject, body);
+                                _logger.LogInformation($"Notification sent to {notification.Key.UserName} for assigned tickets");
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError("TicketAssignmentBackgroundService threw an unhandled exception" + e.Message);
                 }
             }
 

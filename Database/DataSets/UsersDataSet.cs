@@ -39,6 +39,7 @@ internal class UsersDataSet : IDataSet
                 Id = id,
                 Email = $"user_{id.ToString()}@example.com",
                 UserName = $"user_{id.ToString()}".Substring(0, 12),
+                NotificationsEnabled = true,
             };
             if (userType == UserType.Řešitel)
             {
@@ -64,6 +65,7 @@ internal class UsersDataSet : IDataSet
             Id = testId,
             Email = "jiri.jinda10@gmail.com",
             UserName = "Jiří Jinda",
+            NotificationsEnabled= true,
         };
         var testUserResult = await userManager.CreateAsync(testUser);
         await userManager.AddPasswordAsync(testUser, password);

@@ -100,7 +100,7 @@ public class UserService : BaseService, IUserService
         return await _userManager.IsInRoleAsync(user, role.ToString());
     }
 
-    public async Task<SignInResult> SignInAsync(string email, string password, bool isPersistent)
+    public async Task<SignInResult> SignInAsync(string email, string password, bool isPersistent = true)
     {
         var user = await _userManager.FindByEmailAsync(email);
 
