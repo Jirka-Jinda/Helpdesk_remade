@@ -50,20 +50,20 @@
     <div class="d-flex vh-100">
         <div id="navigation-sidebar" class="bg-primary d-flex flex-column overflow-y-scroll hide-scrollbar">
             <div class="flex-grow-1">
-                <div> @* User *@
+                <div> @* User panel *@
                     @if (showUserPanel)
                     {
                         @await Html.PartialAsync("~/Views/Shared/LayoutComponents/UserPanelPartial.cshtml", currentUser)
                     }
                 </div>
-                <div> @* Navigation *@
+                <div> @* Main navigation *@
                     @if (showNavigation)
                     {
                         @await Html.PartialAsync("~/Views/Shared/LayoutComponents/MainNavigationPartial.cshtml", (navigation, currentUser))
                     }
                 </div>
             </div>
-            <div> @* Navigation - Settings, Logout *@
+            <div> @* Shared navigation - Settings, Logout *@
             @if (showSettings)
             {
                 <nav class="navbar d-block mb-1">
@@ -125,7 +125,6 @@
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/localization/messages_cs.min.js"></script>
     <script src="~/lib/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

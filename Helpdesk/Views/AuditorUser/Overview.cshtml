@@ -1,0 +1,63 @@
+﻿@using Models.Tickets
+@using Models.Users
+@using Models.Workflows
+@using Services.Abstractions.Services
+@model IReadOnlyDictionary<ApplicationUser, UserType>
+@{
+    string filter = ViewBag.Filter as string ?? "";
+    ViewData["Title"] = "Seznam uživatelů";
+}
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 900px;">
+        <div class="text-center mb-4">
+            <h4>Seznam uživatelů</h4>
+        </div>
+
+        <form method="get" class="mb-4">
+            <div class="input-group">
+                <button type="submit" class="input-group-text bg-primary">
+                    <i class="bi bi-search text-white" style="font-size: 18px"></i>
+                </button>
+                <input type="text" name="filter" value="@filter" class="form-control" placeholder="Filtrovat jména, emailu nebo role..." />
+            </div>
+        </form>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0 bg-primary">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Jméno</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Tel. číslo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Any())
+                        {
+                            @foreach (var user in Model)
+                            {
+                                string route = $"location.href='{Url.Action("Detail", "AuditorUser", new { userId = user.Key.Id})}'";
+                                <tr onclick="@route" style="cursor: pointer;">
+                                    <td>@user.Key.UserName</td>
+                                    <td>@user.Key.Email</td>
+                                    <td>@user.Value.ToString()</td>
+                                    <td>@user.Key.PhoneNumber</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">Žádní uživatelé nejsou v systému.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

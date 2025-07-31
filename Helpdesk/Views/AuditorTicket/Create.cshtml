@@ -1,0 +1,7 @@
+﻿@using ViewModels.Ticket
+@model TicketViewModel
+@{
+    ViewData["Title"] = "Založení";
+}
+
+@await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketCreatePartial.cshtml", Model)

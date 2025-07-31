@@ -32,6 +32,7 @@ public class UserTicketController : Controller
             Header = ticket.Header,
             Content = ticket.Content,
             Category = ticket.Category,
+            Deadline = ticket.Deadline,
         };
         newTicket.ChangePriority(ticket.Priority);
 

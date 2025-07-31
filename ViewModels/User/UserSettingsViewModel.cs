@@ -14,6 +14,8 @@ public class UserSettingsViewModel
 
     public bool EnableNotifications { get; set; }
 
+    public string PhoneNumber {  get; set; } = string.Empty;
+
     public UserSettingsViewModel(ApplicationUser? user)
     {
         if (user is not null)

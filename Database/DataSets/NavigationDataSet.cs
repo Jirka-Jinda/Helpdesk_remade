@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Models.Navigation;
 using Models.Users;
 using Services.Abstractions.Repositories;
-using System.Xml.Linq;
 
 namespace Database.DataSets;
 
@@ -92,12 +90,6 @@ internal class NavigationDataSet : IDataSet
         });
         auditNav.Root.AddChild(new NavigationNode()
         {
-            Name = "Přiřazené",
-            Icon = "list-check",
-            Route = new NavigationRoute("", "AuditorTicket", "Assigned"),
-        });
-        auditNav.Root.AddChild(new NavigationNode()
-        {
             Name = "Uživatelé",
             Icon = "person-lines-fill",
             Route = new NavigationRoute("", "AuditorUser", "Overview"),
@@ -118,7 +110,7 @@ internal class NavigationDataSet : IDataSet
         {
             Name = "Archiv",
             Icon = "archive",
-            Route = new NavigationRoute("", "SolverTicket", "Archive"),
+            Route = new NavigationRoute("", "AuditorUser", "Archive"),
         });
 
         await navigtaionRepository.AddAsync(solverNav, false);

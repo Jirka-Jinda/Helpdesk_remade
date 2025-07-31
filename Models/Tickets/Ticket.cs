@@ -21,6 +21,7 @@ public class Ticket : AuditableObject
     public string Content { get; set; } = string.Empty;
     public TicketCategory Category { get; set; }
     public string Result { get; private set; } = string.Empty;
+    public DateOnly? Deadline { get; set; } = null;
 
     public Ticket? ChangeParentTicket(Ticket? parentTicket)
     {
@@ -51,13 +52,13 @@ public class Ticket : AuditableObject
             else if (State == WFState.Uzavřený && newState != WFState.Uzavřený)
                 Result = string.Empty;
 
-                var newChange = new WorkflowHistory()
-                {
-                    State = newState,
-                    Action = action,
-                    Comment = comment,
-                    ActionDate = actionDate
-                };
+            var newChange = new WorkflowHistory()
+            {
+                State = newState,
+                Action = action,
+                Comment = comment,
+                ActionDate = actionDate
+            };
 
             TicketHistory.Add(newChange);
             LastWorkflowHistory = newChange;
@@ -87,8 +88,8 @@ public class Ticket : AuditableObject
         Priority = newPriority;
     }
 
-    public void ChangeResult(string result)
+    public void ChangeContent(string newContent)
     {
-        // TODO
+        Content = newContent;
     }
 }

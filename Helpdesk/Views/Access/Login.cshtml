@@ -32,8 +32,15 @@
             <div class="d-flex flex-column gap-2 mt-3">
                 <button type="submit" class="btn btn-primary w-100">Přihlásit</button>
                 <div>
-                    <a asp-controller="Access" asp-action="Register" class="btn btn-secondary w-50">Registrovat</a>
-                    <a asp-controller="Access" asp-action="Reset" class="btn btn-secondary w-50">Zapomenuté heslo</a>
+                    @if (ViewBag.EnableRegistrationForAllUsers != null && (bool)ViewBag.EnableRegistrationForAllUsers)
+                    {
+                        <a asp-controller="Access" asp-action="Register" class="btn btn-secondary w-50">Registrovat</a>
+                        <a asp-controller="Access" asp-action="Reset" class="btn btn-secondary w-50">Zapomenuté heslo</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Access" asp-action="Reset" class="btn btn-secondary w-100">Zapomenuté heslo</a>
+                    }
                 </div>
             </div>
         </form>

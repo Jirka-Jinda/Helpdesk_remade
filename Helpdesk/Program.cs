@@ -22,14 +22,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Database")));
 
-//builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-//    {
-//        options.User.AllowedUserNameCharacters =
-//        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ěščřžýáíéúůňďťĚŠČŘŽÝÁÍÉÚŮŇĎŤ ";
-//    })
-//    .AddRoles<ApplicationRole>()
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
-
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     {
         options.User.AllowedUserNameCharacters =
@@ -63,6 +55,8 @@ builder.Services.AddTicketArchiveService(builder.Configuration);
 
 builder.Services.Configure<TicketAssignmentOptions>(builder.Configuration.GetSection("TicketAssignmentOptions"));
 builder.Services.AddAutomaticAssignmentService(builder.Configuration);
+
+builder.Services.Configure<RegistrationOptions>(builder.Configuration.GetSection("RegistrationOptions"));
 
 builder.Services.AddControllersWithViews(options =>
 {
@@ -122,8 +116,6 @@ var localizationOptions = new RequestLocalizationOptions()
     .AddSupportedUICultures(supportedCultures);
 
 app.UseRequestLocalization(localizationOptions);
-
-Console.WriteLine(typeof(Program).Assembly.GetName().Name);
 
 app.Run();
 

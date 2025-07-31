@@ -36,7 +36,6 @@ public class PasswordGeneratorService
         var result = new StringBuilder();
         var chars = new List<char>();
 
-        // Ensure all required types are included
         if (_options.RequireLowercase)
             chars.Add(GetRandomChar(lowercase, rand));
         if (_options.RequireUppercase)
@@ -46,7 +45,6 @@ public class PasswordGeneratorService
         if (_options.RequireNonAlphanumeric)
             chars.Add(GetRandomChar(nonAlphanumeric, rand));
 
-        // Fill the rest with random mix
         string allChars = "";
         if (_options.RequireLowercase) allChars += lowercase;
         if (_options.RequireUppercase) allChars += uppercase;
@@ -56,7 +54,6 @@ public class PasswordGeneratorService
         while (chars.Count < _options.RequiredLength)
             chars.Add(GetRandomChar(allChars, rand));
 
-        // Shuffle for randomness
         return new string(chars.OrderBy(x => RandomNumber(rand)).ToArray());
     }
 

@@ -6,6 +6,11 @@ namespace Database;
 
 public static class IServiceCollectionExtensions
 {
+    /// <summary>
+    /// Adds all necessary repositories to the service collection.
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddTransient<INavigationRepository, NavigationRepository>();

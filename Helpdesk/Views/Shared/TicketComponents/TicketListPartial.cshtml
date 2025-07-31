@@ -44,6 +44,8 @@
                                     linkRoute += @Url.Action("Detail", "UserTicket", new { ticketId = ticket.Id });
                                 if (User.IsInRole(UserType.Řešitel.ToString()))
                                     linkRoute += @Url.Action("Detail", "SolverTicket", new { ticketId = ticket.Id });
+                                if (User.IsInRole(UserType.Auditor.ToString()))
+                                    linkRoute += @Url.Action("Detail", "AuditorTicket", new { ticketId = ticket.Id });
                                 string route = $"location.href='{linkRoute}'";
 
                                 <tr onclick="@route" style="cursor: pointer;">

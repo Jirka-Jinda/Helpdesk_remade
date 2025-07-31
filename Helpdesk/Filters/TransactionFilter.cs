@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Helpdesk.Filters;
 
+/// <summary>
+/// Ensures that every action is executed within a database transaction.
+/// </summary>
 internal class TransactionFilter : ActionFilterAttribute
 {
     private readonly ApplicationDbContext _dbContext;

@@ -1,0 +1,7 @@
+﻿@using Models.Tickets
+@model Ticket
+@{
+    ViewData["Title"] = "Detail";
+}
+
+@await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketDetailPartial.cshtml", Model)

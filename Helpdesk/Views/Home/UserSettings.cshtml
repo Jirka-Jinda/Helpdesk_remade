@@ -45,6 +45,13 @@
                 <label asp-for="EnableNotifications" class="form-check-label fw-bold">Povolit notifikace</label>
             </div>
 
+            <!-- PhoneNumber -->
+            <div class="mb-3">
+                <label asp-for="PhoneNumber" class="form-label fw-bold">Změnit telefonní číslo</label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Zadejte nové telefonní číslo">
+                <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+            </div>
+
 @*          <div class="text-center my-4">
                 <h5>Přihlášení jiného uživatele</h5>
             </div>

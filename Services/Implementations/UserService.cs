@@ -147,4 +147,13 @@ public class UserService : BaseService, IUserService
 
         return await _userManager.UpdateAsync(user);
     }
+
+    public async Task<UserType> GetUserTypeAsync(ApplicationUser user)
+    {
+        var roles = await _userManager.GetRolesAsync(user);
+        if (roles.Count != 1)
+            throw new InvalidOperationException("User has more than one or no role assigned.");
+        else
+            return Enum.Parse<UserType>(roles.First());                   
+    }
 }

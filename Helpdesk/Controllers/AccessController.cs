@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Models.Users;
 using Services.Abstractions.Services;
 using Services.Implementations;
+using Services.Options;
 using ViewModels.User;
 
 namespace Helpdesk.Controllers;
@@ -13,17 +15,21 @@ public class AccessController : Controller
     private readonly ILogger<AccessController> _logger;
     private readonly IUserService _userService;
     private readonly PasswordGeneratorService _passwordGeneratorService;
+    private readonly bool _enableRegistrationForAllUsers;
 
-    public AccessController(ILogger<AccessController> logger, IUserService userService, PasswordGeneratorService passwordGeneratorService)
+    public AccessController(ILogger<AccessController> logger, IUserService userService, PasswordGeneratorService passwordGeneratorService, IOptions<RegistrationOptions> registrationOptions)
     {
         _logger = logger;
         _userService = userService;
         _passwordGeneratorService = passwordGeneratorService;
+        _enableRegistrationForAllUsers = registrationOptions.Value.EnableRegistrationForAllUsers;
     }
 
     [HttpGet]
     public IActionResult Login()
     {
+        ViewBag.EnableRegistrationForAllUsers = _enableRegistrationForAllUsers;
+
         return View();
     }
 
@@ -47,6 +53,9 @@ public class AccessController : Controller
     [HttpGet]
     public IActionResult Register()
     {
+        if (!_enableRegistrationForAllUsers && !User.IsInRole("Auditor"))
+            return Forbid();
+
         return View();
     }
 

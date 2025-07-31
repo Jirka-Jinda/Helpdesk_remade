@@ -17,7 +17,8 @@ public interface IUserService
     public Task<SignInResult> SignInAsync(string email, string password, bool isPersistent);
     public Task SignOutAsync();
     public Task<bool> IsInRoleAsync(ApplicationUser user, UserType role);
+    public Task<UserType> GetUserTypeAsync(ApplicationUser user);
     public Task<IdentityResult> AddToRoleAsync(ApplicationUser user, UserType role);
     public Task<IdentityResult> RemoveFromRoleAsync(ApplicationUser user, UserType role);
-    Task<IdentityResult> ResetPasswordAsync(ApplicationUser user, string newPassword);
+    public Task<IdentityResult> ResetPasswordAsync(ApplicationUser user, string newPassword);
 }

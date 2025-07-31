@@ -285,6 +285,9 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateOnly?>("Deadline")
+                        .HasColumnType("date");
+
                     b.Property<string>("Header")
                         .IsRequired()
                         .HasColumnType("text");

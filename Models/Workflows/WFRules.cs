@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
 namespace Models.Workflows;
+
 public static class WFRules
 {
     public static ReadOnlyCollection<WFAction> StateActions(WFState state)
