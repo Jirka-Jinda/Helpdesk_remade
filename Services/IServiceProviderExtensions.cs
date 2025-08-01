@@ -21,6 +21,7 @@ public static class IServiceCollectionExtensions
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<ITicketService, TicketService>();
         services.AddTransient<IStatisticsService, StatisticsService>();
+        services.AddTransient<IArchiveService, ArchiveService>();
         services.AddSingleton<PasswordGeneratorService>();
 
         services.AddSingleton<IOptions<TicketActivatorBackgroundOptions>>(

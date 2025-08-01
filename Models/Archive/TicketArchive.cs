@@ -9,7 +9,8 @@ namespace Models.TicketArchive;
 public class TicketArchive : TicketBase
 {
     public List<SolverArchiveHistory> SolverArchiveHistory { get; set; } = new();
-    public SolverArchiveHistory? Resolution { get; set; }
+    public SolverArchiveHistory? Solver { get; set; }
+    public SolverArchiveHistory? Resolver { get; set; }
     public bool? DeadlineMet { get; set; }
     public bool? WasReturned { get; set; }
 
@@ -39,7 +40,8 @@ public class TicketArchive : TicketBase
                 SolverAssigned = history.TimeCreated,
             });
         }
-        ticketArchive.Resolution = ticketArchive.SolverArchiveHistory.LastOrDefault();
+        ticketArchive.Solver = ticketArchive.SolverArchiveHistory.FirstOrDefault();
+        ticketArchive.Resolver = ticketArchive.SolverArchiveHistory.LastOrDefault();
 
         return ticketArchive;
     }

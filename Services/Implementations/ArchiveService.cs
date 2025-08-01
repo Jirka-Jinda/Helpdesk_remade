@@ -4,77 +4,104 @@ using Microsoft.Extensions.Caching.Memory;
 using Models.TicketArchive;
 using Models.Tickets;
 using Models.Users;
+using Services.Abstractions.Repositories;
 using Services.Abstractions.Services;
+using System.Data;
 
 namespace Services.Implementations;
 
 public class ArchiveService : BaseService, IArchiveService
 {
-    private readonly IMemoryCache _cache;
+    private readonly ITicketArchiveRepository _ticketArchiveRepository;
+    private readonly ISolverArchiveRepository _solverArchiveRepository;
     private readonly ITicketService _ticketService;
+    private readonly IMemoryCache _cache;
 
     public ArchiveService(
         UserManager<ApplicationUser> userManager, 
         IHttpContextAccessor httpContextAccessor,
+        ITicketArchiveRepository ticketArchiveRepository,
+        ISolverArchiveRepository solverArchiveRepository,
         IMemoryCache cache,
         ITicketService ticketService) : base(userManager, httpContextAccessor)
     {
+        _ticketArchiveRepository = ticketArchiveRepository;
+        _solverArchiveRepository = solverArchiveRepository;
         _cache = cache;
         _ticketService = ticketService;
     }
 
-    public Task<TicketArchive> AddAsync(TicketArchive entity)
+    public async Task<TicketArchive> AddAsync(TicketArchive entity)
     {
-        throw new NotImplementedException();
+        UpdateAuditableData(entity, true);
+        foreach (var history in entity.SolverArchiveHistory)
+            await _solverArchiveRepository.AddAsync(history, false);
+        return await _ticketArchiveRepository.AddAsync(entity);
     }
 
-    public Task<TicketArchive> ArchiveAsync(Ticket ticketArchive)
+    public async Task<TicketArchive> ArchiveAsync(Ticket ticket)
     {
-        throw new NotImplementedException();
+        var archive = TicketArchive.CreateArchive(ticket);
+        await _ticketService.DeleteAsync(ticket.Id);
+        return await AddAsync(archive);
     }
 
-    public Task DeleteAsync(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
-        throw new NotImplementedException();
+        await _ticketArchiveRepository.DeleteAsync(id);
     }
 
-    public Task<IEnumerable<TicketArchive>> GetAllAsync()
+    /// <summary>
+    /// Retrieves all archived tickets. Avoid using this as much as possible, use GetBy* methods instead to filter results.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="DataException"></exception>
+    public async Task<IEnumerable<TicketArchive>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        string cacheKey = nameof(ArchiveService) + nameof(GetAllAsync);
+
+        if (_cache.TryGetValue(cacheKey, out var result))
+            return result as List<TicketArchive> ?? throw new DataException($"Corrupted data in memory cache for key: {cacheKey}.");
+
+        var archives = await _ticketArchiveRepository.GetAllAsync();
+        _cache.Set(cacheKey, archives);
+
+        return archives;
     }
 
-    public Task<TicketArchive?> GetAsync(Guid id)
+    public async Task<TicketArchive?> GetAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _ticketArchiveRepository.GetAsync(id);
     }
 
-    public Task<IEnumerable<TicketArchive>> GetByCategoryAsync(TicketCategory category)
+    public async Task<IEnumerable<TicketArchive>> GetByCategoryAsync(TicketCategory category)
     {
-        throw new NotImplementedException();
+        return await _ticketArchiveRepository.GetByCategoryAsync(category);
     }
 
-    public Task<IEnumerable<TicketArchive>> GetByCreatedTimeAsync(DateTime createdTime)
+    public async Task<IEnumerable<TicketArchive>> GetByCreatedTimeAsync(DateTime intervalBegin, DateTime intervalEnd)
     {
-        throw new NotImplementedException();
+        return await _ticketArchiveRepository.GetByCreatedTimeAsync(intervalBegin, intervalEnd);
     }
 
-    public Task<IEnumerable<TicketArchive>> GetByResolvedTimeAsync(DateTime resolvedTime)
+    public async Task<IEnumerable<TicketArchive>> GetByResolvedTimeAsync(DateTime intervalBegin, DateTime intervalEnd)
     {
-        throw new NotImplementedException();
+        return await _ticketArchiveRepository.GetByResolvedTimeAsync(intervalBegin, intervalEnd);
     }
 
-    public Task<IEnumerable<TicketArchive>> GetByResolverAsync(Guid resolverId)
+    public async Task<IEnumerable<TicketArchive>> GetByResolverAsync(Guid resolverId)
     {
-        throw new NotImplementedException();
+        return await _ticketArchiveRepository.GetByResolverAsync(resolverId);
     }
 
-    public Task<IEnumerable<TicketArchive>> GetBySolverAsync(Guid solverId)
+    public async Task<IEnumerable<TicketArchive>> GetBySolverAsync(Guid solverId)
     {
-        throw new NotImplementedException();
+        return await _ticketArchiveRepository.GetBySolverAsync(solverId);
     }
 
-    public Task<TicketArchive> UpdateAsync(TicketArchive entity)
+    public async Task<TicketArchive> UpdateAsync(TicketArchive entity)
     {
-        throw new NotImplementedException();
+        UpdateAuditableData(entity, true);
+        return await _ticketArchiveRepository.UpdateAsync(entity);
     }
 }

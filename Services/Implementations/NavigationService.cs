@@ -64,7 +64,7 @@ public class NavigationService : BaseService, INavigationService
             if (result != null)
                 _memoryCache.Set(cacheKey, result);
             else
-                throw new DataException($"Failed to find any navigation for role {role}");
+                throw new DataException($"Failed to find any navigation for role: {role}.");
         }
         return result;
     }

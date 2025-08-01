@@ -12,12 +12,14 @@ public class StatisticsService : IStatisticsService
     private readonly TimeSpan _cacheDuration = TimeSpan.FromMinutes(30);
     private readonly ITicketService _ticketService;
     private readonly IUserService _userService;
+    private readonly IArchiveService _archiveService;
 
-    public StatisticsService(IMemoryCache cache, ITicketService ticketService, IUserService userService)
+    public StatisticsService(IMemoryCache cache, ITicketService ticketService, IUserService userService, IArchiveService archiveService)
     {
         _cache = cache;
         _ticketService = ticketService;
         _userService = userService;
+        _archiveService = archiveService;
     }
 
     public async Task<Dictionary<ApplicationUser, int>> GetAssignedTicketCountsBySolverAsync()
@@ -44,25 +46,64 @@ public class StatisticsService : IStatisticsService
         }
     }
 
-    //public async Task<Dictionary<ApplicationUser, int>> GetSolvedTicketCountsBySolverAsync(DateTime startTime, DateTime endTime)
-    //{
-    //    var retrieved = _cache.TryGetValue(nameof(GetSolvedTicketCountsBySolverAsync), out Dictionary<ApplicationUser, int>? solvedTicketCounts);
+    public async Task<Dictionary<ApplicationUser, int>> GetSolvedTicketCountsBySolverAsync(DateTime startTime, DateTime endTime)
+    {
+        var retrieved = _cache.TryGetValue(nameof(GetSolvedTicketCountsBySolverAsync), out Dictionary<ApplicationUser, int>? solvedTicketCounts);
 
-    //    if (retrieved && solvedTicketCounts is not null)
-    //        return solvedTicketCounts;
-    //    else
-    //    {
-    //    }
-    //}
+        if (retrieved && solvedTicketCounts is not null)
+            return solvedTicketCounts;
+  
+        var result = new Dictionary<ApplicationUser, int>();
+        var archives = await _archiveService.GetByResolvedTimeAsync(startTime, endTime);
 
-    //public async Task<Dictionary<TicketCategory, int>> GetCreatedTicketCountsByCategoryAsync(DateTime startTime, DateTime endTime)
-    //{
+        foreach (var archive in archives)
+        {
+            if (archive.Resolver is not null && archive.Resolver.Solver is not null)
+            {
+                if (!result.ContainsKey(archive.Resolver.Solver))
+                    result[archive.Resolver.Solver] = 0;
+                result[archive.Resolver.Solver]++;
+            }
+        }
 
-    //}
+        _cache.Set(nameof(GetSolvedTicketCountsBySolverAsync), result, _cacheDuration);
+
+        return result;
+    }
+
+    public async Task<Dictionary<TicketCategory, int>> GetCreatedTicketCountsByCategoryAsync(DateTime startTime, DateTime endTime)
+    {
+        var retrieved = _cache.TryGetValue(nameof(GetCreatedTicketCountsByCategoryAsync), out Dictionary<TicketCategory, int>? createdTicketsCount);
+
+        if (retrieved && createdTicketsCount is not null)
+            return createdTicketsCount;
+
+        var result = new Dictionary<TicketCategory, int>();
+        var archives = await _archiveService.GetByCreatedTimeAsync(startTime, endTime);
+
+        foreach (var archive in archives)
+        {
+            if (archive.Resolver is not null && archive.Resolver.Solver is not null)
+            {
+                if (!result.ContainsKey(archive.Category))
+                    result[archive.Category] = 0;
+                result[archive.Category]++;
+            }
+        }
+
+        _cache.Set(nameof(GetCreatedTicketCountsByCategoryAsync), result, _cacheDuration);
+
+        return result;
+    }
 
     //public async Task<Dictionary<TicketCategory, TimeSpan>> GetAverageTicketResolutionTimesAsync(DateTime startTime, DateTime endTime)
     //{
+    //    var retrieved = _cache.TryGetValue(nameof(GetAverageTicketResolutionTimesAsync), out Dictionary<TicketCategory, TimeSpan>? resolvedTicketsTimes);
 
+    //    if (retrieved && resolvedTicketsTimes is not null)
+    //        return resolvedTicketsTimes;
+
+    //    var result = new Dictionary<TicketCategory, TimeSpan>(); 
     //}
 
     public async Task<List<Ticket>> GetUnresolvedTicketsOlderThan(TimeSpan olderThan)

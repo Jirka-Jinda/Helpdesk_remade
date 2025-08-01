@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Models.Workflows;
+using Services.Abstractions.Services;
 using Services.Options;
 
 namespace Services.BackgroundServices;
@@ -29,7 +31,14 @@ internal class TicketArchiveBackgroundService : BackgroundService
             {
                 try
                 {
-                    // TODO move tickets from ticket to archive
+                    var archiveService = scope.ServiceProvider.GetRequiredService<IArchiveService>();
+                    var ticketService = scope.ServiceProvider.GetRequiredService<ITicketService>();
+
+                    var closedTickets = await ticketService.GetByStateAsync(WFState.Uzavřený);
+                    foreach (var ticket in closedTickets.Where(t => t.LastWorkflowHistory?.TimeCreated < (DateTime.UtcNow - _archiveResolvedTicketsOlderThan)))
+                    {
+                        await archiveService.ArchiveAsync(ticket);
+                    }
                 }
                 catch (Exception ex)
                 {

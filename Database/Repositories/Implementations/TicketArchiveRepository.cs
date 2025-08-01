@@ -1,6 +1,7 @@
 ﻿using Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Models.TicketArchive;
+using Models.Tickets;
 using Services.Abstractions.Repositories;
 
 namespace Database.Repositories.Implementations;
@@ -24,6 +25,46 @@ public class TicketArchiveRepository : BaseRepository<TicketArchive>, ITicketArc
             .UseIncludesSingle()
             .Where(t => t.Id == id)
             .SingleOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<TicketArchive>> GetByCategoryAsync(TicketCategory category)
+    {
+        return await _context.TicketArchives
+            .UseIncludesAll()
+            .Where(t => t.Category == category)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<TicketArchive>> GetByCreatedTimeAsync(DateTime intervalBegin, DateTime intervalEnd)
+    {
+        return await _context.TicketArchives
+            .UseIncludesAll()
+            .Where(t => t.TimeCreated >= intervalBegin && t.TimeCreated <= intervalEnd)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<TicketArchive>> GetByResolvedTimeAsync(DateTime intervalBegin, DateTime intervalEnd)
+    {
+        return await _context.TicketArchives
+            .UseIncludesAll()
+            .Where(t => t.Resolver != null && t.Resolver.TimeCreated >= intervalBegin && t.Resolver.TimeCreated <= intervalEnd)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<TicketArchive>> GetByResolverAsync(Guid resolverId)
+    {
+        return await _context.TicketArchives
+            .UseIncludesAll()
+            .Where(t => t.Resolver != null && t.Resolver.Id == resolverId)
+            .ToListAsync();
+    }
+
+    public async Task<ICollection<TicketArchive>> GetBySolverAsync(Guid solverId)
+    {
+        return await _context.TicketArchives
+            .UseIncludesAll()
+            .Where(t => t.Solver != null && t.Solver.Id == solverId)
+            .ToListAsync();
     }
 }
 
