@@ -1,4 +1,5 @@
-﻿using Models.Users;
+﻿using Models.Tickets;
+using Models.Users;
 
 namespace ViewModels.User;
 
@@ -14,7 +15,11 @@ public class UserSettingsViewModel
 
     public bool EnableNotifications { get; set; }
 
-    public string PhoneNumber {  get; set; } = string.Empty;
+    public string? PhoneNumber {  get; set; } = null;
+
+    public Guid? SuperiorId { get; set; } = null;
+
+    public List<TicketCategory> CategoryPreferences { get; set; } = new();
 
     public UserSettingsViewModel(ApplicationUser? user)
     {
@@ -23,6 +28,9 @@ public class UserSettingsViewModel
             Id = user.Id;
             UserName = user.UserName;
             EnableNotifications = user.NotificationsEnabled;
+            CategoryPreferences = user.CategoryPreferences;
+            SuperiorId = user.Superior;
+            PhoneNumber = user.PhoneNumber;
         }
     }
 

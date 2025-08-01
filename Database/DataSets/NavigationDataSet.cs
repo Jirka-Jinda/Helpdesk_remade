@@ -6,7 +6,7 @@ using Services.Abstractions.Repositories;
 namespace Database.DataSets;
 
 /// <summary>
-/// Seeds the database with example navigation for basic user.
+/// Populates the database with example navigation for basic user.
 /// </summary>
 internal class NavigationDataSet : IDataSet
 {
@@ -90,15 +90,15 @@ internal class NavigationDataSet : IDataSet
         });
         auditNav.Root.AddChild(new NavigationNode()
         {
-            Name = "Uživatelé",
-            Icon = "person-lines-fill",
-            Route = new NavigationRoute("", "AuditorUser", "Overview"),
-        });
-        auditNav.Root.AddChild(new NavigationNode()
-        {
             Name = "Nový uživatel",
             Icon = "person-plus-fill",
             Route = new NavigationRoute("", "AuditorUser", "Create"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Uživatelé",
+            Icon = "person-lines-fill",
+            Route = new NavigationRoute("", "AuditorUser", "Overview"),
         });
         auditNav.Root.AddChild(new NavigationNode()
         {

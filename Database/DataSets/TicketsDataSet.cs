@@ -5,7 +5,7 @@ using Models.Tickets;
 namespace Database.DataSets;
 
 /// <summary>
-/// Seeds the database with example tickets. Requires seeding of users first.
+/// Populates the database with example tickets. Requires populating users first.
 /// </summary>
 internal class TicketsDataSet : IDataSet
 {

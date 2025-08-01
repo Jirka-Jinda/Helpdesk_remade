@@ -41,14 +41,14 @@ public class UserService : BaseService, IUserService
         return await _userManager.FindByIdAsync(id.ToString());
     }
 
-    public async Task<IdentityResult> UpdateAsync(ApplicationUser user)
+    public async Task<IdentityResult> UpdateAsync(ApplicationUser user, bool singBackIn = true)
     {
         var refresh = await _userManager.UpdateSecurityStampAsync(user);
         var res = await _userManager.UpdateAsync(user);
 
         var fetchedUser = await _userManager.FindByIdAsync(user.Id.ToString());
 
-        if (res.Succeeded && fetchedUser != null)
+        if (res.Succeeded && fetchedUser != null && singBackIn)
             await _signInManager.SignInAsync(fetchedUser, true);
 
         return res;

@@ -8,7 +8,7 @@ using Models.Users;
 namespace Database.DataSets;
 
 /// <summary>
-/// Seeds the database with example users and roles.
+/// Populates the database with example users. Requires populating roles first.
 /// </summary>
 internal class UsersDataSet : IDataSet
 {

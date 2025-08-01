@@ -25,7 +25,7 @@ internal class LogRetentionBackgroundService : BackgroundService
             string logDirectory;
 
             logDirectory = Path.Combine(AppContext.BaseDirectory, "Logs");
-            if (!Directory.Exists(logDirectory)) // Debug env
+            if (!Directory.Exists(logDirectory)) // Check in debug env, not ideal but works for now
                 logDirectory = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.FullName;
 
             if (!Directory.Exists(logDirectory))

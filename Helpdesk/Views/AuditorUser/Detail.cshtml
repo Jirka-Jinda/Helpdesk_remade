@@ -1,5 +1,131 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Models.Tickets
+@using Models.Users
+@using Services.Abstractions.Services
+@using ViewModels.User
+@model UserSettingsViewModel
+@inject IUserService userService
 @{
+    ViewData["Title"] = "Nastavení";
+    var auditors = await userService.GetUsersByRoleAsync(UserType.Auditor);
+    var preferenceOptions = Enum.GetValues(typeof(TicketCategory)).Cast<TicketCategory>().ToList();
+
+    UserType? role = null;
+    if (ViewBag.UserRole != null)
+        role = (UserType)ViewBag.UserRole; 
 }
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 700px;">
+        <div class="text-center mb-4">
+            <h4>Uživatelské nastavení - @Model.UserName</h4>
+        </div>
+
+        @if (ViewBag.UpdateFailed != null && (bool)ViewBag.UpdateFailed)
+        {
+            <div class="alert alert-danger text-center text-wrap">
+                Neplatné údaje. Zkuste to prosím znovu.
+            </div>
+        }
+        @if (ViewBag.UpdateSucceded != null && (bool)ViewBag.UpdateSucceded)
+        {
+            <div class="alert alert-success text-center text-wrap">
+                Údaje byly úspěšně aktualizovány.
+            </div>
+        }
+
+        <form asp-action="UserSettings" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label fw-bold">Změnit uživatelské jméno</label>
+                <input asp-for="UserName" class="form-control" placeholder="Zadejte nové uživatelské jméno">
+                <span asp-validation-for="UserName" class="text-danger small"></span>
+            </div>
+
+            <!-- PhoneNumber -->
+            <div class="mb-3">
+                <label asp-for="PhoneNumber" class="form-label fw-bold">Změnit telefonní číslo</label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Zadejte nové telefonní číslo">
+                <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+            </div>
+
+            @if (role != null && role == UserType.Řešitel)
+            {
+                <!-- Checkboxes category preferences -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Vyberte preference kategorie požadavků:</label>
+                    <div class="ms-1 row">
+                        @foreach (var option in preferenceOptions)
+                        {
+                            var isChecked = Model.CategoryPreferences.Contains(option);
+                            <div class="col-6 form-check">
+                                <input type="checkbox"
+                                        class="form-check-input"
+                                        name="CategoryPreferences"
+                                        value="@option"
+                                        id="option_@option"
+                                        @(isChecked ? "checked" : "") />
+                                <label class="form-check-label" for="option_@option">
+                                    @option.ToString().Replace('_', ' ')
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Superior -->
+                <div class="mb-3">
+                    <label asp-for="SuperiorId" class="form-label fw-bold">Zvolte svého nadřízeného:</label>
+                    <select name="SuperiorId" class="form-select">
+                        <option value="">Vyberte auditora</option>
+                        @foreach (var auditor in auditors)
+                        {
+                            <option value="@auditor.Id" selected="@(Model.SuperiorId == auditor.Id ? "selected" : null)">@auditor.UserName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SuperiorId" class="text-danger"></span>
+                </div>
+            }
+
+            <!-- Notifications -->
+            <div class="form-check mb-3">
+                <input name="enableNotifications" asp-for="EnableNotifications" class="form-check-input form-checked-content" type="checkbox" id="enableNotifications">
+                <label asp-for="EnableNotifications" class="form-check-label fw-bold">Povolit notifikace</label>
+            </div>
+
+            @* <div class="text-center my-4">
+                <h5>Přihlášení jiného uživatele</h5>
+            </div>
+
+            <!-- Proxy Checkbox -->
+            <div class="form-check mb-5">
+                <input class="form-check-input" asp-for="ProxyEnabled" type="checkbox" />
+                <label class="form-check-label fw-bold" asp-for="ProxyEnabled">
+                    Povolit jinému uživateli použít přihlášení v zastoupení
+                </label>
+            </div>
+
+            <!-- Set Proxy User Box -->
+            <div class="mb-3">
+                <label for="ProxyUserEmail" class="form-label fw-bold">Chci zastupovat jiného uživatele</label>
+                <input type="email" name="ProxyUserEmail" id="ProxyUserEmail" class="form-control" placeholder="Email druhého uživatele">
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="UseProxy" type="checkbox" />
+                <label class="form-check-label fw-bold" asp-for="UseProxy">
+                    Použít přihlášení v zastoupení
+                </label>
+            </div> *@
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Overview" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left-circle me-1"></i>Zpět na seznam
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i>Uložit změny
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -6,7 +6,7 @@ using Models.Users;
 namespace Database.DataSets;
 
 /// <summary>
-/// Seeds the database with all roles in UserType enum.
+/// Populates the database with application roles.
 /// </summary>
 internal class RolesDataSet : IDataSet
 {

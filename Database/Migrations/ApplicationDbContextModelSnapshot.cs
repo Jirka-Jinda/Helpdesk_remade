@@ -471,6 +471,9 @@ namespace Database.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("Superior")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("Theme")
                         .HasColumnType("integer");
 

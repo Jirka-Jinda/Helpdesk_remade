@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250730183309_InitialCreate")]
+    [Migration("20250731163937_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -473,6 +473,9 @@ namespace Database.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
+
+                    b.Property<Guid?>("Superior")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Theme")
                         .HasColumnType("integer");

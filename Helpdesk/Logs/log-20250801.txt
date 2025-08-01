@@ -1,0 +1,1500 @@
+2025-08-01 09:53:21.031 +02:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-08-01 09:53:21.096 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-08-01 09:53:21.242 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-01 09:53:21.674 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 09:53:21.681 +02:00 [INF] Log files deleted: 0. 
+2025-08-01 09:53:21.685 +02:00 [INF] Tickets archived.
+2025-08-01 09:53:21.776 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 09:53:21.923 +02:00 [INF] Tickets activated.
+2025-08-01 09:53:21.925 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 09:53:21.926 +02:00 [INF] Now listening on: https://localhost:7003
+2025-08-01 09:53:21.929 +02:00 [INF] Now listening on: http://localhost:5184
+2025-08-01 09:53:21.979 +02:00 [INF] Executed DbCommand (15ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:22.006 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 09:53:22.008 +02:00 [INF] Hosting environment: Development
+2025-08-01 09:53:22.010 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-08-01 09:53:22.023 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:22.033 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 09:53:22.039 +02:00 [INF] Tickets assigned.
+2025-08-01 09:53:22.511 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-08-01 09:53:22.696 +02:00 [INF] Identity.Application was not authenticated. Failure message: Ticket expired
+2025-08-01 09:53:22.710 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 09:53:22.728 +02:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-08-01 09:53:22.772 +02:00 [INF] Executing RedirectResult, redirecting to /Access/Login.
+2025-08-01 09:53:22.776 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 43.0737ms
+2025-08-01 09:53:22.779 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 09:53:22.790 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 302 0 null 290.98ms
+2025-08-01 09:53:22.794 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Access/Login - null null
+2025-08-01 09:53:22.805 +02:00 [INF] Identity.Application was not authenticated. Failure message: Ticket expired
+2025-08-01 09:53:22.806 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-08-01 09:53:22.810 +02:00 [INF] Route matched with {action = "Login", controller = "Access"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-08-01 09:53:22.937 +02:00 [INF] Executing ViewResult, running view Login.
+2025-08-01 09:53:23.458 +02:00 [INF] Executed ViewResult - view Login executed in 526.0556ms.
+2025-08-01 09:53:23.464 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 651.96ms
+2025-08-01 09:53:23.469 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-08-01 09:53:23.473 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Access/Login - 200 null text/html; charset=utf-8 678.8571ms
+2025-08-01 09:53:23.488 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - null null
+2025-08-01 09:53:23.496 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:23.496 +02:00 [INF] The file /Helpdesk.styles.css was not modified
+2025-08-01 09:53:23.497 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:23.503 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Helpdesk.styles.css?v=kYEEKz3Yull8sPIi7JsE8nePwOA1cXCwmwy3_6CfTlI - 304 null text/css 15.2252ms
+2025-08-01 09:53:23.507 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.1626ms
+2025-08-01 09:53:23.541 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.0481ms
+2025-08-01 09:53:33.762 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7003/Access/Login - application/x-www-form-urlencoded 242
+2025-08-01 09:53:33.775 +02:00 [INF] Identity.Application was not authenticated. Failure message: Ticket expired
+2025-08-01 09:53:33.778 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-08-01 09:53:33.792 +02:00 [INF] Route matched with {action = "Login", controller = "Access"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ViewModels.User.ApplicationUserViewModel) on controller Helpdesk.Controllers.AccessController (Helpdesk).
+2025-08-01 09:53:33.843 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-08-01 09:53:33.938 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2025-08-01 09:53:33.956 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-08-01 09:53:33.966 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-08-01 09:53:33.977 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."ClaimType", a."ClaimValue"
+FROM "AspNetRoleClaims" AS a
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:33.986 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-08-01 09:53:33.989 +02:00 [INF] User logged in successfully: jirka.auditor@gmail.com
+2025-08-01 09:53:33.994 +02:00 [INF] Executing RedirectResult, redirecting to /.
+2025-08-01 09:53:33.996 +02:00 [INF] Executed action Helpdesk.Controllers.AccessController.Login (Helpdesk) in 200.387ms
+2025-08-01 09:53:33.999 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AccessController.Login (Helpdesk)'
+2025-08-01 09:53:34.000 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7003/Access/Login - 302 0 null 238.7015ms
+2025-08-01 09:53:34.006 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-08-01 09:53:34.016 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 09:53:34.018 +02:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-08-01 09:53:34.031 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:34.039 +02:00 [INF] Executing ViewResult, running view Index.
+2025-08-01 09:53:34.045 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:34.058 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-08-01 09:53:34.132 +02:00 [INF] Executed ViewResult - view Index executed in 94.5638ms.
+2025-08-01 09:53:34.135 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 114.1492ms
+2025-08-01 09:53:34.138 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 09:53:34.140 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 134.6916ms
+2025-08-01 09:53:34.160 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:34.160 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:34.172 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 12.6763ms
+2025-08-01 09:53:34.190 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 29.8419ms
+2025-08-01 09:53:36.433 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:53:36.444 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:36.449 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:36.458 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:36.465 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:36.473 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:36.478 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:36.487 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:36.491 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:36.498 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:53:36.598 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:36.615 +02:00 [INF] Executed ViewResult - view Overview executed in 118.2545ms.
+2025-08-01 09:53:36.617 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 165.0789ms
+2025-08-01 09:53:36.619 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:36.620 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 187.936ms
+2025-08-01 09:53:36.631 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:36.631 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:36.642 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.0233ms
+2025-08-01 09:53:36.649 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.9507ms
+2025-08-01 09:53:37.759 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Detail?userId=46ad530c-ea89-4859-90c3-9592c131dd1b&role=Zadavatel - null null
+2025-08-01 09:53:37.771 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk)'
+2025-08-01 09:53:37.775 +02:00 [INF] Route matched with {action = "Detail", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid, Models.Users.UserType) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:37.795 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__get_Item_0
+LIMIT 1
+2025-08-01 09:53:37.849 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-08-01 09:53:37.859 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:37.867 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:38.024 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:38.031 +02:00 [INF] Executed ViewResult - view Detail executed in 183.4755ms.
+2025-08-01 09:53:38.033 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk) in 256.2513ms
+2025-08-01 09:53:38.035 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk)'
+2025-08-01 09:53:38.037 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Detail?userId=46ad530c-ea89-4859-90c3-9592c131dd1b&role=Zadavatel - 200 null text/html; charset=utf-8 278.585ms
+2025-08-01 09:53:38.058 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:38.059 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:38.070 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 11.1118ms
+2025-08-01 09:53:38.080 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.7926ms
+2025-08-01 09:53:40.829 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:53:40.838 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:40.839 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:40.845 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:40.850 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:40.855 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:40.859 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:40.864 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:40.869 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:40.873 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:53:40.877 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:40.887 +02:00 [INF] Executed ViewResult - view Overview executed in 13.8461ms.
+2025-08-01 09:53:40.888 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 46.9681ms
+2025-08-01 09:53:40.890 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:40.891 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 63.0203ms
+2025-08-01 09:53:40.904 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:40.905 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:40.909 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.6577ms
+2025-08-01 09:53:40.923 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.1537ms
+2025-08-01 09:53:43.680 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Detail?userId=09b8f92c-44a7-405c-ae79-a096f4cb3221&role=%C5%98e%C5%A1itel - null null
+2025-08-01 09:53:43.692 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk)'
+2025-08-01 09:53:43.694 +02:00 [INF] Route matched with {action = "Detail", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid, Models.Users.UserType) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:43.700 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__get_Item_0
+LIMIT 1
+2025-08-01 09:53:43.707 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-08-01 09:53:43.711 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:43.720 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:43.729 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:43.737 +02:00 [INF] Executed ViewResult - view Detail executed in 30.3487ms.
+2025-08-01 09:53:43.738 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk) in 42.6752ms
+2025-08-01 09:53:43.740 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk)'
+2025-08-01 09:53:43.741 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Detail?userId=09b8f92c-44a7-405c-ae79-a096f4cb3221&role=%C5%98e%C5%A1itel - 200 null text/html; charset=utf-8 60.7154ms
+2025-08-01 09:53:43.764 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:43.764 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:43.769 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.2695ms
+2025-08-01 09:53:43.784 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.051ms
+2025-08-01 09:53:47.663 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:53:47.671 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:47.673 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:47.677 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:47.684 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:47.689 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:47.693 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:47.698 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:47.705 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:47.708 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:53:47.713 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:47.724 +02:00 [INF] Executed ViewResult - view Overview executed in 15.7675ms.
+2025-08-01 09:53:47.726 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 51.7105ms
+2025-08-01 09:53:47.728 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:47.729 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 66.7944ms
+2025-08-01 09:53:47.755 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:47.755 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:47.760 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.3861ms
+2025-08-01 09:53:47.774 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.5959ms
+2025-08-01 09:53:49.371 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Detail?userId=46ad530c-ea89-4859-90c3-9592c131dd1b&role=Zadavatel - null null
+2025-08-01 09:53:49.379 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk)'
+2025-08-01 09:53:49.380 +02:00 [INF] Route matched with {action = "Detail", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.Guid, Models.Users.UserType) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:49.388 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__get_Item_0
+LIMIT 1
+2025-08-01 09:53:49.393 +02:00 [INF] Executing ViewResult, running view Detail.
+2025-08-01 09:53:49.397 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:49.404 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:49.409 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:49.413 +02:00 [INF] Executed ViewResult - view Detail executed in 19.7235ms.
+2025-08-01 09:53:49.414 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk) in 31.2583ms
+2025-08-01 09:53:49.416 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Detail (Helpdesk)'
+2025-08-01 09:53:49.417 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Detail?userId=46ad530c-ea89-4859-90c3-9592c131dd1b&role=Zadavatel - 200 null text/html; charset=utf-8 45.9807ms
+2025-08-01 09:53:49.434 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:49.434 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:49.437 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.4355ms
+2025-08-01 09:53:49.453 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.7128ms
+2025-08-01 09:53:50.912 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:53:50.919 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:50.921 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:50.925 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:50.932 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:50.938 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:50.943 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:50.947 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:53:50.952 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:53:50.956 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:53:50.959 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:50.969 +02:00 [INF] Executed ViewResult - view Overview executed in 12.9213ms.
+2025-08-01 09:53:50.971 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 48.1456ms
+2025-08-01 09:53:50.972 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:53:50.974 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 62.0617ms
+2025-08-01 09:53:50.988 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:50.988 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:50.998 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.0942ms
+2025-08-01 09:53:51.003 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.6987ms
+2025-08-01 09:53:53.617 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Create - null null
+2025-08-01 09:53:53.625 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Create (Helpdesk)'
+2025-08-01 09:53:53.627 +02:00 [INF] Route matched with {action = "Create", controller = "AuditorUser"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:53:53.633 +02:00 [INF] Executing ViewResult, running view Create.
+2025-08-01 09:53:53.718 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:53:53.724 +02:00 [INF] Executed ViewResult - view Create executed in 93.1584ms.
+2025-08-01 09:53:53.728 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Create (Helpdesk) in 98.6162ms
+2025-08-01 09:53:53.729 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Create (Helpdesk)'
+2025-08-01 09:53:53.731 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Create - 200 null text/html; charset=utf-8 114.7809ms
+2025-08-01 09:53:53.746 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:53:53.746 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:53:53.750 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.2572ms
+2025-08-01 09:53:53.763 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.8093ms
+2025-08-01 09:54:04.161 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Home/UserSettings - null null
+2025-08-01 09:54:04.169 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.UserSettings (Helpdesk)'
+2025-08-01 09:54:04.170 +02:00 [INF] Route matched with {action = "UserSettings", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult UserSettings() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-08-01 09:54:04.175 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:04.180 +02:00 [INF] Executing ViewResult, running view UserSettings.
+2025-08-01 09:54:04.189 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:54:04.196 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:54:04.322 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:04.327 +02:00 [INF] Executed ViewResult - view UserSettings executed in 147.8841ms.
+2025-08-01 09:54:04.328 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.UserSettings (Helpdesk) in 155.3797ms
+2025-08-01 09:54:04.330 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.UserSettings (Helpdesk)'
+2025-08-01 09:54:04.332 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Home/UserSettings - 200 null text/html; charset=utf-8 170.9093ms
+2025-08-01 09:54:04.342 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:54:04.342 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:54:04.347 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.446ms
+2025-08-01 09:54:04.360 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.5084ms
+2025-08-01 09:54:06.714 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-08-01 09:54:06.721 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 09:54:06.722 +02:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-08-01 09:54:06.726 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:06.730 +02:00 [INF] Executing ViewResult, running view Index.
+2025-08-01 09:54:06.733 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:06.739 +02:00 [INF] Executed ViewResult - view Index executed in 8.5829ms.
+2025-08-01 09:54:06.741 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 17.182ms
+2025-08-01 09:54:06.743 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 09:54:06.745 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 31.3668ms
+2025-08-01 09:54:06.765 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:54:06.765 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:54:06.777 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 12.4455ms
+2025-08-01 09:54:06.784 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.3486ms
+2025-08-01 09:54:25.161 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorTicket/Create - null null
+2025-08-01 09:54:25.170 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk)'
+2025-08-01 09:54:25.174 +02:00 [INF] Route matched with {action = "Create", controller = "AuditorTicket"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller Helpdesk.Controllers.AuditorTicketController (Helpdesk).
+2025-08-01 09:54:25.179 +02:00 [INF] Executing ViewResult, running view Create.
+2025-08-01 09:54:25.216 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:25.226 +02:00 [INF] Executed ViewResult - view Create executed in 47.66ms.
+2025-08-01 09:54:25.229 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk) in 52.5438ms
+2025-08-01 09:54:25.231 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk)'
+2025-08-01 09:54:25.232 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorTicket/Create - 200 null text/html; charset=utf-8 71.3811ms
+2025-08-01 09:54:25.242 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:54:25.243 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:54:25.248 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.3534ms
+2025-08-01 09:54:25.261 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.5313ms
+2025-08-01 09:54:26.229 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorTicket/Overview - null null
+2025-08-01 09:54:26.237 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorTicketController.Overview (Helpdesk)'
+2025-08-01 09:54:26.241 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorTicketController (Helpdesk).
+2025-08-01 09:54:26.245 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:26.253 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 09:54:26.307 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:54:26.398 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:26.411 +02:00 [INF] Executed ViewResult - view Overview executed in 104.4972ms.
+2025-08-01 09:54:26.412 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorTicketController.Overview (Helpdesk) in 169.6735ms
+2025-08-01 09:54:26.414 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorTicketController.Overview (Helpdesk)'
+2025-08-01 09:54:26.415 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorTicket/Overview - 200 null text/html; charset=utf-8 186.1058ms
+2025-08-01 09:54:26.438 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:54:26.438 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:54:26.442 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.1611ms
+2025-08-01 09:54:26.454 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.4129ms
+2025-08-01 09:54:27.917 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:54:27.924 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:54:27.926 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:54:27.931 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:54:27.939 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:54:27.942 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:54:27.946 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:54:27.952 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:54:27.956 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:54:27.960 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:54:27.963 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:54:27.973 +02:00 [INF] Executed ViewResult - view Overview executed in 12.9105ms.
+2025-08-01 09:54:27.974 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 46.8802ms
+2025-08-01 09:54:27.976 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:54:27.977 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 60.1939ms
+2025-08-01 09:54:27.999 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:54:27.999 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:54:28.008 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.2206ms
+2025-08-01 09:54:28.015 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.3313ms
+2025-08-01 09:55:33.672 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:55:33.679 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:55:33.684 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:55:33.691 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:55:33.694 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:55:33.698 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:55:33.702 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:55:33.706 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:55:33.709 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:55:33.714 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:55:33.719 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:55:33.729 +02:00 [INF] Executed ViewResult - view Overview executed in 15.7701ms.
+2025-08-01 09:55:33.730 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 43.9947ms
+2025-08-01 09:55:33.732 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:55:33.733 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 61.7351ms
+2025-08-01 09:55:33.750 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:55:33.750 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:55:33.759 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 9.6865ms
+2025-08-01 09:55:33.772 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.0651ms
+2025-08-01 09:57:01.984 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorTicket/Create - null null
+2025-08-01 09:57:01.998 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk)'
+2025-08-01 09:57:02.001 +02:00 [INF] Route matched with {action = "Create", controller = "AuditorTicket"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller Helpdesk.Controllers.AuditorTicketController (Helpdesk).
+2025-08-01 09:57:02.007 +02:00 [INF] Executing ViewResult, running view Create.
+2025-08-01 09:57:02.012 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:02.019 +02:00 [INF] Executed ViewResult - view Create executed in 13.341ms.
+2025-08-01 09:57:02.026 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk) in 22.8786ms
+2025-08-01 09:57:02.028 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk)'
+2025-08-01 09:57:02.029 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorTicket/Create - 200 null text/html; charset=utf-8 45.9721ms
+2025-08-01 09:57:02.042 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:02.042 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:02.046 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.3638ms
+2025-08-01 09:57:02.068 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 26.1319ms
+2025-08-01 09:57:03.127 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorTicket/Overview - null null
+2025-08-01 09:57:03.134 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorTicketController.Overview (Helpdesk)'
+2025-08-01 09:57:03.138 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorTicketController (Helpdesk).
+2025-08-01 09:57:03.142 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:03.146 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 09:57:03.156 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:03.160 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:03.168 +02:00 [INF] Executed ViewResult - view Overview executed in 12.432ms.
+2025-08-01 09:57:03.169 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorTicketController.Overview (Helpdesk) in 29.3671ms
+2025-08-01 09:57:03.171 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorTicketController.Overview (Helpdesk)'
+2025-08-01 09:57:03.174 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorTicket/Overview - 200 null text/html; charset=utf-8 46.794ms
+2025-08-01 09:57:03.182 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:03.182 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:03.185 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.0246ms
+2025-08-01 09:57:03.197 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.2876ms
+2025-08-01 09:57:04.675 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorTicket/Create - null null
+2025-08-01 09:57:04.684 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk)'
+2025-08-01 09:57:04.685 +02:00 [INF] Route matched with {action = "Create", controller = "AuditorTicket"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller Helpdesk.Controllers.AuditorTicketController (Helpdesk).
+2025-08-01 09:57:04.690 +02:00 [INF] Executing ViewResult, running view Create.
+2025-08-01 09:57:04.693 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:04.698 +02:00 [INF] Executed ViewResult - view Create executed in 7.8202ms.
+2025-08-01 09:57:04.701 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk) in 13.227ms
+2025-08-01 09:57:04.702 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorTicketController.Create (Helpdesk)'
+2025-08-01 09:57:04.704 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorTicket/Create - 200 null text/html; charset=utf-8 28.8094ms
+2025-08-01 09:57:04.716 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:04.722 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:04.728 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.2111ms
+2025-08-01 09:57:04.740 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.9337ms
+2025-08-01 09:57:06.126 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:57:06.135 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:06.137 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:06.142 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:06.149 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:06.153 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:06.157 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:06.160 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:06.165 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:06.170 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:06.174 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:06.186 +02:00 [INF] Executed ViewResult - view Overview executed in 15.4341ms.
+2025-08-01 09:57:06.187 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 47.8391ms
+2025-08-01 09:57:06.189 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:06.191 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 65.4439ms
+2025-08-01 09:57:06.218 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:06.218 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:06.232 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 14.1317ms
+2025-08-01 09:57:06.235 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.8887ms
+2025-08-01 09:57:08.097 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Create - null null
+2025-08-01 09:57:08.105 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Create (Helpdesk)'
+2025-08-01 09:57:08.107 +02:00 [INF] Route matched with {action = "Create", controller = "AuditorUser"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:08.111 +02:00 [INF] Executing ViewResult, running view Create.
+2025-08-01 09:57:08.117 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:08.127 +02:00 [INF] Executed ViewResult - view Create executed in 15.7577ms.
+2025-08-01 09:57:08.130 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Create (Helpdesk) in 20.6916ms
+2025-08-01 09:57:08.132 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Create (Helpdesk)'
+2025-08-01 09:57:08.133 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Create - 200 null text/html; charset=utf-8 36.6981ms
+2025-08-01 09:57:08.143 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:08.143 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:08.148 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.5388ms
+2025-08-01 09:57:08.164 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.4844ms
+2025-08-01 09:57:13.228 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Home/UserSettings - null null
+2025-08-01 09:57:13.235 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.UserSettings (Helpdesk)'
+2025-08-01 09:57:13.237 +02:00 [INF] Route matched with {action = "UserSettings", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult UserSettings() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-08-01 09:57:13.241 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:13.246 +02:00 [INF] Executing ViewResult, running view UserSettings.
+2025-08-01 09:57:13.250 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:13.259 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:13.265 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:13.269 +02:00 [INF] Executed ViewResult - view UserSettings executed in 23.9455ms.
+2025-08-01 09:57:13.271 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.UserSettings (Helpdesk) in 31.8659ms
+2025-08-01 09:57:13.273 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.UserSettings (Helpdesk)'
+2025-08-01 09:57:13.274 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Home/UserSettings - 200 null text/html; charset=utf-8 46.3978ms
+2025-08-01 09:57:13.294 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:13.294 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:13.301 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.7955ms
+2025-08-01 09:57:13.314 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.4447ms
+2025-08-01 09:57:20.293 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:57:20.302 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:20.304 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:20.309 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:20.315 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:20.319 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:20.323 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:20.327 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:20.331 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:20.335 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:20.338 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:20.346 +02:00 [INF] Executed ViewResult - view Overview executed in 11.5622ms.
+2025-08-01 09:57:20.348 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 42.4806ms
+2025-08-01 09:57:20.350 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:20.351 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 58.699ms
+2025-08-01 09:57:20.362 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:20.363 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:20.368 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.2562ms
+2025-08-01 09:57:20.381 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.8231ms
+2025-08-01 09:57:30.236 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/Home/SwitchTheme - null null
+2025-08-01 09:57:30.244 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.SwitchTheme (Helpdesk)'
+2025-08-01 09:57:30.248 +02:00 [INF] Route matched with {action = "SwitchTheme", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SwitchTheme() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-08-01 09:57:30.254 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:30.267 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2025-08-01 09:57:30.363 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[@p21='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (DbType = Object), @p2='?', @p22='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?' (DbType = Boolean), @p10='?', @p11='?', @p12='?' (DbType = Boolean), @p13='?' (DbType = Boolean), @p14='?', @p15='?', @p16='?' (DbType = Guid), @p17='?' (DbType = Int32), @p18='?' (DbType = Boolean), @p19='?' (DbType = Boolean), @p20='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "CategoryPreferences" = @p1, "ConcurrencyStamp" = @p2, "Email" = @p3, "EmailConfirmed" = @p4, "LockoutEnabled" = @p5, "LockoutEnd" = @p6, "NormalizedEmail" = @p7, "NormalizedUserName" = @p8, "NotificationsEnabled" = @p9, "PasswordHash" = @p10, "PhoneNumber" = @p11, "PhoneNumberConfirmed" = @p12, "ProxyEnabled" = @p13, "ProxyUser" = @p14, "SecurityStamp" = @p15, "Superior" = @p16, "Theme" = @p17, "TwoFactorEnabled" = @p18, "UseProxy" = @p19, "UserName" = @p20
+WHERE "Id" = @p21 AND "ConcurrencyStamp" = @p22;
+2025-08-01 09:57:30.382 +02:00 [INF] Executing RedirectResult, redirecting to https://localhost:7003/AuditorUser/Overview.
+2025-08-01 09:57:30.383 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.SwitchTheme (Helpdesk) in 131.5552ms
+2025-08-01 09:57:30.384 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.SwitchTheme (Helpdesk)'
+2025-08-01 09:57:30.386 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/Home/SwitchTheme - 302 0 null 150.5943ms
+2025-08-01 09:57:30.391 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:57:30.396 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:30.397 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:30.404 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:30.410 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:30.415 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:30.418 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:30.422 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:30.427 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:30.431 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:30.434 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:30.444 +02:00 [INF] Executed ViewResult - view Overview executed in 12.9113ms.
+2025-08-01 09:57:30.446 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 45.6837ms
+2025-08-01 09:57:30.447 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:30.449 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 58.3109ms
+2025-08-01 09:57:30.470 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:30.470 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:30.475 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.3276ms
+2025-08-01 09:57:30.489 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.6694ms
+2025-08-01 09:57:39.913 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Resitel - null null
+2025-08-01 09:57:39.919 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:39.921 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:39.926 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:39.933 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:39.938 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:39.942 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:39.947 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:39.951 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:39.960 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:39.963 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:39.968 +02:00 [INF] Executed ViewResult - view Overview executed in 7.9916ms.
+2025-08-01 09:57:39.970 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 46.3258ms
+2025-08-01 09:57:39.971 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:39.973 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Resitel - 200 null text/html; charset=utf-8 60.8565ms
+2025-08-01 09:57:39.996 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:39.996 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:40.000 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.8122ms
+2025-08-01 09:57:40.014 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.822ms
+2025-08-01 09:57:43.545 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - null null
+2025-08-01 09:57:43.553 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:43.554 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:43.559 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:43.564 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:43.568 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:43.574 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:43.582 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:43.586 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:43.591 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:43.593 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:43.598 +02:00 [INF] Executed ViewResult - view Overview executed in 7.1442ms.
+2025-08-01 09:57:43.600 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 43.4211ms
+2025-08-01 09:57:43.601 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:43.602 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - 200 null text/html; charset=utf-8 57.387ms
+2025-08-01 09:57:43.622 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:43.622 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:43.632 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.3272ms
+2025-08-01 09:57:43.637 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.5974ms
+2025-08-01 09:57:48.259 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=zadava - null null
+2025-08-01 09:57:48.267 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:48.269 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:48.275 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:48.281 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:48.286 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:48.290 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:48.294 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:48.298 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:48.303 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:48.305 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:48.310 +02:00 [INF] Executed ViewResult - view Overview executed in 7.2866ms.
+2025-08-01 09:57:48.312 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 41.3733ms
+2025-08-01 09:57:48.314 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:48.315 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=zadava - 200 null text/html; charset=utf-8 56.0937ms
+2025-08-01 09:57:48.330 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:48.330 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:48.335 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.0084ms
+2025-08-01 09:57:48.354 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.565ms
+2025-08-01 09:57:50.240 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 09:57:50.246 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:50.248 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:50.252 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:50.261 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:50.266 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:50.271 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:50.277 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:50.281 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:50.285 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:50.289 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:50.300 +02:00 [INF] Executed ViewResult - view Overview executed in 15.3181ms.
+2025-08-01 09:57:50.302 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 52.6757ms
+2025-08-01 09:57:50.304 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:50.306 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 66.167ms
+2025-08-01 09:57:50.323 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:50.323 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:50.329 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.5686ms
+2025-08-01 09:57:50.344 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 21.4553ms
+2025-08-01 09:57:52.953 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - null null
+2025-08-01 09:57:52.960 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:52.962 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:57:52.967 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:52.974 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:52.979 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:52.984 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:52.989 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:57:52.996 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:57:53.000 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:57:53.003 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:57:53.010 +02:00 [INF] Executed ViewResult - view Overview executed in 9.7338ms.
+2025-08-01 09:57:53.012 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 47.9635ms
+2025-08-01 09:57:53.014 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:57:53.016 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - 200 null text/html; charset=utf-8 62.9007ms
+2025-08-01 09:57:53.043 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:57:53.043 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:57:53.049 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.2844ms
+2025-08-01 09:57:53.064 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 21.1922ms
+2025-08-01 09:59:55.269 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - null null
+2025-08-01 09:59:55.280 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:59:55.284 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:59:55.356 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:59:55.363 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:59:55.367 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:59:55.372 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:59:55.375 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:59:55.379 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:59:55.383 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:59:55.387 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:59:55.399 +02:00 [INF] Executed ViewResult - view Overview executed in 15.7789ms.
+2025-08-01 09:59:55.402 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 115.5536ms
+2025-08-01 09:59:55.403 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:59:55.405 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - 200 null text/html; charset=utf-8 136.2531ms
+2025-08-01 09:59:55.429 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:59:55.429 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:59:55.446 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 16.7973ms
+2025-08-01 09:59:55.461 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.4567ms
+2025-08-01 09:59:58.603 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zadad - null null
+2025-08-01 09:59:58.610 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:59:58.611 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 09:59:58.617 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:59:58.622 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:59:58.626 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:59:58.629 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:59:58.634 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 09:59:58.637 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 09:59:58.642 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 09:59:58.646 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 09:59:58.650 +02:00 [INF] Executed ViewResult - view Overview executed in 8.4553ms.
+2025-08-01 09:59:58.652 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 37.8547ms
+2025-08-01 09:59:58.653 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 09:59:58.654 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zadad - 200 null text/html; charset=utf-8 51.9908ms
+2025-08-01 09:59:58.682 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 09:59:58.682 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 09:59:58.687 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.158ms
+2025-08-01 09:59:58.699 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.144ms
+2025-08-01 10:00:25.569 +02:00 [INF] Executed DbCommand (64ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-08-01 10:00:25.667 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-08-01 10:00:25.800 +02:00 [INF] User profile is available. Using 'C:\Users\jinda\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-01 10:00:26.198 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 10:00:26.206 +02:00 [INF] Log files deleted: 0. 
+2025-08-01 10:00:26.209 +02:00 [INF] Tickets archived.
+2025-08-01 10:00:26.298 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 10:00:26.412 +02:00 [INF] Tickets activated.
+2025-08-01 10:00:26.415 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 10:00:26.447 +02:00 [INF] Now listening on: https://localhost:7003
+2025-08-01 10:00:26.449 +02:00 [INF] Now listening on: http://localhost:5184
+2025-08-01 10:00:26.465 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:26.490 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:26.496 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Category", t."Content", t."Deadline", t."Header", t."HierarchyId", t."LastSolverHistoryId", t."LastWorkflowHistoryId", t."MessageThreadId", t."Priority", t."Result", t."TimeCreated", t."TimeUpdated", t."UserCreatedId", t."UserUpdatedId", a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName", s."Id", s."ActionDate", s."Comment", s."SolverId", s."TicketId", s."TimeCreated", s."TimeUpdated", s."UserCreatedId", s."UserUpdatedId", w."Id", w."Action", w."ActionDate", w."Comment", w."State", w."TicketId", w."TimeCreated", w."TimeUpdated", w."UserCreatedId", w."UserUpdatedId"
+FROM "Tickets" AS t
+LEFT JOIN "AspNetUsers" AS a ON t."UserCreatedId" = a."Id"
+LEFT JOIN "SolverHistories" AS s ON t."LastSolverHistoryId" = s."Id"
+LEFT JOIN "WorkflowHistory" AS w ON t."LastWorkflowHistoryId" = w."Id"
+2025-08-01 10:00:26.502 +02:00 [INF] Tickets assigned.
+2025-08-01 10:00:26.504 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 10:00:26.505 +02:00 [INF] Hosting environment: Development
+2025-08-01 10:00:26.506 +02:00 [INF] Content root path: C:\Code\Private\Remastered\Helpdesk\Helpdesk
+2025-08-01 10:00:26.784 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/ - null null
+2025-08-01 10:00:26.936 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 10:00:26.952 +02:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Helpdesk.Controllers.HomeController (Helpdesk).
+2025-08-01 10:00:26.977 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 10:00:26.993 +02:00 [INF] Executing ViewResult, running view Index.
+2025-08-01 10:00:27.030 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 10:00:27.177 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."Name", n."SerializedData", n."TimeCreated", n."TimeUpdated", n."UserCreatedId", n."UserUpdatedId"
+FROM "Navigations" AS n
+2025-08-01 10:00:27.414 +02:00 [INF] Executed ViewResult - view Index executed in 421.9118ms.
+2025-08-01 10:00:27.420 +02:00 [INF] Executed action Helpdesk.Controllers.HomeController.Index (Helpdesk) in 464.9569ms
+2025-08-01 10:00:27.422 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.HomeController.Index (Helpdesk)'
+2025-08-01 10:00:27.430 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 10:00:27.435 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/ - 200 null text/html; charset=utf-8 660.2601ms
+2025-08-01 10:00:27.438 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 7.321ms
+2025-08-01 10:00:27.441 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 10:00:27.479 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.824ms
+2025-08-01 10:00:31.559 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview - null null
+2025-08-01 10:00:31.579 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:00:31.592 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 10:00:31.617 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:31.624 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:31.634 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:31.638 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:31.646 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:31.652 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:31.662 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 10:00:31.767 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 10:00:31.790 +02:00 [INF] Executed ViewResult - view Overview executed in 128.2203ms.
+2025-08-01 10:00:31.792 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 194.8886ms
+2025-08-01 10:00:31.794 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:00:31.795 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview - 200 null text/html; charset=utf-8 236.2796ms
+2025-08-01 10:00:31.799 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 10:00:31.799 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 10:00:31.805 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.0142ms
+2025-08-01 10:00:31.827 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 28.2233ms
+2025-08-01 10:00:35.601 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=zada - null null
+2025-08-01 10:00:35.622 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:00:35.624 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 10:00:35.638 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:35.646 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:35.653 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:35.658 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:35.667 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:35.672 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:35.683 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 10:00:35.687 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 10:00:35.694 +02:00 [INF] Executed ViewResult - view Overview executed in 11.1111ms.
+2025-08-01 10:00:35.696 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 68.5825ms
+2025-08-01 10:00:35.698 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:00:35.700 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=zada - 200 null text/html; charset=utf-8 99.4629ms
+2025-08-01 10:00:35.716 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 10:00:35.716 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 10:00:35.721 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.5489ms
+2025-08-01 10:00:35.738 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 21.8542ms
+2025-08-01 10:00:47.034 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - null null
+2025-08-01 10:00:47.042 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:00:47.043 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 10:00:47.049 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:47.056 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:47.062 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:47.067 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:00:47.072 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:00:47.077 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:02:22.505 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 10:02:40.831 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 10:02:40.838 +02:00 [INF] Executed ViewResult - view Overview executed in 18339.3121ms.
+2025-08-01 10:02:40.839 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 113794.3724ms
+2025-08-01 10:02:40.841 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:02:40.842 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - 200 null text/html; charset=utf-8 113808.1737ms
+2025-08-01 10:02:40.872 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 10:02:40.872 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 10:02:40.885 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 13.9775ms
+2025-08-01 10:02:40.890 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.5656ms
+2025-08-01 10:03:05.289 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - null null
+2025-08-01 10:03:05.299 +02:00 [INF] Executing endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:03:05.303 +02:00 [INF] Route matched with {action = "Overview", controller = "AuditorUser"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Overview(System.String, Boolean) on controller Helpdesk.Controllers.AuditorUserController (Helpdesk).
+2025-08-01 10:03:05.311 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:03:05.317 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:03:05.321 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:03:05.325 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:03:05.329 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-08-01 10:03:05.334 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Id", a0."AccessFailedCount", a0."CategoryPreferences", a0."ConcurrencyStamp", a0."Email", a0."EmailConfirmed", a0."LockoutEnabled", a0."LockoutEnd", a0."NormalizedEmail", a0."NormalizedUserName", a0."NotificationsEnabled", a0."PasswordHash", a0."PhoneNumber", a0."PhoneNumberConfirmed", a0."ProxyEnabled", a0."ProxyUser", a0."SecurityStamp", a0."Superior", a0."Theme", a0."TwoFactorEnabled", a0."UseProxy", a0."UserName"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetUsers" AS a0 ON a."UserId" = a0."Id"
+WHERE a."RoleId" = @__role_Id_0
+2025-08-01 10:03:07.811 +02:00 [INF] Executing ViewResult, running view Overview.
+2025-08-01 10:03:09.109 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__guid_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."CategoryPreferences", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."NotificationsEnabled", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."ProxyEnabled", a."ProxyUser", a."SecurityStamp", a."Superior", a."Theme", a."TwoFactorEnabled", a."UseProxy", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__guid_0
+LIMIT 1
+2025-08-01 10:03:09.118 +02:00 [INF] Executed ViewResult - view Overview executed in 1307.7567ms.
+2025-08-01 10:03:09.124 +02:00 [INF] Executed action Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk) in 3818.867ms
+2025-08-01 10:03:09.126 +02:00 [INF] Executed endpoint 'Helpdesk.Controllers.AuditorUserController.Overview (Helpdesk)'
+2025-08-01 10:03:09.127 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/AuditorUser/Overview?filter=Zada - 200 null text/html; charset=utf-8 3838.2103ms
+2025-08-01 10:03:09.150 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_vs/browserLink - null null
+2025-08-01 10:03:09.150 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-01 10:03:09.160 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.1573ms
+2025-08-01 10:03:09.173 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.1586ms

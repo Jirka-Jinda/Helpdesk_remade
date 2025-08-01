@@ -1,8 +1,13 @@
-﻿@using Models.Users
+﻿@using Models.Tickets
+@using Models.Users
+@using Services.Abstractions.Services
 @using ViewModels.User
 @model UserSettingsViewModel
+@inject IUserService userService
 @{
     ViewData["Title"] = "Nastavení";
+    var auditors = await userService.GetUsersByRoleAsync(UserType.Auditor);
+    var preferenceOptions = Enum.GetValues(typeof(TicketCategory)).Cast<TicketCategory>().ToList();
 }
 
 <div class="d-flex flex-row justify-content-center mt-5">
@@ -15,6 +20,12 @@
         {
             <div class="alert alert-danger text-center text-wrap">
                 Neplatné údaje. Zkuste to prosím znovu.
+            </div>
+        }
+        @if (ViewBag.UpdateSucceded != null && (bool)ViewBag.UpdateSucceded)
+        {
+            <div class="alert alert-success text-center text-wrap">
+                Údaje byly úspěšně aktualizovány.
             </div>
         }
 
@@ -40,10 +51,6 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-check mb-3">
-                <input name="enableNotifications" asp-for="EnableNotifications" class="form-check-input form-checked-content" type="checkbox" id="enableNotifications">
-                <label asp-for="EnableNotifications" class="form-check-label fw-bold">Povolit notifikace</label>
-            </div>
 
             <!-- PhoneNumber -->
             <div class="mb-3">
@@ -52,7 +59,51 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
             </div>
 
-@*          <div class="text-center my-4">
+            @if (User.IsInRole(UserType.Zadavatel.ToString()))
+            {
+                <!-- Checkboxes category preferences -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Vyberte preference kategorie požadavků:</label>
+                    <div class="ms-1 row">
+                        @foreach (var option in preferenceOptions)
+                        {
+                            var isChecked = Model.CategoryPreferences.Contains(option);
+                            <div class="col-6 form-check">
+                                <input type="checkbox"
+                                       class="form-check-input"
+                                       name="CategoryPreferences"
+                                       value="@option"
+                                       id="option_@option"
+                                       @(isChecked ? "checked" : "") />
+                                <label class="form-check-label" for="option_@option">
+                                    @option.ToString().Replace('_', ' ')
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Superior -->
+                <div class="mb-3">
+                    <label asp-for="SuperiorId" class="form-label fw-bold">Zvolte svého nadřízeného:</label>
+                    <select name="SuperiorId" class="form-select">
+                        <option value="">Vyberte auditora</option>
+                        @foreach (var auditor in auditors)
+                        {
+                            <option value="@auditor.Id" selected="@(Model.SuperiorId == auditor.Id ? "selected" : null)">@auditor.UserName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SuperiorId" class="text-danger"></span>
+                </div>
+            }
+
+            <!-- Notifications -->
+            <div class="form-check mb-3">
+                <input name="enableNotifications" asp-for="EnableNotifications" class="form-check-input form-checked-content" type="checkbox" id="enableNotifications">
+                <label asp-for="EnableNotifications" class="form-check-label fw-bold">Povolit notifikace</label>
+            </div>
+
+            @* <div class="text-center my-4">
                 <h5>Přihlášení jiného uživatele</h5>
             </div>
 

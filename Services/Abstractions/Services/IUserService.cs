@@ -7,7 +7,7 @@ public interface IUserService
 {
     public Task<IdentityResult> CreateAsync(ApplicationUser user, string password);
     public Task<IdentityResult> DeleteAsync(Guid id);
-    public Task<IdentityResult> UpdateAsync(ApplicationUser user);
+    public Task<IdentityResult> UpdateAsync(ApplicationUser user, bool singBackIn = true);
     public Task<IdentityResult> UpdatePasswordAsync(ApplicationUser user, string oldPassword, string newPassword);
     public Task<ApplicationUser?> GetUserByEmailAsync(string email);
     public Task<ICollection<ApplicationUser>> GetUsersByRoleAsync(UserType type);

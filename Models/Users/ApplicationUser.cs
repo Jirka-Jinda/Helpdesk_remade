@@ -10,6 +10,7 @@ public class ApplicationUser : IdentityUser<Guid>
     public bool ProxyEnabled { get; set; } = false;
     public string ProxyUser { get; set; } = string.Empty;
     public bool UseProxy { get; set; } = false;
+    public Guid? Superior { get; set; } = null;
     public List<TicketCategory> CategoryPreferences { get; set; } = new();
 
     public void SetNameFromEmail()

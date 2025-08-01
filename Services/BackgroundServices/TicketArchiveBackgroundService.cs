@@ -27,7 +27,15 @@ internal class TicketArchiveBackgroundService : BackgroundService
         {
             using (var scope = _serviceProvider.CreateScope())
             {
-                // TODO move tickets from ticket to archive
+                try
+                {
+                    // TODO move tickets from ticket to archive
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred while archiving tickets.");
+                    return;
+                }
             }
 
             _logger.LogInformation("Tickets archived.");

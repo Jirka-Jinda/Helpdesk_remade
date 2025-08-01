@@ -36,6 +36,7 @@ namespace Database.Migrations
                     ProxyEnabled = table.Column<bool>(type: "boolean", nullable: false),
                     ProxyUser = table.Column<string>(type: "text", nullable: false),
                     UseProxy = table.Column<bool>(type: "boolean", nullable: false),
+                    Superior = table.Column<Guid>(type: "uuid", nullable: true),
                     CategoryPreferences = table.Column<int[]>(type: "integer[]", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),

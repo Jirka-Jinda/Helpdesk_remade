@@ -36,6 +36,8 @@ public class AccessController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(ApplicationUserViewModel userModel)
     {
+        ViewBag.EnableRegistrationForAllUsers = _enableRegistrationForAllUsers;
+
         if (!ModelState.IsValid)
             return View();
 

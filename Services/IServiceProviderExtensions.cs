@@ -23,12 +23,8 @@ public static class IServiceCollectionExtensions
         services.AddTransient<IStatisticsService, StatisticsService>();
         services.AddSingleton<PasswordGeneratorService>();
 
-        var options = new TicketActivatorBackgroundOptions
-        {
-            ActivationInterval = TimeSpan.FromHours(6)
-        };
         services.AddSingleton<IOptions<TicketActivatorBackgroundOptions>>(
-            new OptionsWrapper<TicketActivatorBackgroundOptions>(options));
+            new OptionsWrapper<TicketActivatorBackgroundOptions>(new TicketActivatorBackgroundOptions()));
         services.AddHostedService<TicketActivatorBackgroundService>();
 
         return services;

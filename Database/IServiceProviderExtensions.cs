@@ -47,7 +47,7 @@ public static class IServiceProviderExtensions
             logger?.LogInformation("Populating database with example data...");
             List<IDataSet> datasets = [ new RolesDataSet(), new UsersDataSet(), new NavigationDataSet(),  new TicketsDataSet() ];
         #else
-            logger?.LogInformation("Populating database with roles and navigations.");
+            logger?.LogInformation("Populating database with roles and default navigations.");
             List<IDataSet> datasets = [ new RolesDataSet(), new NavigationDataSet() ];
         #endif
 

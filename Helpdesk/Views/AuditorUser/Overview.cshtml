@@ -31,7 +31,6 @@
                             <th>Jméno</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Tel. číslo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,12 +38,11 @@
                         {
                             @foreach (var user in Model)
                             {
-                                string route = $"location.href='{Url.Action("Detail", "AuditorUser", new { userId = user.Key.Id})}'";
+                                string route = $"location.href='{Url.Action("Detail", "AuditorUser", new { userId = user.Key.Id, role = user.Value})}'";
                                 <tr onclick="@route" style="cursor: pointer;">
                                     <td>@user.Key.UserName</td>
                                     <td>@user.Key.Email</td>
                                     <td>@user.Value.ToString()</td>
-                                    <td>@user.Key.PhoneNumber</td>
                                 </tr>
                             }
                         }

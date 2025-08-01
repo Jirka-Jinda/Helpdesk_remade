@@ -80,6 +80,8 @@ public class HomeController : Controller
             refreshUser.UserName = updatedUser.UserName;
             refreshUser.NotificationsEnabled = updatedUser.EnableNotifications;
             refreshUser.PhoneNumber = updatedUser.PhoneNumber;
+            refreshUser.CategoryPreferences = updatedUser.CategoryPreferences;
+            refreshUser.Superior = updatedUser.SuperiorId;
 
             results.Add(await _userService.UpdateAsync(refreshUser));
 
@@ -87,7 +89,10 @@ public class HomeController : Controller
                 results.Add(await _userService.UpdatePasswordAsync(refreshUser, updatedUser.Password, updatedUser.NewPassword));
 
             if (results.All(res => res.Succeeded == true))
-                return View("UpdateConfirmation");
+            {
+                ViewBag.UpdateSucceded = true;
+                return View("Detail", new UserSettingsViewModel(refreshUser));
+            }
         }
 
         ViewBag.UpdateFailed = true;

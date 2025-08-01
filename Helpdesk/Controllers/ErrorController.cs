@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Helpdesk.Controllers;
 
+[AllowAnonymous]
 public class ErrorController : Controller
 {
     private readonly ILogger<ErrorController> _logger;
