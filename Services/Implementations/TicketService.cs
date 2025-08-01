@@ -79,6 +79,8 @@ public class TicketService : BaseService, ITicketService
     {
         ticket.ChangeParentTicket(parentTicket);
 
+        UpdateAuditableData(ticket, true);
+
         await _ticketRepository.SaveChangesAsync();
 
         return parentTicket;

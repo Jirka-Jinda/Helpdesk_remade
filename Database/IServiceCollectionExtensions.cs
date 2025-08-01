@@ -19,6 +19,8 @@ public static class IServiceCollectionExtensions
         services.AddTransient<ISolverRepository, SolverRepository>();
         services.AddTransient<IThreadRepository, ThreadRepository>();
         services.AddTransient<IMessageRepository, MessageRepository>();
+        services.AddTransient<ITicketArchiveRepository, TicketArchiveRepository>();
+        services.AddTransient<ISolverArchiveRepository, SolverArchiveRepository>();
 
         return services;
     }

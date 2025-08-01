@@ -35,7 +35,9 @@ public abstract class BaseService
         var httpContext = _httpContextAccessor.HttpContext;
         if (httpContext == null || httpContext.User == null)
             return null;
-        var userId = httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier); // TODO: that claim seems dubious, check if it is correct
+
+        var userId = httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
         if (Guid.TryParse(userId, out var guid))
         {
             return _userManager.Users.FirstOrDefault(u => u.Id == guid);

@@ -15,14 +15,14 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
     public override async Task<ICollection<Ticket>> GetAllAsync()
     {
         return await _context.Tickets
-            .UseTicketIncludesAll()
+            .UseIncludesAll()
             .ToListAsync();
     }
 
     public override async Task<Ticket?> GetAsync(Guid id)
     {
         return await _context.Tickets
-            .UseTicketIncludesSingle()
+            .UseIncludesSingle()
             .Where(t => t.Id == id)
             .SingleOrDefaultAsync();
     }
@@ -39,7 +39,7 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
         string? header = null)
     {
         return await _context.Tickets
-            .UseTicketIncludesAll()
+            .UseIncludesAll()
             .Where(t =>
                 (creatorId == null || (t.UserCreated != null && t.UserCreated.Id == creatorId)) &&
                 (ticketCategory == null || t.Category == ticketCategory) &&
@@ -50,15 +50,15 @@ public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
     public async Task<ICollection<Ticket>> GetCreatedBetween(DateTime startTime, DateTime endTime)
     {
         return await _context.Tickets
-            .UseTicketIncludesAll()
+            .UseIncludesAll()
             .Where(t => t.TimeCreated >= startTime && t.TimeCreated <= endTime)
             .ToListAsync();
     }
 }
 
-public static class TicketIncludeExtensions
+internal static class TicketIncludeExtensions
 {
-    public static IQueryable<Ticket> UseTicketIncludesSingle(this IQueryable<Ticket> query)
+    public static IQueryable<Ticket> UseIncludesSingle(this IQueryable<Ticket> query)
     {
         return query
             .Include(t => t.UserCreated)
@@ -74,7 +74,7 @@ public static class TicketIncludeExtensions
                     .ThenInclude(m => m.UserCreated);
     }
 
-    public static IQueryable<Ticket> UseTicketIncludesAll(this IQueryable<Ticket> query)
+    public static IQueryable<Ticket> UseIncludesAll(this IQueryable<Ticket> query)
     {
         return query
             .Include(t => t.UserCreated)

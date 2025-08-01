@@ -13,6 +13,17 @@ public class SolverRepository : BaseRepository<SolverHistory>, ISolverRepository
 
     public override async Task<SolverHistory?> GetAsync(Guid id)
     {
-        return await _context.SolverHistories.Include(h => h.Solver).SingleOrDefaultAsync(e => e.Id == id);
+        return await _context.SolverHistories
+            .UseIncludesSingle()
+            .SingleOrDefaultAsync(e => e.Id == id);
+    }
+}
+
+internal static class SolverIncludeExtensions
+{
+    public static IQueryable<SolverHistory> UseIncludesSingle(this IQueryable<SolverHistory> query)
+    {
+        return query
+            .Include(h => h.Solver);
     }
 }

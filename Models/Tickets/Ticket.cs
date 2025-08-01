@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models.Tickets;
 
 [Table("Tickets")]
-public class Ticket : AuditableObject
+public class Ticket : TicketBase
 {
     public Ticket? Hierarchy { get; private set; } = null;
     public List<WorkflowHistory> TicketHistory { get; private set; } = [];
@@ -16,11 +16,6 @@ public class Ticket : AuditableObject
     public SolverHistory? LastSolverHistory { get; set; } = null;
     public ApplicationUser? Solver => LastSolverHistory?.Solver;
     public MessageThread MessageThread { get; private set; } = new();
-    public Priority Priority { get; private set; } = Priority.Střední;
-    public string Header { get; set; } = string.Empty;
-    public string Content { get; set; } = string.Empty;
-    public TicketCategory Category { get; set; }
-    public string Result { get; private set; } = string.Empty;
     public DateOnly? Deadline { get; set; } = null;
 
     public Ticket? ChangeParentTicket(Ticket? parentTicket)

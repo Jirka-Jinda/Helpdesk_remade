@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Models.Archive;
 using Models.Messages;
 using Models.Navigation;
+using Models.TicketArchive;
 using Models.Tickets;
 using Models.Users;
 
@@ -17,4 +19,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<MessageThread> Threads { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<SerializedNavigation> Navigations { get; set; }
+    public DbSet<TicketArchive> TicketArchives { get; set; }
+    public DbSet<SolverArchiveHistory> SolverArchives { get; set; }
 }

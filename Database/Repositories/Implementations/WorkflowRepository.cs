@@ -13,6 +13,17 @@ public class WorkflowRepository : BaseRepository<WorkflowHistory>, IWorkflowRepo
 
     public override async Task<WorkflowHistory?> GetAsync(Guid id)
     {
-        return await _context.WorkflowHistories.Include(h => h.UserCreated).SingleOrDefaultAsync(e => e.Id == id);
+        return await _context.WorkflowHistories
+            .UseIncludesSingle()
+            .SingleOrDefaultAsync(e => e.Id == id);
+    }
+}
+
+internal static class WorkflowIncludeExtensions
+{
+    public static IQueryable<WorkflowHistory> UseIncludesSingle(this IQueryable<WorkflowHistory> query)
+    {
+        return query
+            .Include(h => h.UserCreated);
     }
 }
