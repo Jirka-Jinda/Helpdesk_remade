@@ -35,7 +35,7 @@ public class ArchiveService : BaseService, IArchiveService
     {
         UpdateAuditableData(entity, true);
         foreach (var history in entity.SolverArchiveHistory)
-            await _solverArchiveRepository.AddAsync(history, false);
+            await _solverArchiveRepository.AddAsync(history);
         return await _ticketArchiveRepository.AddAsync(entity);
     }
 

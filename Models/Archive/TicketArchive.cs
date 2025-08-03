@@ -9,10 +9,10 @@ namespace Models.TicketArchive;
 public class TicketArchive : TicketBase
 {
     public List<SolverArchiveHistory> SolverArchiveHistory { get; set; } = new();
-    public SolverArchiveHistory? Solver { get; set; }
-    public SolverArchiveHistory? Resolver { get; set; }
-    public bool? DeadlineMet { get; set; }
-    public bool? WasReturned { get; set; }
+    public SolverArchiveHistory? Solver { get; set; } = null;
+    public SolverArchiveHistory? Resolver { get; set; } = null;
+    public bool? DeadlineMet { get; set; } = null;
+    public bool WasReturned { get; set; } = false;
 
     public static TicketArchive CreateArchive(Ticket ticket)
     {
@@ -29,7 +29,12 @@ public class TicketArchive : TicketBase
             UserUpdated = ticket.UserUpdated,
             TimeUpdated = ticket.TimeUpdated,
         };
-        ticketArchive.DeadlineMet = ticket.Deadline < DateOnly.FromDateTime(ticket.TicketHistory.Where(th => th.State == WFState.Uzavřený).Select(th => th.TimeCreated).FirstOrDefault());
+
+        if (ticket.Deadline is not null)
+        {
+            ticketArchive.DeadlineMet = ticket.Deadline < DateOnly.FromDateTime(ticket.TicketHistory.Where(th => th.State == WFState.Uzavřený).Select(th => th.TimeCreated).FirstOrDefault());
+        }
+
         ticketArchive.WasReturned = ticket.TicketHistory.Any(th => th.Action == WFAction.Vrácení);
 
         foreach (var history in ticket.SolverHistory)
@@ -40,6 +45,7 @@ public class TicketArchive : TicketBase
                 SolverAssigned = history.TimeCreated,
             });
         }
+
         ticketArchive.Solver = ticketArchive.SolverArchiveHistory.FirstOrDefault();
         ticketArchive.Resolver = ticketArchive.SolverArchiveHistory.LastOrDefault();
 

@@ -13,3 +13,9 @@
 /ViewModels/bin/Debug/net8.0
 /ViewModels/obj/Debug/net8.0
 /ViewModels/obj
+/bin/Release
+/bin/Debug
+/obj
+/ViewModels/bin/Release/net8.0
+/postgres-image.tar
+/helpdesk-image.tar

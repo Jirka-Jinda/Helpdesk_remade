@@ -9,5 +9,17 @@ public class SolverArchiveRepository : BaseRepository<SolverArchiveHistory>, ISo
     public SolverArchiveRepository(ApplicationDbContext context) : base(context)
     {
     }
+
+    public override Task<SolverArchiveHistory> AddAsync(SolverArchiveHistory entity, bool executeOperation = true)
+    {
+        if (entity.UserCreated is not null)
+            _context.Attach(entity.UserCreated);
+        if (entity.UserUpdated is not null)
+            _context.Attach(entity.UserUpdated);
+        if (entity.Solver is not null)
+            _context.Attach(entity.Solver);
+
+        return base.AddAsync(entity, executeOperation);
+    }
 }
 

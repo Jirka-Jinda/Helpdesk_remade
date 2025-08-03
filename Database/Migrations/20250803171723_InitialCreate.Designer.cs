@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250731163937_InitialCreate")]
+    [Migration("20250803171723_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -128,6 +128,46 @@ namespace Database.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Models.Archive.SolverArchiveHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("SolverAssigned")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("SolverId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("TicketArchiveId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("TimeCreated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("TimeUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UserCreatedId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("UserUpdatedId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SolverId");
+
+                    b.HasIndex("TicketArchiveId");
+
+                    b.HasIndex("UserCreatedId");
+
+                    b.HasIndex("UserUpdatedId");
+
+                    b.ToTable("SolverArchives");
+                });
+
             modelBuilder.Entity("Models.Messages.Message", b =>
                 {
                     b.Property<Guid>("Id")
@@ -230,6 +270,67 @@ namespace Database.Migrations
                     b.HasIndex("UserUpdatedId");
 
                     b.ToTable("Navigations");
+                });
+
+            modelBuilder.Entity("Models.TicketArchive.TicketArchive", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("DeadlineMet")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Header")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid?>("ResolverId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("SolverId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("TimeCreated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("TimeUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UserCreatedId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("UserUpdatedId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool?>("WasReturned")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ResolverId");
+
+                    b.HasIndex("SolverId");
+
+                    b.HasIndex("UserCreatedId");
+
+                    b.HasIndex("UserUpdatedId");
+
+                    b.ToTable("TicketArchives");
                 });
 
             modelBuilder.Entity("Models.Tickets.SolverHistory", b =>
@@ -553,6 +654,31 @@ namespace Database.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Models.Archive.SolverArchiveHistory", b =>
+                {
+                    b.HasOne("Models.Users.ApplicationUser", "Solver")
+                        .WithMany()
+                        .HasForeignKey("SolverId");
+
+                    b.HasOne("Models.TicketArchive.TicketArchive", null)
+                        .WithMany("SolverArchiveHistory")
+                        .HasForeignKey("TicketArchiveId");
+
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
+                        .WithMany()
+                        .HasForeignKey("UserCreatedId");
+
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
+                        .WithMany()
+                        .HasForeignKey("UserUpdatedId");
+
+                    b.Navigation("Solver");
+
+                    b.Navigation("UserCreated");
+
+                    b.Navigation("UserUpdated");
+                });
+
             modelBuilder.Entity("Models.Messages.Message", b =>
                 {
                     b.HasOne("Models.Messages.MessageThread", "MessageThread")
@@ -600,6 +726,33 @@ namespace Database.Migrations
                     b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
                         .WithMany()
                         .HasForeignKey("UserUpdatedId");
+
+                    b.Navigation("UserCreated");
+
+                    b.Navigation("UserUpdated");
+                });
+
+            modelBuilder.Entity("Models.TicketArchive.TicketArchive", b =>
+                {
+                    b.HasOne("Models.Archive.SolverArchiveHistory", "Resolver")
+                        .WithMany()
+                        .HasForeignKey("ResolverId");
+
+                    b.HasOne("Models.Archive.SolverArchiveHistory", "Solver")
+                        .WithMany()
+                        .HasForeignKey("SolverId");
+
+                    b.HasOne("Models.Users.ApplicationUser", "UserCreated")
+                        .WithMany()
+                        .HasForeignKey("UserCreatedId");
+
+                    b.HasOne("Models.Users.ApplicationUser", "UserUpdated")
+                        .WithMany()
+                        .HasForeignKey("UserUpdatedId");
+
+                    b.Navigation("Resolver");
+
+                    b.Navigation("Solver");
 
                     b.Navigation("UserCreated");
 
@@ -694,6 +847,11 @@ namespace Database.Migrations
             modelBuilder.Entity("Models.Messages.MessageThread", b =>
                 {
                     b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("Models.TicketArchive.TicketArchive", b =>
+                {
+                    b.Navigation("SolverArchiveHistory");
                 });
 
             modelBuilder.Entity("Models.Tickets.Ticket", b =>

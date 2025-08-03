@@ -2,6 +2,8 @@
 @using Models.Tickets
 @using Models.Users
 @using Models.Workflows
+@using Services.Abstractions.Services
+@inject IUserService userService
 @model Ticket
 @{
     ViewData["Title"] = "Detail požadavku";
@@ -32,25 +34,28 @@
             @if (Model.Result != "")
             {
                 <hr />
-                <p class="mb-1"><strong>Výsledek:</strong> @Model.Result</p>
+                <p class="mb-1 text-wrap"><strong>Výsledek:</strong> @Model.Result</p>
             }
 
             <hr />
-            <p>@Model.Content</p>
+            <p class="text-wrap">@Model.Content</p>
 
         </div>
-
-        @if (Model.State == WFState.Uzavřený && User.IsInRole(UserType.Zadavatel.ToString()))
-        {
-            <div class="d-flex justify-content-between mt-4">
-                <a asp-controller="UserTicket" asp-action="ArchiveTicket" asp-route-ticketId=@Model class="btn btn-primary">
-                    <i class="bi bi-archive me-1"></i>Archivovat
-                </a>
-                <a asp-controller="UserTicket" asp-action="ReturnTicket" asp-route-ticketId=@Model class="btn btn-primary">
-                    <i class="bi bi-arrow-return-left me-1"></i>Vrátit k řešení
-                </a>
-            </div>
+        @{
+			var user = userService.GetSignedInUser();
+			if (Model.State == WFState.Uzavřený && user != null && user == Model.UserCreated)
+            {
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-controller="UserTicket" asp-action="ArchiveTicket" asp-route-ticketId=@Model class="btn btn-primary">
+                        <i class="bi bi-archive me-1"></i>Archivovat
+                    </a>
+                    <a asp-controller="UserTicket" asp-action="ReturnTicket" asp-route-ticketId=@Model class="btn btn-primary">
+                        <i class="bi bi-arrow-return-left me-1"></i>Vrátit k řešení
+                    </a>
+                </div>
+            }
         }
+
 
         <!-- Messages Section -->
         <div class="text-center mt-4">

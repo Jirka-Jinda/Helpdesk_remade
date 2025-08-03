@@ -252,6 +252,83 @@ namespace Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SolverArchives",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SolverId = table.Column<Guid>(type: "uuid", nullable: true),
+                    SolverAssigned = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    TicketArchiveId = table.Column<Guid>(type: "uuid", nullable: true),
+                    TimeCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    TimeUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UserCreatedId = table.Column<Guid>(type: "uuid", nullable: true),
+                    UserUpdatedId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SolverArchives", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SolverArchives_AspNetUsers_SolverId",
+                        column: x => x.SolverId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SolverArchives_AspNetUsers_UserCreatedId",
+                        column: x => x.UserCreatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SolverArchives_AspNetUsers_UserUpdatedId",
+                        column: x => x.UserUpdatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TicketArchives",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SolverId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ResolverId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeadlineMet = table.Column<bool>(type: "boolean", nullable: true),
+                    WasReturned = table.Column<bool>(type: "boolean", nullable: true),
+                    TimeCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    TimeUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UserCreatedId = table.Column<Guid>(type: "uuid", nullable: true),
+                    UserUpdatedId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Priority = table.Column<int>(type: "integer", nullable: false),
+                    Header = table.Column<string>(type: "text", nullable: false),
+                    Content = table.Column<string>(type: "text", nullable: false),
+                    Category = table.Column<int>(type: "integer", nullable: false),
+                    Result = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TicketArchives", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TicketArchives_AspNetUsers_UserCreatedId",
+                        column: x => x.UserCreatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TicketArchives_AspNetUsers_UserUpdatedId",
+                        column: x => x.UserUpdatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TicketArchives_SolverArchives_ResolverId",
+                        column: x => x.ResolverId,
+                        principalTable: "SolverArchives",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TicketArchives_SolverArchives_SolverId",
+                        column: x => x.SolverId,
+                        principalTable: "SolverArchives",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SolverHistories",
                 columns: table => new
                 {
@@ -294,16 +371,16 @@ namespace Database.Migrations
                     LastWorkflowHistoryId = table.Column<Guid>(type: "uuid", nullable: true),
                     LastSolverHistoryId = table.Column<Guid>(type: "uuid", nullable: true),
                     MessageThreadId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Priority = table.Column<int>(type: "integer", nullable: false),
-                    Header = table.Column<string>(type: "text", nullable: false),
-                    Content = table.Column<string>(type: "text", nullable: false),
-                    Category = table.Column<int>(type: "integer", nullable: false),
-                    Result = table.Column<string>(type: "text", nullable: false),
                     Deadline = table.Column<DateOnly>(type: "date", nullable: true),
                     TimeCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     TimeUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     UserCreatedId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UserUpdatedId = table.Column<Guid>(type: "uuid", nullable: true)
+                    UserUpdatedId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Priority = table.Column<int>(type: "integer", nullable: false),
+                    Header = table.Column<string>(type: "text", nullable: false),
+                    Content = table.Column<string>(type: "text", nullable: false),
+                    Category = table.Column<int>(type: "integer", nullable: false),
+                    Result = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -434,6 +511,26 @@ namespace Database.Migrations
                 column: "UserUpdatedId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SolverArchives_SolverId",
+                table: "SolverArchives",
+                column: "SolverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SolverArchives_TicketArchiveId",
+                table: "SolverArchives",
+                column: "TicketArchiveId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SolverArchives_UserCreatedId",
+                table: "SolverArchives",
+                column: "UserCreatedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SolverArchives_UserUpdatedId",
+                table: "SolverArchives",
+                column: "UserUpdatedId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SolverHistories_SolverId",
                 table: "SolverHistories",
                 column: "SolverId");
@@ -461,6 +558,26 @@ namespace Database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Threads_UserUpdatedId",
                 table: "Threads",
+                column: "UserUpdatedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketArchives_ResolverId",
+                table: "TicketArchives",
+                column: "ResolverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketArchives_SolverId",
+                table: "TicketArchives",
+                column: "SolverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketArchives_UserCreatedId",
+                table: "TicketArchives",
+                column: "UserCreatedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketArchives_UserUpdatedId",
+                table: "TicketArchives",
                 column: "UserUpdatedId");
 
             migrationBuilder.CreateIndex(
@@ -509,6 +626,13 @@ namespace Database.Migrations
                 column: "UserUpdatedId");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_SolverArchives_TicketArchives_TicketArchiveId",
+                table: "SolverArchives",
+                column: "TicketArchiveId",
+                principalTable: "TicketArchives",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_SolverHistories_Tickets_TicketId",
                 table: "SolverHistories",
                 column: "TicketId",
@@ -526,6 +650,18 @@ namespace Database.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_SolverArchives_AspNetUsers_SolverId",
+                table: "SolverArchives");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_SolverArchives_AspNetUsers_UserCreatedId",
+                table: "SolverArchives");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_SolverArchives_AspNetUsers_UserUpdatedId",
+                table: "SolverArchives");
+
             migrationBuilder.DropForeignKey(
                 name: "FK_SolverHistories_AspNetUsers_SolverId",
                 table: "SolverHistories");
@@ -547,6 +683,14 @@ namespace Database.Migrations
                 table: "Threads");
 
             migrationBuilder.DropForeignKey(
+                name: "FK_TicketArchives_AspNetUsers_UserCreatedId",
+                table: "TicketArchives");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_TicketArchives_AspNetUsers_UserUpdatedId",
+                table: "TicketArchives");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Tickets_AspNetUsers_UserCreatedId",
                 table: "Tickets");
 
@@ -565,6 +709,10 @@ namespace Database.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Tickets_Threads_MessageThreadId",
                 table: "Tickets");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_SolverArchives_TicketArchives_TicketArchiveId",
+                table: "SolverArchives");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_SolverHistories_Tickets_TicketId",
@@ -603,6 +751,12 @@ namespace Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Threads");
+
+            migrationBuilder.DropTable(
+                name: "TicketArchives");
+
+            migrationBuilder.DropTable(
+                name: "SolverArchives");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

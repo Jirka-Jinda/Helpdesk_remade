@@ -13,6 +13,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Helpdesk/Helpdesk.csproj", "Helpdesk/"]
+COPY ["Database/Database.csproj", "Database/"]
+COPY ["Models/Models.csproj", "Models/"]
+COPY ["Services/Services.csproj", "Services/"]
+COPY ["ViewModels/ViewModels.csproj", "ViewModels/"]
 RUN dotnet restore "./Helpdesk/Helpdesk.csproj"
 COPY . .
 WORKDIR "/src/Helpdesk"
