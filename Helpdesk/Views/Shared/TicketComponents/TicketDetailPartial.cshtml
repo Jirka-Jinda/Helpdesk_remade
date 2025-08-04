@@ -12,7 +12,7 @@
 <div class="d-flex flex-row justify-content-center mt-5">
     <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 700px;">
         <div class="text-center mb-4">
-            <h4>@Model.Header</h4>
+            <h4 class="text-wrap">@Model.Header</h4>
         </div>
 
         <!-- Ticket Info -->
@@ -42,16 +42,20 @@
 
         </div>
         @{
-			var user = userService.GetSignedInUser();
-			if (Model.State == WFState.Uzavřený && user != null && user == Model.UserCreated)
+            var user = userService.GetSignedInUser();
+            
+            if (Model.State == WFState.Uzavřený && user != null && user == Model.UserCreated)
             {
                 <div class="d-flex justify-content-between mt-4">
-                    <a asp-controller="UserTicket" asp-action="ArchiveTicket" asp-route-ticketId=@Model class="btn btn-primary">
+                    <a asp-action="ArchiveTicket" asp-route-ticketId="@Model.Id" class="btn btn-primary">
                         <i class="bi bi-archive me-1"></i>Archivovat
                     </a>
-                    <a asp-controller="UserTicket" asp-action="ReturnTicket" asp-route-ticketId=@Model class="btn btn-primary">
-                        <i class="bi bi-arrow-return-left me-1"></i>Vrátit k řešení
-                    </a>
+                    @if (!User.IsInRole(UserType.Řešitel.ToString()))
+                    {
+                        <a asp-action="ReturnTicket" asp-route-ticketId="@Model.Id" class="btn btn-primary">
+                            <i class="bi bi-arrow-return-left me-1"></i>Vrátit k řešení
+                        </a>
+                    }
                 </div>
             }
         }
@@ -87,7 +91,7 @@
             <input type="hidden" name="ticketId" value="@Model.Id" />
             <div class="mb-3">
                 <label for="newMessage" class="form-label fw-bold">Přidat komentář</label>
-                <textarea class="form-control" id="newMessage" name="message" rows="3" placeholder="Napište komentář..." required></textarea>
+                <textarea class="form-control text-wrap" id="newMessage" name="message" rows="3" placeholder="Napište komentář..." required></textarea>
             </div>
             <div class="d-flex justify-content-between">
                 <a asp-action="Overview" class="btn btn-outline-secondary">

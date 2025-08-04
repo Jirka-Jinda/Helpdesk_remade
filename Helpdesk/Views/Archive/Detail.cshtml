@@ -1,0 +1,7 @@
+﻿@using Models.TicketArchive
+@model TicketArchive
+@{
+    ViewData["Title"] = "Archivní požadavek";
+}
+
+@await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketArchiveDetailPartial.cshtml", Model)

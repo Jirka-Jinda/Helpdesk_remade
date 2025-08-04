@@ -34,7 +34,7 @@ internal class NavigationDataSet : IDataSet
         {
             Name = "Archiv",
             Icon = "archive",
-            Route = new NavigationRoute("", "UserTicket", "Archive"),
+            Route = new NavigationRoute("", "Archive", "Overview"),
         });
 
         // Solver Navigation
@@ -69,7 +69,7 @@ internal class NavigationDataSet : IDataSet
         {
             Name = "Archiv",
             Icon = "archive",
-            Route = new NavigationRoute("", "SolverTicket", "Archive"),
+            Route = new NavigationRoute("", "Archive", "Overview"),
         });
 
         // Auditor navigation
@@ -110,7 +110,7 @@ internal class NavigationDataSet : IDataSet
         {
             Name = "Archiv",
             Icon = "archive",
-            Route = new NavigationRoute("", "AuditorUser", "Archive"),
+            Route = new NavigationRoute("", "Archive", "Overview"),
         });
 
         await navigtaionRepository.AddAsync(solverNav, false);

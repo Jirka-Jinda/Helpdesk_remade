@@ -22,17 +22,17 @@
             <div class="mb-3">
                 <label asp-for="UserName" class="form-label fw-bold">Uživatelské jméno</label>
                 <input asp-for="UserName" class="form-control" placeholder="Zadejte jméno">
-                <span asp-validation-for="UserName" class="text-danger"></span>
+                <span asp-validation-for="UserName" class="text-danger text-wrap"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Email" class="form-label fw-bold">Email (povinné)</label>
                 <input asp-for="Email" class="form-control" required placeholder="Zadejte email">
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <span asp-validation-for="Email" class="text-danger text-wrap"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Password" class="form-label fw-bold">Heslo (povinné)</label>
                 <input asp-for="Password" type="password" class="form-control" required placeholder="Zadejte heslo">
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <span asp-validation-for="Password" class="text-danger text-wrap"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="UserType" class="form-label fw-bold">Uživatelská role (povinné)</label>
@@ -43,7 +43,7 @@
                         <option value="@role">@role.ToString()</option>
                     }
                 </select>
-                <span asp-validation-for="UserType" class="text-danger"></span>
+                <span asp-validation-for="UserType" class="text-danger text-wrap"></span>
             </div>
             <div class="form-check mb-3">
                 <input name="enableNotifications" asp-for="EnableNotifications" class="form-check-input form-checked-content" type="checkbox" id="enableNotifications">

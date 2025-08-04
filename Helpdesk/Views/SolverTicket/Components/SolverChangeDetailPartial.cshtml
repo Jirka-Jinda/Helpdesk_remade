@@ -16,12 +16,12 @@
         <div class="mb-3">
             <label class="form-label fw-bold">Vytvořeno</label>
             <div class="p-3 border rounded bg-light">
-                <p class="mb-1"><strong>@change.TimeCreated.ToString("g")</strong></p>
+                <p class="mb-1 text-wrap"><strong>@change.TimeCreated.ToString("g")</strong></p>
                 @if (change.TimeUpdated != null)
                 {
-                    <p class="mb-1 text-muted">Upraveno: @change.TimeUpdated?.ToString("g")</p>
+                    <p class="mb-1 text-muted text-wrap">Upraveno: @change.TimeUpdated?.ToString("g")</p>
                 }
-                <p class="mb-1">Změnu provedl: <strong>@(change.UserCreated?.UserName ?? "Neznámý")</strong></p>
+                <p class="mb-1 text-wrap">Změnu provedl: <strong>@(change.UserCreated?.UserName ?? "Neznámý")</strong></p>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
             <div class="p-3 border rounded bg-light">
                 @if (change.Solver != null)
                 {
-                    <p class="mb-1"><strong>@change.Solver.UserName</strong></p>
+                    <p class="mb-1 text-wrap"><strong>@change.Solver.UserName</strong></p>
                 }
                 else
                 {
@@ -46,7 +46,7 @@
             <div class="p-3 border rounded bg-light">
                 @if (!string.IsNullOrWhiteSpace(change.Comment))
                 {
-                    <p class="mb-1">@change.Comment</p>
+                    <p class="mb-1 text-wrap">@change.Comment</p>
                 }
                 else
                 {

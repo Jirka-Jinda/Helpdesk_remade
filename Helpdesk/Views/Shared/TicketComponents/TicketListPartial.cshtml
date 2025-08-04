@@ -49,7 +49,7 @@
                                 string route = $"location.href='{linkRoute}'";
 
                                 <tr onclick="@route" style="cursor: pointer;">
-                                    <td>@ticket.Header</td>
+                                    <td class="text-wrap">@ticket.Header</td>
                                     <td>@ticket.Solver?.UserName</td>
                                     <td>@ticket.TimeCreated.ToShortDateString()</td>
                                     <td>

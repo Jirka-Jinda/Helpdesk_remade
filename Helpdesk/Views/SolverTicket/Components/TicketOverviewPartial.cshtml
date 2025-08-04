@@ -46,7 +46,7 @@
                                 string route = $"location.href='{linkRoute}'";
 
                                 <tr onclick="@route" style="cursor: pointer;">
-                                    <td>@ticket.Header</td>
+                                    <td class="text-wrap">@ticket.Header</td>
                                     <td><priority-badge priority="@ticket.Priority"></priority-badge></td>
                                     <td>@ticket.Category.ToString().Replace('_', ' ')</td>
                                     <td>@ticket.TimeCreated.ToShortDateString()</td>

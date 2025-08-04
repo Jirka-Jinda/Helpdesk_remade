@@ -11,11 +11,13 @@ public class UserTicketController : Controller
 {
     private readonly ITicketService _ticketService;
     private readonly IUserService _userService;
+    private readonly IArchiveService _archiveService;
 
-    public UserTicketController(ITicketService ticketService, IUserService userService)
+    public UserTicketController(ITicketService ticketService, IUserService userService, IArchiveService archiveService)
     {
         _ticketService = ticketService;
         _userService = userService;
+        _archiveService = archiveService;
     }
 
     [HttpGet]
@@ -98,7 +100,10 @@ public class UserTicketController : Controller
     {
         var ticket = await _ticketService.GetAsync(ticketId);
 
-        return View("Detail");
+        if (ticket is not null)
+            await _archiveService.ArchiveAsync(ticket);
+
+        return View("Overview");
     }
 
     public async Task<IActionResult> ReturnTicket(Guid ticketId)

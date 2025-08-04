@@ -1,0 +1,7 @@
+﻿@using Models.TicketArchive
+@model IReadOnlyCollection<TicketArchive>
+@{
+    ViewData["Title"] = "Archiv požadavků";
+}
+
+@await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketArchiveListPartial.cshtml", Model)

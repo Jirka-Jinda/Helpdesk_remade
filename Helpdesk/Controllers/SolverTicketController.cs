@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Workflows;
 using Services.Abstractions.Services;
+using Services.Implementations;
 using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;
@@ -11,11 +12,13 @@ public class SolverTicketController : Controller
 {
     private readonly ITicketService _ticketService;
     private readonly IUserService _userService;
+    private readonly IArchiveService _archiveService;
 
-    public SolverTicketController(ITicketService ticketService, IUserService userService)
+    public SolverTicketController(ITicketService ticketService, IUserService userService, IArchiveService archiveService)
     {
         _ticketService = ticketService;
         _userService = userService;
+        _archiveService = archiveService;
     }
 
     [HttpGet]
@@ -195,5 +198,15 @@ public class SolverTicketController : Controller
         var change = ticket.TicketHistory.SingleOrDefault(h => h.Id == changeId);
 
         return View((ticket, change));
+    }
+
+    public async Task<IActionResult> ArchiveTicket(Guid ticketId)
+    {
+        var ticket = await _ticketService.GetAsync(ticketId);
+
+        if (ticket is not null)
+            await _archiveService.ArchiveAsync(ticket);
+
+        return RedirectToAction("Overview");
     }
 }

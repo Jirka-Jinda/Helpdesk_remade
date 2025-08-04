@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions.Services;
+using Services.Implementations;
 using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;
@@ -10,11 +11,13 @@ public class AuditorTicketController : Controller
 {
     private readonly ITicketService _ticketService;
     private readonly IUserService _userService;
+    private readonly IArchiveService _archiveService;
 
-    public AuditorTicketController(ITicketService ticketService, IUserService userService)
+    public AuditorTicketController(ITicketService ticketService, IUserService userService, IArchiveService archiveService)
     {
         _ticketService = ticketService;
         _userService = userService;
+        _archiveService = archiveService;
     }
 
     [HttpGet]
@@ -87,5 +90,15 @@ public class AuditorTicketController : Controller
             await _ticketService.AddMessageAsync(ticket, message);
 
         return View("Detail", ticket);
+    }
+
+    public async Task<IActionResult> ArchiveTicket(Guid ticketId)
+    {
+        var ticket = await _ticketService.GetAsync(ticketId);
+
+        if (ticket is not null)
+            await _archiveService.ArchiveAsync(ticket);
+
+        return View("Overview");
     }
 }

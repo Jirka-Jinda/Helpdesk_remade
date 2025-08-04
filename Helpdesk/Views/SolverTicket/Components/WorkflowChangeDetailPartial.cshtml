@@ -26,7 +26,7 @@
 
         <div class="mb-3">
             <label class="form-label fw-bold">Komentář</label>
-            <div class="p-3 border rounded bg-light">
+            <div class="p-3 border rounded bg-light text-wrap">
                 @if (!string.IsNullOrWhiteSpace(Model.Item2.Comment))
                 {
                     @Model.Item2.Comment
@@ -51,7 +51,7 @@
 
         <div class="mb-2">
             <label class="form-label fw-bold">Vytvořil</label>
-            <div class="p-3 border rounded bg-light">
+            <div class="p-3 border rounded bg-light text-wrap">
                 @(Model.Item2.UserCreated?.UserName ?? Model.Item2.UserCreated?.Email ?? "Helpdesk služba")
                 <br />
                 <small class="text-muted">@Model.Item2.TimeCreated.ToString("dd.MM.yyyy HH:mm")</small>
@@ -62,7 +62,7 @@
         {
             <div class="mb-2">
                 <label class="form-label fw-bold">Upravil</label>
-                <div class="p-3 border rounded bg-light">
+                <div class="p-3 border rounded bg-light text-wrap">
                     @(Model.Item2.UserUpdated?.UserName ?? Model.Item2.UserUpdated?.Email ?? "Helpdesk služba")
                     <br />
                     <small class="text-muted">@Model.Item2.TimeUpdated?.ToString("dd.MM.yyyy HH:mm")</small>

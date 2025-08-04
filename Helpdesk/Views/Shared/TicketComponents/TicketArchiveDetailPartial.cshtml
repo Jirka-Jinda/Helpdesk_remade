@@ -1,0 +1,52 @@
+﻿@using Helpdesk.Views.Shared
+@using Models.TicketArchive
+@using Models.Users
+@using Models.Workflows
+@using Services.Abstractions.Services
+@inject IUserService userService
+@model TicketArchive
+@{
+    ViewData["Title"] = "Detail požadavku";
+    bool advancedView = false;
+    var user = userService.GetSignedInUser();
+    if (user is not null)
+        advancedView = await userService.IsInRoleAsync(user, UserType.Auditor);
+}
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 700px;">
+        <div class="text-center mb-4">
+            <h4>@Model.Header</h4>
+        </div>
+
+        <!-- Ticket Info -->
+        <div class="mb-3 p-3 border rounded bg-light">
+            @if (advancedView)
+            {
+                <p class="mb-1"><strong>Zadavatel:</strong> @Model.UserCreated?.UserName </p>
+                <p class="mb-1"><strong>Vytvořeno:</strong> @Model.TimeCreated.ToShortDateString() </p>
+                <p class="mb-1"><strong>Řešitel:</strong> @Model.Solver?.Solver?.UserName </p>
+                <p class="mb-1"><strong>Vyřešil:</strong> @Model.Resolver?.Solver?.UserName </p>
+                <p class="mb-1"><strong>Požadavek vrácen:</strong> @(Model.WasReturned ? "Ano" : "Ne")</p>
+                if (Model.DeadlineMet != null)
+                {
+                    <p class="mb-1"><strong>Požadavek splněn v termínu:</strong> @(Model.DeadlineMet.Value ? "Ano" : "Ne") </p>
+                }
+            }
+            <p class="mb-1"><strong>Kategorie:</strong> @Model.Category.ToString().Replace('_', ' ') </p>
+            @if (Model.Result != "")
+            {
+                <hr />
+                <p class="mb-1 text-wrap"><strong>Výsledek:</strong> @Model.Result</p>
+            }
+
+            <hr />
+            <p class="text-wrap">@Model.Content</p>
+        </div>
+        <div class="d-flex justify-content-start">
+            <a asp-action="Overview" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left-circle me-1"></i>Zpět na seznam
+            </a>
+        </div>
+    </div>
+</div>
