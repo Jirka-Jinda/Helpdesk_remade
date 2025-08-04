@@ -14,8 +14,6 @@
     Navigation? navigation = null;
     var currentUser = UserService.GetSignedInUser();
 
-    showSearch = ViewBag.DisplaySearch ?? true;
-
     if (currentUser is null)
     {
         showUserPanel = false;
@@ -96,9 +94,14 @@
                             <button type="submit" class="input-group-text bg-primary">
                                 <i class="bi bi-search text-white" style="font-size: 18px"></i>
                             </button>
-                            <input id="searchInput" name="search" role="search" class="form-control search rounded-end" placeholder="Hledání...">
+                            <input id="searchInput" name="search" role="search" class="form-control search rounded-end" placeholder="Hledání požadavků...">
                         </form>
                     }
+                </div>
+                <div class="me-4">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/img/logo_long.jpg" alt="logo" style="max-height: 50px"/>
+                    </a>
                 </div>
                 <div class="mx-5"> @* Theme switch *@
 					@if (showThemeSwitch)

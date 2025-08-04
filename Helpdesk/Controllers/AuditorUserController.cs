@@ -10,10 +10,12 @@ namespace Helpdesk.Controllers;
 [Authorize(Roles = "Auditor")]
 public class AuditorUserController : Controller
 {
+    private readonly ILogger<AuditorUserController> _logger;
     private readonly IUserService _userService;
 
-    public AuditorUserController(IUserService userService)
+    public AuditorUserController(ILogger<AuditorUserController> logger, IUserService userService)
     {
+        _logger = logger;
         _userService = userService;
     }
 
@@ -74,6 +76,9 @@ public class AuditorUserController : Controller
 
             var result = await _userService.UpdateAsync(refreshUser, false);
 
+            if(await _userService.IsInRoleAsync(refreshUser, UserType.Řešitel))
+                ViewBag.UserRole = UserType.Řešitel;
+
             if (result.Succeeded)
             {
                 ViewBag.UpdateSucceded = true;
@@ -83,5 +88,41 @@ public class AuditorUserController : Controller
 
         ViewBag.UpdateFailed = true;
         return View("Detail", new UserSettingsViewModel(refreshUser));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(ApplicationUserViewModel userModel)
+    {
+        if (!ModelState.IsValid)
+        {
+            ViewBag.RegisterFailed = true;
+            return View("Create");
+        }
+
+        var user = new ApplicationUser
+        {
+            UserName = userModel.UserName,
+            Email = userModel.Email,
+            NotificationsEnabled = userModel.EnableNotifications
+        };
+
+        if (userModel.UserName is null)
+            user.SetNameFromEmail();
+
+        var result = await _userService.CreateAsync(user, userModel.Password);
+
+        if(result.Succeeded)
+        {
+            result = await _userService.AddToRoleAsync(user, userModel.UserType);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User registered successfully: {Email}", userModel.Email);
+                ViewBag.RegisterSucceded = true;
+                return View("Create");
+            }
+        }
+
+        ViewBag.RegisterFailed = true;
+        return View("Create");
     }
 }

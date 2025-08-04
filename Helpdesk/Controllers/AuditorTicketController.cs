@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Tickets;
+using Models.Users;
 using Services.Abstractions.Services;
 using Services.Implementations;
 using ViewModels.Ticket;
@@ -21,9 +23,14 @@ public class AuditorTicketController : Controller
     }
 
     [HttpGet]
-    public IActionResult Create()
+    public IActionResult Create(string? category = null)
     {
-        return View();
+        var model = new TicketViewModel();
+
+        if (category is not null)
+            model.Category = Enum.Parse<TicketCategory>(category);
+
+        return View(model);
     }
 
     [HttpPost]
@@ -66,7 +73,6 @@ public class AuditorTicketController : Controller
             ViewBag.Filter = filter;
         }
 
-        ViewBag.DisplaySearch = false;
         return View(tickets);
     }
 

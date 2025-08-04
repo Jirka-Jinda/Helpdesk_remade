@@ -6,16 +6,16 @@ namespace ViewModels.Ticket;
 public class TicketViewModel
 {
     [Required]
-    public required string Header { get; set; }
+    public string Header { get; set; } = string.Empty;
 
     [Required]
-    public required string Content { get; set; }
+    public string Content { get; set; } = string.Empty;
 
-    public DateOnly Deadline { get; set; }
-
-    [Required]
-    public required TicketCategory Category { get; set; }
+    public DateOnly? Deadline { get; set; } = null;
 
     [Required]
-    public required Priority Priority { get; set; }
+    public TicketCategory Category { get; set; } = TicketCategory.Jiné;
+
+    [Required]
+    public Priority Priority { get; set; } = Priority.Střední;
 }

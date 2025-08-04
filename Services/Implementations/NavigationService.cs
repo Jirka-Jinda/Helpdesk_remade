@@ -56,7 +56,7 @@ public class NavigationService : BaseService, INavigationService
         string cacheKey = role.ToString();
         Navigation? result = null;
 
-        if (_memoryCache.TryGetValue(cacheKey, out var data))
+        if (_memoryCache.TryGetValue(cacheKey, out var data) && data is not null)
             result = data as Navigation;
         else
         {

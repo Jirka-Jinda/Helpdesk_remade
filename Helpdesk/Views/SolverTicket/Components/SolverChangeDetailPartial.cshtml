@@ -7,7 +7,7 @@
 }
 
 <div class="d-flex flex-row justify-content-center mt-5">
-    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 700px;">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 400px;">
         <div class="text-center mb-4">
             <h4>Detail změny řešitele</h4>
         </div>
@@ -56,7 +56,7 @@
         </div>
 
         <div class="d-flex justify-content-between mt-4">
-            <a asp-controller="SolverTicket" asp-action="Detail" asp-route-ticketId=@Model.Item1 class="btn btn-outline-secondary">
+            <a asp-controller="SolverTicket" asp-action="Detail" asp-route-ticketId=@Model.Item1 asp-route-back="true" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left-circle me-1"></i>Zpět
             </a>
         </div>

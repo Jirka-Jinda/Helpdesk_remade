@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Tickets;
 using Models.Workflows;
 using Services.Abstractions.Services;
-using Services.Implementations;
 using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;
@@ -22,9 +22,14 @@ public class SolverTicketController : Controller
     }
 
     [HttpGet]
-    public IActionResult Create()
+    public IActionResult Create(string? category = null)
     {
-        return View();
+        var model = new TicketViewModel();
+
+        if (category is not null)
+            model.Category = Enum.Parse<TicketCategory>(category);
+
+        return View(model);
     }
 
     [HttpPost]
@@ -67,7 +72,6 @@ public class SolverTicketController : Controller
             ViewBag.Filter = filter;
         }
 
-        ViewBag.DisplaySearch = false;
         return View(tickets);
     }
 
@@ -91,7 +95,6 @@ public class SolverTicketController : Controller
             ViewBag.Filter = filter;
         }
 
-        ViewBag.DisplaySearch = false;
         tickets = tickets.OrderByDescending(t => (int)t.Priority).ToList();
         return View(tickets);
     }
@@ -117,18 +120,20 @@ public class SolverTicketController : Controller
             ViewBag.Filter = filter;
         }
 
-        ViewBag.DisplaySearch = false;
         tickets = tickets.OrderBy(t => t.Category).OrderByDescending(t => (int)t.Priority).ToList();
         return View(tickets);
     }
 
     [HttpGet]
-    public async Task<IActionResult> Detail(Guid ticketId)
+    public async Task<IActionResult> Detail(Guid ticketId, bool back = false)
     {
         var ticket = await _ticketService.GetAsync(ticketId);
 
         if (ticket is null)
             return BadRequest();
+
+        if (back)
+            ViewBag.Back = true;
 
         return View(ticket);
     }
@@ -156,6 +161,7 @@ public class SolverTicketController : Controller
         var result = await _ticketService.ChangeSolverAsync(ticket, user, comment);
         await _ticketService.ChangeWFAsync(ticket, WFAction.Přidělení_ručně, "Přiřazen řešitel");
 
+        ViewBag.Back = true;
         return View("Detail", result);
     }
 
@@ -184,6 +190,7 @@ public class SolverTicketController : Controller
         var action = WFRules.GetActionFromResolution(ticket.State, Enum.Parse<WFState>(state));
         var result = await _ticketService.ChangeWFAsync(ticket, action, comment, reactivate);
 
+        ViewBag.Back = true;
         return View("Detail", result);
     }
 

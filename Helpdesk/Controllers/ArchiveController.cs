@@ -27,7 +27,6 @@ public class ArchiveController : Controller
             ViewBag.Filter = filter;
         }
             
-        ViewBag.DisplaySearch = false;
         return View(archives);
     }
 

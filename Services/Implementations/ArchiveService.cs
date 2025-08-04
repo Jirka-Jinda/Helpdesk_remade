@@ -16,6 +16,7 @@ public class ArchiveService : BaseService, IArchiveService
     private readonly ISolverArchiveRepository _solverArchiveRepository;
     private readonly ITicketService _ticketService;
     private readonly IMemoryCache _cache;
+    private readonly string _getAllCacheKey = nameof(ArchiveService) + nameof(GetAllAsync);
 
     public ArchiveService(
         UserManager<ApplicationUser> userManager, 
@@ -36,6 +37,9 @@ public class ArchiveService : BaseService, IArchiveService
         UpdateAuditableData(entity, true);
         foreach (var history in entity.SolverArchiveHistory)
             await _solverArchiveRepository.AddAsync(history);
+
+        _cache.Remove(_getAllCacheKey);
+
         return await _ticketArchiveRepository.AddAsync(entity);
     }
 

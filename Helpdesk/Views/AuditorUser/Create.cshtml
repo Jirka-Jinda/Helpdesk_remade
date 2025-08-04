@@ -1,4 +1,4 @@
-﻿@using Models.Users
+﻿@* @using Models.Users
 @using ViewModels.User
 @model ApplicationUserViewModel
 @{
@@ -57,3 +57,12 @@
 
     </div>
 </div>
+*@
+@using Models.Users
+@using ViewModels.User
+@model ApplicationUserViewModel
+@{
+    ViewData["Title"] = "Založení";
+}
+
+@await Html.PartialAsync("~/Views/Access/Register.cshtml", Model)

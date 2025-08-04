@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using Models.Tickets;
 using Models.Users;
 using Services.Abstractions.Services;
+using ViewModels.Ticket;
 using ViewModels.User;
 
 namespace Helpdesk.Controllers;
@@ -12,22 +15,47 @@ public class HomeController : Controller
 {
     private readonly IUserService _userService;
     private readonly IEmailService _emailService;
+    private readonly IMemoryCache _memoryCache;
 
-    public HomeController(IUserService userService, IEmailService emailService)
+    public HomeController(IUserService userService, IEmailService emailService, IMemoryCache memoryCache)
     {
         _userService = userService;
         _emailService = emailService;
+        _memoryCache = memoryCache;
     }
 
     [AllowAnonymous]
     public IActionResult Index()
     {
+        string cacheKey = nameof(HomeController) + nameof(Index);
+        List<CategoryViewModel>? categoriesWithDescriprions = new();
         var user = _userService.GetSignedInUser();
 
         if (user is null)
             return RedirectToAction("Login", "Access");
         else
-            return View();
+        {
+            if (_memoryCache.TryGetValue(cacheKey, out var data) && data != null)
+                categoriesWithDescriprions = data as List<CategoryViewModel>;
+            else
+            {
+                var categories = Enum.GetValues(typeof(TicketCategory)).Cast<TicketCategory>();
+                var descriptions = TicketCategoryDescriptions.Descriptions();
+                var icons = TicketCategoryDescriptions.Icons();
+
+                foreach (var category in categories.Where(cat => cat != TicketCategory.Nekategorizováno))
+                    categoriesWithDescriprions.Add(new()
+                    {
+                        Category = category,
+                        Description = descriptions.Where(desc => desc.Item1 == category).Select(desc => desc.Item2).Single(),
+                        Icon = icons.Where(icon => icon.Item1 == category).Select(icon => icon.Item2).Single()
+                    });
+
+                _memoryCache.Set(cacheKey, categoriesWithDescriprions);
+            }
+
+            return View(categoriesWithDescriprions);
+        }
     }
 
     public async Task<IActionResult> SwitchTheme()

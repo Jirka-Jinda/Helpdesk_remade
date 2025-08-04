@@ -25,7 +25,9 @@
                 <select asp-for="Category" class="form-select">
                     @foreach (var category in Html.GetEnumSelectList<TicketCategory>())
                     {
-                        <option value="@category.Value">@category.Text.Replace('_', ' ')</option>
+                        <option value="@category.Value">
+                            @category.Text.Replace('_', ' ')
+                        </option>
                     }
                 </select>
                 <span asp-validation-for="Category" class="text-danger small"></span>
@@ -33,19 +35,21 @@
 
             <div class="mb-3">
                 <label asp-for="Priority" class="form-label fw-bold">Priorita</label>
-                <select asp-for="Priority" class="form-select">
+                <select asp-for="Priority" class="form-select" id="prioritySelect">
                     @foreach (var priority in Html.GetEnumSelectList<Priority>())
                     {
                         if (priority.Text != Priority.Žádná.ToString())
                         {
-                            <option value="@priority.Value">@priority.Text.Replace('_', ' ')</option>
+                            <option value="@priority.Value">
+                                @priority.Text.Replace('_', ' ')
+                            </option>
                         }
                     }
                 </select>
                 <span asp-validation-for="Priority" class="text-danger small"></span>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" id="deadlineGroup" style="display: none;">
                 <label asp-for="Deadline" class="form-label fw-bold">Nutný termín dokončení</label>
                 <input asp-for="Deadline" class="form-control" type="date"
                        min="@DateTime.Now.ToString("yyyy-MM-dd")" />
@@ -63,3 +67,19 @@
         </form>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const prioritySelect = document.getElementById('prioritySelect');
+        const deadlineGroup = document.getElementById('deadlineGroup');
+
+        function toggleDeadlineVisibility() {
+            const selected = prioritySelect.options[prioritySelect.selectedIndex].text;
+            deadlineGroup.style.display = selected.includes("Kritická") ? 'block' : 'none';
+        }
+
+        prioritySelect.addEventListener('change', toggleDeadlineVisibility);
+        toggleDeadlineVisibility();
+    });
+</script>

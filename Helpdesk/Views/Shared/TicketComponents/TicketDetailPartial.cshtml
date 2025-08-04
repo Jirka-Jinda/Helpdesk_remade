@@ -19,17 +19,27 @@
         <div class="mb-3 p-3 border rounded bg-light">
             <p class="mb-1"><strong>Zadavatel:</strong> @(Model.UserCreated?.UserName ?? Model.UserCreated?.Email)</p>
 
+            <p class="mb-1"><strong>Vytvořeno:</strong> @Model.TimeCreated.ToShortDateString()</p>
+
+            <p class="mb-1">
+                <strong>Stav:</strong>
+                <wf-badge state="@Model.State"></wf-badge>
+            </p>
+
             @if (Model.Solver != null)
             {
                 <p class="mb-1"><strong>Řešitel:</strong> @Model.Solver.UserName</p>
             }
 
-            <p class="mb-1"><strong>Vytvořeno:</strong> @Model.TimeCreated.ToShortDateString()</p>
-
             <p class="mb-1">
-                <strong>Stav:</strong>
-				<wf-badge State="@Model.State"></wf-badge>
+                <strong>Priorita:</strong>
+                <priority-badge priority="@Model.Priority"></priority-badge>
             </p>
+
+            @if (Model.Deadline != null)
+            {
+                <p class="mb-1"><strong>Nutné dokončení:</strong> @Model.Deadline.ToString()</p>
+            }
 
             @if (Model.Result != "")
             {

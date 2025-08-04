@@ -87,7 +87,8 @@ public class AccessController : Controller
             if (result.Succeeded)
             {
                 _logger.LogInformation("User registered successfully: {Email}", userModel.Email);
-                return View("RegisterConfirmation");
+                ViewBag.RegisterSucceded = true;
+                return View();
             }
         }
 
@@ -126,7 +127,8 @@ public class AccessController : Controller
             if (result.Succeeded)
             {
                 _logger.LogInformation("Password reset successfully for user: {Email}", model.Email);
-                return View("ResetConfirmation");
+                ViewBag.ResetSucceded = true;
+                return View();
             }
         }
 
