@@ -98,11 +98,14 @@
                         </form>
                     }
                 </div>
-                <div class="me-4">
-                    <a asp-controller="Home" asp-action="Index">
-                        <img src="~/img/logo_long.jpg" alt="logo" style="max-height: 50px"/>
-                    </a>
-                </div>
+                @if (showNavigation)
+                {
+                    <div class="me-4">
+                        <a asp-controller="Home" asp-action="Index">
+                            <img src="~/img/logo_long.jpg" alt="logo" style="max-height: 50px" />
+                        </a>
+                    </div>
+                }
                 <div class="mx-5"> @* Theme switch *@
 					@if (showThemeSwitch)
                     {

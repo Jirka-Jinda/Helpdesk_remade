@@ -25,9 +25,13 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 builder.Host.UseSerilog();
 
+#if DEBUG
+var connectionString = builder.Configuration.GetConnectionString("TestingConnection") 
+    ?? throw new InvalidOperationException("Connection string 'TestingConnection' not found.");
+#else
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-Console.WriteLine(connectionString);
+#endif
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Database")));

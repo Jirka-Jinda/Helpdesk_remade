@@ -14,7 +14,7 @@ internal class UsersDataSet : IDataSet
 {
     public async Task Populate(IServiceProvider serviceProvider)
     {
-        const uint USER_COUNT = 150;
+        const uint USER_COUNT = 100;
 
         var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
         var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
@@ -28,17 +28,40 @@ internal class UsersDataSet : IDataSet
         var userTypes = Enum.GetValues(typeof(UserType)).Cast<UserType>().ToList();
         var ticketCategories = Enum.GetValues(typeof(TicketCategory)).Cast<TicketCategory>().ToList();
         var password = "TestPassword123!";
+        string[] firstNames =
+        {
+            "Jan", "Petr", "Lukáš", "Tomáš", "Martin", "Jakub", "David", "Filip", "Ondřej", "Michal",
+            "Matěj", "Vojtěch", "Adam", "Daniel", "Josef", "Roman", "Jaroslav", "Marek", "Štěpán", "Radek",
+            "Karel", "Dominik", "Aleš", "Zdeněk", "Miloslav", "Ladislav", "Miroslav", "Stanislav", "Vladimír", "František"
+        };
+        string[] surnames =
+        {
+            "Novák", "Svoboda", "Dvořák", "Černý", "Procházka", "Kučera", "Veselý", "Horák", "Němec", "Král",
+            "Pokorný", "Bartoš", "Krejčí", "Navrátil", "Pospíšil", "Hájek", "Jelínek", "Mareš", "Hruška", "Musil",
+            "Kovář", "Urban", "Bláha", "Kopecký", "Šimek", "Sedláček", "Holub", "Doležal", "Mach", "Sýkora"
+        };
+        var existingNames = new HashSet<string>();
 
         // Create users with random roles
         for (int counter = 0; counter < USER_COUNT; counter++)
         {
             var id = Guid.NewGuid();
             var userType = userTypes[random.Next(userTypes.Count)];
-            var newUser = new ApplicationUser() 
+            var fName = firstNames[random.Next(firstNames.Length)];
+            var sName = surnames[random.Next(surnames.Length)];
+            var name = $"{fName} {sName}";
+
+            if (!existingNames.Add(name))
+            {
+                counter--;
+                continue;
+            }
+
+            var newUser = new ApplicationUser()
             {
                 Id = id,
-                Email = $"user_{id.ToString()}@example.com",
-                UserName = $"user_{id.ToString()}".Substring(0, 12),
+                Email = $"{fName}.{sName}@email.com",
+                UserName = name,
                 NotificationsEnabled = true,
             };
             if (userType == UserType.Řešitel)
@@ -57,20 +80,6 @@ internal class UsersDataSet : IDataSet
 
             await userManager.AddToRoleAsync(newUser, userType.ToString());
         }
-
-        // Add a specific user for testing purposes
-        var testId = Guid.NewGuid();
-        var testUser = new ApplicationUser()
-        {
-            Id = testId,
-            Email = "jiri.jinda10@gmail.com",
-            UserName = "Jiří Jinda",
-            NotificationsEnabled= true,
-        };
-        var testUserResult = await userManager.CreateAsync(testUser);
-        await userManager.AddPasswordAsync(testUser, password);
-        await userManager.AddToRoleAsync(testUser, UserType.Řešitel.ToString());
-
         await context.SaveChangesAsync();
     }
 }

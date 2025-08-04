@@ -109,9 +109,16 @@ public class TicketService : BaseService, ITicketService
 
         var newEntity = ticket.ChangeWF(action, comment, reactivate);
 
-        if (action == WFAction.Vrácení && _emailService is not null)
+
+        if (action == WFAction.Vrácení 
+            && _emailService is not null
+            && ticket.Solver is not null
+            && ticket.Solver.Superior is not null)
         {
-            // send email
+            var superior = await _userManager.FindByIdAsync(ticket.Solver.Superior.ToString()!);
+            if (superior is not null && superior.Email is not null && superior.NotificationsEnabled)
+                await _emailService.SendEmailAsync(superior.Email, "Vrácení požadavků řešitele",
+                    $"Uzavřený požadavek {ticket.Header} byl vrácen zadavatelem k řešení. Požadavek řešil: {ticket.Solver.UserName}");
         }
 
         if (newEntity != null)
