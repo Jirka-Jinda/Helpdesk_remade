@@ -53,20 +53,30 @@
         </div>
         @{
             var user = userService.GetSignedInUser();
-            
-            if (Model.State == WFState.Uzavřený && user != null && user == Model.UserCreated)
+            if (user != null && user == Model.UserCreated)
             {
-                <div class="d-flex justify-content-between mt-4">
-                    <a asp-action="ArchiveTicket" asp-route-ticketId="@Model.Id" class="btn btn-primary">
-                        <i class="bi bi-archive me-1"></i>Archivovat
-                    </a>
-                    @if (!User.IsInRole(UserType.Řešitel.ToString()))
-                    {
-                        <a asp-action="ReturnTicket" asp-route-ticketId="@Model.Id" class="btn btn-primary">
-                            <i class="bi bi-arrow-return-left me-1"></i>Vrátit k řešení
+                if (Model.State == WFState.Uzavřený)
+                {
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="ArchiveTicket" asp-route-ticketId="@Model.Id" class="btn btn-primary">
+                            <i class="bi bi-archive me-1"></i>Archivovat
                         </a>
-                    }
-                </div>
+                        @if (!User.IsInRole(UserType.Řešitel.ToString()))
+                        {
+                            <a asp-action="ReturnTicket" asp-route-ticketId="@Model.Id" class="btn btn-primary">
+                                <i class="bi bi-arrow-return-left me-1"></i>Vrátit k řešení
+                            </a>
+                        }
+                    </div>
+                }
+                if (Model.State == WFState.Založený || Model.State == WFState.Odmítnutý)
+                {
+                    <div class="d-flex justify-content-start mt-4">
+                        <a asp-action="DeleteTicket" asp-route-ticketId="@Model.Id" class="btn btn-primary">
+                            <i class="bi bi-archive me-1"></i>Smazat požadavek
+                        </a>
+                    </div>
+                }
             }
         }
 

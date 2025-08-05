@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Tickets;
-using Models.Users;
 using Services.Abstractions.Services;
-using Services.Implementations;
 using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;
@@ -36,7 +34,7 @@ public class AuditorTicketController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(TicketViewModel ticket)
     {
-        var newTicket = new Models.Tickets.Ticket()
+        var newTicket = new Ticket()
         {
             Header = ticket.Header,
             Content = ticket.Content,
@@ -77,6 +75,32 @@ public class AuditorTicketController : Controller
     }
 
     [HttpGet]
+    public async Task<IActionResult> Created(string? filter = null, bool displayDetailIfSingle = false)
+    {
+        var currentUser = _userService.GetSignedInUser();
+
+        if (currentUser is null)
+            return BadRequest();
+
+        var tickets = await _ticketService.GetByCreatorAsync(currentUser.Id);
+
+        if (filter != null && !string.IsNullOrWhiteSpace(filter))
+        {
+            tickets = tickets
+                .Where(t => t.Header.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                    t.Solver != null && t.Solver.UserName != null && t.Solver.UserName.Contains(filter, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (displayDetailIfSingle && tickets.Count() == 1)
+                return View("Detail", tickets.Single());
+
+            ViewBag.Filter = filter;
+        }
+
+        return View("Overview", tickets);
+    }
+
+    [HttpGet]
     public async Task<IActionResult> Detail(Guid ticketId)
     {
         var ticket = await _ticketService.GetAsync(ticketId);
@@ -105,6 +129,13 @@ public class AuditorTicketController : Controller
         if (ticket is not null)
             await _archiveService.ArchiveAsync(ticket);
 
-        return View("Overview");
+        return RedirectToAction("Overview");
+    }
+
+    public async Task<IActionResult> DeleteTicket(Guid ticketId)
+    {
+        await _ticketService.DeleteAsync(ticketId);
+
+        return RedirectToAction("Overview");
     }
 }

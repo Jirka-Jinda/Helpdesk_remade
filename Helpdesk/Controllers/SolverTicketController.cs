@@ -216,4 +216,11 @@ public class SolverTicketController : Controller
 
         return RedirectToAction("Overview");
     }
+
+    public async Task<IActionResult> DeleteTicket(Guid ticketId)
+    {
+        await _ticketService.DeleteAsync(ticketId);
+
+        return RedirectToAction("Overview");
+    }
 }

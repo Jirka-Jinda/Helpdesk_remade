@@ -34,3 +34,11 @@ public class ApplicationUser : IdentityUser<Guid>
         NotificationsEnabled = !NotificationsEnabled;
     }
 }
+public class ApplicationUserComparer : IEqualityComparer<ApplicationUser>
+{
+    public bool Equals(ApplicationUser? x, ApplicationUser? y)
+        => x?.Id == y?.Id;
+
+    public int GetHashCode(ApplicationUser obj)
+        => obj.Id.GetHashCode();
+}

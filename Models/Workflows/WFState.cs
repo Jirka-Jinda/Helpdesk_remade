@@ -9,5 +9,6 @@ public enum WFState
     Neaktivní,
     Uzavřený,
     Vrácený,
+    Odmítnutý,
     Neplatný
 }

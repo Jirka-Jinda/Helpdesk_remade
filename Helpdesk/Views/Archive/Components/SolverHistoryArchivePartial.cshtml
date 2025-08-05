@@ -1,0 +1,29 @@
+﻿@using Models.TicketArchive
+@model TicketArchive
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 300px;">
+        <div class="text-center mb-4">
+            <h4>Řešitelé</h4>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Historie řešitelů</label>
+                @if (Model.SolverArchiveHistory.Any())
+                {
+                    @foreach (var change in Model.SolverArchiveHistory)
+                    {
+                        <div class="p-2 mb-2 border rounded bg-light overflow-hidden icon-link-hover">
+                            <p class="mb-1"><strong>@change.Solver?.UserName</strong></p>
+                            <small class="text-muted">@change.SolverAssigned.ToShortDateString()</small>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="p-2 border rounded bg-light text-muted text-center">Žádné změny řešitele</div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

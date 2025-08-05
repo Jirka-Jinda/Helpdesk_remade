@@ -11,7 +11,7 @@ public static class WFRules
             WFState.Žádný => new ReadOnlyCollection<WFAction>([WFAction.Založení]),
             WFState.Založený => new ReadOnlyCollection<WFAction>([WFAction.Do_řešení, WFAction.Přidělení_ručně, WFAction.Přidělení_timer, WFAction.Přidělení_manager]),
             WFState.Nepřidělený => new ReadOnlyCollection<WFAction>([WFAction.Přidělení_ručně, WFAction.Přidělení_timer, WFAction.Přidělení_manager]),
-            WFState.V_řešení => new ReadOnlyCollection<WFAction>([WFAction.Odložení, WFAction.Vyřešení, WFAction.Žádost_o_potvrzení, WFAction.Žádost_o_spolupráci, WFAction.Žádost_o_vyjádření_zadavatele, WFAction.Změna_řešitele, WFAction.Přidělení_ručně]),
+            WFState.V_řešení => new ReadOnlyCollection<WFAction>([WFAction.Odložení, WFAction.Vyřešení, WFAction.Žádost_o_potvrzení, WFAction.Žádost_o_spolupráci, WFAction.Žádost_o_vyjádření_zadavatele, WFAction.Změna_řešitele, WFAction.Přidělení_ručně, WFAction.Odmítnutí]),
             WFState.Neaktivní => new ReadOnlyCollection<WFAction>([WFAction.Reaktivace_automatická, WFAction.Reaktivace_ruční]),
             WFState.Uzavřený => new ReadOnlyCollection<WFAction>([WFAction.Vrácení]),
             WFState.Vrácený => new ReadOnlyCollection<WFAction>(StateActions(WFState.V_řešení)),
@@ -26,7 +26,7 @@ public static class WFRules
             WFState.Žádný => new ReadOnlyCollection<WFAction>([WFAction.Založení]),
             WFState.Založený => new ReadOnlyCollection<WFAction>([WFAction.Do_řešení, WFAction.Přidělení_ručně]),
             WFState.Nepřidělený => new ReadOnlyCollection<WFAction>([WFAction.Přidělení_ručně]),
-            WFState.V_řešení => new ReadOnlyCollection<WFAction>([WFAction.Odložení, WFAction.Vyřešení]),
+            WFState.V_řešení => new ReadOnlyCollection<WFAction>([WFAction.Odložení, WFAction.Vyřešení, WFAction.Odmítnutí]),
             WFState.Neaktivní => new ReadOnlyCollection<WFAction>([WFAction.Reaktivace_ruční]),
             WFState.Uzavřený => new ReadOnlyCollection<WFAction>([WFAction.Vrácení]),
             WFState.Vrácený => new ReadOnlyCollection<WFAction>(StateActions(WFState.V_řešení)),
@@ -61,6 +61,7 @@ public static class WFRules
                 if (action == WFAction.Žádost_o_spolupráci) return WFState.V_řešení;
                 if (action == WFAction.Žádost_o_vyjádření_zadavatele) return WFState.V_řešení;
                 if (action == WFAction.Změna_řešitele) return WFState.Nepřidělený;
+                if (action == WFAction.Odmítnutí) return WFState.Odmítnutý;
                 break;
             case WFState.Neaktivní:
                 if (action == WFAction.Reaktivace_automatická) return WFState.V_řešení;

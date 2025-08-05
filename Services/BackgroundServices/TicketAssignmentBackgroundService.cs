@@ -32,6 +32,9 @@ internal class TicketAssignmentBackgroundService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        // Wait for first start for 3 AM
+        await Task.Delay(DateTime.Now.AddDays(DateTime.Now.Hour >= 3 ? 1 : 0).AddHours(3) - DateTime.Now, stoppingToken);
+
         do
         {
             using (var scope = _serviceProvider.CreateScope())

@@ -76,12 +76,20 @@ internal static class TicketAchiveIncludeExtensions
         return query
             .Include(t => t.UserCreated)
             .Include(t => t.UserUpdated)
-            .Include(t => t.SolverArchiveHistory);
+            .Include(t => t.Solver)
+            .Include(t => t.Resolver)
+            .Include(t => t.SolverArchiveHistory)
+            .Include(t => t.SolverArchiveHistory)
+                .ThenInclude(a => a.Solver);
     }
 
     public static IQueryable<TicketArchive> UseIncludesAll(this IQueryable<TicketArchive> query)
     {
         return query
-            .Include(t => t.UserCreated);
+            .Include(t => t.UserCreated)
+            .Include(t => t.Resolver)
+            .Include(t => t.Resolver)
+                // There is no good way to check for null in Resolver prop. EF Core handles null in tree gracefully.
+                .ThenInclude(r => r!.Solver); 
     }
 }

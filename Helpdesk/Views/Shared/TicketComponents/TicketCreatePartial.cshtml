@@ -10,13 +10,13 @@
         <form method="post" asp-action="Create">
             <div class="mb-3">
                 <label asp-for="Header" class="form-label fw-bold">Název požadavku</label>
-                <input asp-for="Header" class="form-control text-wrap" placeholder="Zadejte název požadavku">
+                <input asp-for="Header" class="form-control text-wrap" placeholder="Zadejte název požadavku" required>
                 <span asp-validation-for="Header" class="text-danger small"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="Content" class="form-label fw-bold">Popis</label>
-                <textarea asp-for="Content" class="form-control text-wrap" rows="4" placeholder="Popište svůj požadavek..."></textarea>
+                <textarea asp-for="Content" class="form-control text-wrap" rows="4" placeholder="Popište svůj požadavek..." required></textarea>
                 <span asp-validation-for="Content" class="text-danger small"></span>
             </div>
 
@@ -25,9 +25,12 @@
                 <select asp-for="Category" class="form-select">
                     @foreach (var category in Html.GetEnumSelectList<TicketCategory>())
                     {
-                        <option value="@category.Value">
-                            @category.Text.Replace('_', ' ')
-                        </option>
+                        if (category.Text != TicketCategory.Nekategorizováno.ToString())
+                        {
+                            <option value="@category.Value">
+                                @category.Text.Replace('_', ' ')
+                            </option>
+                        }
                     }
                 </select>
                 <span asp-validation-for="Category" class="text-danger small"></span>

@@ -30,7 +30,7 @@ public class StatisticsService : IStatisticsService
             return assignedTicketCounts;
         else
         {
-            var result = new Dictionary<ApplicationUser, int>();
+            var result = new Dictionary<ApplicationUser, int>(new ApplicationUserComparer());
 
             var solvers = await _userService.GetUsersByRoleAsync(UserType.Řešitel);
             var tickets = await _ticketService.GetAllAsync();
@@ -46,6 +46,11 @@ public class StatisticsService : IStatisticsService
         }
     }
 
+    public async Task<Dictionary<ApplicationUser, int>> GetSolvedTicketTotalCountsBySolverAsync()
+    {
+        return await GetSolvedTicketCountsBySolverAsync(DateTime.MinValue, DateTime.UtcNow);
+    }
+
     public async Task<Dictionary<ApplicationUser, int>> GetSolvedTicketCountsBySolverAsync(DateTime startTime, DateTime endTime)
     {
         var retrieved = _cache.TryGetValue(nameof(GetSolvedTicketCountsBySolverAsync), out Dictionary<ApplicationUser, int>? solvedTicketCounts);
@@ -53,7 +58,8 @@ public class StatisticsService : IStatisticsService
         if (retrieved && solvedTicketCounts is not null)
             return solvedTicketCounts;
   
-        var result = new Dictionary<ApplicationUser, int>();
+        var result = new Dictionary<ApplicationUser, int>(new ApplicationUserComparer());
+        var users = await _userService.GetUsersByRoleAsync(UserType.Řešitel);
         var archives = await _archiveService.GetByResolvedTimeAsync(startTime, endTime);
 
         foreach (var archive in archives)
@@ -83,28 +89,15 @@ public class StatisticsService : IStatisticsService
 
         foreach (var archive in archives)
         {
-            if (archive.Resolver is not null && archive.Resolver.Solver is not null)
-            {
-                if (!result.ContainsKey(archive.Category))
-                    result[archive.Category] = 0;
-                result[archive.Category]++;
-            }
+            if (!result.ContainsKey(archive.Category))
+                result[archive.Category] = 0;
+            result[archive.Category]++;
         }
 
         _cache.Set(nameof(GetCreatedTicketCountsByCategoryAsync), result, _cacheDuration);
 
         return result;
     }
-
-    //public async Task<Dictionary<TicketCategory, TimeSpan>> GetAverageTicketResolutionTimesAsync(DateTime startTime, DateTime endTime)
-    //{
-    //    var retrieved = _cache.TryGetValue(nameof(GetAverageTicketResolutionTimesAsync), out Dictionary<TicketCategory, TimeSpan>? resolvedTicketsTimes);
-
-    //    if (retrieved && resolvedTicketsTimes is not null)
-    //        return resolvedTicketsTimes;
-
-    //    var result = new Dictionary<TicketCategory, TimeSpan>(); 
-    //}
 
     public async Task<List<Ticket>> GetUnresolvedTicketsOlderThan(TimeSpan olderThan)
     {

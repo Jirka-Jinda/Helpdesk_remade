@@ -97,11 +97,8 @@ public class UserTicketController : Controller
 
         return View("Detail", ticket);
     }
-    public IActionResult Archive()
-    {
-        return View();
-    }
 
+    [HttpPost]
     public async Task<IActionResult> ArchiveTicket(Guid ticketId)
     {
         var ticket = await _ticketService.GetAsync(ticketId);
@@ -109,7 +106,7 @@ public class UserTicketController : Controller
         if (ticket is not null)
             await _archiveService.ArchiveAsync(ticket);
 
-        return View("Overview");
+        return RedirectToAction("Overview");
     }
 
     public async Task<IActionResult> ReturnTicket(Guid ticketId)
@@ -123,5 +120,12 @@ public class UserTicketController : Controller
         var result = await _ticketService.ChangeWFAsync(ticket, WFAction.Vrácení, "Vráceno uživatelem.");
 
         return View("Detail", result);
+    }
+
+    public async Task<IActionResult> DeleteTicket(Guid ticketId)
+    {
+        await _ticketService.DeleteAsync(ticketId);
+
+        return RedirectToAction("Overview");
     }
 }

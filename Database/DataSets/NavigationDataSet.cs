@@ -84,7 +84,13 @@ internal class NavigationDataSet : IDataSet
         });
         auditNav.Root.AddChild(new NavigationNode()
         {
-            Name = "Požadavky",
+            Name = "Vytvořené",
+            Icon = "list-check",
+            Route = new NavigationRoute("", "AuditorTicket", "Created"),
+        });
+        auditNav.Root.AddChild(new NavigationNode()
+        {
+            Name = "Všechny",
             Icon = "list",
             Route = new NavigationRoute("", "AuditorTicket", "Overview"),
         });
@@ -104,7 +110,7 @@ internal class NavigationDataSet : IDataSet
         {
             Name = "Statistiky",
             Icon = "bar-chart-line-fill",
-            Route = new NavigationRoute("", "AuditorUser", "Statistics"),
+            Route = new NavigationRoute("", "AuditorStatistics", "UserStatistics"),
         });
         auditNav.Root.AddChild(new NavigationNode()
         {

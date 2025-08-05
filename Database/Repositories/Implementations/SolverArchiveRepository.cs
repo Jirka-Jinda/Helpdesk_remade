@@ -1,4 +1,5 @@
 ﻿using Database.Context;
+using Microsoft.EntityFrameworkCore;
 using Models.Archive;
 using Services.Abstractions.Repositories;
 
@@ -8,6 +9,11 @@ public class SolverArchiveRepository : BaseRepository<SolverArchiveHistory>, ISo
 {
     public SolverArchiveRepository(ApplicationDbContext context) : base(context)
     {
+    }
+
+    public async override Task<SolverArchiveHistory?> GetAsync(Guid id)
+    {
+        return await _context.SolverArchives.Include(h => h.Solver).SingleAsync();
     }
 
     public override Task<SolverArchiveHistory> AddAsync(SolverArchiveHistory entity, bool executeOperation = true)

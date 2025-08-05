@@ -4,6 +4,7 @@
 @model IReadOnlyCollection<TicketArchive>
 
 @{
+    ViewData["Title"] = "Archiv";
     string filter = ViewBag.Filter as string ?? "";
 }
 
@@ -19,6 +20,10 @@
                     <i class="bi bi-search text-white" style="font-size: 18px"></i>
                 </button>
                 <input type="text" name="filter" value="@filter" class="form-control" placeholder="Filtrovat podle názvu nebo kategorie..." />
+
+                <span class="input-group-text bg-primary text-light fw-bold">
+                    @Model.Count
+                </span>
             </div>
         </form>
 

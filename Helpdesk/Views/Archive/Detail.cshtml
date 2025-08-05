@@ -1,7 +1,22 @@
 ﻿@using Models.TicketArchive
+@using Models.Users
 @model TicketArchive
 @{
     ViewData["Title"] = "Archivní požadavek";
 }
 
-@await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketArchiveDetailPartial.cshtml", Model)
+@if (User.IsInRole(UserType.Auditor.ToString()))
+{
+    <div class="d-flex flex-column justify-content-center flex-md-row gap-3">
+        <div class="">
+            @await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketArchiveDetailPartial.cshtml", Model)
+        </div>
+        <div class="">
+            @await Html.PartialAsync("~/Views/Archive/Components/SolverHistoryArchivePartial.cshtml", Model)
+        </div>
+    </div>
+}
+else
+{
+    @await Html.PartialAsync("~/Views/Shared/TicketComponents/TicketArchiveDetailPartial.cshtml", Model)
+}

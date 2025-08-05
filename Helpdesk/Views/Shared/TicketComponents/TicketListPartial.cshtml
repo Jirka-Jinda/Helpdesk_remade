@@ -4,8 +4,8 @@
 @model IReadOnlyCollection<Ticket>
 
 @{
-    string filter = ViewBag.Filter as string ?? "";
     ViewData["Title"] = "Seznam požadavků";
+    string filter = ViewBag.Filter as string ?? "";
 }
 
 <div class="d-flex flex-row justify-content-center mt-5">
@@ -20,6 +20,10 @@
                     <i class="bi bi-search text-white" style="font-size: 18px"></i>
                 </button>
                 <input type="text" name="filter" value="@filter" class="form-control" placeholder="Filtrovat podle názvu nebo řešitele..." />
+
+                <span class="input-group-text bg-primary text-light fw-bold">
+                    @Model.Count
+                </span>
             </div>
         </form>
 

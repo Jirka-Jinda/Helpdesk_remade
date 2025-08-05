@@ -1,0 +1,82 @@
+﻿@using ViewModels.Statistics
+@model StatisticsViewModel
+@{
+    ViewData["Title"] = "Statistiky uživatelů";
+}
+
+<div class="d-flex flex-row justify-content-center mt-5">
+    <div class="card shadow-sm p-4 bg-secondary-subtle" style="width: 900px;">
+        <div class="text-center mb-4">
+            <h4>Seznam uživatelů</h4>
+        </div>
+
+        <form method="get" class="mb-4">
+            <div class="input-group d-flex flex-column">
+                <div class="d-flex">
+                    <button type="submit" class="input-group-text bg-primary rounded-end-0">
+                        <i class="bi bi-search text-white" style="font-size: 18px"></i>
+                    </button>
+                    <input asp-for="Filter" type="text" name="filter" value="@Model.Filter" class="form-control rounded-0" placeholder="Filtrovat řešitele..." />
+                    <span class="input-group-text bg-primary text-light fw-bold rounded-start-0">
+                        @(Model.Statistics != null ? Model.Statistics?.Count : 0)
+                    </span>
+                </div>                
+                <div class="d-flex mt-3 gap-3">
+                    <div class="mb-3 w-50">
+                        <label asp-for="StartInderval" class="form-label fw-bold">Datum od:</label>
+                        <input asp-for="StartInderval" class="form-control" type="date" 
+                                max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="mb-3 w-50">
+                        <label asp-for="EndInterval" class="form-label fw-bold">Datum do:</label>
+                        <input asp-for="EndInterval" class="form-control" type="date"
+                               max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0 bg-primary">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Jméno</th>
+                            <th>Vyřešeno celkem</th>
+                            <th>Přiděleno</th>
+                            <th>Vyřešeno v OD a DO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Statistics != null && Model.Statistics.Any())
+                        {
+                            @foreach (var user in Model.Statistics)
+                            {
+                                <tr>
+                                    <td>@user.Key.UserName</td>
+                                    <td>@user.Value.SolvedTotal</td>
+                                    <td>@user.Value.Assigned</td>
+                                    @if (Model.StartInderval != null && Model.EndInterval != null)
+                                    {
+                                        <td>@user.Value.SolvedInInterval</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">Žádní uživatelé nejsou v systému.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -16,6 +16,7 @@ public class WfStateBadgeTagHelper : TagHelper
             WFState.Uzavřený => "bg-success text-dark",
             WFState.Vrácený => "bg-danger text-dark",
             WFState.Neaktivní => "bg-dark",
+            WFState.Odmítnutý => "bg-dark",
             _ => "bg-warning text-dark"
         };
 

@@ -55,11 +55,6 @@ public class ArchiveService : BaseService, IArchiveService
         await _ticketArchiveRepository.DeleteAsync(id);
     }
 
-    /// <summary>
-    /// Retrieves all archived tickets. Avoid using this as much as possible, use GetBy* methods instead to filter results.
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="DataException"></exception>
     public async Task<IEnumerable<TicketArchive>> GetAllAsync()
     {
         string cacheKey = nameof(ArchiveService) + nameof(GetAllAsync);
