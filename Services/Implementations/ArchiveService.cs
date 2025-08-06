@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Memory;
-using Models.TicketArchive;
+using Models.Archive;
 using Models.Tickets;
 using Models.Users;
 using Services.Abstractions.Repositories;

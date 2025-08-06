@@ -1,4 +1,4 @@
-﻿using Models.TicketArchive;
+﻿using Models.Archive;
 using Models.Tickets;
 
 namespace Services.Abstractions.Services;

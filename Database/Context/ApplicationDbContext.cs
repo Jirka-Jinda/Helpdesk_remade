@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Models.Archive;
 using Models.Messages;
 using Models.Navigation;
-using Models.TicketArchive;
 using Models.Tickets;
 using Models.Users;
 

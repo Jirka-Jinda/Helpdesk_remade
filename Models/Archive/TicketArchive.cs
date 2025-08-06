@@ -1,9 +1,8 @@
-﻿using Models.Archive;
-using Models.Tickets;
+﻿using Models.Tickets;
 using Models.Workflows;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.TicketArchive;
+namespace Models.Archive;
 
 [Table("TicketArchives")]
 public class TicketArchive : TicketBase

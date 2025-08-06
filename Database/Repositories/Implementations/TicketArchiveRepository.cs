@@ -1,7 +1,6 @@
 ﻿using Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Models.Archive;
-using Models.TicketArchive;
 using Models.Tickets;
 using Services.Abstractions.Repositories;
 
