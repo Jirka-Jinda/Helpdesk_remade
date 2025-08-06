@@ -42,12 +42,12 @@
             }
 
             <hr />
-            <p class="text-wrap">@Model.Content</p>
+            <p style="white-space: pre-wrap;">@Model.Content</p>
 
             @if (Model.Result != "")
             {
                 <hr />
-                <p class="mb-1 text-wrap"><strong>Výsledek:</strong> @Model.Result</p>
+                <p class="mb-1" style="white-space: pre-wrap;"><strong>Výsledek:</strong>@Model.Result</p>
             }
         </div>
         @{
@@ -94,7 +94,7 @@
                         <span class="fw-bold">@message.UserCreated</span>
                         <small class="text-muted">@message.TimeCreated.ToShortDateString() - @message.TimeCreated.ToString("HH:mm")</small>
                     </div>
-                    <p class="mb-0 text-wrap">@message.Content</p>
+                    <p style="white-space: pre-wrap;" class="mb-0">@message.Content</p>
                 </div>
             }
         }
@@ -110,7 +110,7 @@
             <input type="hidden" name="ticketId" value="@Model.Id" />
             <div class="mb-3">
                 <label for="newMessage" class="form-label fw-bold">Přidat komentář</label>
-                <textarea class="form-control text-wrap" id="newMessage" name="message" rows="3" placeholder="Napište komentář..." required></textarea>
+                <textarea class="form-control text-wrap" style="white-space: pre-wrap;" id="newMessage" name="message" rows="3" placeholder="Napište komentář..." required></textarea>
             </div>
             <div class="d-flex justify-content-between">
                 <a asp-action="Overview" class="btn btn-outline-secondary">

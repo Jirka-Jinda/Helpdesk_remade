@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Users;
 using Services.Abstractions.Services;
+using Services.Implementations;
 using ViewModels.User;
 
 namespace Helpdesk.Controllers;
@@ -11,11 +12,13 @@ public class AuditorUserController : Controller
 {
     private readonly ILogger<AuditorUserController> _logger;
     private readonly IUserService _userService;
+    private readonly PasswordGeneratorService _passwordGeneratorService;
 
-    public AuditorUserController(ILogger<AuditorUserController> logger, IUserService userService)
+    public AuditorUserController(ILogger<AuditorUserController> logger, IUserService userService, PasswordGeneratorService passwordGeneratorService)
     {
         _logger = logger;
         _userService = userService;
+        _passwordGeneratorService = passwordGeneratorService;
     }
 
     [HttpGet]
@@ -125,5 +128,26 @@ public class AuditorUserController : Controller
 
         ViewBag.RegisterFailed = true;
         return View("Create");
+    }
+
+    public async Task<IActionResult> Reset(Guid userId)
+    {
+        var user = await _userService.GetAsync(userId);
+
+        if (user is not null)
+        {
+            var newPassword = _passwordGeneratorService.GeneratePassword();
+
+            var result = await _userService.ResetPasswordAsync(user, newPassword);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("Password reset successfully for user: {Email}", user.Email);
+                return View(model: newPassword);
+            }
+        }
+
+        ViewBag.ResetFailed = true;
+        return View();
     }
 }

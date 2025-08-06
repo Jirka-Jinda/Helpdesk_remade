@@ -16,12 +16,19 @@
                 Neplatné údaje. Zkuste to prosím znovu.
             </div>
         }
+        @if (ViewBag.ResetUnaviable != null && (bool)ViewBag.ResetUnaviable)
+        {
+            <div class="alert alert-warning text-center text-wrap">
+                Emailová služba není zapnutá, požádejte o reset správce systému.
+            </div>
+        }
         @if (ViewBag.ResetSucceded != null && (bool)ViewBag.ResetSucceded)
         {
             <div class="alert alert-success text-center text-wrap">
                 Na váš email bylo odesláno vygenerované heslo.
             </div>
         }
+
 
         <p class="text-center text-wrap">
 			Na váš email bude odesláno nové heslo, které si potom můžete změnit v nastavení účtu.

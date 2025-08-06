@@ -14,13 +14,11 @@ namespace Helpdesk.Controllers;
 public class HomeController : Controller
 {
     private readonly IUserService _userService;
-    private readonly IEmailService _emailService;
     private readonly IMemoryCache _memoryCache;
 
-    public HomeController(IUserService userService, IEmailService emailService, IMemoryCache memoryCache)
+    public HomeController(IUserService userService, IMemoryCache memoryCache)
     {
         _userService = userService;
-        _emailService = emailService;
         _memoryCache = memoryCache;
     }
 

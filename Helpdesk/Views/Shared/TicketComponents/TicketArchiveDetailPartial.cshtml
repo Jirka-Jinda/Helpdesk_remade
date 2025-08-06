@@ -37,11 +37,11 @@
             @if (Model.Result != "")
             {
                 <hr />
-                <p class="mb-1 text-wrap"><strong>Výsledek:</strong> @Model.Result</p>
+                <p class="mb-1" style="white-space: pre-wrap;"><strong>Výsledek:</strong> @Model.Result</p>
             }
 
             <hr />
-            <p class="text-wrap">@Model.Content</p>
+            <p style="white-space: pre-wrap;"> @Model.Content</p>
         </div>
         <div class="d-flex justify-content-start">
             <a asp-action="Overview" class="btn btn-outline-secondary">

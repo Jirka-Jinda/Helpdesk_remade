@@ -116,6 +116,12 @@ public class AccessController : Controller
     [Authorize(Roles = "Zadavatel, Auditor, Řešitel")]
     public async Task<IActionResult> Reset(ApplicationUserViewModel model)
     {
+        if (HttpContext.RequestServices.GetService<IEmailService>() is null)
+        {
+            ViewBag.ResetUnaviable = true;
+            return View();
+        }
+
         var user = await _userService.GetUserByEmailAsync(model.Email);
 
         if (user is not null)
