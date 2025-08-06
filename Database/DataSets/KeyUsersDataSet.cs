@@ -14,6 +14,8 @@ internal class KeyUsersDataSet : IDataSet
 
         var testId = Guid.NewGuid();
         var password = "TestPassword123!";
+
+#if DEBUG
         var testAuditor = new ApplicationUser()
         {
             Id = testId,
@@ -48,6 +50,18 @@ internal class KeyUsersDataSet : IDataSet
         await userManager.CreateAsync(testUser);
         await userManager.AddPasswordAsync(testUser, password);
         await userManager.AddToRoleAsync(testUser, UserType.Zadavatel.ToString());
+#else
+        var testAuditor = new ApplicationUser()
+        {
+            Id = testId,
+            Email = "admin@email.com",
+            UserName = "Admin",
+            NotificationsEnabled = true,
+        };
+        await userManager.CreateAsync(testAuditor);
+        await userManager.AddPasswordAsync(testAuditor, password);
+        await userManager.AddToRoleAsync(testAuditor, UserType.Auditor.ToString());
+#endif
 
         await context.SaveChangesAsync();
     }

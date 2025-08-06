@@ -41,15 +41,14 @@
                 <p class="mb-1"><strong>Nutné dokončení:</strong> @Model.Deadline.ToString()</p>
             }
 
+            <hr />
+            <p class="text-wrap">@Model.Content</p>
+
             @if (Model.Result != "")
             {
                 <hr />
                 <p class="mb-1 text-wrap"><strong>Výsledek:</strong> @Model.Result</p>
             }
-
-            <hr />
-            <p class="text-wrap">@Model.Content</p>
-
         </div>
         @{
             var user = userService.GetSignedInUser();

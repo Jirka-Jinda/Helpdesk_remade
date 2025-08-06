@@ -48,7 +48,7 @@ public static class IServiceProviderExtensions
             List<IDataSet> datasets = [ new RolesDataSet(), new UsersDataSet(), new KeyUsersDataSet(), new NavigationDataSet(),  new TicketsDataSet() ];
         #else
             logger?.LogInformation("Populating database with roles and default navigations.");
-            List<IDataSet> datasets = [ new RolesDataSet(), new UsersDataSet(), new KeyUsersDataSet(), new NavigationDataSet(),  new TicketsDataSet() ];
+            List<IDataSet> datasets = [ new RolesDataSet(), new KeyUsersDataSet(), new NavigationDataSet() ];
         #endif
 
         foreach (var dataset in datasets)

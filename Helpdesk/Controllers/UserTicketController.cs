@@ -7,7 +7,7 @@ using ViewModels.Ticket;
 
 namespace Helpdesk.Controllers;
 
-[Authorize(Roles = "Auditor, Řešitel, Zadavatel")]
+[Authorize(Roles = "Zadavatel")]
 public class UserTicketController : Controller
 {
     private readonly ITicketService _ticketService;
