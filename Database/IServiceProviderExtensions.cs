@@ -46,10 +46,10 @@ public static class IServiceProviderExtensions
         #if DEBUG
             logger?.LogInformation("Populating database with example data...");
             List<IDataSet> datasets = [ new RolesDataSet(), new UsersDataSet(), new KeyUsersDataSet(), new NavigationDataSet(),  new TicketsDataSet() ];
-        #else
+#else
             logger?.LogInformation("Populating database with roles and default navigations.");
-            List<IDataSet> datasets = [ new RolesDataSet(), new KeyUsersDataSet(), new NavigationDataSet() ];
-        #endif
+            List<IDataSet> datasets = [ new RolesDataSet(), new UsersDataSet(), new KeyUsersDataSet(), new NavigationDataSet(),  new TicketsDataSet() ];
+#endif
 
         foreach (var dataset in datasets)
             await dataset.Populate(scope.ServiceProvider);

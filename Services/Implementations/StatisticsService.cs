@@ -41,7 +41,7 @@ public class StatisticsService : IStatisticsService
                 result[solver] = count;
             }
 
-            _cache.Set(nameof(GetAssignedTicketCountsBySolverAsync), result, _cacheDuration);
+            //_cache.Set(nameof(GetAssignedTicketCountsBySolverAsync), result, _cacheDuration);
             return result;
         }
     }
