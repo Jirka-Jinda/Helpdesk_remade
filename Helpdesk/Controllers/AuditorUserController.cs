@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models.Users;
 using Services.Abstractions.Services;
@@ -66,7 +65,7 @@ public class AuditorUserController : Controller
     {
         var refreshUser = await _userService.GetAsync(updatedUser.Id);
 
-        if (refreshUser != null)
+        if (refreshUser != null && ModelState.IsValid)
         {
             refreshUser.UserName = updatedUser.UserName;
             refreshUser.NotificationsEnabled = updatedUser.EnableNotifications;
@@ -85,6 +84,8 @@ public class AuditorUserController : Controller
                 return View("Detail", new UserSettingsViewModel(refreshUser));
             }
         }
+
+        refreshUser = await _userService.GetAsync(updatedUser.Id);
 
         ViewBag.UpdateFailed = true;
         return View("Detail", new UserSettingsViewModel(refreshUser));

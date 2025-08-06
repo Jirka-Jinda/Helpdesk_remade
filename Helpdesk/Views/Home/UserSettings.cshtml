@@ -47,7 +47,7 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class ="mb-1">
-                    <input name="NewPassword" asp-for="NewPassword" type="password" class="form-control" placeholder="Zadejte nové heslo">
+                    <input name="NewPassword" asp-for="NewPassword" type="password" class="form-control" placeholder="Zadejte nové heslo: nejméně 8 znaků - velké, malé písmeno, znak, číslici">
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
             </div>
 
-            @if (User.IsInRole(UserType.Zadavatel.ToString()))
+            @if (User.IsInRole(UserType.Řešitel.ToString()))
             {
                 <!-- Checkboxes category preferences -->
                 <div class="mb-3">

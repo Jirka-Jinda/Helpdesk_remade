@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions.Services;
 
 namespace Helpdesk.Controllers;
 
+[Authorize(Roles = "Auditor, Řešitel, Zadavatel")]
 public class ArchiveController : Controller
 {
     private readonly IArchiveService _archiveService;

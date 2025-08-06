@@ -25,6 +25,12 @@ public class ErrorController : Controller
         return View();
     }
 
+    public IActionResult Code405()
+    {
+        _logger.LogError("Method not allowed.");
+        return View();
+    }
+
     public IActionResult Code500()
     {
         _logger.LogError("Internal server error.");

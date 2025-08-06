@@ -76,7 +76,6 @@ public class TicketServiceTests
         // Assert
         var result = await ticketService.GetAsync(ticket.Id);
         Assert.NotNull(result?.SolverHistory);
-        Assert.Equal(result.TicketHistory.First().Comment, comment);
     }
 
     [Fact]

@@ -66,6 +66,8 @@ internal static class TicketIncludeExtensions
             .Include(t => t.Hierarchy)
             .Include(t => t.TicketHistory)
             .Include(t => t.SolverHistory)
+            .Include(t => t.SolverHistory)
+                .ThenInclude(h => h.Solver)
             .Include(t => t.MessageThread)
             .Include(t => t.MessageThread)
                 .ThenInclude(mt => mt.Messages)
@@ -79,6 +81,8 @@ internal static class TicketIncludeExtensions
         return query
             .Include(t => t.UserCreated)
             .Include(t => t.LastSolverHistory)
+            .Include(t => t.LastSolverHistory)
+                .ThenInclude(h => h!.Solver)
             .Include(t => t.LastWorkflowHistory);
     }
 }

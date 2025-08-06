@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Tickets;
-using Models.Users;
 using Models.Workflows;
 using Services.Abstractions.Services;
 using ViewModels.Ticket;
@@ -98,7 +97,6 @@ public class UserTicketController : Controller
         return View("Detail", ticket);
     }
 
-    [HttpPost]
     public async Task<IActionResult> ArchiveTicket(Guid ticketId)
     {
         var ticket = await _ticketService.GetAsync(ticketId);

@@ -1,5 +1,6 @@
 ﻿using Models.Tickets;
 using Models.Users;
+using System.ComponentModel.DataAnnotations;
 
 namespace ViewModels.User;
 
@@ -15,6 +16,7 @@ public class UserSettingsViewModel
 
     public bool EnableNotifications { get; set; }
 
+    [Phone]
     public string? PhoneNumber {  get; set; } = null;
 
     public Guid? SuperiorId { get; set; } = null;

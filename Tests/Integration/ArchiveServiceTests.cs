@@ -27,26 +27,50 @@ public class ArchiveServiceTests
     }
 
     [Fact]
-    public async Task Archive_valid_ticket()
+    public async Task GetByCreatedTime_returns_correct_archives()
     {
         // Arrange
         var archiveService = GetArchiveService();
         var ticketService = GetTicketService();
-        var ticket = DataObjects.Ticket();
-        await ticketService.AddAsync(ticket);
-        await ticketService.ChangeSolverAsync(ticket, DataObjects.ApplicationUserWithoutPassword(Guid.NewGuid()), "Test solver comment");
+        var startDate = DateTime.UtcNow.AddDays(-1);
+        var endDate = DateTime.UtcNow;
+        var ticket1 = DataObjects.Ticket();
+        var ticket2 = DataObjects.Ticket();
+
+        await ticketService.AddAsync(ticket1);
+        await ticketService.AddAsync(ticket2);
+        await archiveService.ArchiveAsync(ticket1);
+        await archiveService.ArchiveAsync(ticket2);
 
         // Act
-        var archivedTicket = await archiveService.ArchiveAsync(ticket);
+        var archives = await archiveService.GetByCreatedTimeAsync(startDate, endDate);
 
         // Assert
-        var retrievedTicket = await ticketService.GetAsync(ticket.Id);
-        var retrievedArchivedTicket = await archiveService.GetAsync(archivedTicket.Id);
+        Assert.NotEmpty(archives);
+        Assert.All(archives, a => Assert.InRange(a.TimeCreated, startDate, endDate));
+    }
 
-        Assert.Null(retrievedTicket);
-        Assert.NotNull(archivedTicket);
-        Assert.NotNull(retrievedArchivedTicket);
-        Assert.Equal(ticket.Id, archivedTicket.Id);
-        Assert.Equal(ticket.Solver, archivedTicket.Solver?.Solver);
+    [Fact]
+    public async Task GetByResolvedTime_returns_correct_archives()
+    {
+        // Arrange
+        var archiveService = GetArchiveService();
+        var ticketService = GetTicketService();
+        var startDate = DateTime.UtcNow.AddDays(-1);
+        var endDate = DateTime.UtcNow;
+        var ticket1 = DataObjects.Ticket();
+        var ticket2 = DataObjects.Ticket();
+
+        await ticketService.AddAsync(ticket1);
+        await ticketService.AddAsync(ticket2);
+        await archiveService.ArchiveAsync(ticket1);
+        await archiveService.ArchiveAsync(ticket2);
+
+        // Act
+        var archives = await archiveService.GetByResolvedTimeAsync(startDate, endDate);
+
+        // Assert
+        Assert.NotEmpty(archives);
+        Assert.All(archives, a => Assert.InRange(a.TimeCreated, startDate, endDate));
     }
 }

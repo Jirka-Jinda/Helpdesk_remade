@@ -103,7 +103,7 @@ public class HomeController : Controller
         var results = new List<IdentityResult>();
         var refreshUser = await _userService.GetAsync(updatedUser.Id);
 
-        if (refreshUser != null) 
+        if (refreshUser != null && ModelState.IsValid) 
         {
             refreshUser.UserName = updatedUser.UserName;
             refreshUser.NotificationsEnabled = updatedUser.EnableNotifications;
@@ -119,7 +119,7 @@ public class HomeController : Controller
             if (results.All(res => res.Succeeded == true))
             {
                 ViewBag.UpdateSucceded = true;
-                return View("Detail", new UserSettingsViewModel(refreshUser));
+                return View(new UserSettingsViewModel(refreshUser));
             }
         }
 

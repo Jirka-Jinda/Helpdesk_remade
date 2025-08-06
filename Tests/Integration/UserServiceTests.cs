@@ -23,12 +23,6 @@ public class UserServiceTests
         return scope.ServiceProvider.GetRequiredService<IUserService>();
     }
 
-    private IHttpContextAccessor GetHttpContextAccessor()
-    {
-        var scope = _factory.Services.CreateScope();
-        return scope.ServiceProvider.GetRequiredService<IHttpContextAccessor>();
-    }
-
     [Fact]
     public async Task Create_user_with_password()
     {

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models.Users;
 using Services.Abstractions.Services;
 using ViewModels.Statistics;
 
 namespace Helpdesk.Controllers;
 
+[Authorize(Roles = "Auditor")]
 public class AuditorStatisticsController : Controller
 {
     private readonly IStatisticsService _statisticsService;
