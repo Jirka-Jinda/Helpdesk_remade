@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250803171723_InitialCreate")]
+    [Migration("20250806151818_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -317,7 +317,7 @@ namespace Database.Migrations
                     b.Property<Guid?>("UserUpdatedId")
                         .HasColumnType("uuid");
 
-                    b.Property<bool?>("WasReturned")
+                    b.Property<bool>("WasReturned")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");

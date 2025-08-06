@@ -292,7 +292,7 @@ namespace Database.Migrations
                     SolverId = table.Column<Guid>(type: "uuid", nullable: true),
                     ResolverId = table.Column<Guid>(type: "uuid", nullable: true),
                     DeadlineMet = table.Column<bool>(type: "boolean", nullable: true),
-                    WasReturned = table.Column<bool>(type: "boolean", nullable: true),
+                    WasReturned = table.Column<bool>(type: "boolean", nullable: false),
                     TimeCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     TimeUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     UserCreatedId = table.Column<Guid>(type: "uuid", nullable: true),

@@ -314,7 +314,7 @@ namespace Database.Migrations
                     b.Property<Guid?>("UserUpdatedId")
                         .HasColumnType("uuid");
 
-                    b.Property<bool?>("WasReturned")
+                    b.Property<bool>("WasReturned")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
